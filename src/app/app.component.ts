@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title }     from '@angular/platform-browser';//This is the Title service
 
 @Component({
     selector: 'app-root',
@@ -7,7 +8,11 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-    title = 'app works!';
     
+    public constructor(private titleService: Title ) {
+        this.titleService.setTitle('Lunchtime Version 1');//Sets title
+     }
+    
+
 }
 
