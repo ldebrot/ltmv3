@@ -8,12 +8,16 @@ import { TestComponent } from './components/test/test.component';
 import { MenubarModule, TabMenuModule, MenuItem } from 'primeng/primeng';
 import { ButtonModule } from 'primeng/primeng';
 import { SectionTopComponent } from './components/section-top/section-top.component';
+import { TitleComponent } from './components/title/title.component';
+import { ConnectComponent } from './components/connect/connect.component';
 
 @NgModule({
     declarations: [
     AppComponent,
     TestComponent,
-    SectionTopComponent
+    SectionTopComponent,
+    TitleComponent,
+    ConnectComponent
     ],
     imports: [
     BrowserModule,
