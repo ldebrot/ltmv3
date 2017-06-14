@@ -1,0 +1,96 @@
+
+
+.cadre-short {
+    z-index: -1;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    width:220px;
+    height:60px;
+    border-style:solid;
+    border-width:0px;
+    border-color:#157;
+    background-color: #5AF;
+    position: absolute;
+}
+
+.cadre-long {
+    z-index: -1;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    width:100%;
+    height:60px;
+    border-style:solid;
+    border-width:0px;
+    border-color:#157;
+    position: absolute;
+   	-webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+  	-moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+	  box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.rond {
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    width:0px;
+    height:0px;
+    border-style:solid;
+    border-width:30px;
+    border-color:#157;
+    position: absolute;
+}
+
+
+i.fleche {
+    border: solid #157;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    height:20px;
+    width:20px;
+    padding: 3px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.parent {
+    position:relative;
+}
+.viewport-clip {
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+  padding: 5px 50px 0px 70px;
+}
+
+.viewport {
+  width: 100%;
+  height: 100px; /* Note the excessive extra height to keep h-scrollbar at bay */
+  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.horizontal {
+  width: 1500px;
+  height: 50px;
+}
+
+.item {
+  z-index: 2;
+  width: 150px;
+  float: left;
+  background: transparent;
+  color:#000;
+  padding-right: 5px;
+  height: 50px;
+}
+
+.itemtext {
+  word-wrap: break-word;
+  text-align: center;
+}

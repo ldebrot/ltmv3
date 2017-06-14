@@ -1,0 +1,15 @@
+.minwidthmobile {
+    min-width: 320px;
+}
+
+.minheight-80 {
+    min-height: 80px;
+}
+
+.section-top-padding {
+    padding:10px 0px;
+}
+
+.section-top-color {
+    color:#5AF    
+}

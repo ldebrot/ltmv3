@@ -10,6 +10,8 @@ import { ButtonModule } from 'primeng/primeng';
 import { SectionTopComponent } from './components/section-top/section-top.component';
 import { TitleComponent } from './components/title/title.component';
 import { ConnectComponent } from './components/connect/connect.component';
+import { SectionTopmenuComponent } from './components/section-topmenu/section-topmenu.component';
+import { ConnectShortComponent } from './components/connect-short/connect-short.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +19,9 @@ import { ConnectComponent } from './components/connect/connect.component';
     TestComponent,
     SectionTopComponent,
     TitleComponent,
-    ConnectComponent
+    ConnectComponent,
+    SectionTopmenuComponent,
+    ConnectShortComponent
     ],
     imports: [
     BrowserModule,
