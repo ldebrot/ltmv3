@@ -14,10 +14,10 @@
 
 </div>
 <div class="viewport-clip">
-    <div class="viewport" id="scrollablecontainer" (scroll)="tryme($event)">
-        <div class="horizontal">
+    <div class="viewport" id="scrollablecontainer" (scroll)="autoposition($event)">
+        <div class="horizontal" >
 
-            <div *ngFor="let menuitem of menuitems" class="item"><div class="itemtext">{{ menuitem.title }}</div></div>
+            <div *ngFor="let menuitem of menuitems" class="item" id="itemholder"><div class="itemtext" id="itemtext{{menuitem.position}}" (click)="setposition($event)">{{ menuitem.title }}</div></div>
            
 
         </div>
