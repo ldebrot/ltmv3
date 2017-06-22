@@ -45,7 +45,6 @@ export class SectionTopmenuComponent implements OnInit {
     }
 
     public intervalhits(): void {//this is when the interval to check whether scrolling has ended hits (hence, when the scrolling has ended)
-        clearInterval(this.scrollinginterval);
         this.scrollingintervalset = false;
         this.destinationpos = (this.determineclosestpos() * this.menuitemwidth);//set destinationpos
         this.positioningintervalexecute();
@@ -67,7 +66,6 @@ export class SectionTopmenuComponent implements OnInit {
 
     public positioningintervalexecute():void {
         //Check if 
-        clearInterval(this.positioninginterval);
 
         if (!this.autopositioningtoggle){
             this.destinationpos = this.menuitemwidth*2;
@@ -108,7 +106,7 @@ export class SectionTopmenuComponent implements OnInit {
             //console.log("Temp_ratio: "+temp_ratio);
             //console.log("Temp_time: "+temp_time);
 
-            this.positioninginterval = setInterval(() => { this.positioningintervalexecute(); }, temp_time);        
+            this.positioninginterval = setTimeout(() => { this.positioningintervalexecute(); }, temp_time);        
         }
 
     }
@@ -117,14 +115,7 @@ export class SectionTopmenuComponent implements OnInit {
 
         if(this.autopositioningtoggle){
 
-            if(this.scrollingintervalset) {
-                clearInterval(this.scrollinginterval);
-            }
-            if(this.positioningintervalset) {//in case the scroll element is currently being positioned, the automatic positioning has to be stopped
-                clearInterval(this.positioninginterval);
-            }
-
-            this.scrollinginterval = setInterval(() => { this.intervalhits(); }, this.scrollingintervaltime);
+            this.scrollinginterval = setTimeout(() => { this.intervalhits(); }, this.scrollingintervaltime);
             this.scrollingintervalset = true;
 
             this.scrollingobject = event.target;//this designates which element is actually being scrolled
