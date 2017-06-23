@@ -1,3 +1,4 @@
+//Modules
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -6,8 +7,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';//add NG-Bootstrap
 import { MenubarModule, TabMenuModule, MenuItem } from 'primeng/primeng';
 import { ButtonModule } from 'primeng/primeng';
 
-//Routing service
+//Services
 import { RoutingService } from './services/routing.service';
+import { FakeAuthService } from './services/fakeauth.service';//checks if user logged in
+import { authGuardService } from './services/authguard.service';//prevents routes from loading
 
 //Components
 import { AppComponent } from './app.component';
@@ -19,6 +22,8 @@ import { SectionTopmenuComponent } from './components/section-topmenu/section-to
 import { ConnectShortComponent } from './components/connect-short/connect-short.component';
 import { MainComponent } from './components/main/main.component';
 import { IntrouvableComponent } from './components/introuvable/introuvable.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +35,9 @@ import { IntrouvableComponent } from './components/introuvable/introuvable.compo
     SectionTopmenuComponent,
     ConnectShortComponent,
     MainComponent,
-    IntrouvableComponent
+    IntrouvableComponent,
+    SignupComponent,
+    SigninComponent
     ],
     imports: [
     BrowserModule,
@@ -43,7 +50,9 @@ import { IntrouvableComponent } from './components/introuvable/introuvable.compo
     ButtonModule
     ],
     providers: [
-        Title
+        Title,
+        FakeAuthService,//fake authentication service
+        authGuardService
     ],
     bootstrap: [AppComponent]
 })

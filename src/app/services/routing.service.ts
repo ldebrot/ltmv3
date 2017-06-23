@@ -4,10 +4,12 @@ import { NgModule } from '@angular/core';
 //import all components
 import { MainComponent } from './../components/main/main.component';
 import { IntrouvableComponent } from './../components/introuvable/introuvable.component';
+import { SignupComponent } from './../auth/signup/signup.component';
 
 //Routes:
 const appRoutes: Routes = [
     { path: '', component: MainComponent},
+    { path: 'signup', component: SignupComponent},
     { path: 'introuvable', component: IntrouvableComponent},
     { path: '**', redirectTo: '/introuvable'}
 ]

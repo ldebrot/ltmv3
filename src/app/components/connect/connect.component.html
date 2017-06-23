@@ -1,1 +1,18 @@
-Qui sommes-nous ? | Se connecter
+<div>
+    <div class="floatright">
+        Qui sommes-nous ?    
+    </div>
+    <div class="floatright">
+        &emsp;|&emsp;
+    </div>
+    <div class="floatright">
+        <div *ngIf="!userConnected">
+            <a [routerLink]="['/signup']">
+                Se connecter
+            </a>        
+        </div>
+        <div *ngIf="userConnected">
+            Se déconnecter        
+        </div>
+    </div>
+</div>

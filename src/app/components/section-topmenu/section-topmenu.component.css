@@ -1,5 +1,3 @@
-
-
 .cadre-short {
     z-index: -1;
     -webkit-border-radius: 100px;
@@ -25,9 +23,9 @@
     border-width:0px;
     border-color:#157;
     position: absolute;
-   	-webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-  	-moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-	  box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .rond {
@@ -61,36 +59,42 @@ i.fleche {
     position:relative;
 }
 .viewport-clip {
-  width: 100%;
-  height: 50px;
-  overflow: hidden;
-  padding: 5px 50px 0px 70px;
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    padding: 5px 50px 0px 70px;
 }
 
 .viewport {
-  width: 100%;
-  height: 100px; /* Note the excessive extra height to keep h-scrollbar at bay */
-  overflow: auto;
-  overflow-x: auto;
-  overflow-y: hidden;
+    width: 100%;
+    height: 100px; /* Note the excessive extra height to keep h-scrollbar at bay */
+    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .horizontal {
-  width: 1500px;
-  height: 50px;
+    width: 1500px;
+    height: 50px;
 }
 
 .item {
-  z-index: 2;
-  width: 150px;
-  float: left;
-  background: transparent;
-  color:#000;
-  padding-right: 5px;
-  height: 50px;
+    z-index: 2;
+    width: 150px;
+    float: left;
+    background: transparent;
+    color:#000;
+    padding-right: 5px;
+    height: 50px;
 }
 
 .itemtext {
-  word-wrap: break-word;
-  text-align: center;
+    word-wrap: break-word;
+    text-align: center;
+    -webkit-transition: 0.5s; /* Safari */
+    transition: 0.5s;
+}
+
+.itemtext:hover {
+    text-shadow: 0px 0px 4px #115577;
 }
