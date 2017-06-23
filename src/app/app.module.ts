@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/primeng';
 import { RoutingService } from './services/routing.service';
 import { FakeAuthService } from './services/fakeauth.service';//checks if user logged in
 import { authGuardService } from './services/authguard.service';//prevents routes from loading
+import { AuthService } from './auth/auth.service';//actual auth service connected to firebase
 
 //Components
 import { AppComponent } from './app.component';
@@ -52,7 +53,8 @@ import { SigninComponent } from './auth/signin/signin.component';
     providers: [
         Title,
         FakeAuthService,//fake authentication service
-        authGuardService
+        authGuardService,
+        AuthService
     ],
     bootstrap: [AppComponent]
 })
