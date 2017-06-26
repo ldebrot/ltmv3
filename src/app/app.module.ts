@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';//add NG-Bootstrap
-import { MenubarModule, TabMenuModule, MenuItem, DialogModule, ButtonModule } from 'primeng/primeng';
+import { MenubarModule, TabMenuModule, MenuItem, DialogModule, ButtonModule,MessagesModule } from 'primeng/primeng';
 
 //Services
 import { RoutingService } from './services/routing.service';
@@ -25,6 +25,7 @@ import { MainComponent } from './components/main/main.component';
 import { IntrouvableComponent } from './components/introuvable/introuvable.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { SigninupComponent } from './auth/signinup/signinup.component';
 
 @NgModule({
     declarations: [
@@ -38,14 +39,17 @@ import { SigninComponent } from './auth/signin/signin.component';
     MainComponent,
     IntrouvableComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    SigninupComponent,
+    SigninupComponent
     ],
     imports: [
     DialogModule,
     FormsModule,
     HttpModule,
-    BrowserModule,
-    BrowserAnimationsModule,
+    BrowserModule,//PrimeNG here
+    BrowserAnimationsModule,//PrimeNG here
+    MessagesModule,//PrimeNG here
     NgbModule.forRoot(),//NG-Bootstrap added here
     MenubarModule,
     TabMenuModule,

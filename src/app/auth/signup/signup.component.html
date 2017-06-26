@@ -1,3 +1,5 @@
+<p-messages [(value)]="errormsg"></p-messages>
+
 <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
 
@@ -16,8 +18,3 @@
     </div>
 </div>
 
-<p-dialog header="Title" [(visible)]="display" [width]="300">
-    Content
-</p-dialog>
-
-<button type="text" (click)="showDialog()" pButton icon="fa-external-link-square" label="Show"></button>

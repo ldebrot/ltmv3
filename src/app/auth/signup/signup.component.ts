@@ -1,8 +1,8 @@
-import { DialogModule } from 'primeng/primeng';
-import { AuthService } from './../auth.service';
+import { AuthService } from './../auth.service';//Firebase-based auth service
 import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms/forms";
+import { MessagesModule } from 'primeng/primeng';//PrimeNG error message handling
 
 @Component({
     selector: 'app-signup',
@@ -11,23 +11,24 @@ import { NgForm } from "@angular/forms/forms";
 })
 export class SignupComponent implements OnInit {
     
-    constructor(private authService: AuthService) { }
+    errormsg = []; 
+
+    constructor(
+        private authService: AuthService
+        ) { }
     
     ngOnInit() {
     }
 
-    display: boolean = false;
-
-    showDialog() {
-        this.display = true;
-    }
-        
     onSignup(form: NgForm) {
         const email = form.value.email;
         const password = form.value.password;
         this.authService.signupUser(email, password)
         .catch(
-            (error) => {console.log(error)}
+            (error) => {
+                this.errormsg = [];
+                this.errormsg.push({severity:'error', summary:'Erreur de connexion', detail:error.message});
+            }
         );
     }
     
