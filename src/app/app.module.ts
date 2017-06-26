@@ -1,11 +1,11 @@
 //Modules
-import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';//add NG-Bootstrap
-import { MenubarModule, TabMenuModule, MenuItem } from 'primeng/primeng';
-import { ButtonModule } from 'primeng/primeng';
+import { MenubarModule, TabMenuModule, MenuItem, DialogModule, ButtonModule } from 'primeng/primeng';
 
 //Services
 import { RoutingService } from './services/routing.service';
@@ -41,9 +41,11 @@ import { SigninComponent } from './auth/signin/signin.component';
     SigninComponent
     ],
     imports: [
-    BrowserModule,
+    DialogModule,
     FormsModule,
     HttpModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     NgbModule.forRoot(),//NG-Bootstrap added here
     MenubarModule,
     TabMenuModule,

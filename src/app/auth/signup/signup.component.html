@@ -16,4 +16,8 @@
     </div>
 </div>
 
+<p-dialog header="Title" [(visible)]="display" [width]="300">
+    Content
+</p-dialog>
 
+<button type="text" (click)="showDialog()" pButton icon="fa-external-link-square" label="Show"></button>
