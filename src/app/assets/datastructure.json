@@ -1,0 +1,22 @@
+{   
+    "userinformation" : {
+        "userid" : [],
+        "gender" : [],
+        "firstname" : [],
+        "surname" : [],
+        "email" : [],
+        "mobile" : [],
+        "birthdate" : [],
+        "status" : []
+    },
+    "fieldrepository" : {
+        "userid" : ["auto"],
+        "gender" : ["false"],
+        "firstname" : ["true"],
+        "surname" : ["false"],
+        "email" : ["true"],
+        "mobile" : ["false"],
+        "birthdate" : ["false"],
+        "status" : ["auto"]
+    }
+}

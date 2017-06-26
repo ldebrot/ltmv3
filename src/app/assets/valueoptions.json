@@ -1,0 +1,26 @@
+{
+    "gender" : [
+        "Femme",
+        "Homme"
+    ],
+    "organizationtype" : {
+        "name" : [
+            "grande entreprise",
+            "petite et moyenne entreprises (PME)",
+            "très petite entreprise (TPE)",
+            "freelance / indépendant",
+            "gouvernement & administration",
+            "secteur public",
+            "NGO & association"
+        ],
+        "fontawesome" : [
+            "building",
+            "building-o",
+            "home",
+            "suitcase",
+            "flag",
+            "users",
+            "globe"
+        ]
+    }
+}
