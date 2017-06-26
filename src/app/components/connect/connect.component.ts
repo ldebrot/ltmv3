@@ -1,4 +1,8 @@
+//Built-in
 import { Component, OnInit } from '@angular/core';
+//Home-made
+import { AuthService } from './../../auth/auth.service';
+
 
 @Component({
     selector: 'app-connect',
@@ -7,10 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConnectComponent implements OnInit {
     
-    //XXXX this is a fake verification of the connection status --> to be replaced by an actual cross-component service
-    private userConnected: boolean=false; 
-
-    constructor() { }
+    constructor(
+        private authService: AuthService
+        ) { }
     
     ngOnInit() {
     }

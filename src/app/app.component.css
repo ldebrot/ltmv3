@@ -2,8 +2,10 @@
     min-width: 320px;
 }
 
-.minheight-80 {
+.menubarspecial {
     min-height: 80px;
+    clear:both;
+    padding-top: 1em;
 }
 
 .section-top-padding {

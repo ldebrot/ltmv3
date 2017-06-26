@@ -23,8 +23,6 @@ import { SectionTopmenuComponent } from './components/section-topmenu/section-to
 import { ConnectShortComponent } from './components/connect-short/connect-short.component';
 import { MainComponent } from './components/main/main.component';
 import { IntrouvableComponent } from './components/introuvable/introuvable.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { SigninComponent } from './auth/signin/signin.component';
 import { SigninupComponent } from './auth/signinup/signinup.component';
 
 @NgModule({
@@ -38,9 +36,6 @@ import { SigninupComponent } from './auth/signinup/signinup.component';
     ConnectShortComponent,
     MainComponent,
     IntrouvableComponent,
-    SignupComponent,
-    SigninComponent,
-    SigninupComponent,
     SigninupComponent
     ],
     imports: [

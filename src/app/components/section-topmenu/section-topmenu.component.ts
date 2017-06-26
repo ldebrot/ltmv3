@@ -52,7 +52,14 @@ export class SectionTopmenuComponent implements OnInit {
 
     public setposition(event:any):void {
         this.clickobject = event.target;
-        this.scrollingobject = event.target.parentElement.parentElement.parentElement;//in this case, the scrolled element is the great-great-parent of the item-texts
+        this.scrollingobject = this.clickobject.parentElement.parentElement.parentElement;//in this case, the scrolled element is the great-great-parent of the item-texts
+        this.autopositioningtoggle = false;
+        this.positioningintervalexecute();
+    }
+
+    public nextposition(event:any):void {
+        this.clickobject = event.target.parentElement.parentElement.parentElement.children[1].children[0].children[0].children[1].children[0];
+        this.scrollingobject = event.target.parentElement.parentElement.parentElement.children[1].children[0];//in this case, the scrolled element is the great-great-parent of the item-texts
         this.autopositioningtoggle = false;
         this.positioningintervalexecute();
     }

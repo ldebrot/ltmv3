@@ -3,16 +3,18 @@
         Qui sommes-nous ?    
     </div>
     <div class="floatright">
-        &emsp;|&emsp;
+        &nbsp;|&nbsp;
     </div>
     <div class="floatright">
-        <div *ngIf="!userConnected">
-            <a [routerLink]="['/signup']">
-                Se connecter
+        <div *ngIf="authService.isAuthenticated()">
+            <a (click)="authService.signOut()">
+                Se déconnecter
             </a>        
         </div>
-        <div *ngIf="userConnected">
-            Se déconnecter        
+        <div *ngIf="!authService.isAuthenticated()">
+            <a [routerLink]="['/signinup']">
+                Se connecter
+            </a>        
         </div>
     </div>
 </div>

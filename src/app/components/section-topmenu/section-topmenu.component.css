@@ -55,6 +55,9 @@ i.fleche {
     top: 20px;
 }
 
+i.fleche:hover {
+    border-color: #6BF;
+}
 .parent {
     position:relative;
 }
