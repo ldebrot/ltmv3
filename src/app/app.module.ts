@@ -5,7 +5,8 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';//add NG-Bootstrap
-import { MenubarModule, TabMenuModule, MenuItem, DialogModule, ButtonModule,MessagesModule } from 'primeng/primeng';
+import { MenubarModule, TabMenuModule, MenuItem, DialogModule, ButtonModule, MessagesModule, ConfirmDialogModule } from 'primeng/primeng';
+import { ConfirmationService } from 'primeng/primeng';
 
 //Services
 import { RoutingService } from './services/routing.service';
@@ -42,6 +43,7 @@ import { SigninupComponent } from './auth/signinup/signinup.component';
     DialogModule,
     FormsModule,
     HttpModule,
+    ConfirmDialogModule,//PrimeNG here
     BrowserModule,//PrimeNG here
     BrowserAnimationsModule,//PrimeNG here
     MessagesModule,//PrimeNG here
@@ -55,7 +57,8 @@ import { SigninupComponent } from './auth/signinup/signinup.component';
         Title,
         FakeAuthService,//fake authentication service
         authGuardService,
-        AuthService
+        ConfirmationService,//PrimeNG here
+        AuthService,
     ],
     bootstrap: [AppComponent]
 })
