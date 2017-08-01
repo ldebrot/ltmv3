@@ -17,11 +17,12 @@ import { MessagesModule } from 'primeng/primeng';//PrimeNG error message handlin
 
 export class SigninupComponent implements OnInit {
     
+    private errormessagefr:string;
     errormsg = []; 
     
     constructor(
     private authService: AuthService,
-    private router : Router
+    private router : Router,
     ) { }
     
     ngOnInit() {
@@ -41,10 +42,24 @@ export class SigninupComponent implements OnInit {
                 }
         )
         .catch(
-            (error) => {
+            (firebaseerror) => {
                 this.errormsg = [];
-                this.errormsg.push({severity:'error', summary:'Connexion', detail:error.message});
-                console.log(error);
+                let errorobject : any = firebaseerror;
+                switch (errorobject.code) {
+                    case "auth/invalid-email" :
+                    this.errormessagefr = "L'adresse électronique n'est pas dans le bon format."
+                    break;
+                    case "auth/user-disabled" :
+                    this.errormessagefr = "Ce compte utilisateur a été suspendu. Veuillez nous contacter : team@lunchtimementoring.fr"
+                    break;
+                    case "auth/wrong-password" :
+                    this.errormessagefr = "L'adresse électronique ou le mot de passe est erroné."
+                    break;
+                    default :
+                    this.errormessagefr = "Il y a comme un souci..."
+                }
+                this.errormsg.push({severity:'error', summary:'Connexion', detail:this.errormessagefr});
+                console.log(firebaseerror);
             }
         );
     }
@@ -58,7 +73,7 @@ export class SigninupComponent implements OnInit {
                 this.errormsg = [];
                 this.errormsg.push({severity:'success', summary:'Création de compte', detail:response});
                 this.authService.setToken();
-                console.log(response);
+                //console.log(response);
                 this.router.navigate(['']);//go to main after creating account                
                 }
         )
@@ -66,7 +81,7 @@ export class SigninupComponent implements OnInit {
             (error) => {
                 this.errormsg = [];
                 this.errormsg.push({severity:'error', summary:'Création de compte', detail:error.message});
-                console.log(error);
+                //console.log(error);
             }
         );
     }

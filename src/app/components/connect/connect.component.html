@@ -1,25 +1,15 @@
-<div>
-    <div class="floatright">
-        Qui sommes-nous ?    
-    </div>
-    <div class="floatright">
-        &nbsp;|&nbsp;
-    </div>
-    <div class="floatright">
-        <div *ngIf="authService.isAuthenticated()">
-            <a (click)="signOut()">
-                Se déconnecter
-            </a>        
-        </div>
-        <div *ngIf="!authService.isAuthenticated()">
-            <a [routerLink]="['/signinup']">
-                Se connecter
-            </a>        
-        </div>
-    </div>
+<div *ngIf="authService.isAuthenticated()">
+    <a (click)="signOut()">
+        Se déconnecter
+    </a>        
+</div>
+<div *ngIf="!authService.isAuthenticated()">
+    <a [routerLink]="['/signinup']">
+        Se connecter
+    </a>        
 </div>
 
-<p-confirmDialog header="Se déconnecter" icon="fa fa-question-circle" width="425" #cd>
+<p-confirmDialog header="Se déconnecter" icon="fa fa-question-circle" width="270" #cd>
     <p-footer>
         <button type="button" pButton icon="fa-close" label="Non" (click)="cd.reject()"></button>
         <button type="button" pButton icon="fa-check" label="Oui" (click)="cd.accept()"></button>

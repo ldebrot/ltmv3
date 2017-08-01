@@ -15,3 +15,16 @@
 .tothetop {
     padding-top:0px;
 }
+
+.floatleft {
+    float:left;
+}
+
+.floatright {
+    float:right;
+}
+
+.clearboth {
+    clear: both;
+    height: 5px;
+} 
