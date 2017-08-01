@@ -20,7 +20,7 @@ import { TestComponent } from './components/test/test.component';
 import { SectionTopComponent } from './components/section-top/section-top.component';
 import { TitleComponent } from './components/title/title.component';
 import { ConnectComponent } from './components/connect/connect.component';
-import { SectionTopmenuComponent } from './components/section-topmenu/section-topmenu.component';
+import { MenuNotconnectedComponent } from './components/menunotconnected/menunotconnected.component';
 import { ConnectShortComponent } from './components/connect-short/connect-short.component';
 import { MainComponent } from './components/main/main.component';
 import { IntrouvableComponent } from './components/introuvable/introuvable.component';
@@ -33,7 +33,7 @@ import { SigninupComponent } from './auth/signinup/signinup.component';
     SectionTopComponent,
     TitleComponent,
     ConnectComponent,
-    SectionTopmenuComponent,
+    MenuNotconnectedComponent,
     ConnectShortComponent,
     MainComponent,
     IntrouvableComponent,

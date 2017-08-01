@@ -1,12 +1,12 @@
-import { ldbmenuitem } from './ldbmenuitem.model';
+import { ldbmenuitem } from '../../services/ldbmenuitem.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-section-topmenu',
-    templateUrl: './section-topmenu.component.html',
-    styleUrls: ['./section-topmenu.component.css']
+    selector: 'app-menunotconnected',
+    templateUrl: './menunotconnected.component.html',
+    styleUrls: ['./menunotconnected.component.css']
 })
-export class SectionTopmenuComponent implements OnInit {
+export class MenuNotconnectedComponent implements OnInit {
 
     public menuitemwidth:number=180;//this is the width of each menu element
 
