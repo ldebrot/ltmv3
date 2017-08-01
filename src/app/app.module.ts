@@ -18,7 +18,6 @@ import { AuthService } from './auth/auth.service';//actual auth service connecte
 import { AppComponent } from './app.component';
 import { TestComponent } from './components/test/test.component';
 import { SectionTopComponent } from './components/section-top/section-top.component';
-import { TitleComponent } from './components/title/title.component';
 import { ConnectComponent } from './components/connect/connect.component';
 import { MenuNotconnectedComponent } from './components/menunotconnected/menunotconnected.component';
 import { MainComponent } from './components/main/main.component';
@@ -30,7 +29,6 @@ import { SigninupComponent } from './auth/signinup/signinup.component';
     AppComponent,
     TestComponent,
     SectionTopComponent,
-    TitleComponent,
     ConnectComponent,
     MenuNotconnectedComponent,
     MainComponent,
