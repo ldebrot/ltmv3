@@ -9,9 +9,14 @@
 }
 
 .section-top-padding {
-    padding:10px 0px;
+    padding:3px 0px 10px 0px;
 }
 
 .section-top-color {
     color:#5AF    
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
 }

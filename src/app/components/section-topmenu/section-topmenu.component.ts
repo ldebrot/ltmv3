@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SectionTopmenuComponent implements OnInit {
 
-    public menuitemwidth:number=150;//this is the width of each menu element
+    public menuitemwidth:number=180;//this is the width of each menu element
 
     public scrollingobject;//this variable holds the element to be scrolled (instead of accessing the DOM directly)
     public clickobject;//this is the object the user has clicked on
@@ -29,21 +29,18 @@ export class SectionTopmenuComponent implements OnInit {
 
     private autopositioningtoggle:boolean=true;//is autoset on or off?
 
+    public logourl:string = "assets/images/lunchtime-logo-60x60.png";
+
     menuitems: ldbmenuitem[] = [
-    new ldbmenuitem('Moi et la reconversion', 1, ''),
-    new ldbmenuitem('Je m\'inspire d\'autrui', 2, ''),
-    new ldbmenuitem('Je valorise ma reconversion', 3, ''),
-    new ldbmenuitem('Je rencontre un mentor/é', 4, ''),
-    new ldbmenuitem('Je découvre la communauté', 5, '')
+    new ldbmenuitem('Je découvre Lunchtime', 1, ''),
+    new ldbmenuitem('Qui sommes-nous ?', 2, ''),
+    new ldbmenuitem('Les actus Lunchtime', 3, ''),
+    new ldbmenuitem('Se connecter', 4, ''),
     ];
         
     constructor() {
     }
     
-    public tagueule(): void {//this happens when you click the right arrow
-        alert("Ta gueule!");
-    }
-
     public intervalhits(): void {//this is when the interval to check whether scrolling has ended hits (hence, when the scrolling has ended)
         this.scrollingintervalset = false;
         this.destinationpos = (this.determineclosestpos() * this.menuitemwidth);//set destinationpos
@@ -77,7 +74,7 @@ export class SectionTopmenuComponent implements OnInit {
         if (!this.autopositioningtoggle){
             this.destinationpos = this.menuitemwidth*2;
             if(this.clickobject.parentElement.parentElement.children[1].children[0].id == this.clickobject.id){
-                this.destinationpos = 150;
+                this.destinationpos = this.menuitemwidth;
             }
             if(this.clickobject.parentElement.parentElement.children[0].children[0].id == this.clickobject.id){
                 this.destinationpos = 0;
