@@ -23,6 +23,7 @@ import { MenuNotconnectedComponent } from './components/menunotconnected/menunot
 import { MainComponent } from './components/main/main.component';
 import { IntrouvableComponent } from './components/introuvable/introuvable.component';
 import { SigninupComponent } from './auth/signinup/signinup.component';
+import { MenuBeneficiaireComponent } from './components/menubeneficiaire/menubeneficiaire.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import { SigninupComponent } from './auth/signinup/signinup.component';
     TestComponent,
     SectionTopComponent,
     ConnectComponent,
-    MenuNotconnectedComponent,
+    MenuNotconnectedComponent,//menu for not-connected user
+    MenuBeneficiaireComponent,//menu for connected beneficiaire
     MainComponent,
     IntrouvableComponent,
     SigninupComponent

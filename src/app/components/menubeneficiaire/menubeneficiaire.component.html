@@ -1,0 +1,31 @@
+<div class="clearboth">
+    <div class="parent">
+        <div class="cadre-short">
+            <img [src]=logourl>
+        </div>
+        <div class="rond">
+            
+        </div>
+        <div class="cadre-long">
+
+        </div>
+        <div>
+            <i id="flechedroite" class="arrow fleche" (click)="nextposition($event)"></i>
+        </div>
+
+    </div>
+    <div class="viewport-clip">
+        <div class="viewport" id="scrollablecontainer" (scroll)="autoposition($event)">
+            <div class="horizontal" >
+
+                <div *ngFor="let menuitem of menuitems" class="item" id="itemholder">
+                    <div class="itemtext" id="itemtext{{menuitem.position}}" (click)="setposition($event)">
+                        {{ menuitem.title }}
+                    </div>
+                </div>
+            
+
+            </div>
+        </div>
+    </div>
+</div>
