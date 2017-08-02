@@ -20,10 +20,11 @@ import { TestComponent } from './components/test/test.component';
 import { SectionTopComponent } from './components/section-top/section-top.component';
 import { ConnectComponent } from './components/connect/connect.component';
 import { MenuNotconnectedComponent } from './components/menunotconnected/menunotconnected.component';
-import { MainComponent } from './components/main/main.component';
+import { MenuBeneficiaireComponent } from './components/menubeneficiaire/menubeneficiaire.component';
+import { MenuTemoinComponent } from './components/menutemoin/menutemoin.component';
+import { StartNotconnectedComponent } from './components/startnotconnected/startnotconnected.component';
 import { IntrouvableComponent } from './components/introuvable/introuvable.component';
 import { SigninupComponent } from './auth/signinup/signinup.component';
-import { MenuBeneficiaireComponent } from './components/menubeneficiaire/menubeneficiaire.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { MenuBeneficiaireComponent } from './components/menubeneficiaire/menuben
     ConnectComponent,
     MenuNotconnectedComponent,//menu for not-connected user
     MenuBeneficiaireComponent,//menu for connected beneficiaire
-    MainComponent,
+    MenuTemoinComponent,//menu for témoins
+    StartNotconnectedComponent,//starting point for not-connected user
     IntrouvableComponent,
     SigninupComponent
     ],
