@@ -13,6 +13,7 @@ import { RoutingService } from './services/routing.service';
 import { FakeAuthService } from './services/fakeauth.service';//checks if user logged in
 import { authGuardService } from './services/authguard.service';//prevents routes from loading
 import { AuthService } from './auth/auth.service';//actual auth service connected to firebase
+import { TitleService } from './services/title.service'; //service which stores the current title
 
 //Components
 import { AppComponent } from './app.component';
@@ -59,6 +60,7 @@ import { SigninupComponent } from './auth/signinup/signinup.component';
         authGuardService,
         ConfirmationService,//PrimeNG here
         AuthService,
+        TitleService//service which stores the current title
     ],
     bootstrap: [AppComponent]
 })

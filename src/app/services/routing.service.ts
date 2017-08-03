@@ -9,8 +9,10 @@ import { SigninupComponent } from './../auth/signinup/signinup.component';
 
 //Routes:
 const appRoutes: Routes = [
-    { path: '', component: StartNotconnectedComponent},
-    { path: 'signinup', component: SigninupComponent},
+    { path: '', component: StartNotconnectedComponent,
+    children: [
+      { path: 'signinup', component: SigninupComponent }
+    ]},
     { path: 'introuvable', component: IntrouvableComponent},
     { path: '**', redirectTo: '/introuvable'}
 ]

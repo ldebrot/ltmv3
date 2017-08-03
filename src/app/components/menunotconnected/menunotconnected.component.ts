@@ -1,5 +1,8 @@
+import { Component, OnInit, ViewChildren, ElementRef,Renderer2  } from '@angular/core';
+
+//Hand-made services
+import { TitleService } from './../../services/title.service';
 import { ldbmenuitem } from '../../services/ldbmenuitem.model';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-menunotconnected',
@@ -31,6 +34,9 @@ export class MenuNotconnectedComponent implements OnInit {
 
     public logourl:string = "assets/images/lunchtime-logo-60x60.png";
 
+    private itemtextobjects:any;
+    private itemtextobject:any;
+
     menuitems: ldbmenuitem[] = [
     new ldbmenuitem('Je découvre Lunchtime', 1, ''),
     new ldbmenuitem('Qui sommes-nous ?', 2, ''),
@@ -38,9 +44,19 @@ export class MenuNotconnectedComponent implements OnInit {
     new ldbmenuitem('Se connecter', 4, ''),
     ];
         
-    constructor() {
+    constructor(
+        private rd: Renderer2,
+        private titleservice: TitleService) {
     }
-    
+
+    @ViewChildren('itemtexts') el:ElementRef;
+
+    ngAfterViewInit() {
+        this.itemtextobjects = this.el;
+        //console.log(this.itemtextobjects._results);
+    }
+   
+
     public intervalhits(): void {//this is when the interval to check whether scrolling has ended hits (hence, when the scrolling has ended)
         this.scrollingintervalset = false;
         this.destinationpos = (this.determineclosestpos() * this.menuitemwidth);//set destinationpos
@@ -54,11 +70,30 @@ export class MenuNotconnectedComponent implements OnInit {
         this.positioningintervalexecute();
     }
 
+    public setpositionwithtarget(target:any):void {
+        this.clickobject = target;
+        this.scrollingobject = this.clickobject.parentElement.parentElement.parentElement;//in this case, the scrolled element is the great-great-parent of the item-texts
+        this.autopositioningtoggle = false;
+        this.positioningintervalexecute();
+    }
+
     public nextposition(event:any):void {
         this.clickobject = event.target.parentElement.parentElement.parentElement.children[1].children[0].children[0].children[1].children[0];
         this.scrollingobject = event.target.parentElement.parentElement.parentElement.children[1].children[0];//in this case, the scrolled element is the great-great-parent of the item-texts
         this.autopositioningtoggle = false;
         this.positioningintervalexecute();
+    }
+
+    public setpositionwithtitle(title:string):void{
+        this.itemtextobject = this.itemtextobjects._results.filter(function(element){
+            if (element.nativeElement.innerText==title) {
+//                console.log("Found the right item!");
+                return element.nativeElement;
+            }
+        })
+        this.itemtextobject=this.itemtextobject[0].nativeElement;
+//        console.log(this.itemtextobject);
+        this.setpositionwithtarget(this.itemtextobject);
     }
 
     public determineclosestpos(): number {//this method returns the closest position (0,1,etc.)
@@ -138,6 +173,11 @@ export class MenuNotconnectedComponent implements OnInit {
     }
     
     ngOnInit() {
+        this.titleservice.titlesubject.subscribe( (value) => {
+//            console.log("menunotconnected: "+value);
+            this.setpositionwithtitle(value);
+        });
+
     }
     
     

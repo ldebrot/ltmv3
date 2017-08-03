@@ -3,7 +3,7 @@
         <div class="cadre-short">
             <img [src]=logourl>
         </div>
-        <div class="rond">
+        <div class="rond" (click)="setpositionwithtitle('Se connecter')">
             
         </div>
         <div class="cadre-long">
@@ -19,7 +19,7 @@
             <div class="horizontal" >
 
                 <div *ngFor="let menuitem of menuitems" class="item" id="itemholder">
-                    <div class="itemtext" id="itemtext{{menuitem.position}}" (click)="setposition($event)">
+                    <div class="itemtext"  #itemtexts id="itemtext{{menuitem.position}}" (click)="setposition($event)">
                         {{ menuitem.title }}
                     </div>
                 </div>
