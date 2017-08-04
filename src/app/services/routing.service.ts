@@ -6,14 +6,17 @@ import { NgModule } from '@angular/core';
 import { StartNotconnectedComponent } from './../components/startnotconnected/startnotconnected.component';
 import { IntrouvableComponent } from './../components/introuvable/introuvable.component';
 import { SigninupComponent } from './../auth/signinup/signinup.component';
+import { JedecouvrelunchtimeComponent } from './../components/notconnected/jedecouvrelunchtime/jedecouvrelunchtime.component';
 
 //Routes:
 const appRoutes: Routes = [
     { path: '', component: StartNotconnectedComponent,
     children: [
-      { path: 'signinup', component: SigninupComponent }
+        { path: '', component: JedecouvrelunchtimeComponent },
+        { path: 'signinup', component: SigninupComponent },
+        { path: 'decouvrirlunchtime', component: JedecouvrelunchtimeComponent },
+        { path: 'introuvable', component: IntrouvableComponent}
     ]},
-    { path: 'introuvable', component: IntrouvableComponent},
     { path: '**', redirectTo: '/introuvable'}
 ]
 
@@ -27,5 +30,5 @@ const appRoutes: Routes = [
 })
 
 export class RoutingService {
-
+    
 }

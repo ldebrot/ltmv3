@@ -1,1 +1,136 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* THIS STYLING SHEET IS USED WITCH VIEW ENCAPSULATION. As such, it is secondary to component-level styling*/
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+/* minwidthmobile --> horizontal min width (this variable is defined in several)    min-width: 320px;
+*/
+
+body{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.minwidthmobile {
+    min-width: 320px;
+}
+
+.minwidthmobiletable {
+    min-width: 310px;
+}
+
+.ldb_button {
+
+}
+
+/* grey background */
+.ldb_elementbackground {
+    background:#EEE;
+    width:100%;
+    padding:0px 5px;
+}
+
+/* bold  title of element */
+
+.ldb_elementtitlebold {
+    white-space: nowrap;
+    text-align: center;
+    font-weight: bold;
+    font-size: medium;
+    padding:10px 0px;
+}
+
+.ldb_elementtextregular {
+    white-space: nowrap;
+    text-align: center;
+    font-weight: normal;
+    font-size: medium;
+    padding:10px 0px;
+}
+
+.ldb_circle {
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    width:0px;
+    height:0px;
+    border-style:solid;
+    border-width:30px;
+    border-color:rgba(255, 255, 255, 1);
+    position: absolute;   
+    color: rgb(0,0,0);
+}
+
+.ldb_font_333 {
+    color:#333;
+}
+
+.ldb_minimal {
+    font-size:smaller;
+}
+
+table.ldb_table_separation_3 > tbody > tr > td {
+    padding:3px;
+}
+
+table.ldb_table_center {
+    margin:0px auto ;
+}
+
+/* BOOTSTRAP EXTENSION - BUTTON COLORS */
+
+.ldb_btn_primary{
+    background: #BDF5;
+    border-color: #BDF5;    
+    white-space: normal;
+    padding: 5px;
+    min-height: 50px;
+    width:100%;
+    color:#333;
+}
+
+.ldb_btn_white {
+    background: #FFF;
+    border-color: #FFF;
+    color:#555 !important;
+}
+
+.btn-circle {
+  width: 49px;
+  height: 49px;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 20px;
+  line-height: 2.00;
+  border-radius: 30px;
+}
+
+.btn-circle-micro {
+  width: 19px;
+  height: 19px;
+  text-align: center;
+  padding: 1px 0;
+  font-size: 13px;
+  line-height: 0.1;
+  border-radius: 30px;
+}
+
+.btn-circle-sm {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  padding: 2px 0;
+  font-size: 17px;
+  line-height: 1.65;
+  border-radius: 30px;
+}
+
+.btn-circle-lg {
+  width: 79px;
+  height: 79px;
+  text-align: center;
+  padding: 13px 0;
+  font-size: 30px;
+  line-height: 2.00;
+  border-radius: 70px;
+}

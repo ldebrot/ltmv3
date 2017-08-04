@@ -10,7 +10,7 @@
 
         </div>
         <div>
-            <i id="flechedroite" class="arrow fleche" (click)="nextposition($event)"></i>
+            <i id="flechedroite" class="arrow fleche" (click)="setpositiontonextitem($event)"></i>
         </div>
 
     </div>
@@ -19,7 +19,7 @@
             <div class="horizontal" >
 
                 <div *ngFor="let menuitem of menuitems" class="item" id="itemholder">
-                    <div class="itemtext"  #itemtexts id="itemtext{{menuitem.position}}" (click)="setposition($event)">
+                    <div class="itemtext"  #itemtexts id="itemtext{{menuitem.position}}" (click)="setpositiontoclickedtarget($event)">
                         {{ menuitem.title }}
                     </div>
                 </div>

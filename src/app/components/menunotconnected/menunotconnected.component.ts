@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChildren, ElementRef,Renderer2  } from '@angular/core';
 
 //Hand-made services
@@ -38,15 +39,17 @@ export class MenuNotconnectedComponent implements OnInit {
     private itemtextobject:any;
 
     menuitems: ldbmenuitem[] = [
-    new ldbmenuitem('Je découvre Lunchtime', 1, ''),
-    new ldbmenuitem('Qui sommes-nous ?', 2, ''),
-    new ldbmenuitem('Les actus Lunchtime', 3, ''),
-    new ldbmenuitem('Se connecter', 4, ''),
+    new ldbmenuitem('Je découvre Lunchtime', 1, '',''),
+    new ldbmenuitem('Qui sommes-nous ?', 2, '','quisommesnous'),
+    new ldbmenuitem('Les actus Lunchtime', 3, '','lesactus'),
+    new ldbmenuitem('Se connecter', 4, '','signinup'),
     ];
         
     constructor(
         private rd: Renderer2,
-        private titleservice: TitleService) {
+        private titleservice: TitleService,
+        private myrouter : Router
+    ) {
     }
 
     @ViewChildren('itemtexts') el:ElementRef;
@@ -63,27 +66,7 @@ export class MenuNotconnectedComponent implements OnInit {
         this.positioningintervalexecute();
     }
 
-    public setposition(event:any):void {
-        this.clickobject = event.target;
-        this.scrollingobject = this.clickobject.parentElement.parentElement.parentElement;//in this case, the scrolled element is the great-great-parent of the item-texts
-        this.autopositioningtoggle = false;
-        this.positioningintervalexecute();
-    }
-
-    public setpositionwithtarget(target:any):void {
-        this.clickobject = target;
-        this.scrollingobject = this.clickobject.parentElement.parentElement.parentElement;//in this case, the scrolled element is the great-great-parent of the item-texts
-        this.autopositioningtoggle = false;
-        this.positioningintervalexecute();
-    }
-
-    public nextposition(event:any):void {
-        this.clickobject = event.target.parentElement.parentElement.parentElement.children[1].children[0].children[0].children[1].children[0];
-        this.scrollingobject = event.target.parentElement.parentElement.parentElement.children[1].children[0];//in this case, the scrolled element is the great-great-parent of the item-texts
-        this.autopositioningtoggle = false;
-        this.positioningintervalexecute();
-    }
-
+    //this function sets position by using the title of the destination
     public setpositionwithtitle(title:string):void{
         this.itemtextobject = this.itemtextobjects._results.filter(function(element){
             if (element.nativeElement.innerText==title) {
@@ -94,6 +77,33 @@ export class MenuNotconnectedComponent implements OnInit {
         this.itemtextobject=this.itemtextobject[0].nativeElement;
 //        console.log(this.itemtextobject);
         this.setpositionwithtarget(this.itemtextobject);
+    }
+
+    //This function passes on right target, which is the next available menu item. It is used when the user clicks on the right arrow
+    public setpositiontonextitem(event:any):void {
+        let newtarget:any = event.target.parentElement.parentElement.parentElement.children[1].children[0].children[0].children[1].children[0];
+        let newtitle:string = newtarget.innerText;
+        //Problem is : cannot use menuitems.route, must use it with a number
+        //--> gotta find the correct route corresponding to the chosen title
+        for (let i=0; i < this.menuitems.length;i++) {
+            if (this.menuitems[i].title === newtitle) {
+                this.myrouter.navigate([this.menuitems[i].route]);
+            }
+        }
+        this.setpositionwithtarget(newtarget);
+    }
+
+    //This function is triggered when the user clicks on a menuitem. It passes the target on.
+    public setpositiontoclickedtarget(event:any):void {
+        this.setpositionwithtarget(event.target);
+    }
+
+    //this function sets position by receiving a the target object
+    public setpositionwithtarget(target:any):void {
+        this.clickobject = target;
+        this.scrollingobject = this.clickobject.parentElement.parentElement.parentElement;//in this case, the scrolled element is the great-great-parent of the item-texts
+        this.autopositioningtoggle = false;
+        this.positioningintervalexecute();
     }
 
     public determineclosestpos(): number {//this method returns the closest position (0,1,etc.)

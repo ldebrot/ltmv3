@@ -26,6 +26,7 @@ import { MenuTemoinComponent } from './components/menutemoin/menutemoin.componen
 import { StartNotconnectedComponent } from './components/startnotconnected/startnotconnected.component';
 import { IntrouvableComponent } from './components/introuvable/introuvable.component';
 import { SigninupComponent } from './auth/signinup/signinup.component';
+import { JedecouvrelunchtimeComponent } from './components/notconnected/jedecouvrelunchtime/jedecouvrelunchtime.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { SigninupComponent } from './auth/signinup/signinup.component';
     MenuTemoinComponent,//menu for témoins
     StartNotconnectedComponent,//starting point for not-connected user
     IntrouvableComponent,
-    SigninupComponent
+    SigninupComponent,//sign in and sign up
+    JedecouvrelunchtimeComponent//discover Lunchtime - used as "home" component
     ],
     imports: [
     DialogModule,
