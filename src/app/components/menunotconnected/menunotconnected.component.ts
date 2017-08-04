@@ -38,6 +38,7 @@ export class MenuNotconnectedComponent implements OnInit {
     private itemtextobjects:any;
     private itemtextobject:any;
 
+    //IMPORTANT STUFF HERE: THIS DEFINES MENU STRUCTURE AND CORRESPONDING REROUTING:
     menuitems: ldbmenuitem[] = [
     new ldbmenuitem('Je découvre Lunchtime', 1, '',''),
     new ldbmenuitem('Qui sommes-nous ?', 2, '','quisommesnous'),

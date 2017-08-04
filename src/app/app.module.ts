@@ -5,7 +5,15 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';//add NG-Bootstrap
-import { MenubarModule, TabMenuModule, MenuItem, DialogModule, ButtonModule, MessagesModule, ConfirmDialogModule } from 'primeng/primeng';
+import { //PrimeNG modules here
+    MenubarModule,
+    TabMenuModule,
+    MenuItem,
+    DialogModule,
+    ButtonModule,
+    MessagesModule,
+    ConfirmDialogModule,
+    TabViewModule } from 'primeng/primeng';
 import { ConfirmationService } from 'primeng/primeng';
 
 //Services
@@ -27,6 +35,8 @@ import { StartNotconnectedComponent } from './components/startnotconnected/start
 import { IntrouvableComponent } from './components/introuvable/introuvable.component';
 import { SigninupComponent } from './auth/signinup/signinup.component';
 import { JedecouvrelunchtimeComponent } from './components/notconnected/jedecouvrelunchtime/jedecouvrelunchtime.component';
+import { LesactusComponent } from './components/notconnected/lesactus/lesactus.component';
+import { QuisommesnousComponent } from './components/notconnected/quisommesnous/quisommesnous.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +50,7 @@ import { JedecouvrelunchtimeComponent } from './components/notconnected/jedecouv
     StartNotconnectedComponent,//starting point for not-connected user
     IntrouvableComponent,
     SigninupComponent,//sign in and sign up
-    JedecouvrelunchtimeComponent//discover Lunchtime - used as "home" component
+    JedecouvrelunchtimeComponent, LesactusComponent, QuisommesnousComponent//discover Lunchtime - used as "home" component
     ],
     imports: [
     DialogModule,
@@ -50,6 +60,7 @@ import { JedecouvrelunchtimeComponent } from './components/notconnected/jedecouv
     BrowserModule,//PrimeNG here
     BrowserAnimationsModule,//PrimeNG here
     MessagesModule,//PrimeNG here
+    TabViewModule,//PrimeNG here
     NgbModule.forRoot(),//NG-Bootstrap added here
     MenubarModule,
     TabMenuModule,

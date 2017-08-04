@@ -1,21 +1,51 @@
-<p-messages [(value)]="errormsg"></p-messages>
+<div class="ldbway">
+    <p-messages [(value)]="errormsg" class="minwidthmobiletable"></p-messages>
+</div>
 
-<div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+<div class="ldb_elementbackground ldbway">
+    <br/>
+    <p-tabView>
+        <p-tabPanel header="J'ai un compte" [selected]="true">
 
-        <form #f='ngForm'>
-            <div class="form_group">
-                <label for="email">Identifiant</label>
-                <input type="email" id="email" name="email" ngModel class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <input type="password" id="password" name="password" ngModel class="form-control">
-            </div>
-            <button class="btn btn-primary" (click)="onSignin(f)">Se connecter</button>
-            <button class="btn btn-primary" (click)="onSignup(f)">Créer un compte</button>
-        </form>
+            <form #fsignin='ngForm'>
+                <div class="form_group">
+                    <label for="email">Identifiant</label>
+                    <input type="email" id="email" name="email" ngModel class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" ngModel class="form-control" required>
+                </div>
+                <button class="btn btn-primary" (click)="onSignin(fsignin)">Se connecter</button>
+            </form>
 
-    </div>
+        </p-tabPanel>
+        <p-tabPanel header="Je m'inscris">
+
+            <form #fsignup='ngForm'>
+                <div class="form_group">
+                    <label for="firstname">Prénom</label>
+                    <input type="text" id="firstname" name="firstname" ngModel class="form-control" required>
+                </div>
+                <div class="form_group">
+                    <label for="surname">Nom de famille</label>
+                    <input type="text" id="surname" name="surname" ngModel class="form-control" required>
+                </div>
+                <div class="form_group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" ngModel class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" ngModel class="form-control" required>
+                </div>
+                <button class="btn btn-primary" (click)="onSignup(fsignup)">Créer un compte</button>
+            </form>
+
+        </p-tabPanel>
+    </p-tabView>
+
+    <br/>
+
 </div>
 

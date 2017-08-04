@@ -3,11 +3,13 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { element } from 'protractor';
 import { NgForm } from "@angular/forms/forms";
 import { Router } from '@angular/router';
+import { NgClass } from '@angular/common';
 //Hand-made services
 import { AuthService } from './../auth.service';//Firebase-based auth service
 import { TitleService } from './../../services/title.service';//title handling service
 //Graphic
 import { MessagesModule } from 'primeng/primeng';//PrimeNG error message handling
+import { TabViewModule } from 'primeng/primeng';//PrimeNG TabView
 
 @Component({
     selector: 'app-signinup',
@@ -30,8 +32,26 @@ export class SigninupComponent implements OnInit {
     
     ngOnInit() {
     }
-    
 
+    public getfrencherrormessage(errorcode:string):string {
+        let errormessagefr : string = "";
+        switch (errorcode) {
+            case "auth/invalid-email" :
+            errormessagefr = "L'adresse électronique n'est pas dans le bon format."
+            break;
+            case "auth/user-disabled" :
+            errormessagefr = "Ce compte utilisateur a été suspendu. Veuillez nous contacter : team@lunchtimementoring.fr"
+            break;
+            case "auth/wrong-password" :
+            errormessagefr = "L'adresse électronique ou le mot de passe est erroné."
+            break;
+            default :
+            errormessagefr = "Il y a comme un souci..."
+        }
+        return errormessagefr;
+    }
+
+    //FUnction triggered when user clicks on sign in
     onSignin(form: NgForm) {
         const email = form.value.email;
         const password = form.value.password;
@@ -49,25 +69,13 @@ export class SigninupComponent implements OnInit {
             (firebaseerror) => {
                 this.errormsg = [];
                 let errorobject : any = firebaseerror;
-                switch (errorobject.code) {
-                    case "auth/invalid-email" :
-                    this.errormessagefr = "L'adresse électronique n'est pas dans le bon format."
-                    break;
-                    case "auth/user-disabled" :
-                    this.errormessagefr = "Ce compte utilisateur a été suspendu. Veuillez nous contacter : team@lunchtimementoring.fr"
-                    break;
-                    case "auth/wrong-password" :
-                    this.errormessagefr = "L'adresse électronique ou le mot de passe est erroné."
-                    break;
-                    default :
-                    this.errormessagefr = "Il y a comme un souci..."
-                }
-                this.errormsg.push({severity:'error', summary:'Connexion', detail:this.errormessagefr});
+                this.errormsg.push({severity:'error', summary:'Connexion', detail:this.getfrencherrormessage(errorobject.code)});
                 console.log(firebaseerror);
             }
         );
     }
         
+    //FUnction triggered when user clicks on sign up
     onSignup(form: NgForm) {
         const email = form.value.email;
         const password = form.value.password;
@@ -82,10 +90,11 @@ export class SigninupComponent implements OnInit {
                 }
         )
         .catch(
-            (error) => {
+            (firebaseerror) => {
                 this.errormsg = [];
-                this.errormsg.push({severity:'error', summary:'Création de compte', detail:error.message});
-                //console.log(error);
+                let errorobject : any = firebaseerror;
+                this.errormsg.push({severity:'error', summary:'Création de compte', detail:this.getfrencherrormessage(errorobject.code)});
+                console.log(firebaseerror);
             }
         );
     }

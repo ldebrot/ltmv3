@@ -77,6 +77,49 @@ table.ldb_table_center {
     margin:0px auto ;
 }
 
+/* FORM VALIDATION */
+
+input.ng-invalid {
+    border-color: #C00;
+    background: #FEE;
+}
+
+
+/* PrimeFaces EXTENSION */
+
+/*
+.ui-widget{
+    background: transparent;
+}
+*/
+
+.ldbway .ui-tabview {
+    padding:0px;
+}
+
+.ldbway .ui-tabview-panel {
+    background:#FFF !important;
+}
+
+.ldbway .ui-tabview.ui-tabview-top > .ui-tabview-nav {
+    padding:0px;
+    background: transparent;
+}
+
+.ldbway .ui-widget {
+    font-family:inherit;
+}
+
+.ldbway .ui-widget-content {
+    background: transparent;
+}
+
+.ldbway .ui-messages-error {
+    width: 95%;
+    margin: 5px auto;
+    text-align: center;
+}
+
 /* BOOTSTRAP EXTENSION - BUTTON COLORS */
 
 .ldb_btn_primary{
