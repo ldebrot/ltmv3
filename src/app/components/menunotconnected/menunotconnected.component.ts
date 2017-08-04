@@ -82,19 +82,13 @@ export class MenuNotconnectedComponent implements OnInit {
     //This function passes on right target, which is the next available menu item. It is used when the user clicks on the right arrow
     public setpositiontonextitem(event:any):void {
         let newtarget:any = event.target.parentElement.parentElement.parentElement.children[1].children[0].children[0].children[1].children[0];
-        let newtitle:string = newtarget.innerText;
-        //Problem is : cannot use menuitems.route, must use it with a number
-        //--> gotta find the correct route corresponding to the chosen title
-        for (let i=0; i < this.menuitems.length;i++) {
-            if (this.menuitems[i].title === newtitle) {
-                this.myrouter.navigate([this.menuitems[i].route]);
-            }
-        }
+        this.reroutewithtarget(newtarget);
         this.setpositionwithtarget(newtarget);
     }
 
     //This function is triggered when the user clicks on a menuitem. It passes the target on.
     public setpositiontoclickedtarget(event:any):void {
+        this.reroutewithtarget(event.target);
         this.setpositionwithtarget(event.target);
     }
 
@@ -104,6 +98,15 @@ export class MenuNotconnectedComponent implements OnInit {
         this.scrollingobject = this.clickobject.parentElement.parentElement.parentElement;//in this case, the scrolled element is the great-great-parent of the item-texts
         this.autopositioningtoggle = false;
         this.positioningintervalexecute();
+    }
+
+    public reroutewithtarget(target:any):void {
+        let newtitle:string = target.innerText;//gets new title from target object
+        for (let i=0; i < this.menuitems.length;i++) {
+            if (this.menuitems[i].title === newtitle) {//checks which route corresponds to new title
+                this.myrouter.navigate([this.menuitems[i].route]);//reroutes to route
+            }
+        }        
     }
 
     public determineclosestpos(): number {//this method returns the closest position (0,1,etc.)
