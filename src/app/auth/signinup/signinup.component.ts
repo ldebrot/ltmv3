@@ -77,8 +77,8 @@ export class SigninupComponent implements OnInit {
         
     //FUnction triggered when user clicks on sign up
     onSignup(form: NgForm) {
-        const email = form.value.email;
-        const password = form.value.password;
+        const email = form.value.signupemail;
+        const password = form.value.signuppassword;
         this.authService.signupUser(email, password)
         .then(
             (response) => {

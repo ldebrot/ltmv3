@@ -79,7 +79,7 @@ table.ldb_table_center {
 
 /* FORM VALIDATION */
 
-input.ng-invalid {
+input.ng-invalid.ng-touched {
     border-color: #C00;
     background: #FEE;
 }
