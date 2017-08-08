@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title }     from '@angular/platform-browser';//This is the Title service
 
-import * as firebase from 'firebase';
+import { AuthService } from './auth/auth.service';//TEMPORARY automatic login
 
 @Component({
     selector: 'app-root',
@@ -11,15 +11,21 @@ import * as firebase from 'firebase';
 
 export class AppComponent implements OnInit {
     
-    public constructor(private titleService: Title ) {
+    public constructor(
+        private titleService: Title,
+        private authService: AuthService//TEMPORARY automatic login
+    ) {
         this.titleService.setTitle('Lunchtime Version 1');//Sets title
      }
     
     ngOnInit() {
-        firebase.initializeApp({
-            apiKey: "AIzaSyCdWffhlLWk5olASIDHMw0Y7rzXsc_Sxu8",
-            authDomain: "ltmv1-8873c.firebaseapp.com"
-        });
+        //TEMPORARY automatic login
+        this.authService.signinUser("test@test.com", "test1234")
+        .then( (response) => {
+            this.authService.setToken();
+            console.log("app.components.ts: automatic firebase signin successful")
+        })
+        ;
     }
 }
 

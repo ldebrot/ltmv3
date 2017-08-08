@@ -6,3 +6,34 @@
         Soon...
     </div>
 </div>
+<div class="ldb_elementbackground" id="firebaseplayground">
+    Let's play!
+    <form #ffbplay='ngForm'>
+        <div class="form_group">
+            <label for="ffbplayref">ref</label>
+            <input
+                type="text"
+                id="email"
+                name="ffbplayref"
+                ngModel
+                class="form-control"
+                required
+                #ffbplayref="ngModel"
+            >
+        </div>
+        <div class="form-group">
+            <label for="ffbplayvalue">Mot de passe</label>
+            <input
+                type="password"
+                id="ffbplayvalue"
+                name="ffbplayvalue"
+                ngModel
+                class="form-control"
+                required
+                #ffbplayvalue="ngModel"
+            >
+        </div>
+        <button class="btn btn-primary" (click)="ffbplaywrite(ffbplay)" [disabled]="!ffbplay.valid">Write</button>
+        <button class="btn btn-primary" (click)="ffbplayread(ffbplay)" [disabled]="!ffbplay.valid">Read</button>
+    </form>
+</div>

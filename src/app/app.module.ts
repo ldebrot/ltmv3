@@ -38,6 +38,21 @@ import { JedecouvrelunchtimeComponent } from './components/notconnected/jedecouv
 import { LesactusComponent } from './components/notconnected/lesactus/lesactus.component';
 import { QuisommesnousComponent } from './components/notconnected/quisommesnous/quisommesnous.component';
 
+// Firebase
+import * as firebase from 'firebase';
+
+export const firebaseconfig = {
+    apiKey: "AIzaSyCdWffhlLWk5olASIDHMw0Y7rzXsc_Sxu8",
+    authDomain: "ltmv1-8873c.firebaseapp.com",
+    databaseURL: "https://ltmv1-8873c.firebaseio.com",
+    projectId: "ltmv1-8873c",
+    storageBucket: "ltmv1-8873c.appspot.com",
+    messagingSenderId: "605451735287"
+};
+
+firebase.initializeApp(firebaseconfig);
+//console.log("initializedApp at app.mdoule.ts level!");
+
 @NgModule({
     declarations: [
     AppComponent,
@@ -65,7 +80,7 @@ import { QuisommesnousComponent } from './components/notconnected/quisommesnous/
     MenubarModule,
     TabMenuModule,
     RoutingService,
-    ButtonModule
+    ButtonModule,
     ],
     providers: [
         Title,

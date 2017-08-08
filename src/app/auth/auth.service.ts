@@ -19,11 +19,11 @@ export class AuthService {
 
     //Saves the Firebase token
     setToken() {
-        firebase.auth().currentUser.getToken()
+        firebase.auth().currentUser.getIdToken()
             .then(
                 (token: string) => {
                     this.token = token;
-                    console.log("token set: "+token);
+                    //console.log("token set: "+token);
                 }
             )
     }

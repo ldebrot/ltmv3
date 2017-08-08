@@ -53,15 +53,16 @@ export class SigninupComponent implements OnInit {
 
     //FUnction triggered when user clicks on sign in
     onSignin(form: NgForm) {
-        const email = form.value.email;
-        const password = form.value.password;
+        const email = form.value.signinemail;
+        const password = form.value.signinpassword;
         this.authService.signinUser(email, password)
         .then(
             (response) => {
                 this.errormsg = [];
                 this.errormsg.push({severity:'success', summary:'Connexion', detail:response});
                 this.authService.setToken();
-                console.log(response);
+                console.log("signinup: firebase signin successful")
+                //console.log(response);
                 this.router.navigate(['']);//go to main after logging in
                 }
         )
@@ -70,6 +71,7 @@ export class SigninupComponent implements OnInit {
                 this.errormsg = [];
                 let errorobject : any = firebaseerror;
                 this.errormsg.push({severity:'error', summary:'Connexion', detail:this.getfrencherrormessage(errorobject.code)});
+                console.log("signinup: firebase signin failed!")
                 console.log(firebaseerror);
             }
         );
@@ -85,6 +87,7 @@ export class SigninupComponent implements OnInit {
                 this.errormsg = [];
                 this.errormsg.push({severity:'success', summary:'Création de compte', detail:response});
                 this.authService.setToken();
+                console.log("signinup: firebase signup successful")
                 //console.log(response);
                 this.router.navigate(['']);//go to main after creating account                
                 }
@@ -94,6 +97,7 @@ export class SigninupComponent implements OnInit {
                 this.errormsg = [];
                 let errorobject : any = firebaseerror;
                 this.errormsg.push({severity:'error', summary:'Création de compte', detail:this.getfrencherrormessage(errorobject.code)});
+                console.log("signinup: firebase signup failed!")
                 console.log(firebaseerror);
             }
         );
