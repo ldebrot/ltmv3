@@ -16,21 +16,28 @@ export class LesactusComponent implements OnInit {
     constructor() { }
     
     public ffbplaywrite(form: NgForm):void {
-    /*
-        firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-        var username = snapshot.val().username;
-        // ...
-        });    
-    */
     }
 
     public ffbplayread(form: NgForm):void {
         let ref:any = form.value.ffbplayref;
+        let child:any = form.value.ffbplaychild;
         let value:any = form.value.ffbplayvalue;
         console.log("ref:" + ref);
+        console.log("child:" + child);
         console.log("value:" + value);
-        firebase.database().ref(ref).once('value').then(function(snapshot) {
-            console.log(snapshot.val().skillname);
+        firebase.database().ref(ref).once('value')
+        .then(function(snapshot) {
+            
+            if (child !== "") {
+                console.log("get child...");
+                console.log(snapshot.child(child).val());
+            } else {
+                console.log("get snapshot without the kids...");
+                console.log(snapshot.val());
+            }
+        })
+        .catch(function(error) {
+            console.log("playground error: "+error.message);
         });
     }
 

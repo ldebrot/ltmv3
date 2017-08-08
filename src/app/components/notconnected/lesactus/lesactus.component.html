@@ -22,14 +22,24 @@
             >
         </div>
         <div class="form-group">
-            <label for="ffbplayvalue">Mot de passe</label>
+            <label for="ffbplaychild">Child</label>
             <input
-                type="password"
+                type="text"
+                id="ffbplaychild"
+                name="ffbplaychild"
+                ngModel
+                class="form-control"
+                #ffbplaychild="ngModel"
+            >
+        </div>
+        <div class="form-group">
+            <label for="ffbplayvalue">Value</label>
+            <input
+                type="text"
                 id="ffbplayvalue"
                 name="ffbplayvalue"
                 ngModel
                 class="form-control"
-                required
                 #ffbplayvalue="ngModel"
             >
         </div>
