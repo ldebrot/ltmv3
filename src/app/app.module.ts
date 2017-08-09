@@ -23,6 +23,7 @@ import { authGuardService } from './services/authguard.service';//prevents route
 import { AuthService } from './auth/auth.service';//actual auth service connected to firebase
 import { TitleService } from './services/title.service'; //service which stores the current title
 import { ReadwriteService } from './services/readwrite.service';//service handling read and write operations with Firebase
+import { DbuserinfoService } from './services/dbuserinfo.service';//handles down- and upload of userinformation from DB
 
 //Components
 import { AppComponent } from './app.component';
@@ -88,7 +89,8 @@ firebase.initializeApp(firebaseconfig);
         FakeAuthService,//fake authentication service
         authGuardService,
         ConfirmationService,//PrimeNG here
-        ReadwriteService,
+        ReadwriteService,//handles read and write operations with Firebase
+        DbuserinfoService,//handles down- and upload of userinformation from DB
         AuthService,
         TitleService//service which stores the current title
     ],

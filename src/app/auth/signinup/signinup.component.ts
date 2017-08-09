@@ -67,9 +67,8 @@ export class SigninupComponent implements OnInit {
         .then(
             (response) => {
                 this.authService.setToken();
-                console.log("signinup: firebase signin successful")
-                //console.log(response);
-
+                console.log("signinup: firebase signin successful");
+                //this.readwriteservice.getcurrentuserinfo();
                 this.readwriteservice.readcurrentuser("","public")
                 .then((publicinfo:any)=>{
                     console.log(publicinfo);

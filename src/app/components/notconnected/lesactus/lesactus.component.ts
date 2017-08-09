@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 
 //Home-grown man-made services
 import { ReadwriteService } from './../../../services/readwrite.service';
+import { DbuserinfoService } from './../../../services/dbuserinfo.service';
 
 //Firebase service
 import * as firebase from 'firebase';
@@ -17,10 +18,19 @@ import * as firebase from 'firebase';
 export class LesactusComponent implements OnInit {
     
     constructor(
-        private readwriteservice:ReadwriteService
+        private readwriteservice:ReadwriteService,
+        private dbuserinfoservice:DbuserinfoService
     ) { }
     
     public ffbplaywrite(form: NgForm):void {
+        this.readwriteservice.getcurrentuserinfo()
+        .then((currentuserinfo) => {
+            console.log("currentuserinfo:");
+            console.log(currentuserinfo);
+            this.dbuserinfoservice.integrate(currentuserinfo);
+        });
+        
+
 /*
         let ref:any = form.value.ffbplayref;
         let child:any = form.value.ffbplaychild;

@@ -3,6 +3,19 @@ import * as firebase from 'firebase';
 
 export class ReadwriteService {
     
+    public getcurrentuserinfo():any{
+        let ref:string = "users/"+ firebase.auth().currentUser.uid+"/";
+        console.log("GETCURRENTUSERINFO");
+        console.log("userprefix:" + ref);
+        return firebase.database().ref(ref).once('value')
+        .then(function(snapshot) {
+            return snapshot.val();
+        })
+        .catch(function(error) {
+            console.log("readcurrentuser error: "+error.message);
+        });
+    }
+
     public readcurrentuser(ref:string,child:string):any{
         let userprefix:string = "users/"+ firebase.auth().currentUser.uid+"/";
         console.log("READCURRENTUSER");
@@ -24,7 +37,7 @@ export class ReadwriteService {
             console.log("readcurrentuser error: "+error.message);
         });
     }
-    
+
     public registercurrentuser(firstname:string,surname:string):void {
         let ref:string = "users/"+ firebase.auth().currentUser.uid;//get current uid from firebase
         let value:object = {
