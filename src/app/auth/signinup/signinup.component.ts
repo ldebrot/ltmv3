@@ -7,6 +7,7 @@ import { NgClass } from '@angular/common';
 //Hand-made services
 import { AuthService } from './../auth.service';//Firebase-based auth service
 import { TitleService } from './../../services/title.service';//title handling service
+import { ReadwriteService } from './../../services/readwrite.service';//handles read and write operations with Firebase
 //Graphic
 import { MessagesModule } from 'primeng/primeng';//PrimeNG error message handling
 import { TabViewModule } from 'primeng/primeng';//PrimeNG TabView
@@ -18,14 +19,15 @@ import { TabViewModule } from 'primeng/primeng';//PrimeNG TabView
 })
 
 export class SigninupComponent implements OnInit {
-  
+
     private errormessagefr:string;
     errormsg = []; 
     
     constructor(
-    private authService: AuthService,
-    private router : Router,
-    private titleservice: TitleService,    
+        private authService: AuthService,
+        private router : Router,
+        private titleservice: TitleService,
+        private readwriteservice:ReadwriteService   
     ) {
         setTimeout(function (){titleservice.titlesubject.next("Se connecter");},500);//sets title in title service to "Se connecter" after half a second
     }
@@ -41,6 +43,12 @@ export class SigninupComponent implements OnInit {
             break;
             case "auth/user-disabled" :
             errormessagefr = "Ce compte utilisateur a été suspendu. Veuillez nous contacter : team@lunchtimementoring.fr"
+            break;
+            case "auth/email-already-in-use" :
+            errormessagefr = "Il existe déjà un compte avec cette adresse électronique."
+            break;
+            case "auth/weak-password" :
+            errormessagefr = "Ce mot de passe est trop court."
             break;
             case "auth/wrong-password" :
             errormessagefr = "L'adresse électronique ou le mot de passe est erroné."
@@ -58,13 +66,20 @@ export class SigninupComponent implements OnInit {
         this.authService.signinUser(email, password)
         .then(
             (response) => {
-                this.errormsg = [];
-                this.errormsg.push({severity:'success', summary:'Connexion', detail:response});
                 this.authService.setToken();
                 console.log("signinup: firebase signin successful")
                 //console.log(response);
-                this.router.navigate(['']);//go to main after logging in
-                }
+
+                this.readwriteservice.readcurrentuser("","public")
+                .then((publicinfo:any)=>{
+                    console.log(publicinfo);
+                    let hellomsg:string = "Bonjour "+publicinfo.firstname;
+                    this.errormsg = [];
+                    this.errormsg.push({severity:'success', summary:'Connexion', detail:hellomsg});
+                    setTimeout(()=>{this.router.navigate(['']);},2000);//go to main after logging in
+                });
+
+            }
         )
         .catch(
             (firebaseerror) => {
@@ -80,6 +95,8 @@ export class SigninupComponent implements OnInit {
     //FUnction triggered when user clicks on sign up
     onSignup(form: NgForm) {
         const email = form.value.signupemail;
+        const firstname = form.value.signupfirstname;
+        const surname = form.value.signupsurname;
         const password = form.value.signuppassword;
         this.authService.signupUser(email, password)
         .then(
@@ -89,6 +106,7 @@ export class SigninupComponent implements OnInit {
                 this.authService.setToken();
                 console.log("signinup: firebase signup successful")
                 //console.log(response);
+                this.readwriteservice.registercurrentuser(firstname,surname);                
                 this.router.navigate(['']);//go to main after creating account                
                 }
         )

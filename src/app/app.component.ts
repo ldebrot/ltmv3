@@ -20,12 +20,13 @@ export class AppComponent implements OnInit {
     
     ngOnInit() {
         //TEMPORARY automatic login
+        /*
         this.authService.signinUser("test@test.com", "test1234")
         .then( (response) => {
             this.authService.setToken();
             console.log("app.components.ts: automatic firebase signin successful")
-        })
-        ;
+        });
+        */
     }
 }
 

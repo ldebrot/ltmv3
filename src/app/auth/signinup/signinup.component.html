@@ -135,11 +135,15 @@
                         class="form-control"
                         required
                         #signuppassword="ngModel"
+                        minlength="8"
                     >
                     <div *ngIf="signuppassword.invalid && (signuppassword.dirty || signuppassword.touched)"
                         class="alert alert-danger">
                         <div *ngIf="signuppassword.errors.required">
                             Veuillez entrer votre mot de passe.
+                        </div>
+                        <div *ngIf="signuppassword.errors.minlength">
+                            Le mot de passe doit être composé d'au moins 8 caractères.
                         </div>
                     </div>                    
                     <button class="btn btn-primary" (click)="onSignup(fsignup)" [disabled]="!fsignup.valid">Créer un compte</button>

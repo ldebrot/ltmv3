@@ -2,6 +2,9 @@
 import { NgForm } from '@angular/forms/forms';
 import { Component, OnInit } from '@angular/core';
 
+//Home-grown man-made services
+import { ReadwriteService } from './../../../services/readwrite.service';
+
 //Firebase service
 import * as firebase from 'firebase';
 
@@ -13,9 +16,26 @@ import * as firebase from 'firebase';
 })
 export class LesactusComponent implements OnInit {
     
-    constructor() { }
+    constructor(
+        private readwriteservice:ReadwriteService
+    ) { }
     
     public ffbplaywrite(form: NgForm):void {
+/*
+        let ref:any = form.value.ffbplayref;
+        let child:any = form.value.ffbplaychild;
+        let value:any = form.value.ffbplayvalue;
+        console.log("ref:" + ref);
+        console.log("value:");
+        console.log(JSON.parse(value));
+        firebase.database().ref(ref).set(JSON.parse(value))
+        .then( function() {
+                console.log("worked just fine!");
+        })
+        .catch( function(error) {
+                console.log("playground error: "+error.message);
+        });
+*/
     }
 
     public ffbplayread(form: NgForm):void {
