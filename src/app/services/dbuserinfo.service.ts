@@ -22,7 +22,7 @@ export class DbuserinfoService {
     ) {
     }
 
-    public userinfo : object = {
+    public userinfo : any = {
         privateinfo : {
             email: "",
             mobile : "",
@@ -42,6 +42,7 @@ export class DbuserinfoService {
         }
     }
     
+    //This function integrates the values passed in the inputobject into the userinfo object, which is available as a service. The inputobject usually comes from firebase.
     public integrate(inputobject:object):void {
         //loop through keys of userinfo object
         for (var key in this.userinfo) {

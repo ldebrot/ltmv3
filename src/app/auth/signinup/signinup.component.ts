@@ -8,6 +8,7 @@ import { NgClass } from '@angular/common';
 import { AuthService } from './../auth.service';//Firebase-based auth service
 import { TitleService } from './../../services/title.service';//title handling service
 import { ReadwriteService } from './../../services/readwrite.service';//handles read and write operations with Firebase
+import { DbuserinfoService } from './../../services/dbuserinfo.service';//handles user info operations with Firebase
 //Graphic
 import { MessagesModule } from 'primeng/primeng';//PrimeNG error message handling
 import { TabViewModule } from 'primeng/primeng';//PrimeNG TabView
@@ -27,7 +28,8 @@ export class SigninupComponent implements OnInit {
         private authService: AuthService,
         private router : Router,
         private titleservice: TitleService,
-        private readwriteservice:ReadwriteService   
+        private readwriteservice:ReadwriteService,
+        private dbuserinfoservice:DbuserinfoService
     ) {
         setTimeout(function (){titleservice.titlesubject.next("Se connecter");},500);//sets title in title service to "Se connecter" after half a second
     }
@@ -68,16 +70,14 @@ export class SigninupComponent implements OnInit {
             (response) => {
                 this.authService.setToken();
                 console.log("signinup: firebase signin successful");
-                //this.readwriteservice.getcurrentuserinfo();
-                this.readwriteservice.readcurrentuser("","public")
-                .then((publicinfo:any)=>{
-                    console.log(publicinfo);
-                    let hellomsg:string = "Bonjour "+publicinfo.firstname;
+                this.readwriteservice.getcurrentuserinfo()
+                .then ((userinfo)=> {
+                    this.dbuserinfoservice.integrate(userinfo)
+                    let hellomsg:string = "Bonjour "+this.dbuserinfoservice.userinfo.publicinfo.firstname;
                     this.errormsg = [];
                     this.errormsg.push({severity:'success', summary:'Connexion', detail:hellomsg});
                     setTimeout(()=>{this.router.navigate(['']);},2000);//go to main after logging in
                 });
-
             }
         )
         .catch(
