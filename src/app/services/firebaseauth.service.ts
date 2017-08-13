@@ -1,6 +1,8 @@
 import * as firebase from 'firebase';
 
-export class AuthService {
+//Handles Firebase authentication 
+
+export class FirebaseauthService {
     token : string = "";
 
     signupUser(email: string, password: string) {

@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, ViewChildren, ElementRef,Renderer2  } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChildren, ElementRef,Renderer2  } from '@angular/core';
 
 //Hand-made services
 import { TitleService } from './../../services/title.service';
@@ -10,7 +10,7 @@ import { ldbmenuitem } from '../../services/ldbmenuitem.model';
     templateUrl: './menunotconnected.component.html',
     styleUrls: ['./menunotconnected.component.css']
 })
-export class MenuNotconnectedComponent implements OnInit {
+export class MenuNotconnectedComponent implements OnInit, OnDestroy {
 
     public menuitemwidth:number=180;//this is the width of each menu element
 
@@ -38,8 +38,11 @@ export class MenuNotconnectedComponent implements OnInit {
     private itemtextobjects:any;
     private itemtextobject:any;
 
+    private titleservicesubscription : any;
+
     //IMPORTANT STUFF HERE: THIS DEFINES MENU STRUCTURE AND CORRESPONDING REROUTING:
-    menuitems: ldbmenuitem[] = [
+//    menuitems: ldbmenuitem[] = [
+    menuitems : any = [
     new ldbmenuitem('Je découvre Lunchtime', 1, '',''),
     new ldbmenuitem('Qui sommes-nous ?', 2, '','quisommesnous'),
     new ldbmenuitem('Les actus Lunchtime', 3, '','lesactus'),
@@ -56,10 +59,8 @@ export class MenuNotconnectedComponent implements OnInit {
     @ViewChildren('itemtexts') el:ElementRef;
 
     ngAfterViewInit() {
-        this.itemtextobjects = this.el;
-        //console.log(this.itemtextobjects._results);
     }
-   
+      
 
     public intervalhits(): void {//this is when the interval to check whether scrolling has ended hits (hence, when the scrolling has ended)
         this.scrollingintervalset = false;
@@ -69,14 +70,14 @@ export class MenuNotconnectedComponent implements OnInit {
 
     //this function sets position by using the title of the destination
     public setpositionwithtitle(title:string):void{
+        this.itemtextobjects = this.el;
         this.itemtextobject = this.itemtextobjects._results.filter(function(element){
-            if (element.nativeElement.innerText==title) {
-//                console.log("Found the right item!");
+            //console.log("'"+element.nativeElement.innerText.trim()+"'");
+            if (element.nativeElement.innerText.trim()==title) {
                 return element.nativeElement;
             }
-        })
+        });
         this.itemtextobject=this.itemtextobject[0].nativeElement;
-//        console.log(this.itemtextobject);
         this.setpositionwithtarget(this.itemtextobject);
     }
 
@@ -102,7 +103,7 @@ export class MenuNotconnectedComponent implements OnInit {
     }
 
     public reroutewithtarget(target:any):void {
-        let newtitle:string = target.innerText;//gets new title from target object
+        let newtitle:string = target.innerText.trim();//gets new title from target object
         for (let i=0; i < this.menuitems.length;i++) {
             if (this.menuitems[i].title === newtitle) {//checks which route corresponds to new title
                 this.myrouter.navigate([this.menuitems[i].route]);//reroutes to route
@@ -187,12 +188,15 @@ export class MenuNotconnectedComponent implements OnInit {
     }
     
     ngOnInit() {
-        this.titleservice.titlesubject.subscribe( (value) => {
-//            console.log("menunotconnected: "+value);
+        this.titleservicesubscription = this.titleservice.titlesubject.subscribe( (value) => {
             this.setpositionwithtitle(value);
         });
+    }
 
+    ngOnDestroy() {
+        this.titleservicesubscription.unsubscribe();
     }
     
     
 }
+

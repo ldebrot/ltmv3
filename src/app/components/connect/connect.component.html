@@ -1,9 +1,9 @@
-<div *ngIf="authService.isAuthenticated()">
+<div *ngIf="firebaseauthservice.isAuthenticated()">
     <a (click)="signOut()">
         Se déconnecter
     </a>        
 </div>
-<div *ngIf="!authService.isAuthenticated()">
+<div *ngIf="!firebaseauthservice.isAuthenticated()">
     <a [routerLink]="['/signinup']">
         Se connecter
     </a>        

@@ -2,9 +2,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 //Home-made
-import { AuthService } from './../../auth/auth.service';
+import { FirebaseauthService } from './../../services/firebaseauth.service';
 //PrimeNG
 import {ConfirmDialogModule, ConfirmationService} from 'primeng/primeng';
+//Service
+import { DbuserinfoService } from './../../services/dbuserinfo.service';
+
 
 @Component({
     selector: 'app-connect',
@@ -14,9 +17,10 @@ import {ConfirmDialogModule, ConfirmationService} from 'primeng/primeng';
 export class ConnectComponent implements OnInit {
     
     constructor(
-        private authService: AuthService,
+        private firebaseauthservice: FirebaseauthService,
         private confirmationService: ConfirmationService,//PrimeNG confirmation dialog here
-        private router : Router
+        private router : Router,
+        private dbuserinfoService : DbuserinfoService
         ) { }
     
     ngOnInit() {
@@ -28,7 +32,8 @@ export class ConnectComponent implements OnInit {
         this.confirmationService.confirm({
             message: 'Souhaitez-vous vous déconnecter ?',
             accept: () => {
-                this.authService.signOut();
+                this.firebaseauthservice.signOut();
+                this.dbuserinfoService.create();
                 this.router.navigate(['']);//go to main after logging out                
             }
         });

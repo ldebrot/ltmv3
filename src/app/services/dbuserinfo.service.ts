@@ -59,18 +59,42 @@ export class DbuserinfoService {
                         userinfosublevel.hasOwnProperty(subkey)
                         && inputobject[key].hasOwnProperty(subkey)
                     ) {
-                        console.log("both have subkey '"+subkey+"'");
+                        //console.log("both have subkey '"+subkey+"'");
                         this.userinfo[key][subkey] = inputobject[key][subkey];
                         subkeycount++;
                     }
                 }
                 if(subkeycount===0) {//this means they only have the key in common (therefore no common subkey)
                     this.userinfo[key] = inputobject[key];
+                } else {
+                    console.log("Saved "+subkeycount+" items in dbuserinfoservice!");
                 }
             }
         }
-
         console.log("this.userinfo is now :");
         console.log(this.userinfo);
     }
+
+    public create():void {
+        this.userinfo = {
+            privateinfo : {
+                email: "",
+                mobile : "",
+                birthdate: ""
+            },
+            publicinfo : {
+                firstname : "",
+                surname: "",
+                twitter_followme : "",
+                twitter_id: "",
+                linkedin_followme : "",
+                linkedin_url : "",
+                status: ""
+            },
+            meetings : {
+
+            }
+        }
+    }
+
 }

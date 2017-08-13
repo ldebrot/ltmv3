@@ -5,7 +5,7 @@ import { NgForm } from "@angular/forms/forms";
 import { Router } from '@angular/router';
 import { NgClass } from '@angular/common';
 //Hand-made services
-import { AuthService } from './../auth.service';//Firebase-based auth service
+import { FirebaseauthService } from './../../services/firebaseauth.service';//Firebase-based auth service
 import { TitleService } from './../../services/title.service';//title handling service
 import { ReadwriteService } from './../../services/readwrite.service';//handles read and write operations with Firebase
 import { DbuserinfoService } from './../../services/dbuserinfo.service';//handles user info operations with Firebase
@@ -25,7 +25,7 @@ export class SigninupComponent implements OnInit {
     errormsg = []; 
     
     constructor(
-        private authService: AuthService,
+        private firebaseauth: FirebaseauthService,
         private router : Router,
         private titleservice: TitleService,
         private readwriteservice:ReadwriteService,
@@ -61,14 +61,23 @@ export class SigninupComponent implements OnInit {
         return errormessagefr;
     }
 
+    //tryme just testing stuff:
+    public tryme():void {
+        setTimeout(()=>{this.router.navigate(["beneficiaire/monplanning"]);},2000);
+    }
+
     //FUnction triggered when user clicks on sign in
     onSignin(form: NgForm) {
         const email = form.value.signinemail;
         const password = form.value.signinpassword;
-        this.authService.signinUser(email, password)
+        this.signin(email, password);
+    }
+    
+    signin(email, password){
+        this.firebaseauth.signinUser(email, password)
         .then(
             (response) => {
-                this.authService.setToken();
+                this.firebaseauth.setToken();
                 console.log("signinup: firebase signin successful");
                 this.readwriteservice.getcurrentuserinfo()
                 .then ((userinfo)=> {
@@ -76,7 +85,7 @@ export class SigninupComponent implements OnInit {
                     let hellomsg:string = "Bonjour "+this.dbuserinfoservice.userinfo.publicinfo.firstname;
                     this.errormsg = [];
                     this.errormsg.push({severity:'success', summary:'Connexion', detail:hellomsg});
-                    setTimeout(()=>{this.router.navigate(['']);},2000);//go to main after logging in
+                    setTimeout(()=>{this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);},2000);//go to main after logging in
                 });
             }
         )
@@ -90,23 +99,23 @@ export class SigninupComponent implements OnInit {
             }
         );
     }
-        
+
     //FUnction triggered when user clicks on sign up
     onSignup(form: NgForm) {
         const email = form.value.signupemail;
         const firstname = form.value.signupfirstname;
         const surname = form.value.signupsurname;
         const password = form.value.signuppassword;
-        this.authService.signupUser(email, password)
+        this.firebaseauth.signupUser(email, password)
         .then(
             (response) => {
                 this.errormsg = [];
                 this.errormsg.push({severity:'success', summary:'Création de compte', detail:response});
-                this.authService.setToken();
+                this.firebaseauth.setToken();
                 console.log("signinup: firebase signup successful")
                 //console.log(response);
                 this.readwriteservice.registercurrentuser(firstname,surname);                
-                this.router.navigate(['']);//go to main after creating account                
+                this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);//go to main after creating account                
                 }
         )
         .catch(
