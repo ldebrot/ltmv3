@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogModule } from 'primeng/primeng';
 
 @Component({
-  selector: 'app-jedecouvrelunchtime',
-  templateUrl: './jedecouvrelunchtime.component.html',
-  styleUrls: ['./jedecouvrelunchtime.component.css']
+    selector: 'app-jedecouvrelunchtime',
+    templateUrl: './jedecouvrelunchtime.component.html',
+    styleUrls: ['./jedecouvrelunchtime.component.css']
 })
 export class JedecouvrelunchtimeComponent implements OnInit {
 
-  constructor() { }
+    public elementstobedisplayed:any = {
+        jefaislepoint : false
+    }
 
-  ngOnInit() {
-  }
+    showdisplay(elementtobedisplayed:string):void {
+        this.elementstobedisplayed[elementtobedisplayed]=true
+    }
 
+    constructor() { }
+    
+    ngOnInit() {
+    }
+    
 }

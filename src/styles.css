@@ -136,6 +136,7 @@ input.ng-invalid.ng-touched {
 
 .ldbway .ui-tabview {
     padding:0px;
+    background: transparent;
 }
 
 .ldbway .ui-tabview-panel {
@@ -151,15 +152,36 @@ input.ng-invalid.ng-touched {
     font-family:inherit;
 }
 
-.ldbway .ui-widget-content {
-    background: transparent;
-}
-
 .ldbway .ui-messages-error {
-    width: 95%;
     margin: 5px auto;
     text-align: center;
 }
+
+.ldbway .ui-dialog {
+    box-shadow: 0 1px 300px 0 rgba(0,0,0,1);
+    min-width: 300px;
+}
+
+.ldbway .ui-dialog-titlebar {
+    padding: 5% 5% !important;
+    text-align: center;
+}
+
+.ldbway .ui-dialog-titlebar-close {
+    position: absolute;
+    top: 5%;
+    right: 2%;
+}
+
+.ldbway .ui-dialog-buttonpane {
+    border: 0px;
+    margin: 0px 50px;
+}
+
+.ldbway .ui-dialog-footer {
+    border: 0px;
+}
+
 
 /* BOOTSTRAP EXTENSION - BUTTON COLORS */
 

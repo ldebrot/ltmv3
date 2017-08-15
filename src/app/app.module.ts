@@ -79,7 +79,6 @@ firebase.initializeApp(firebaseconfig);
     JedecouvrelunchtimeComponent, LesactusComponent, QuisommesnousComponent, StartbeneficiaireComponent, MonplanningComponent, JefaislepointComponent, JeprendsrendezvousComponent, JepreparemarencontreComponent, JefaislesuiviComponent//discover Lunchtime - used as "home" component
     ],
     imports: [
-    DialogModule,
     FormsModule,
     HttpModule,
     ConfirmDialogModule,//PrimeNG here
@@ -87,7 +86,8 @@ firebase.initializeApp(firebaseconfig);
     BrowserAnimationsModule,//PrimeNG here
     MessagesModule,//PrimeNG here
     TabViewModule,//PrimeNG here
-    GrowlModule,
+    GrowlModule,//PrimeNG here
+    DialogModule,//PrimeNG here
     NgbModule.forRoot(),//NG-Bootstrap added here
     MenubarModule,
     TabMenuModule,
