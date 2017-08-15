@@ -19,6 +19,34 @@ body{
     min-width: 310px;
 }
 
+
+/* material icons extension */
+i.mdi-ldb-done {
+    color:#00AA00;
+}
+
+i.mdi-ldb-notdone {
+    color:#AA0000;
+}
+
+i.mdi-ldb-todo {
+    color:#EE0000;
+}
+
+i.mdi-ldb-inprogress {
+    color:#FFAA00;
+}
+
+i.mdi-ldb-unavailable {
+    color:#FFFFFF;
+}
+
+i.mdi-ldb-primary {
+    color:#3AF;
+}
+
+/* */
+
 .ldb_button {
 
 }
@@ -27,9 +55,14 @@ body{
 .ldb_elementbackground {
     background:#EEE;
     width:100%;
-    padding:0px 5px;
+    padding:10px 5px;
+    margin:10px 0px;
 }
 
+/* This is an element with one button in the middle */
+.ldb_elementsinglebutton {
+    margin: 0px 10%;
+}
 /* bold  title of element */
 
 .ldb_elementtitlebold {
@@ -37,7 +70,7 @@ body{
     text-align: center;
     font-weight: bold;
     font-size: medium;
-    padding:10px 0px;
+    padding-bottom: 10px;
 }
 
 .ldb_elementtextregular {
@@ -93,6 +126,14 @@ input.ng-invalid.ng-touched {
 }
 */
 
+.ldbway .ui-growl {
+    position: fixed;
+    top: 30%;
+    margin: 0 auto;
+    max-width: 20em;
+    width: 90%;
+}
+
 .ldbway .ui-tabview {
     padding:0px;
 }
@@ -122,13 +163,16 @@ input.ng-invalid.ng-touched {
 
 /* BOOTSTRAP EXTENSION - BUTTON COLORS */
 
-.ldb_btn_primary{
-    background: #BDF5;
-    border-color: #BDF5;    
+.ldb_btn {
     white-space: normal;
     padding: 5px;
     min-height: 50px;
     width:100%;
+}
+
+.ldb_btn_primary{
+    background: #BDF5;
+    border-color: #BDF5;    
     color:#333;
 }
 
@@ -136,6 +180,37 @@ input.ng-invalid.ng-touched {
     background: #FFF;
     border-color: #FFF;
     color:#555 !important;
+}
+
+.ldb_btn_done {
+    background: #0F05;
+    border-color: #0A05;
+    color:#333 !important;
+}
+
+.ldb_btn_notdone {
+    background: #A005;
+    border-color: #5005;
+    color:#333 !important;
+}
+
+.ldb_btn_todo {
+    background: #F005;
+    border-color: #A005;
+    color:#333 !important;
+}
+
+.ldb_btn_inprogress {
+    background: #FA05;
+    border-color: #A505;
+    color:#333 !important;
+}
+
+.ldb_btn_unavailable
+ {
+    background: #5555;
+    border-color: #AAA;
+    color:#FFF !important;
 }
 
 .btn-circle {

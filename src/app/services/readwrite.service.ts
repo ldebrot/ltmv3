@@ -1,8 +1,15 @@
+import { Injectable } from '@angular/core';
+import { DbuserinfoService } from './dbuserinfo.service';
 //Firebase service
 import * as firebase from 'firebase';
 
+@Injectable()
 export class ReadwriteService {
     
+    constructor(
+        private dbuserinfoservice: DbuserinfoService
+    ) {}
+
     public getcurrentuserinfo():any{
         let ref:string = "users/"+ firebase.auth().currentUser.uid+"/";
         console.log("GETCURRENTUSERINFO");
@@ -40,18 +47,12 @@ export class ReadwriteService {
 
     public registercurrentuser(firstname:string,surname:string):void {
         let ref:string = "users/"+ firebase.auth().currentUser.uid;//get current uid from firebase
-        let value:object = {
-            "public" : {
-                "firstname":firstname,
-                "surname":surname
-            },
-            "private" : {
-                "email":firebase.auth().currentUser.email
-            },
-            "meetings" : {
-                "_comment":"Meetings of user here"
-            }
-        };
+        this.dbuserinfoservice.empty();
+        this.dbuserinfoservice.setstartvalues();
+        this.dbuserinfoservice.userinfo.publicinfo.firstname = firstname;
+        this.dbuserinfoservice.userinfo.publicinfo.surname = surname;
+        this.dbuserinfoservice.userinfo.privateinfo.email = firebase.auth().currentUser.email;
+        let value:any = this.dbuserinfoservice.userinfo;
         console.log("ref:" + ref);
         console.log("value:");
         console.log(value);

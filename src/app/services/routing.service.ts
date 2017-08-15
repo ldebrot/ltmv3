@@ -32,6 +32,7 @@ const appRoutes: Routes = [
     ]},
     { path: 'beneficiaire',  canActivate: [authGuardService], component: StartbeneficiaireComponent,
     children: [
+        { path: '', canActivate: [authGuardService], pathMatch: 'prefix', redirectTo: 'monplanning'},
         { path: 'monplanning', canActivate: [authGuardService], component: MonplanningComponent},
         { path: 'jefaislepoint', canActivate: [authGuardService], component: JefaislepointComponent},
         { path: 'jeprendsrendezvous', canActivate: [authGuardService], component: JeprendsrendezvousComponent},

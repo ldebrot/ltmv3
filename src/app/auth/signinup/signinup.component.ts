@@ -10,8 +10,9 @@ import { TitleService } from './../../services/title.service';//title handling s
 import { ReadwriteService } from './../../services/readwrite.service';//handles read and write operations with Firebase
 import { DbuserinfoService } from './../../services/dbuserinfo.service';//handles user info operations with Firebase
 //Graphic
-import { MessagesModule } from 'primeng/primeng';//PrimeNG error message handling
-import { TabViewModule } from 'primeng/primeng';//PrimeNG TabView
+import { 
+    MessagesModule,
+    GrowlModule} from 'primeng/primeng';//PrimeNG error message handling
 
 @Component({
     selector: 'app-signinup',
@@ -53,10 +54,14 @@ export class SigninupComponent implements OnInit {
             errormessagefr = "Ce mot de passe est trop court."
             break;
             case "auth/wrong-password" :
-            errormessagefr = "L'adresse électronique ou le mot de passe est erroné."
+            errormessagefr = "Mot de passe erroné."
             break;
+            case "auth/user-not-found" :
+            errormessagefr = "Identifiant erroné."
+            break;            
             default :
             errormessagefr = "Il y a comme un souci..."
+            console.log("errorcode : "+errorcode);
         }
         return errormessagefr;
     }
@@ -85,6 +90,7 @@ export class SigninupComponent implements OnInit {
                     let hellomsg:string = "Bonjour "+this.dbuserinfoservice.userinfo.publicinfo.firstname;
                     this.errormsg = [];
                     this.errormsg.push({severity:'success', summary:'Connexion', detail:hellomsg});
+                    //console.log("this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status] = "+ this.dbuserinfoservice.userinfo.publicinfo.status +")");
                     setTimeout(()=>{this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);},2000);//go to main after logging in
                 });
             }
@@ -94,8 +100,8 @@ export class SigninupComponent implements OnInit {
                 this.errormsg = [];
                 let errorobject : any = firebaseerror;
                 this.errormsg.push({severity:'error', summary:'Connexion', detail:this.getfrencherrormessage(errorobject.code)});
-                console.log("signinup: firebase signin failed!")
-                console.log(firebaseerror);
+                //console.log("signinup: firebase signin failed!")
+                //console.log(firebaseerror);
             }
         );
     }

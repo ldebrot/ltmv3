@@ -1,3 +1,22 @@
-<p>
-  monplanning works!
-</p>
+<div class="ldb_elementbackground">
+    <div class="ldb_elementtitlebold">
+        Bonjour {{ this.dbuserinfoservice.userinfo.publicinfo.firstname }} !
+    </div>
+    <div class="ldb_elementtextregular">
+        Mes 4 étapes de la rencontre déclic :
+    </div>
+    <table class="ldb_table_separation_3 ldb_table_center minwidthmobiletable">
+        <tr *ngFor="let items of this.navigationservice.monplanningitems">
+            <td><i [class]="items.iclass"></i></td>
+            <td><a [routerLink]="items.route" [class]="items.aclass">{{ items.atext }}</a></td>
+        </tr>
+    </table>
+</div>
+<div class="ldb_elementbackground">
+    <div class="ldb_elementtitlebold">
+        {{ this.navigationservice.mynexttask.title}}
+    </div>
+    <div class="ldb_elementsinglebutton">
+        <a [routerLink]="this.navigationservice.mynexttask.item.route" [class]="this.navigationservice.mynexttask.item.aclass">{{ this.navigationservice.mynexttask.item.atext }}</a>
+    </div>
+</div>

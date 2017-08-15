@@ -1,3 +1,4 @@
+import { GrowlModule } from 'primeng/primeng';
 //Modules
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -17,13 +18,15 @@ import { //PrimeNG modules here
 import { ConfirmationService } from 'primeng/primeng';
 
 //Services
+import { DbuserinfoService } from './services/dbuserinfo.service';//handles down- and upload of userinformation from DB
 import { RoutingService } from './services/routing.service';
 import { CheckauthService } from './services/checkauth.service';//checks if user logged in
 import { authGuardService } from './services/authguard.service';//prevents routes from loading
 import { FirebaseauthService } from './services/firebaseauth.service';//actual auth service connected to firebase
 import { TitleService } from './services/title.service'; //service which stores the current title
 import { ReadwriteService } from './services/readwrite.service';//service handling read and write operations with Firebase
-import { DbuserinfoService } from './services/dbuserinfo.service';//handles down- and upload of userinformation from DB
+import { FakedbuserinfoService } from './services/fakedbuserinfo.service';//TEMPORARY serivce filling in dbuserinfo with a data set (for offline moments...)
+import { NavigationService } from './services/navigation.service';//handles navigation modules
 
 //Components
 import { AppComponent } from './app.component';
@@ -84,6 +87,7 @@ firebase.initializeApp(firebaseconfig);
     BrowserAnimationsModule,//PrimeNG here
     MessagesModule,//PrimeNG here
     TabViewModule,//PrimeNG here
+    GrowlModule,
     NgbModule.forRoot(),//NG-Bootstrap added here
     MenubarModule,
     TabMenuModule,
@@ -92,13 +96,15 @@ firebase.initializeApp(firebaseconfig);
     ],
     providers: [
         Title,
+        DbuserinfoService,//handles down- and upload of userinformation from DB
         CheckauthService,//fake authentication service
         authGuardService,
         ConfirmationService,//PrimeNG here
         ReadwriteService,//handles read and write operations with Firebase
-        DbuserinfoService,//handles down- and upload of userinformation from DB
         FirebaseauthService,//handles Firebase authentication
-        TitleService//service which stores the current title
+        TitleService,//service which stores the current title
+        FakedbuserinfoService,
+        NavigationService//handles navigation modules
     ],
     bootstrap: [AppComponent]
 })

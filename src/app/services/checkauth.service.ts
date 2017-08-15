@@ -1,14 +1,23 @@
 //This service checks whether the route path is accessible according to the current auth state (whether the user is connected and if so, as a temoin or a benficiaire )
+
+//Built-in stuff:
+import { ActivatedRoute } from '@angular/router';
 import { OnInit } from '@angular/core';
-import { DbuserinfoService } from './dbuserinfo.service';
-import * as firebase from 'firebase';
 import { Injectable } from '@angular/core';
-    
+
+//Hand-made
+import { DbuserinfoService } from './dbuserinfo.service';
+
+//Firebase
+import * as firebase from 'firebase';
+
+
 @Injectable()
 export class CheckauthService implements OnInit{
     
     constructor(
-        private dbuserinfoservice : DbuserinfoService
+        private dbuserinfoservice : DbuserinfoService,
+        private activatedroute : ActivatedRoute
     ) {
         
     }
@@ -46,17 +55,25 @@ export class CheckauthService implements OnInit{
     }
 
     isAuthenticated (route) {
-
+        //console.log("this.activatedroute");
+        //console.log(this.activatedroute.toString());
+        //console.log("route.parent");
+        //console.log(route);
         if (route === "") { route = "home"; }//if route is set to "", set the path to "home" (as there could be no empty value "" for this route)
 
         const promise = new Promise(
             (resolve, reject) => {
                 let allow : boolean=false;
+                
                 this.updatecurrentauthstate ();
-                console.log("route: "+route.replace("/",""));                
-                console.log("this.paths[route]: "+this.paths[route]);
-                let response = this.paths[route]===this.currentauthstate ? true : false
-                resolve(response);
+                //console.log("route: "+route.replace("/",""));                
+                //console.log("this.paths[route]: "+this.paths[route]);
+                allow = this.paths[route]===this.currentauthstate ? true : false
+                
+                /*TEMPORARY WITHOUT INTERNET
+                allow = true;
+                */
+                resolve(allow);
             }
         )
         return promise;

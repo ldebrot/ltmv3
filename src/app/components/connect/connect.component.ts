@@ -33,7 +33,7 @@ export class ConnectComponent implements OnInit {
             message: 'Souhaitez-vous vous déconnecter ?',
             accept: () => {
                 this.firebaseauthservice.signOut();
-                this.dbuserinfoService.create();
+                this.dbuserinfoService.empty();
                 this.router.navigate(['']);//go to main after logging out                
             }
         });

@@ -1,3 +1,4 @@
+import { OnInit, Injectable } from '@angular/core';
 //Firebase service
 import * as firebase from 'firebase';
 
@@ -22,6 +23,7 @@ export class DbuserinfoService {
     ) {
     }
 
+    //This gives a general structure, 
     public userinfo : any = {
         privateinfo : {
             email: "",
@@ -37,11 +39,35 @@ export class DbuserinfoService {
             linkedin_url : "",
             status: ""
         },
+        experience : {
+            modulejefaislepoint : "",
+            modulejeprendsrendezvous : "",
+            modulejepreparemarencontre : "",
+            modulejefaislesuivi : ""
+        },
         meetings : {
-
         }
     }
-    
+
+    //This function cleans the userinfo, setting all values to ""
+    public empty():void {
+        for (var key in this.userinfo) {
+            let userinfosublevel:object = this.userinfo[key];
+            for (var subkey in userinfosublevel) {
+                this.userinfo[key][subkey] = "";
+                //console.log("key: "+key+" / subkey: "+ subkey+" cleaned!");
+            }
+        }
+    }
+
+    //This function sets the default (starting) values for newly registered users
+    public setstartvalues():void {
+        this.userinfo.experience.modulejefaislepoint = "notdone",
+        this.userinfo.experience.modulejeprendsrendezvous = "unavailable",
+        this.userinfo.experience.modulejepreparemarencontre = "unavailable",
+        this.userinfo.experience.modulejefaislesuivi = "unavailable"
+    }
+
     //This function integrates the values passed in the inputobject into the userinfo object, which is available as a service. The inputobject usually comes from firebase.
     public integrate(inputobject:object):void {
         //loop through keys of userinfo object
@@ -73,28 +99,6 @@ export class DbuserinfoService {
         }
         console.log("this.userinfo is now :");
         console.log(this.userinfo);
-    }
-
-    public create():void {
-        this.userinfo = {
-            privateinfo : {
-                email: "",
-                mobile : "",
-                birthdate: ""
-            },
-            publicinfo : {
-                firstname : "",
-                surname: "",
-                twitter_followme : "",
-                twitter_id: "",
-                linkedin_followme : "",
-                linkedin_url : "",
-                status: ""
-            },
-            meetings : {
-
-            }
-        }
     }
 
 }
