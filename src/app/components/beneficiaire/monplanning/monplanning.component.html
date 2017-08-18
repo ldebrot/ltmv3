@@ -1,8 +1,8 @@
 <div class="ldb_elementbackground">
-    <div class="ldb_elementtitlebold">
+    <div class="ldb_elementtextbold ldb_elementtext">
         Bonjour {{ this.dbuserinfoservice.userinfo.publicinfo.firstname }} !
     </div>
-    <div class="ldb_elementtextregular">
+    <div class="ldb_elementtextregular ldb_elementtext">
         Mes 4 étapes de la rencontre déclic :
     </div>
     <table class="ldb_table_separation_3 ldb_table_center minwidthmobiletable">
@@ -13,10 +13,10 @@
     </table>
 </div>
 <div class="ldb_elementbackground">
-    <div class="ldb_elementtitlebold">
-        {{ this.navigationservice.mynexttask.title}}
+    <div class="ldb_elementtextbold ldb_elementtext">
+        {{ this.navigationservice.monplanningnexttask.title}}
     </div>
     <div class="ldb_elementsinglebutton">
-        <a [routerLink]="this.navigationservice.mynexttask.item.route" [class]="this.navigationservice.mynexttask.item.aclass">{{ this.navigationservice.mynexttask.item.atext }}</a>
+        <a [routerLink]="this.navigationservice.monplanningnexttask.item.route" [class]="this.navigationservice.monplanningnexttask.item.aclass">{{ this.navigationservice.monplanningnexttask.item.atext }}</a>
     </div>
 </div>

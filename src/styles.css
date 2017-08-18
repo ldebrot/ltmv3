@@ -65,22 +65,51 @@ i.mdi-ldb-primary {
 }
 /* bold  title of element */
 
-.ldb_elementtitlebold {
+.ldb_elementtext {
     white-space: nowrap;
     text-align: center;
+}
+
+.ldb_elementtextbold {
     font-weight: bold;
     font-size: medium;
     padding-bottom: 10px;
 }
 
+/* Text element in module */
 .ldb_elementtextregular {
-    white-space: nowrap;
-    text-align: center;
     font-weight: normal;
     font-size: medium;
     padding:10px 0px;
 }
 
+/* Text element in module */
+.ldb_elementtextsmall {
+    font-weight: normal;
+    font-size: small;
+    padding:10px 0px;
+}
+
+/* Je veux en savoir plus : */
+
+.ldb_elementcommenttext {
+    font-weight: normal;
+    font-style:italic;
+    font-size: small;
+    white-space: normal;
+    text-align: left;
+    padding:0px;
+    letter-spacing: -.5px;
+    color: #777;
+}
+
+.ldb_elementcommenttext > hr {
+    margin-bottom:0px;
+    margin-top: 5px;
+}
+
+
+/* White circle element in enumerations */
 .ldb_circle {
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
@@ -92,6 +121,50 @@ i.mdi-ldb-primary {
     border-color:rgba(255, 255, 255, 1);
     position: absolute;   
     color: rgb(0,0,0);
+}
+
+/* Instruction element: "à voud de jouer, à vous de..." */
+
+table.ldb_instruction, 
+table_ldb_instruction > td,
+table_ldb_instruction > td > tr {
+    border-collapse: collapse;
+    border: none;
+}
+
+table.ldb_instruction > td:first-child > tbody > tr {
+    min-width : 30px;
+}
+
+table.ldb_instruction > td:first-child > tbody > tr > i{
+    min-width : 30px;
+    color:red;
+}
+
+table.ldb_instruction > td:last-child > tbody > tr{
+    width : 100%;
+    color:red;
+    font-style: italic;
+}
+
+.ldb_elementnavbutton {
+    width: 100% ;
+}
+
+.ldb_elementnavbutton_side {
+    width: 15% !important;
+}
+
+.ldb_elementnavbutton_middle {
+    width: 67% !important;
+}
+
+.ldb_white_space {
+    width:98%;
+    background-color: white;
+    margin: 0px auto;
+    padding: 0px 5px;
+    border-radius: 3px
 }
 
 .ldb_font_333 {
@@ -108,6 +181,10 @@ table.ldb_table_separation_3 > tbody > tr > td {
 
 table.ldb_table_center {
     margin:0px auto ;
+}
+
+table.ldb_table_alignleft > td > tbody > tr {
+    text-align: left;
 }
 
 /* FORM VALIDATION */
@@ -182,6 +259,11 @@ input.ng-invalid.ng-touched {
     border: 0px;
 }
 
+.ldbway .ui-progressbar {
+    height: 5px;
+    border:none;
+    background: #EEF;
+}
 
 /* BOOTSTRAP EXTENSION - BUTTON COLORS */
 
@@ -190,6 +272,13 @@ input.ng-invalid.ng-touched {
     padding: 5px;
     min-height: 50px;
     width:100%;
+}
+
+.ldb_btn_small {
+    white-space: normal;
+    padding: 3px 10px;
+    width:100%;
+    font-size: small;
 }
 
 .ldb_btn_primary{

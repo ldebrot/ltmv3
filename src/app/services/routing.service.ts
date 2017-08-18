@@ -18,6 +18,7 @@ import { JefaislesuiviComponent } from './../components/beneficiaire/jefaislesui
 import { JepreparemarencontreComponent } from './../components/beneficiaire/jepreparemarencontre/jepreparemarencontre.component';
 import { JeprendsrendezvousComponent } from './../components/beneficiaire/jeprendsrendezvous/jeprendsrendezvous.component';
 import { JefaislepointComponent } from './../components/beneficiaire/jefaislepoint/jefaislepoint.component';
+import { JeconstruismonprojetComponent } from './../components/beneficiaire/jefaislepoint/jeconstruismonprojet/jeconstruismonprojet.component';
 
 //Routes:
 const appRoutes: Routes = [
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
         { path: 'jefaislepoint', canActivate: [authGuardService], component: JefaislepointComponent},
         { path: 'jeprendsrendezvous', canActivate: [authGuardService], component: JeprendsrendezvousComponent},
         { path: 'jeprepapremarencontre', canActivate: [authGuardService], component: JepreparemarencontreComponent},
-        { path: 'jefaislesuivi', canActivate: [authGuardService], component: JefaislesuiviComponent}
+        { path: 'jefaislesuivi', canActivate: [authGuardService], component: JefaislesuiviComponent},
+        { path: 'jeconstruismonprojet', canActivate: [authGuardService], component: JeconstruismonprojetComponent}
     ]},
     { path: '**', redirectTo: '/introuvable'}
 ]

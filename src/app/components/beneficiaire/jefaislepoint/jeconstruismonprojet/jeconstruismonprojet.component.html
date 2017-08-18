@@ -1,0 +1,69 @@
+<div class="ldbway">
+    <p-progressBar 
+        [showValue]="false" 
+        [value]="100*(this.navigationservice.jeconstruismonprojetcurrentstep/this.navigationservice.jeconstruismonprojetnumberofsteps)">
+    </p-progressBar>
+</div>
+<div class="ldb_elementbackground">
+    <div class="ldb_elementtextbold ldb_elementtext">
+        Je construis mon projet de reconversion 
+    </div>
+    <table class="ldb_instruction"><td><tr>
+        <i class="mdi mdi-help-circle mdi-24px"></i>
+        </tr></td><td><tr>
+        A vous de répondre (choix multiple)
+        </tr></td>
+    </table>
+    <div class="ldb_white_space">
+        <div *ngIf="this.navigationservice.jeconstruismonprojetcurrentstep===1">
+            Je veux changer de métier et...
+            <div>
+                <div class="ldb_elementtextsmall ldb_elementtext">
+                    <table class="ldb_table_alignleft"><td>
+                            <tr><p-checkbox name="tryme" label="Travailler dans une entreprise" value="1" [(ngModel)]="selectedValues"></p-checkbox></tr>                           
+                            <tr><p-checkbox name="tryme" label="Travailler dans une institution publique" value="2" [(ngModel)]="selectedValues"></p-checkbox></tr>
+                            <tr><p-checkbox name="tryme" label="Travailler dans une association / ONG" value="3" [(ngModel)]="selectedValues"></p-checkbox></tr>
+                            <tr><p-checkbox name="tryme" label="Devenir indépendant (sans employés)" value="4" [(ngModel)]="selectedValues"></p-checkbox></tr>
+                            <tr><p-checkbox name="tryme" label="Devenir entrepreneur (avec employés)" value="5" [(ngModel)]="selectedValues"></p-checkbox></tr>
+                            <tr><p-checkbox name="tryme" label="Reprendre une société avec des employés" value="6" [(ngModel)]="selectedValues"></p-checkbox></tr>
+                            <tr><p-checkbox name="tryme" label="Je ne suis pas encore sûr de mon choix" value="7" [(ngModel)]="selectedValues"></p-checkbox></tr>
+                    </td></table>                   
+                </div>
+                <div class="ldb_elementcommenttext">
+                    <hr>
+                    Une reconversion professionnelle peut consister à changer de métier, de statut ou les deux simultanément.
+                    <table class="ldb_table_alignleft"><td><tr>
+                    <p-checkbox name="tryme" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet1" [(ngModel)]="selectedValues"></p-checkbox>
+                    </tr></td></table>                   
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="this.navigationservice.jeconstruismonprojetcurrentstep===2">
+                <div class="ldb_elementtextsmall ldb_elementtext">
+                    <p>Les rencontres déclic de Lunchtime vous aident à bénéﬁcier de l'expérience d'une personne ayant changé de métier.</p>
+                    <p>Elles favorisent donc le partage d'expérience principalement autour du changement  de voie professionnelle.</p>
+                    <p>D'autres programmes vous aideront davantage dans la construction de votre projet d'entreprenariat et le développement de vos activités indépendantes.</p>
+                    <p>Sachez toutefois qu'un projet d'entreprenariat peut également vous conduire à changer de profession et à mieux vous situer par rapport à une activité salariée.</p>
+                </div>
+                <div class="ldb_elementcommenttext">
+                    <hr>
+                    <table class="ldb_table_alignleft"><td><tr>
+                    <p-checkbox name="tryme" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet1" [(ngModel)]="selectedValues"></p-checkbox>
+                    </tr></td></table>                   
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="ldb_elementbackground ldb_elementnavbutton">
+    <div class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&lt;</div> 
+    <div class="btn ldb_btn_small ldb_btn_done ldb_elementnavbutton_middle">J'ai terminé !</div> 
+    <div class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&gt;</div> 
+</div>
+<div class="ldb_elementbackground ldb_elementnavbutton">
+    <a [routerLink]="['beneficiaire']" class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&lt;</a> 
+    <a class="btn ldb_btn_small ldb_btn_done ldb_elementnavbutton_middle">J'ai terminé !</a> 
+    <a class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&gt;</a> 
+</div>

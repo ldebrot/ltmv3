@@ -1,4 +1,3 @@
-import { GrowlModule } from 'primeng/primeng';
 //Modules
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -13,8 +12,12 @@ import { //PrimeNG modules here
     DialogModule,
     ButtonModule,
     MessagesModule,
+    GrowlModule,
     ConfirmDialogModule,
-    TabViewModule } from 'primeng/primeng';
+    TooltipModule,
+    TabViewModule,
+    CheckboxModule,
+    ProgressBarModule } from 'primeng/primeng';
 import { ConfirmationService } from 'primeng/primeng';
 
 //Services
@@ -51,6 +54,7 @@ import { JefaislepointComponent } from './components/beneficiaire/jefaislepoint/
 import { JeprendsrendezvousComponent } from './components/beneficiaire/jeprendsrendezvous/jeprendsrendezvous.component';
 import { JepreparemarencontreComponent } from './components/beneficiaire/jepreparemarencontre/jepreparemarencontre.component';
 import { JefaislesuiviComponent } from './components/beneficiaire/jefaislesuivi/jefaislesuivi.component';
+import { JeconstruismonprojetComponent } from './components/beneficiaire/jefaislepoint/jeconstruismonprojet/jeconstruismonprojet.component';
 
 export const firebaseconfig = {
     apiKey: "AIzaSyCdWffhlLWk5olASIDHMw0Y7rzXsc_Sxu8",
@@ -76,7 +80,16 @@ firebase.initializeApp(firebaseconfig);
     StartNotconnectedComponent,//starting point for not-connected user
     IntrouvableComponent,
     SigninupComponent,//sign in and sign up
-    JedecouvrelunchtimeComponent, LesactusComponent, QuisommesnousComponent, StartbeneficiaireComponent, MonplanningComponent, JefaislepointComponent, JeprendsrendezvousComponent, JepreparemarencontreComponent, JefaislesuiviComponent//discover Lunchtime - used as "home" component
+    JedecouvrelunchtimeComponent,
+    LesactusComponent,
+    QuisommesnousComponent,
+    StartbeneficiaireComponent,
+    MonplanningComponent,
+    JefaislepointComponent,
+    JeprendsrendezvousComponent,
+    JepreparemarencontreComponent,
+    JefaislesuiviComponent,
+    JeconstruismonprojetComponent//discover Lunchtime - used as "home" component
     ],
     imports: [
     FormsModule,
@@ -88,6 +101,9 @@ firebase.initializeApp(firebaseconfig);
     TabViewModule,//PrimeNG here
     GrowlModule,//PrimeNG here
     DialogModule,//PrimeNG here
+    TooltipModule,//PrimeNG here
+    ProgressBarModule,//PrimeNG here
+    CheckboxModule,//PrimeNG here
     NgbModule.forRoot(),//NG-Bootstrap added here
     MenubarModule,
     TabMenuModule,

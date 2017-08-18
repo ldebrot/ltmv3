@@ -27,7 +27,7 @@ export class MonplanningComponent implements OnInit {
         //TEMPORARY FAKELOGIN FOR OFFLINE WORK
         //this.fakedbuserinfoservice.fillinfakeuserinfo();
         this.navigationservice.preparemonplanningitems();//sets up the list of button in the monplanning menu.
-        this.navigationservice.setnexttask();//sets the next important task, also shown in the mon planning menu.
+        this.navigationservice.setnexttaskmonplanning();//sets the next important task, also shown in the mon planning menu.
     }
     
 

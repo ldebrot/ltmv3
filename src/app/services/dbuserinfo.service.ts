@@ -43,7 +43,16 @@ export class DbuserinfoService {
             modulejefaislepoint : "",
             modulejeprendsrendezvous : "",
             modulejepreparemarencontre : "",
-            modulejefaislesuivi : ""
+            modulejefaislesuivi : "",
+            etapejeconstruismonprojet : "",
+            etapejetrouvedesideesdemetier : "",
+            etapejechoisismonnouveaumetier : "",
+            etapejemerenseignesurmonmetier : "",
+            etapejapprendsapresentermonprojet : "",
+            etapejedeveloppeetactivemonreseau : "",
+            etapejidentifiemessoutiens : "",
+            etapejemeprepareetmelance : "",
+            jeconstruismonprojetmostadvancedstepdone : 0//which most advanced step has been validated?
         },
         meetings : {
         }
