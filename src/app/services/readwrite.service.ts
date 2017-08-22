@@ -7,7 +7,7 @@ import * as firebase from 'firebase';
 export class ReadwriteService {
     
     constructor(
-        private dbuserinfoservice: DbuserinfoService
+        public dbuserinfoservice: DbuserinfoService
     ) {}
 
     public getcurrentuserinfo():any{

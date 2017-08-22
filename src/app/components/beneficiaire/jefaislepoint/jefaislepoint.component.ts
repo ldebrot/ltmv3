@@ -15,8 +15,8 @@ import { NavigationService } from './../../../services/navigation.service';
 export class JefaislepointComponent implements OnInit {
     
     constructor(
-        private titleservice:TitleService,
-        private navigationservice: NavigationService
+        public titleservice:TitleService,
+        public navigationservice: NavigationService
 
     ) {
     }

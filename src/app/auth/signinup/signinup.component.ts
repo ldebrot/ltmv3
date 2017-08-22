@@ -26,11 +26,11 @@ export class SigninupComponent implements OnInit {
     errormsg = []; 
     
     constructor(
-        private firebaseauth: FirebaseauthService,
-        private router : Router,
-        private titleservice: TitleService,
-        private readwriteservice:ReadwriteService,
-        private dbuserinfoservice:DbuserinfoService
+        public firebaseauth: FirebaseauthService,
+        public router : Router,
+        public titleservice: TitleService,
+        public readwriteservice:ReadwriteService,
+        public dbuserinfoservice:DbuserinfoService
     ) {
         setTimeout(function (){titleservice.titlesubject.next("Se connecter");},500);//sets title in title service to "Se connecter" after half a second
     }
@@ -91,7 +91,7 @@ export class SigninupComponent implements OnInit {
                     this.errormsg = [];
                     this.errormsg.push({severity:'success', summary:'Connexion', detail:hellomsg});
                     //console.log("this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status] = "+ this.dbuserinfoservice.userinfo.publicinfo.status +")");
-                    setTimeout(()=>{this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);},2000);//go to main after logging in
+                    setTimeout(()=>{this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);},1);//go to main after logging in
                 });
             }
         )

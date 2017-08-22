@@ -1,7 +1,9 @@
+//This service handles the local copy of the user information (copied from firebase)
 import { OnInit, Injectable } from '@angular/core';
 //Firebase service
 import * as firebase from 'firebase';
 
+@Injectable()
 export class DbuserinfoService {
 
     private meetings: object;
@@ -52,7 +54,27 @@ export class DbuserinfoService {
             etapejedeveloppeetactivemonreseau : "",
             etapejidentifiemessoutiens : "",
             etapejemeprepareetmelance : "",
-            jeconstruismonprojetmostadvancedstepdone : 0//which most advanced step has been validated?
+            jeconstruismonprojetstepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
+            jeconstruismonprojetstep1values : "",//this holds all values of step1 (checkboxes)
+            jeconstruismonprojetstep4avalues : "",//this holds all values of step4 (checkboxes)
+            jeconstruismonprojetstep4bvalues : "",//this holds all values of step4 (checkboxes)
+            jeconstruismonprojetstep5avalues : "",//this holds all values of step5 (checkboxes)
+            jeconstruismonprojetstep5bvalues : "",//this holds all values of step5 (checkboxes)
+            jeconstruismonprojetstep6avalues : "",//this holds all values of step6 (checkboxes)
+            jeconstruismonprojetstep6bvalues : "",//this holds all values of step6 (checkboxes)
+            jeconstruismonprojetstep7avalues : "",//this holds all values of step7 (checkboxes)
+            jeconstruismonprojetstep7bvalues : "",//this holds all values of step7 (checkboxes)
+            jeconstruismonprojetstep7bselected:"",//this states whether a value has been confirmed by the user
+            jeconstruismonprojetstep7bselectedvalue:0,//this holds all values of step7 (checkboxes)
+            jeconstruismonprojetstep1jeveuxensavoirplus : "",//définition d'une reconversion
+            jeconstruismonprojetstep2jeveuxensavoirplus : "",//présentation de la rencontre déclic et du partage d'expérience
+            jeconstruismonprojetstep4ajeveuxensavoirplus : "",//comment cerner ses centres d'intérêts
+            jeconstruismonprojetstep4bjeveuxensavoirplus : "",//bilan de compétences
+            jeconstruismonprojetstep5ajeveuxensavoirplus : "",//informations du marché du travail
+            jeconstruismonprojetstep5bjeveuxensavoirplus : "",//types de responsabilité
+            jeconstruismonprojetstep6ajeveuxensavoirplus : "",//test de personnalité
+            jeconstruismonprojetstep6bjeveuxensavoirplus : "",//comment interpréter les résultats test de personnalité
+            jeconstruismonprojetstep7jeveuxensavoirplus : ""//étapes clés d'une reconversion professionnelle
         },
         meetings : {
         }

@@ -1,19 +1,35 @@
 //This service handles navigation modules: for instance, it says whether the user can take an appointment, it sets the todos, etc.
 
+//Built-in
+import { OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
+
+//Hand-made
 import { DbuserinfoService } from './dbuserinfo.service';
 import { monplanningitem } from './monplanning.model';
-import {TooltipModule} from 'primeng/primeng';
 
 @Injectable()
-export class NavigationService {
+export class NavigationService implements OnInit {
 
     constructor(
-        private dbuserinfoservice:DbuserinfoService
+        public dbuserinfoservice:DbuserinfoService
     ){
 
     }
-   
+
+    ngOnInit(){
+
+    }
+
+    public checkifstepvalid(experience,stepnumber):boolean {
+        for (let i = 0; i < experience.length; i++) {
+            if (experience[i]===stepnumber){
+                return true;
+            }
+        }
+        return false;
+    }
+
     //MON PLANNING
 
     public monplanningitems:any = [];
@@ -221,7 +237,7 @@ export class NavigationService {
             9999
         ),
         new monplanningitem(
-            "mdi mdi-24px mdi-clipboard mdi-ldb-done",
+            "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
             "J'ai construit mon projet.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jeconstruismonprojet",
@@ -261,7 +277,7 @@ export class NavigationService {
             9999
         ),
         new monplanningitem(
-            "mdi mdi-24px mdi-clipboard mdi-ldb-done",
+            "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
             "J'ai identifié des pistes de métier ou sais comment le faire.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jetrouvedesideesdemetier",
@@ -301,7 +317,7 @@ export class NavigationService {
             9999
         ),
         new monplanningitem(
-            "mdi mdi-24px mdi-clipboard mdi-ldb-done",
+            "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
             "J'ai identifié un métier qui m'intéresse.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jechoisismonnouveaumetier",
@@ -341,7 +357,7 @@ export class NavigationService {
             9999
         ),
         new monplanningitem(
-            "mdi mdi-24px mdi-clipboard mdi-ldb-done",
+            "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
             "Je me suis renseigné sur mon métier ou sais comment le faire.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jemerenseignesurmonmetier",
@@ -381,7 +397,7 @@ export class NavigationService {
             9999
         ),
         new monplanningitem(
-            "mdi mdi-24px mdi-clipboard mdi-ldb-done",
+            "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
             "J'ai appris à présenter mon projet.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/japprendsapresentermonprojet",
@@ -421,7 +437,7 @@ export class NavigationService {
             9999
         ),
         new monplanningitem(
-            "mdi mdi-24px mdi-clipboard mdi-ldb-done",
+            "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
             "Je sais comment développer et activer mon réseau.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jedeveloppeetactivemonreseau",
@@ -461,7 +477,7 @@ export class NavigationService {
             9999
         ),
         new monplanningitem(
-            "mdi mdi-24px mdi-clipboard mdi-ldb-done",
+            "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
             "J'ai identifié les soutiens à mon projet ou sais comment le faire.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jidentifiemessoutiens",
@@ -501,7 +517,7 @@ export class NavigationService {
             9999
         ),
         new monplanningitem(
-            "mdi mdi-24px mdi-clipboard mdi-ldb-done",
+            "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
             "J'ai préparé à me lancer dans mon projet. Je peux maintenant prendre rendez-vous.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jemeprepareetmelance",
@@ -548,5 +564,16 @@ export class NavigationService {
     // JE CONSTRUIS MON PROJET
 
     public jeconstruismonprojetnumberofsteps:number = 8; //Here we set the number of steps in this module. This is used for the progress bar.
-    public jeconstruismonprojetcurrentstep:number = 1; //This variable shows at which step we are in this module.    
+    public jeconstruismonprojetcurrentstep:number = 1; //This variable shows at which step we are in this module.
+    public jeconstruismonprojetvalidatable = [
+        false, //THIS IS NOT A STEP, THERE IS NO STEP 0
+        false, //you have to select options 
+        true, //you have to read it
+        true, //you have to read it
+        false, //you have to select options 
+        false, //you have to select options 
+        false, //you have to select options 
+        false, //you have to select options 
+        true, //you have to read it
+    ];
 }

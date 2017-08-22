@@ -22,31 +22,64 @@ export class LesactusComponent implements OnInit {
         private dbuserinfoservice:DbuserinfoService
     ) { }
     
-    public ffbplaywrite(form: NgForm):void {
-        this.readwriteservice.getcurrentuserinfo()
-        .then((currentuserinfo) => {
-            console.log("currentuserinfo:");
-            console.log(currentuserinfo);
-            this.dbuserinfoservice.integrate(currentuserinfo);
-        });
-        
-
-/*
+    public ffbplaypush(form: NgForm):void {
         let ref:any = form.value.ffbplayref;
         let child:any = form.value.ffbplaychild;
         let value:any = form.value.ffbplayvalue;
         console.log("ref:" + ref);
         console.log("value:");
-        console.log(JSON.parse(value));
-        firebase.database().ref(ref).set(JSON.parse(value))
+        console.log(JSON.parse(JSON.stringify(value)));
+        let listreference = firebase.database().ref(ref);
+        let newref = listreference.push();
+        newref.set(JSON.parse(JSON.stringify(value)))
         .then( function() {
                 console.log("worked just fine!");
         })
         .catch( function(error) {
                 console.log("playground error: "+error.message);
         });
-*/
     }
+
+    public ffbplayset(form: NgForm):void {
+        let ref:any = form.value.ffbplayref;
+        let child:any = form.value.ffbplaychild;
+        let value:any = form.value.ffbplayvalue;
+        console.log("ref:" + ref);
+        console.log("value:");
+        console.log(JSON.parse(JSON.stringify(value)));
+        firebase.database().ref(ref).set(JSON.parse(JSON.stringify(value)))
+        .then( function() {
+                console.log("worked just fine!");
+        })
+        .catch( function(error) {
+                console.log("playground error: "+error.message);
+        });
+    }
+
+    public ffbplaytryme(form: NgForm):void {
+        let ref:any = form.value.ffbplayref;
+        let child:any = form.value.ffbplaychild;
+        let value:any = form.value.ffbplayvalue;
+
+        console.log("ref:" + ref);
+        console.log("value:");
+        console.log(JSON.parse(JSON.stringify(value)));
+        
+        let ref1 = ref + "/number1";
+        let ref2 = ref + "/number2";
+        let updates = {};
+        updates[ref1] = JSON.parse(JSON.stringify(value));
+        updates[ref2] = JSON.parse(JSON.stringify(value));
+
+        firebase.database().ref().update(updates)
+        .then( function() {
+                console.log("worked just fine!");
+        })
+        .catch( function(error) {
+                console.log("playground error: "+error.message);
+        });
+    }
+
 
     public ffbplayread(form: NgForm):void {
         let ref:any = form.value.ffbplayref;

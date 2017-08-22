@@ -33,13 +33,13 @@ export class CheckauthService implements OnInit{
         lesactus : "not-connected",
         quisommesnous : "not-connected",
         introuvable : "not-connected",
-        beneficiaire : "not-connected",
+        beneficiaire : "beneficiaire",
         monplanning : "beneficiaire",
         jefaislepoint : "beneficiaire",
         jeprendsrendezvous :"beneficiaire",
         jeprepapremarencontre: "beneficiaire",
         jefaislesuivi: "beneficiaire",
-        jeconstruismonprojet: "not-connected"
+        jeconstruismonprojet: "beneficiaire"
     };
 
     loggedIn : boolean= true;

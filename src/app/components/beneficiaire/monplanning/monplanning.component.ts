@@ -15,10 +15,10 @@ import { TitleService } from './../../../services/title.service';
 export class MonplanningComponent implements OnInit {
 
     constructor(
-        private dbuserinfoservice : DbuserinfoService,
-        private fakedbuserinfoservice : FakedbuserinfoService,
-        private navigationservice : NavigationService,
-        private titleservice:TitleService
+        public dbuserinfoservice : DbuserinfoService,
+        public fakedbuserinfoservice : FakedbuserinfoService,
+        public navigationservice : NavigationService,
+        public titleservice:TitleService
     ) { 
         this.titleservice.titlesubject.next("Mon planning");//sets title in title service to "Mon planning" after half a second
     }

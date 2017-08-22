@@ -8,62 +8,322 @@
     <div class="ldb_elementtextbold ldb_elementtext">
         Je construis mon projet de reconversion 
     </div>
-    <table class="ldb_instruction"><td><tr>
-        <i class="mdi mdi-help-circle mdi-24px"></i>
-        </tr></td><td><tr>
-        A vous de répondre (choix multiple)
-        </tr></td>
-    </table>
-    <div class="ldb_white_space">
-        <div *ngIf="this.navigationservice.jeconstruismonprojetcurrentstep===1">
+
+    <div *ngIf="this.navigationservice.jeconstruismonprojetcurrentstep===1">
+        <table class="ldb_instruction"><td><tr>
+            <i class="mdi mdi-help-circle mdi-24px"></i>
+            </tr></td><td><tr>
+            A vous de répondre (choix multiple)
+            </tr></td>
+        </table>
+        <div class="ldb_white_space">
             Je veux changer de métier et...
-            <div>
-                <div class="ldb_elementtextsmall ldb_elementtext">
-                    <table class="ldb_table_alignleft"><td>
-                            <tr><p-checkbox name="tryme" label="Travailler dans une entreprise" value="1" [(ngModel)]="selectedValues"></p-checkbox></tr>                           
-                            <tr><p-checkbox name="tryme" label="Travailler dans une institution publique" value="2" [(ngModel)]="selectedValues"></p-checkbox></tr>
-                            <tr><p-checkbox name="tryme" label="Travailler dans une association / ONG" value="3" [(ngModel)]="selectedValues"></p-checkbox></tr>
-                            <tr><p-checkbox name="tryme" label="Devenir indépendant (sans employés)" value="4" [(ngModel)]="selectedValues"></p-checkbox></tr>
-                            <tr><p-checkbox name="tryme" label="Devenir entrepreneur (avec employés)" value="5" [(ngModel)]="selectedValues"></p-checkbox></tr>
-                            <tr><p-checkbox name="tryme" label="Reprendre une société avec des employés" value="6" [(ngModel)]="selectedValues"></p-checkbox></tr>
-                            <tr><p-checkbox name="tryme" label="Je ne suis pas encore sûr de mon choix" value="7" [(ngModel)]="selectedValues"></p-checkbox></tr>
-                    </td></table>                   
-                </div>
-                <div class="ldb_elementcommenttext">
-                    <hr>
-                    Une reconversion professionnelle peut consister à changer de métier, de statut ou les deux simultanément.
-                    <table class="ldb_table_alignleft"><td><tr>
-                    <p-checkbox name="tryme" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet1" [(ngModel)]="selectedValues"></p-checkbox>
-                    </tr></td></table>                   
-                </div>
+            <div class="ldb_elementtextsmall ldb_elementtext">
+                <table class="ldb_table_alignleft"><td>
+                        <tr><p-checkbox name="tryme" label="Travailler dans une entreprise" value="1" (click)="valuechanged('jeconstruismonprojetstep1values')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep1values"></p-checkbox></tr>                           
+                        <tr><p-checkbox name="tryme" label="Travailler dans une institution publique" value="2" (click)="valuechanged('jeconstruismonprojetstep1values')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep1values"></p-checkbox></tr>
+                        <tr><p-checkbox name="tryme" label="Travailler dans une association / ONG" value="3" (click)="valuechanged('jeconstruismonprojetstep1values')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep1values"></p-checkbox></tr>
+                        <tr><p-checkbox name="tryme" label="Devenir indépendant (sans employés)" value="4" (click)="valuechanged('jeconstruismonprojetstep1values')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep1values"></p-checkbox></tr>
+                        <tr><p-checkbox name="tryme" label="Devenir entrepreneur (avec employés)" value="5" (click)="valuechanged('jeconstruismonprojetstep1values')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep1values"></p-checkbox></tr>
+                        <tr><p-checkbox name="tryme" label="Reprendre une société avec des employés" value="6" (click)="valuechanged('jeconstruismonprojetstep1values')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep1values"></p-checkbox></tr>
+                        <tr><p-checkbox name="tryme" label="Je ne suis pas encore sûr de mon choix" value="7" (click)="valuechanged('jeconstruismonprojetstep1values')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep1values"></p-checkbox></tr>
+                </td></table>                   
+            </div>
+            <div class="ldb_elementcommenttext">
+                <hr>
+                Une reconversion professionnelle peut consister à changer de métier, de statut ou les deux simultanément.
+                <table class="ldb_table_alignleft"><td><tr>
+                <p-checkbox name="jeconstruismonprojetstep1" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet1" (click)="valuechanged('jeconstruismonprojetstep1jeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                </tr></td></table>                   
             </div>
         </div>
-
-        <div *ngIf="this.navigationservice.jeconstruismonprojetcurrentstep===2">
-                <div class="ldb_elementtextsmall ldb_elementtext">
-                    <p>Les rencontres déclic de Lunchtime vous aident à bénéﬁcier de l'expérience d'une personne ayant changé de métier.</p>
-                    <p>Elles favorisent donc le partage d'expérience principalement autour du changement  de voie professionnelle.</p>
-                    <p>D'autres programmes vous aideront davantage dans la construction de votre projet d'entreprenariat et le développement de vos activités indépendantes.</p>
-                    <p>Sachez toutefois qu'un projet d'entreprenariat peut également vous conduire à changer de profession et à mieux vous situer par rapport à une activité salariée.</p>
-                </div>
-                <div class="ldb_elementcommenttext">
-                    <hr>
-                    <table class="ldb_table_alignleft"><td><tr>
-                    <p-checkbox name="tryme" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet1" [(ngModel)]="selectedValues"></p-checkbox>
-                    </tr></td></table>                   
-                </div>
-            </div>
-        </div>
-
     </div>
+
+    <div *ngIf="this.navigationservice.jeconstruismonprojetcurrentstep===2">
+        <table class="ldb_instruction"><td><tr>
+            <i class="mdi mdi-information-outline mdi-24px"></i>
+            </tr></td><td><tr>
+            A vous de lire
+            </tr></td>
+        </table>
+        <div class="ldb_white_space">
+            <div class="ldb_elementtextsmall ldb_elementtext">
+                <p>Les rencontres déclic de Lunchtime vous aident à bénéﬁcier de l'expérience d'une personne ayant changé de métier.</p>
+                <p>Elles favorisent donc le partage d'expérience principalement autour du changement  de voie professionnelle.</p>
+                <p>D'autres programmes vous aideront davantage dans la construction de votre projet d'entreprenariat et le développement de vos activités indépendantes.</p>
+                <p>Sachez toutefois qu'un projet d'entreprenariat peut également vous conduire à changer de profession et à mieux vous situer par rapport à une activité salariée.</p>
+            </div>
+            <div class="ldb_elementcommenttext">
+                <hr>
+                <table class="ldb_table_alignleft"><td><tr>
+                <p-checkbox name="jeconstruismonprojetstep2" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet2" 
+                (click)="valuechanged('jeconstruismonprojetstep2jeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                </tr></td></table>                   
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="this.navigationservice.jeconstruismonprojetcurrentstep===3">
+        <table class="ldb_instruction"><td><tr>
+            <i class="mdi mdi-information-outline mdi-24px"></i>
+            </tr></td><td><tr>
+            A vous de lire
+            </tr></td>
+        </table>
+        <div class="ldb_white_space">
+            <div class="ldb_elementtextsmall ldb_elementtextleft">
+                <p>Un projet professionnel réaliste et réalisable se trouve à l'intersection de trois champs :</p>
+                <span class="ldb_elementtextgreen">1) ce que j'ai envie de faire</span>
+                <br><span class="ldb_elementtextred">2) ce que je sais faire (compétences, connaissances, etc.)</span>
+                <br><span class="ldb_elementtextblue">3) mes chances de trouver un poste dans ce domaine</span>
+                <br>
+                <div style="text-align:center"><svg _ngcontent-c13="" border="1px" height="150px" width="150px">
+                    <circle _ngcontent-c13="" cx="30%" cy="70%" fill="rgba(0,200,0,.5)" r="29%" stroke="green" stroke-width="2"></circle>
+                    <circle _ngcontent-c13="" cx="50%" cy="40%" fill="rgba(200,0,0,.5)" r="29%" stroke="red" stroke-width="2"></circle>
+                    <circle _ngcontent-c13="" cx="70%" cy="70%" fill="rgba(0,0,200,.5)" r="29%" stroke="blue" stroke-width="2"></circle>
+                    Sorry, your browser does not support inline SVG.
+                </svg></div>
+            </div>
+            <div class="ldb_elementcommenttext">
+                <hr>
+                <table class="ldb_table_alignleft"><td><tr>
+                <p-checkbox name="jeconstruismonprojetstep3" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet3" (click)="valuechanged('jeconstruismonprojetstep3jeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                </tr></td></table>                   
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="this.navigationservice.jeconstruismonprojetcurrentstep===4">
+        <table class="ldb_instruction"><td><tr>
+            <i class="mdi mdi-help-circle mdi-24px"></i>
+            </tr></td><td><tr>
+            A vous de répondre
+            </tr></td>
+        </table>
+        <div class="ldb_white_space">
+            <table>
+                <td>
+                    <tr><div class="ldb_elementtextsmall ldb_elementtext">J'ai fait le point sur les secteurs d'activité et causes qui m'intéressent.</div></tr>               
+                    <tr><div class="ldb_yesnobutton"><p-selectButton [options]="this.ouinon" (click)="valuechanged('jeconstruismonprojetstep4avalues')" 
+                        [(ngModel)]="this.localvalues.jeconstruismonprojetstep4avalues"></p-selectButton></div></tr>
+                </td>                
+            </table>
+            <div class="ldb_elementcommenttext">
+                <hr>
+                Des tests vous permettent de trouver les secteurs et causes qui vous intéressent.
+                <table class="ldb_table_alignleft"><td><tr>
+                <p-checkbox name="jeconstruismonprojetstep4a" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet4a" 
+                (click)="valuechanged('jeconstruismonprojetstep4ajeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                </tr></td></table>                   
+            </div>
+        </div>
+        <div class="ldb_white_space">
+            <table>
+                <td>
+                    <tr><div class="ldb_elementtextsmall ldb_elementtext"> J'ai fait un bilan de mes compétences et de mes connaissances.</div></tr>               
+                    <tr><div class="ldb_yesnobutton"><p-selectButton [options]="this.ouinon" (click)="valuechanged('jeconstruismonprojetstep4bvalues')" 
+                        [(ngModel)]="this.localvalues.jeconstruismonprojetstep4bvalues"></p-selectButton></div></tr>
+                </td>                
+            </table>
+            <div class="ldb_elementcommenttext">
+                <hr>
+                Un bilan de compétences vous permet d'identiﬁer vos connaissances, votre savoir-être et votre savoir-faire.
+                <table class="ldb_table_alignleft"><td><tr>
+                <p-checkbox name="jeconstruismonprojetstep4b" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet4b" 
+                (click)="valuechanged('jeconstruismonprojetstep4ajeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                </tr></td></table>                   
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="this.navigationservice.jeconstruismonprojetcurrentstep===5">
+        <table class="ldb_instruction"><td><tr>
+            <i class="mdi mdi-help-circle mdi-24px"></i>
+            </tr></td><td><tr>
+            A vous de répondre
+            </tr></td>
+        </table>
+        <div class="ldb_white_space">
+            <table>
+                <td>
+                    <tr><div class="ldb_elementtextsmall ldb_elementtext">Je sais comment évaluer mes chances d'btenir un travail dans un métier donnée.</div></tr>              
+                    <tr><div class="ldb_yesnobutton"><p-selectButton [options]="this.ouinon" (click)="valuechanged('jeconstruismonprojetstep5avalues')" 
+                        [(ngModel)]="this.localvalues.jeconstruismonprojetstep5avalues"></p-selectButton></div></tr>
+                </td>                
+            </table>
+            <div class="ldb_elementcommenttext">
+                <hr>
+                Pôle emploi vous propose un service vous permettant de vous renseigner sur les opportunités dans un métier, un secteur d'activité ou une région de votre choix. 
+                <table class="ldb_table_alignleft"><td><tr>
+                <p-checkbox name="jeconstruismonprojetstep5a" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet5a" 
+                (click)="valuechanged('jeconstruismonprojetstep5ajeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                </tr></td></table>                   
+            </div>
+        </div>
+        <div class="ldb_white_space">
+            <table>
+                <td>
+                    <tr><div class="ldb_elementtextsmall ldb_elementtext"> Je sais quel type et quel niveau de responsabilité je souhaite assumer..</div></tr>              
+                    <tr><div class="ldb_yesnobutton"><p-selectButton [options]="this.ouinon" (click)="valuechanged('jeconstruismonprojetstep5bvalues')" 
+                        [(ngModel)]="this.localvalues.jeconstruismonprojetstep5bvalues"></p-selectButton></div></tr>
+                </td>                
+            </table>
+            <div class="ldb_elementcommenttext">
+                <hr>
+                Aspirez-vous à un poste de direction, souhaitez-vous gérer une équipe, en faire partie ou plutôt la soutenir ? Une série de tests vous permet de trancher cette question.
+                <table class="ldb_table_alignleft"><td><tr>
+                <p-checkbox name="jeconstruismonprojetstep5b" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet5b" 
+                (click)="valuechanged('jeconstruismonprojetstep5ajeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                </tr></td></table>                   
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="this.navigationservice.jeconstruismonprojetcurrentstep===6">
+        <table class="ldb_instruction"><td><tr>
+            <i class="mdi mdi-help-circle mdi-24px"></i>
+            </tr></td><td><tr>
+            A vous de répondre
+            </tr></td>
+        </table>
+        <div class="ldb_white_space">
+            <table>
+                <td>
+                    <tr><div class="ldb_elementtextsmall ldb_elementtext">J'ai fait un test de personnalité. Par exemple, le test INTP / MBTI.</div></tr>             
+                    <tr><div class="ldb_yesnobutton"><p-selectButton [options]="this.ouinon" (click)="valuechanged('jeconstruismonprojetstep6avalues')" 
+                        [(ngModel)]="this.localvalues.jeconstruismonprojetstep6avalues"></p-selectButton></div></tr>
+                </td>                
+            </table>
+            <div class="ldb_elementcommenttext">
+                <hr>
+                Différents tests de personnalité vous permettent de déterminer si vous êtes plutôt extraverti/introverti, observateur/intuitif, etc. 
+                <table class="ldb_table_alignleft"><td><tr>
+                <p-checkbox name="jeconstruismonprojetstep6a" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet6a" 
+                (click)="valuechanged('jeconstruismonprojetstep6ajeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                </tr></td></table>                   
+            </div>
+        </div>
+        <div class="ldb_white_space">
+            <table>
+                <td>
+                    <tr><div class="ldb_elementtextsmall ldb_elementtext">Je sais quoi faire des résultats d'un test de personnalité.</div></tr>              
+                    <tr><div class="ldb_yesnobutton"><p-selectButton [options]="this.ouinon" (click)="valuechanged('jeconstruismonprojetstep6bvalues')" 
+                        [(ngModel)]="this.localvalues.jeconstruismonprojetstep6bvalues"></p-selectButton></div></tr>
+                </td>                
+            </table>
+            <div class="ldb_elementcommenttext">
+                <hr>
+                Des outils vous permettent de trouver un métier en fonction de votre type de personnalité.
+                <table class="ldb_table_alignleft"><td><tr>
+                <p-checkbox name="jeconstruismonprojetstep6b" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet6b" 
+                (click)="valuechanged('jeconstruismonprojetstep6ajeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                </tr></td></table>                   
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="this.navigationservice.jeconstruismonprojetcurrentstep===7">
+        <table class="ldb_instruction"><td><tr>
+            <i class="mdi mdi-help-circle mdi-24px"></i>
+            </tr></td><td><tr>
+            A vous de répondre
+            </tr></td>
+        </table>
+        <div class="ldb_white_space">
+            <table>
+                <td>
+                    <tr><div class="ldb_elementtextsmall ldb_elementtext">Je connais les étapes clés d'une reconversion professionnelle. Je sais où je me trouve et ce qui suit.</div></tr> 
+                    <tr><div class="ldb_yesnobutton"><p-selectButton [options]="this.ouinon" (click)="valuechanged('jeconstruismonprojetstep7avalues')" 
+                        [(ngModel)]="this.localvalues.jeconstruismonprojetstep7avalues"></p-selectButton></div></tr>
+                </td>                
+            </table>
+            <div class="ldb_elementcommenttext">
+                <hr>
+                Différents tests de personnalité vous permettent de déterminer si vous êtes plutôt extraverti/introverti, observateur/intuitif, etc. 
+                <table class="ldb_table_alignleft"><td><tr>
+                <p-checkbox name="jeconstruismonprojetstep7a" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet7a" 
+                (click)="valuechanged('jeconstruismonprojetstep7ajeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                </tr></td></table>                   
+            </div>
+        </div>
+        <br>
+        <div class="ldb_white_space">
+            <div class="ldb_elementtextsmall ldb_elementtext">J'indique ma phase actuelle de reconversion :</div>
+            <div class="ldb_elementnavbutton">
+                <a (click)="jeconstruismonprojetstep7bpreviousvalue()" class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&lt;</a> 
+                <a 
+                    class="btn ldb_btn_small ldb_btn_done ldb_elementnavbutton_middle"
+                    (click)="valuechanged('jeconstruismonprojetstep7bselectedvalue')"
+                    >{{this.jeconstruismonprojetstep7bvalues.atext[this.localvalues.jeconstruismonprojetstep7bselectedvalue]}}</a>
+                <a (click)="jeconstruismonprojetstep7bnextvalue()"class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&gt;</a> 
+            </div>
+
+            <div class="ldb_elementtextsmall ldb_elementtext">{{this.jeconstruismonprojetstep7bvalues.descriptiontext[this.localvalues.jeconstruismonprojetstep7bselectedvalue]}}</div>
+
+            <div class="ldb_elementcommenttext">
+                <table class="ldb_table_alignleft"><td><tr>
+                <p-checkbox name="jeconstruismonprojetstep7b" class="ldb_jeveuxensavoirplus" label="Cette étape correspond à ma situation" value="true"
+                (click)="jeconstruismonprojetstep7bsetvalue()"
+                [(ngModel)]="this.localvalues.jeconstruismonprojetstep7bselected"></p-checkbox>
+                </tr></td></table>                   
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="this.navigationservice.jeconstruismonprojetcurrentstep===8">
+        <table class="ldb_instruction"><td><tr>
+            <i class="mdi mdi-information-outline mdi-24px"></i>
+            </tr></td><td><tr>
+            A vous de lire
+            </tr></td>
+        </table>
+        <div class="ldb_white_space">
+                <div class="ldb_elementtextbold">
+                    Félicitations!
+                    <br>
+                    Vous avez terminé la 1ère étape !
+                </div>
+
+                <div class="ldb_elementcongratulationsicon">
+                    <i class="mdi mdi-clipboard-check mdi-24px"></i>
+                </div>
+
+                <div class="ldb_elementtextsmall ldb_elementtext">
+                    Retrouvez le bilan en cliquant sur le porte-bloc vert dans le menu du module "Je fais le point".
+                    <br>
+                    Il vous présentera : 
+                    <br>- une évaluation de votre niveau de préparation
+                    <br>- des pistes pour avancer en toute indépendance
+                    <br>- des points à clariﬁer auprès d'un témoin Lunchtime
+                </div>
+
+        </div>
+    </div>
+    
 </div>
+
 <div class="ldb_elementbackground ldb_elementnavbutton">
-    <div class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&lt;</div> 
-    <div class="btn ldb_btn_small ldb_btn_done ldb_elementnavbutton_middle">J'ai terminé !</div> 
-    <div class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&gt;</div> 
-</div>
-<div class="ldb_elementbackground ldb_elementnavbutton">
-    <a [routerLink]="['beneficiaire']" class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&lt;</a> 
-    <a class="btn ldb_btn_small ldb_btn_done ldb_elementnavbutton_middle">J'ai terminé !</a> 
-    <a class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&gt;</a> 
+    <a *ngIf="this.navigationservice.jeconstruismonprojetcurrentstep < 2" 
+    class="btn ldb_btn_small ldb_btn_unaivailable ldb_elementnavbutton_side">&lt;</a> 
+    <a (click)="goonestepback()" *ngIf="this.navigationservice.jeconstruismonprojetcurrentstep > 1" 
+        class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&lt;</a> 
+    
+    <a *ngIf="!this.navigationservice.jeconstruismonprojetvalidatable[this.navigationservice.jeconstruismonprojetcurrentstep] 
+    && !this.currentstepvalid" 
+    class="btn ldb_btn_small ldb_btn_unavailable ldb_elementnavbutton_middle">J'ai terminé !</a> 
+    <a (click)="goonestepfurther()" *ngIf="(this.navigationservice.jeconstruismonprojetvalidatable[this.navigationservice.jeconstruismonprojetcurrentstep] 
+    || this.currentstepvalid) && this.navigationservice.jeconstruismonprojetcurrentstep < this.navigationservice.jeconstruismonprojetnumberofsteps" 
+    class="btn ldb_btn_small ldb_btn_done ldb_elementnavbutton_middle">J'ai terminé !</a> 
+
+    <a [routerLink]="['/beneficiaire/monplanning']" *ngIf="(this.navigationservice.jeconstruismonprojetcurrentstep === this.navigationservice.jeconstruismonprojetnumberofsteps)" 
+    class="btn ldb_btn_small ldb_btn_done ldb_elementnavbutton_middle">Retour au planning</a> 
+
+    <a *ngIf="!this.navigationservice.jeconstruismonprojetvalidatable[this.navigationservice.jeconstruismonprojetcurrentstep] 
+    && !this.currentstepvalid 
+    || this.navigationservice.jeconstruismonprojetcurrentstep >= this.navigationservice.jeconstruismonprojetnumberofsteps" 
+    class="btn ldb_btn_small ldb_btn_unavailable ldb_elementnavbutton_side">&gt;</a> 
+    <a (click)="goonestepfurther()" *ngIf="(this.navigationservice.jeconstruismonprojetvalidatable[this.navigationservice.jeconstruismonprojetcurrentstep] 
+    || this.currentstepvalid) 
+    && this.navigationservice.jeconstruismonprojetcurrentstep < this.navigationservice.jeconstruismonprojetnumberofsteps"
+    class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&gt;</a> 
 </div>

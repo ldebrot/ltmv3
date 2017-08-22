@@ -43,7 +43,9 @@
                 #ffbplayvalue="ngModel"
             >
         </div>
-        <button class="btn btn-primary" (click)="ffbplaywrite(ffbplay)" [disabled]="!ffbplay.valid">Write</button>
         <button class="btn btn-primary" (click)="ffbplayread(ffbplay)" [disabled]="!ffbplay.valid">Read</button>
+        <button class="btn btn-primary" (click)="ffbplaypush(ffbplay)" [disabled]="!ffbplay.valid">Push</button>
+        <button class="btn btn-primary" (click)="ffbplayset(ffbplay)" [disabled]="!ffbplay.valid">Set</button>
+        <button class="btn btn-primary" (click)="ffbplaytryme(ffbplay)" [disabled]="!ffbplay.valid">Updates</button>
     </form>
 </div>

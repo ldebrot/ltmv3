@@ -17,6 +17,9 @@ import { //PrimeNG modules here
     TooltipModule,
     TabViewModule,
     CheckboxModule,
+    SelectButtonModule,
+    ToggleButtonModule,
+    SelectItem,
     ProgressBarModule } from 'primeng/primeng';
 import { ConfirmationService } from 'primeng/primeng';
 
@@ -28,6 +31,7 @@ import { authGuardService } from './services/authguard.service';//prevents route
 import { FirebaseauthService } from './services/firebaseauth.service';//actual auth service connected to firebase
 import { TitleService } from './services/title.service'; //service which stores the current title
 import { ReadwriteService } from './services/readwrite.service';//service handling read and write operations with Firebase
+import { ReadwritebufferService } from './services/readwritebuffer.service';
 import { FakedbuserinfoService } from './services/fakedbuserinfo.service';//TEMPORARY serivce filling in dbuserinfo with a data set (for offline moments...)
 import { NavigationService } from './services/navigation.service';//handles navigation modules
 
@@ -104,6 +108,8 @@ firebase.initializeApp(firebaseconfig);
     TooltipModule,//PrimeNG here
     ProgressBarModule,//PrimeNG here
     CheckboxModule,//PrimeNG here
+    SelectButtonModule,//PrimeNG here
+    ToggleButtonModule,//PrimeNG here
     NgbModule.forRoot(),//NG-Bootstrap added here
     MenubarModule,
     TabMenuModule,
@@ -117,6 +123,7 @@ firebase.initializeApp(firebaseconfig);
         authGuardService,
         ConfirmationService,//PrimeNG here
         ReadwriteService,//handles read and write operations with Firebase
+        ReadwritebufferService,//handles buffer between user mofidications and Firebase readwrite operations
         FirebaseauthService,//handles Firebase authentication
         TitleService,//service which stores the current title
         FakedbuserinfoService,

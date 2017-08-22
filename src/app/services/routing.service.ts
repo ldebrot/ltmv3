@@ -36,7 +36,9 @@ const appRoutes: Routes = [
         { path: '', canActivate: [authGuardService], pathMatch: 'prefix', redirectTo: 'monplanning'},
         { path: 'monplanning', canActivate: [authGuardService], component: MonplanningComponent},
         { path: 'jefaislepoint', canActivate: [authGuardService], component: JefaislepointComponent},
-        { path: 'jeprendsrendezvous', canActivate: [authGuardService], component: JeprendsrendezvousComponent},
+        //TEMPORARY
+        //{ path: 'jeprendsrendezvous', canActivate: [authGuardService], component: JeprendsrendezvousComponent},
+        { path: 'jeprendsrendezvous', canActivate: [authGuardService], component: LesactusComponent},
         { path: 'jeprepapremarencontre', canActivate: [authGuardService], component: JepreparemarencontreComponent},
         { path: 'jefaislesuivi', canActivate: [authGuardService], component: JefaislesuiviComponent},
         { path: 'jeconstruismonprojet', canActivate: [authGuardService], component: JeconstruismonprojetComponent}
