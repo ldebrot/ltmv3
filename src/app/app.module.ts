@@ -59,6 +59,7 @@ import { JeprendsrendezvousComponent } from './components/beneficiaire/jeprendsr
 import { JepreparemarencontreComponent } from './components/beneficiaire/jepreparemarencontre/jepreparemarencontre.component';
 import { JefaislesuiviComponent } from './components/beneficiaire/jefaislesuivi/jefaislesuivi.component';
 import { JeconstruismonprojetComponent } from './components/beneficiaire/jefaislepoint/jeconstruismonprojet/jeconstruismonprojet.component';
+import { JeconsultemonbilanComponent } from './components/beneficiaire/jeconsultemonbilan/jeconsultemonbilan.component';
 
 export const firebaseconfig = {
     apiKey: "AIzaSyCdWffhlLWk5olASIDHMw0Y7rzXsc_Sxu8",
@@ -93,7 +94,8 @@ firebase.initializeApp(firebaseconfig);
     JeprendsrendezvousComponent,
     JepreparemarencontreComponent,
     JefaislesuiviComponent,
-    JeconstruismonprojetComponent//discover Lunchtime - used as "home" component
+    JeconstruismonprojetComponent,
+    JeconsultemonbilanComponent//discover Lunchtime - used as "home" component
     ],
     imports: [
     FormsModule,

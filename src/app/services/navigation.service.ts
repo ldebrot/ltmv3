@@ -60,6 +60,16 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
+            "mdi mdi-36px mdi-clipboard mdi-ldb-primary",
+            "Je peux consulter mon bilan à tout moment",
+            "btn ldb_btn ldb_btn_primary",
+            "/beneficiaire/jeconsultemonbilan",
+            "Je consulte mon bilan.",
+            "modulejeconsultemonbilan",
+            "notdone",
+            1000
+        ),
+        new monplanningitem(
             "mdi mdi-36px mdi-clipboard mdi-ldb-unavailable",
             "Je ne peux pas encore contacter une personne.",
             "btn ldb_btn ldb_btn_unavailable",

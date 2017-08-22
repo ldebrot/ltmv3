@@ -19,6 +19,7 @@ import { JepreparemarencontreComponent } from './../components/beneficiaire/jepr
 import { JeprendsrendezvousComponent } from './../components/beneficiaire/jeprendsrendezvous/jeprendsrendezvous.component';
 import { JefaislepointComponent } from './../components/beneficiaire/jefaislepoint/jefaislepoint.component';
 import { JeconstruismonprojetComponent } from './../components/beneficiaire/jefaislepoint/jeconstruismonprojet/jeconstruismonprojet.component';
+import { JeconsultemonbilanComponent } from './../components/beneficiaire/jeconsultemonbilan/jeconsultemonbilan.component';
 
 //Routes:
 const appRoutes: Routes = [
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
         { path: '', canActivate: [authGuardService], pathMatch: 'prefix', redirectTo: 'monplanning'},
         { path: 'monplanning', canActivate: [authGuardService], component: MonplanningComponent},
         { path: 'jefaislepoint', canActivate: [authGuardService], component: JefaislepointComponent},
+        { path: 'jeconsultemonbilan', canActivate: [authGuardService], component: JeconsultemonbilanComponent},
         //TEMPORARY
         //{ path: 'jeprendsrendezvous', canActivate: [authGuardService], component: JeprendsrendezvousComponent},
         { path: 'jeprendsrendezvous', canActivate: [authGuardService], component: LesactusComponent},
