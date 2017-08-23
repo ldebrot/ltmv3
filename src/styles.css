@@ -295,6 +295,13 @@ input.ng-invalid.ng-touched {
     background: #EEF;
 }
 
+/* Je consulte mon bilan - PrimeNG customization */
+
+.jeconsultemonbilan .ui-progressbar {
+    background:#CAF !important;
+    height: 2.5em;
+}
+
 /* BOOTSTRAP EXTENSION - BUTTON COLORS */
 
 .ldb_btn {

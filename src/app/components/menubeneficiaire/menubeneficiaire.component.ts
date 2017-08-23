@@ -51,10 +51,11 @@ export class MenuBeneficiaireComponent implements OnInit, OnDestroy {
     menuitems : any = [
     new ldbmenuitem('Mon planning', 1, '','/beneficiaire/monplanning'),
     new ldbmenuitem('Je fais le point', 2, '','/beneficiaire/jefaislepoint'),
-    new ldbmenuitem('Je prends rendez-vous', 3, '','/beneficiaire/jeprendsrendezvous'),
-    new ldbmenuitem('Je prépare ma rencontre', 4, '','/beneficiaire/jeprepapremarencontre'),
-    new ldbmenuitem('Je fais le suivi', 5, '','/beneficiaire/jefaislesuivi'),
-    new ldbmenuitem('Je deviens un pro', 6, '','/beneficiaire/jedeviensunpro')
+    new ldbmenuitem('Je consulte mon bilan', 3, '','/beneficiaire/jeconsultemonbilan'),
+    new ldbmenuitem('Je prends rendez-vous', 4, '','/beneficiaire/jeprendsrendezvous'),
+    new ldbmenuitem('Je prépare ma rencontre', 5, '','/beneficiaire/jeprepapremarencontre'),
+    new ldbmenuitem('Je fais le suivi', 6, '','/beneficiaire/jefaislesuivi'),
+    new ldbmenuitem('Je deviens un pro', 7, '','/beneficiaire/jedeviensunpro')
     ];
 
     @ViewChildren('itemtexts') el:ElementRef;

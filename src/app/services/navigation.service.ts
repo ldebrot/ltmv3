@@ -542,10 +542,10 @@ export class NavigationService implements OnInit {
     //sets up the list of button in the monplanning menu.
     preparejefaislepointitems ():void {
         this.jefaislepointitems = [];
-        console.log("this.jefaislepointitemrepository");
-        console.log(this.jefaislepointitemrepository);
-        console.log("this.dbuserinfoservice.userinfo.experience");
-        console.log(this.dbuserinfoservice.userinfo.experience);
+        //console.log("this.jefaislepointitemrepository");
+        //console.log(this.jefaislepointitemrepository);
+        //console.log("this.dbuserinfoservice.userinfo.experience");
+        //console.log(this.dbuserinfoservice.userinfo.experience);
         for (let i = 0; i < this.jefaislepointitemrepository.length; i++) {
             if (this.dbuserinfoservice.userinfo.experience[this.jefaislepointitemrepository[i].formodule]==this.jefaislepointitemrepository[i].ifvalue) {
                 console.log("here!");
@@ -553,8 +553,8 @@ export class NavigationService implements OnInit {
                 this.jefaislepointitems.push(this.jefaislepointitemrepository[i]);
             }
         }
-        console.log("this.jefaislepointitems");
-        console.log(this.jefaislepointitems);
+        //console.log("this.jefaislepointitems");
+        //console.log(this.jefaislepointitems);
     }
 
     //sets the next important task, also shown in the mon planning menu.

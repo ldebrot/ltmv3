@@ -1,3 +1,23 @@
-<p>
-  jeconsultemonbilan works!
-</p>
+<div class="ldb_elementbackground">
+    <div class="ldb_elementtextbold ldb_elementtext">
+        Je clique sur une étape
+        <br>
+        pour voir les détails
+    </div>
+    <table>
+        <tr><td class="afairesoimeme"><img [src]=beneficiaireurl></td><td class="afaireavecuntemoin"><img [src]=temoinurl></td></tr>
+        <tr><td class="afairesoimeme">A faire moi-même</td><td class="afaireavecuntemoin">A faire avec un témoin</td></tr>
+    </table>
+    <div *ngFor="let items of this.navigationservice.jefaislepointitems">
+        <div class="jeconsultemonbilan_container">
+            <p-progressBar class="jeconsultemonbilan_absolute jeconsultemonbilan_behind jeconsultemonbilan"
+            [showValue]="false" 
+            [value]="60">
+            </p-progressBar>
+            <div (click)="activatemodule(items.ifvalue)" class="jeconsultemonbilan_absolute jeconsultemonbilan_infront">{{items.atext}}</div>
+            <div *ngIf="this.currentmodule==items.ifvalue">
+                {{items.ifvalue}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -36,10 +36,11 @@ export class CheckauthService implements OnInit{
         beneficiaire : "beneficiaire",
         monplanning : "beneficiaire",
         jefaislepoint : "beneficiaire",
+        jeconstruismonprojet: "beneficiaire",
+        jeconsultemonbilan : "beneficiaire",
         jeprendsrendezvous :"beneficiaire",
         jeprepapremarencontre: "beneficiaire",
-        jefaislesuivi: "beneficiaire",
-        jeconstruismonprojet: "beneficiaire"
+        jefaislesuivi: "beneficiaire"
     };
 
     loggedIn : boolean= true;

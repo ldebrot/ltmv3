@@ -1,0 +1,42 @@
+/* For scoping reasons, certain elements in this module are styled in the styles.css sheet */
+
+.jeconsultemonbilan_absolute {
+    position: absolute;
+    width: 100%;
+}
+
+.jeconsultemonbilan_container {
+    position: relative;
+    height:3em;
+}
+
+.jeconsultemonbilan_behind {
+    z-index: 1;
+}
+
+.jeconsultemonbilan_infront {
+    margin: .5em 0px;
+    font-size:small;
+    z-index: 2;
+    text-align:center;
+    -webkit-transition: font-size 0.5s; /* Safari */
+    transition: font-size 0.5s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+}
+
+.jeconsultemonbilan_infront:hover {
+    font-size:medium;
+}
+
+.afairesoimeme{
+    color: #55F;
+    width: 50%;
+    text-align: center;
+}
+
+.afaireavecuntemoin {
+    color: blueviolet;
+    width: 50%;
+    text-align: center;
+}

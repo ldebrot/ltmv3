@@ -34,6 +34,7 @@ import { ReadwriteService } from './services/readwrite.service';//service handli
 import { ReadwritebufferService } from './services/readwritebuffer.service';
 import { FakedbuserinfoService } from './services/fakedbuserinfo.service';//TEMPORARY serivce filling in dbuserinfo with a data set (for offline moments...)
 import { NavigationService } from './services/navigation.service';//handles navigation modules
+import { BilanService } from './services/bilan.service';//This service handles the situation recap ("bilan") of the jefaislepoint module
 
 //Components
 import { AppComponent } from './app.component';
@@ -128,6 +129,7 @@ firebase.initializeApp(firebaseconfig);
         ReadwritebufferService,//handles buffer between user mofidications and Firebase readwrite operations
         FirebaseauthService,//handles Firebase authentication
         TitleService,//service which stores the current title
+        BilanService,//This service handles the situation recap ("bilan") of the jefaislepoint module
         FakedbuserinfoService,
         NavigationService//handles navigation modules
     ],
