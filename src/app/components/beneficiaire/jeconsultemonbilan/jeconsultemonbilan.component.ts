@@ -36,7 +36,6 @@ export class JeconsultemonbilanComponent implements OnInit {
             this.currentmodule="";
         }else{
             this.currentmodule=etape;
-            this.bilanservice.assesslevel(etape);
         }
         console.log("this.currentmodule");
         console.log(this.currentmodule);        
@@ -44,7 +43,7 @@ export class JeconsultemonbilanComponent implements OnInit {
 
     ngOnInit() {
         this.titleservice.titlesubject.next("Je consulte mon bilan");//sets title in title service to "Je consulte mon bilan" after half a second        
-        this.navigationservice.preparejefaislepointitems();//sets up the list of button in the monplanning menu.
+        this.bilanservice.assesslevel();
     }
     
 }

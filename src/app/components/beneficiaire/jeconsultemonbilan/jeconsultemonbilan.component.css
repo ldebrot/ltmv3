@@ -13,8 +13,21 @@
     height: 3em;
 }
 
-.jeconsultemonbilan_message {
+.jeconsultemonbilan_item {
     padding-top: 3em;
+}
+
+.jeconsultemonbilan_icon {
+    padding: 1em;
+    float:left;
+}
+
+.jeconsultemonbilan_name {
+    width:100%;
+}
+
+.jeconsultemonbilan_message {
+    width:100%;
 }
 
 .jeconsultemonbilan_behind {

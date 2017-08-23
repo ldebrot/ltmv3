@@ -3,7 +3,7 @@
         <tr><td class="afairesoimeme"><img [src]=beneficiaireurl></td><td class="afaireavecuntemoin"><img [src]=temoinurl></td></tr>
         <tr><td class="afairesoimeme">A faire moi-même</td><td class="afaireavecuntemoin">A faire avec un témoin</td></tr>
     </table>
-    <div *ngFor="let items of this.navigationservice.jefaislepointitems">
+    <div *ngFor="let items of this.bilanservice.levelitems">
         <div class="jeconsultemonbilan_container">
             <p-progressBar class="jeconsultemonbilan_absolute jeconsultemonbilan_behind jeconsultemonbilan"
             [showValue]="false" 
@@ -12,16 +12,16 @@
             <div (click)="activatemodule(items.formodule)" class="jeconsultemonbilan_absolute jeconsultemonbilan_infront">{{items.atext}}</div>
             <div *ngIf="this.currentmodule!=items.formodule" class="jeconsultemonbilan_freebutton"></div>
         </div>
-        <div *ngIf="this.currentmodule==items.formodule" class="jeconsultemonbilan_message">
+        <div *ngIf="this.currentmodule==items.formodule" class="jeconsultemonbilan_item">
             <div *ngFor="let bilanitem of this.bilanservice.bilanitemrepository_filtered">
-                <div class="col-xs-2">
+                <div class="jeconsultemonbilan_icon">
                     <i [class]="bilanitem.iconclass"></i>
                 </div>
-                <div  class="col-xs-8">
+                <div  class="jeconsultemonbilan_name">
                     {{bilanitem.name}}
                 </div>
                 <br>
-                <div class="col-xs-10">
+                <div class="jeconsultemonbilan_message">
                     {{bilanitem.message}}
                 </div>
             </div>
