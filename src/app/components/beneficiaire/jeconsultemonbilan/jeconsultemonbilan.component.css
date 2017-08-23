@@ -7,7 +7,14 @@
 
 .jeconsultemonbilan_container {
     position: relative;
-    height:3em;
+}
+
+.jeconsultemonbilan_freebutton {
+    height: 3em;
+}
+
+.jeconsultemonbilan_message {
+    padding-top: 3em;
 }
 
 .jeconsultemonbilan_behind {

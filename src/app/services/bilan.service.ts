@@ -22,8 +22,11 @@ export class BilanService implements OnInit {
     }
 
     public assesslevel(level:string):void {
+        this.bilanitemrepository_filtered = []
         for (let i = 0; i < this.bilanitemrepository.length; i++) {
-
+            if (this.bilanitemrepository[i].modulelevel===level){
+                this.bilanitemrepository_filtered.push(this.bilanitemrepository[i])
+            }
         }
     }
 

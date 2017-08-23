@@ -1,9 +1,4 @@
 <div class="ldb_elementbackground">
-    <div class="ldb_elementtextbold ldb_elementtext">
-        Je clique sur une étape
-        <br>
-        pour voir les détails
-    </div>
     <table>
         <tr><td class="afairesoimeme"><img [src]=beneficiaireurl></td><td class="afaireavecuntemoin"><img [src]=temoinurl></td></tr>
         <tr><td class="afairesoimeme">A faire moi-même</td><td class="afaireavecuntemoin">A faire avec un témoin</td></tr>
@@ -14,9 +9,21 @@
             [showValue]="false" 
             [value]="60">
             </p-progressBar>
-            <div (click)="activatemodule(items.ifvalue)" class="jeconsultemonbilan_absolute jeconsultemonbilan_infront">{{items.atext}}</div>
-            <div *ngIf="this.currentmodule==items.ifvalue">
-                {{items.ifvalue}}
+            <div (click)="activatemodule(items.formodule)" class="jeconsultemonbilan_absolute jeconsultemonbilan_infront">{{items.atext}}</div>
+            <div *ngIf="this.currentmodule!=items.formodule" class="jeconsultemonbilan_freebutton"></div>
+        </div>
+        <div *ngIf="this.currentmodule==items.formodule" class="jeconsultemonbilan_message">
+            <div *ngFor="let bilanitem of this.bilanservice.bilanitemrepository_filtered">
+                <div class="col-xs-2">
+                    <i [class]="bilanitem.iconclass"></i>
+                </div>
+                <div  class="col-xs-8">
+                    {{bilanitem.name}}
+                </div>
+                <br>
+                <div class="col-xs-10">
+                    {{bilanitem.message}}
+                </div>
             </div>
         </div>
     </div>

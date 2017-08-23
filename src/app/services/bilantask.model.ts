@@ -4,7 +4,7 @@ export class bilantask {
     public message: string;//the message for the user
     public route: string;//the path to which leads the task, if left empty ("") no path to follow
     public modulelevel: string;//the name of the level of jefaislepoint. E.g. "jeconstruismonprojet"
-    public step: string;//the number of the step in the module. E.g. 1, 2, 3...
+    public step: number;//the number of the step in the module. E.g. 1, 2, 3...
     public experiencefield: string;//the name of the field which holds the value. E.g. "jeconstruismonprojetstep4avalue"
     public expectedvalue: any[] = [];//the value in which case the entry is shown (E.g. if user says "yes" to question X --> show this entry)
     public assignedto: string;//says who has to carry out task: beneficiaire, temoin or jeveuxensavoirplus

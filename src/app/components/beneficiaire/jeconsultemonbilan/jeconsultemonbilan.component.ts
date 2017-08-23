@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 //home-grown pure-quality services
 import { TitleService } from './../../../services/title.service';
 import { NavigationService } from './../../../services/navigation.service';
+import { BilanService } from './../../../services/bilan.service';
 
 //PrimeNG
 import { ProgressBarModule } from 'primeng/primeng';
@@ -22,17 +23,23 @@ export class JeconsultemonbilanComponent implements OnInit {
 
     constructor(
         public titleservice : TitleService,//used to set corresponding title
-        public navigationservice : NavigationService//used to find items of jefaislepoint
+        public navigationservice : NavigationService,//used to find items of jefaislepoint
+        public bilanservice : BilanService//this one prepares the elements of the situation recap (bilan)
     ) {
         
     }
     
     public activatemodule(etape):void{
+        console.log("etape");
+        console.log(etape);
         if (this.currentmodule===etape){
             this.currentmodule="";
         }else{
             this.currentmodule=etape;
+            this.bilanservice.assesslevel(etape);
         }
+        console.log("this.currentmodule");
+        console.log(this.currentmodule);        
     }
 
     ngOnInit() {
