@@ -1,7 +1,7 @@
 export class bilantask {
     public validationtype: string;//this one indicates how the validation process is to be handled (is it about a value being present/absent in an array or is it about a simple value)
     public name: string;//the name of the task
-    public message: string;//the message for the user
+    public message: string;//the message for the user, if left ("") the item will NOT be shown !
     public route: string;//the path to which leads the task, if left empty ("") no path to follow
     public modulelevel: string;//the name of the level of jefaislepoint. E.g. "jeconstruismonprojet"
     public step: number;//the number of the step in the module. E.g. 1, 2, 3...

@@ -77,6 +77,7 @@ export class JeconstruismonprojetComponent implements OnInit {
     }
 
     ngOnDestroy() {
+        this.readwritebufferservice.transmitbuffer();
         this.readwritebufferservice.emptybuffer();
     }
 

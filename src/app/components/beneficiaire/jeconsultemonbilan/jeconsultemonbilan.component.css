@@ -24,6 +24,7 @@
 
 .jeconsultemonbilan_name {
     width:100%;
+    font-weight: bold;
 }
 
 .jeconsultemonbilan_message {
@@ -32,6 +33,14 @@
 
 .jeconsultemonbilan_behind {
     z-index: 1;
+}
+
+.jeconsultemonbilan_width100 {
+    width:100%;
+}
+
+.jeconsultemonbilan_width50 {
+    width:50%;
 }
 
 .jeconsultemonbilan_infront {
@@ -51,12 +60,10 @@
 
 .afairesoimeme{
     color: #55F;
-    width: 50%;
     text-align: center;
 }
 
 .afaireavecuntemoin {
     color: blueviolet;
-    width: 50%;
     text-align: center;
 }

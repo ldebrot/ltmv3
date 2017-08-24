@@ -10,7 +10,7 @@ import { DbuserinfoService } from './dbuserinfo.service';
 @Injectable()
 export class ReadwritebufferService {
     
-    private buffer:any = {};
+    public buffer:any = {};
 
     constructor(
         public dbuserinfoservice: DbuserinfoService,
@@ -48,17 +48,19 @@ export class ReadwritebufferService {
         console.log("updates");
         console.log(updates);
         firebase.database().ref().update(updates)
-        .then( function() {
-                console.log("transmitbuffer: worked just fine!");
-                this.emptybuffer();//empty buffer now !
-                this.readwriteservice.getcurrentuserinfo()//now refresh local dbuserinfo
-                    .then ((userinfo)=> {
-                        this.dbuserinfoService.integrate(userinfo)
-                    });
+        .then(()=> {
+            console.log("transmitbuffer: worked just fine!");
+            this.readwriteservice.getcurrentuserinfo()//now refresh local dbuserinfo
+            .then ((userinfo)=> {
+                this.dbuserinfoservice.integrate(userinfo);
+            });
         })
         .catch( function(error) {
-                console.log("transmitbuffer error: "+error.message);
+                console.log("transmitbuffer error:");
+                console.log(error);
         });
+        this.buffer = {};//empty buffer now!
+
     }
 
 }
