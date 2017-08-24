@@ -19,6 +19,74 @@ export class BilanService implements OnInit {
     public bilanitemrepository_selected = {};//a selection of items which correspond to the choices of the user
     public levelitems = [];
     public totalcount = {};
+
+    public bilan_parameters = {
+        increment : {//this number is an equivalent of one big task
+            temoin : 3,
+            beneficiaire : 3,
+            ratiobeneficiaire : 1
+        },
+        max : {//if impact exceeds this number, the progressbar is full
+            temoin : 9,
+            beneficiaire : 12,
+            ratiobeneficiaire : 3
+        }
+    } 
+
+    public bilan_current = {//this one stores the number of the item which reflects the current state (e.g. 2 = the second item in bilan_items)
+        temoin : {},
+        beneficiaire : {},
+        ratiobeneficiaire : {}
+    }
+
+    public bilan_percentage ={
+        temoin : {},
+        beneficiaire : {},
+        ratiobeneficiaire : {}
+    }
+
+    public bilan_items = {
+        temoin : {
+            min : [
+                0,
+                3,
+                6,
+                9
+            ],
+            label : [
+                "Pas assez d'intérêt",
+                "Peu d'intérêt",
+                "Intérêt confirmé",
+                "Grand intérêt"
+            ],
+            message : [
+                "Vous n'avez pas assez de points à discuter avec un grand témoin.",
+                "Vous avez quelques points à voir avec un grand témoin, mais cela ne justifie pas forcément de solliciter son aide.",
+                "Vous avez suffisamment de points à voir avec un grand témoin. Une rencontre paraît tout à fait justifiée.",
+                "Une rencontre avec un grand témoin vous serait grandement utile. Vous ne pourrez probablement pas aborder tous les points avec lui."
+            ]
+        },
+        beneficiaire : {
+            min : [
+                0,
+                3,
+                6,
+                9
+            ],
+            label : [
+                "Quasiment rien",
+                "Quelques tâches à accomplir",
+                "Il reste du travail",
+                "Beaucoup à faire"
+            ],
+            message : [
+                "Il ne vous reste quasiment aucune tâche à accomplir vous-même.",
+                "Il vous reste quelques tâches que vous pouvez faire vous-même.",
+                "Vous pouvez encore avancer vous-même sur un bon nombre de points.",
+                "Vous pouvez avancer vous-même sur de très nombreux points."
+            ]
+        }
+    }
     
     constructor(
         public navigationservice : NavigationService,
@@ -26,6 +94,27 @@ export class BilanService implements OnInit {
     ){
     }
     
+    public setbilantemoin_currentitem(formodule : string,forwhom: string):void {
+        for (let i = 0; i < this.bilan_items[forwhom].min.length; i++) {
+            if (this.bilan_items[forwhom].min[i]>this.totalcount[forwhom][formodule]){
+                this.bilan_current[forwhom][formodule]=i-1;
+                break;
+            }
+        }
+        if (this.bilan_current[forwhom][formodule]<0){this.bilan_current[forwhom][formodule]=0;}
+        
+        if(this.totalcount[forwhom][formodule]>this.bilan_parameters.max[forwhom]){
+            this.bilan_percentage[forwhom][formodule]=100;
+        } else if (this.totalcount[forwhom][formodule] < 0) {
+            this.bilan_percentage[forwhom][formodule]=0;
+        } else {
+            this.bilan_percentage[forwhom][formodule] = 100*(this.totalcount[forwhom][formodule]/this.bilan_parameters.max[forwhom]);
+        }
+
+        console.log("this.bilan_current");
+        console.log(this.bilan_current);
+    }
+
     public assesslevel():void {
         this.navigationservice.preparejefaislepointitems();//sets up the list of button in the monplanning menu.
         this.levelitems = this.navigationservice.jefaislepointitems;//take all available levels (=jefaislepointitems)
@@ -47,6 +136,9 @@ export class BilanService implements OnInit {
             this.totalcount['temoin'][this.levelitems[i].formodule]=0;
             this.totalcount['beneficiaire'][this.levelitems[i].formodule]=0;            
         }
+
+        this.totalcount['temoin']['allmodules']=0;
+        this.totalcount['beneficiaire']['allmodules']=0;            
         
         for (let i = 0; i < this.bilanitemrepository.length; i++) {
             let tempisinarray:boolean=false;
@@ -88,12 +180,10 @@ export class BilanService implements OnInit {
             if (tempisinarray || tempisvalue){
                 this.bilanitemrepository_selected[this.bilanitemrepository[i].modulelevel][this.bilanitemrepository[i].assignedto].push(this.bilanitemrepository[i]);
                 this.totalcount[this.bilanitemrepository[i].assignedto][this.bilanitemrepository[i].modulelevel]+=this.bilanitemrepository[i].impact;
+                this.totalcount[this.bilanitemrepository[i].assignedto]['allmodules']+=this.bilanitemrepository[i].impact;
             }
             
-            
         }
-        
-        
         
         for (let i = 0; i < this.levelitems.length; i++) {
             let total = (this.totalcount['beneficiaire'][this.levelitems[i].formodule] + this.totalcount['temoin'][this.levelitems[i].formodule]);
@@ -108,10 +198,9 @@ export class BilanService implements OnInit {
         console.log(this.levelitems);
         console.log("this.bilanitemrepository_selected");
         console.log(this.bilanitemrepository_selected);
-        
-        
+      
     }
-    
+
     public bilanitemrepository =  [
         new bilantask(
             "isinarray",//validationtype

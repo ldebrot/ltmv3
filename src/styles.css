@@ -45,11 +45,6 @@ i.mdi-ldb-primary {
     color:#3AF;
 }
 
-/* */
-
-.ldb_button {
-
-}
 
 /* grey background */
 .ldb_elementbackground {
@@ -73,12 +68,11 @@ i.mdi-ldb-primary {
     text-align: left;
 }
 
-.ldb_elementtext {
-    text-align: center;
+.ldb_elementtextnowrap{
+    white-space: nowrap;
 }
 
 .ldb_elementtextbold {
-    white-space: nowrap;
     font-weight: bold;
     font-size: medium;
     padding-bottom: 10px;
@@ -137,6 +131,24 @@ i.mdi-ldb-primary {
 .ldb_elementcongratulationsicon {
     text-align: center;
     color:green    
+}
+
+/* TASKS for yourself and with temoin */
+
+.afairesoimeme{
+    color: #55F;
+    text-align: center;
+}
+
+.afaireavecuntemoin {
+    color: blueviolet;
+    text-align: center;
+}
+
+/* Image element */
+
+.ldb_elementimagecontainer {
+    width : 100%;
 }
 
 /* White circle element in enumerations */
@@ -203,6 +215,32 @@ table.ldb_instruction > td:last-child > tbody > tr{
 
 .ldb_minimal {
     font-size:smaller;
+}
+
+/* BILAN COMPONENTS */
+
+.ldb_bilan_container {
+    position: relative;
+}
+
+.ldb_aftercontainer {
+    height: 1.4em;    
+}
+
+.ldb_bilan_progressbar {
+    position: absolute;
+    left:5%;
+    width: 90%;
+    z-index: 1;
+}
+
+.ldb_bilan_infront {
+    position: absolute;
+    left:5%;
+    width:90%;
+    font-size:small;
+    z-index: 2;
+    text-align:center;
 }
 
 table.ldb_table_separation_3 > tbody > tr > td {
@@ -300,6 +338,18 @@ input.ng-invalid.ng-touched {
 .jeconsultemonbilan .ui-progressbar {
     background:#CAF !important;
     height: 2.5em;
+}
+
+.jeconsultemonbilan .ui-tabview-panel {
+    padding:1% !important;
+}
+
+.ldb_bilan .ui-progressbar {
+    height: 1.4em;    
+}
+
+.ldb_bilan_temoin .ui-progressbar-value {
+    background:#CAF !important;
 }
 
 /* BOOTSTRAP EXTENSION - BUTTON COLORS */

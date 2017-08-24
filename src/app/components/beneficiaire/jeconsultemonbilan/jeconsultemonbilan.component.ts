@@ -7,8 +7,9 @@ import { NavigationService } from './../../../services/navigation.service';
 import { BilanService } from './../../../services/bilan.service';
 
 //PrimeNG
-import { ProgressBarModule } from 'primeng/primeng';
-
+import { 
+    ProgressBarModule,
+    TabViewModule } from 'primeng/primeng';
 
 @Component({
     selector: 'app-jeconsultemonbilan',

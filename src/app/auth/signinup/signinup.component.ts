@@ -12,7 +12,8 @@ import { DbuserinfoService } from './../../services/dbuserinfo.service';//handle
 //Graphic
 import { 
     MessagesModule,
-    GrowlModule} from 'primeng/primeng';//PrimeNG error message handling
+    GrowlModule,
+    TabViewModule} from 'primeng/primeng';//PrimeNG error message handling
 
 @Component({
     selector: 'app-signinup',

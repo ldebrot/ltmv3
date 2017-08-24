@@ -61,6 +61,8 @@ import { JepreparemarencontreComponent } from './components/beneficiaire/jeprepa
 import { JefaislesuiviComponent } from './components/beneficiaire/jefaislesuivi/jefaislesuivi.component';
 import { JeconstruismonprojetComponent } from './components/beneficiaire/jefaislepoint/jeconstruismonprojet/jeconstruismonprojet.component';
 import { JeconsultemonbilanComponent } from './components/beneficiaire/jeconsultemonbilan/jeconsultemonbilan.component';
+import { BilantemoinComponent } from './components/beneficiaire/jeconsultemonbilan/bilantemoin/bilantemoin.component';
+import { BilanbeneficiaireComponent } from './components/beneficiaire/jeconsultemonbilan/bilanbeneficiaire/bilanbeneficiaire.component';
 
 export const firebaseconfig = {
     apiKey: "AIzaSyCdWffhlLWk5olASIDHMw0Y7rzXsc_Sxu8",
@@ -86,7 +88,7 @@ firebase.initializeApp(firebaseconfig);
     StartNotconnectedComponent,//starting point for not-connected user
     IntrouvableComponent,
     SigninupComponent,//sign in and sign up
-    JedecouvrelunchtimeComponent,
+    JedecouvrelunchtimeComponent,//discover Lunchtime - used as "home" component
     LesactusComponent,
     QuisommesnousComponent,
     StartbeneficiaireComponent,
@@ -96,7 +98,9 @@ firebase.initializeApp(firebaseconfig);
     JepreparemarencontreComponent,
     JefaislesuiviComponent,
     JeconstruismonprojetComponent,
-    JeconsultemonbilanComponent//discover Lunchtime - used as "home" component
+    JeconsultemonbilanComponent,
+    BilantemoinComponent,
+    BilanbeneficiaireComponent
     ],
     imports: [
     FormsModule,

@@ -1,3 +1,45 @@
-<p>
-  jeprendsrendezvous works!
-</p>
+<div *ngIf="this.dbuserinfoservice.userinfo.experience.modulejefaislepoint!=='done'">
+    <div class="ldb_elementbackground">
+        <div class="ldb_elementtextbold ldb_elementtext">
+            Je n'ai pas encore terminé 
+            <br>
+            le module "faire le point".
+            <br>
+            Je ne peux donc pas encore prendre contact avec un grand témoin. 
+        </div>
+        <div class="ldb_elementtextsmall ldb_elementtext">
+            <p>Les grands témoins Lunchtime mettent volontairement leur temps à disposition des utilisateurs.</p>
+            <p>Pour valoriser leur temps précieux, Lunchtime vous propose de préparer au mieux votre rencontre avec un grand témoin.</p>
+            <p>Lunchtime vous offre de nombreux outils pour avancer un maximum sur votre projet avant même de solliciter un grand témoin.</p>
+        </div>
+    </div>    
+    <div class="ldb_elementbackground">
+        <div class="ldb_elementtextbold ldb_elementtext">
+            Terminer le module "faire le point"
+        </div>
+        <div class="ldb_elementsinglebutton">
+            <a class="btn ldb_btn_small ldb_btn_primary" [routerLink]="['/beneficiaire/jefaislepoint']">Je fais le point sur mon projet</a>
+        </div>
+    </div>    
+</div>
+
+<div *ngIf="this.dbuserinfoservice.userinfo.experience.modulejefaislepoint==='done'">
+    <div class="ldb_elementbackground">
+        <app-bilantemoin></app-bilantemoin>
+    </div>
+    <div class="ldb_elementbackground">
+        <div class="ldb_elementtextbold ldb_elementtext">
+            Je prends contact :
+        </div>
+    </div>
+    <div class="ldb_elementbackground">
+        <div class="ldb_elementtextbold ldb_elementtext">
+            Rencontre à préparer :
+        </div>
+    </div>
+    <div class="ldb_elementbackground">
+        <div class="ldb_elementtextbold ldb_elementtext">
+            invitations en cours :
+        </div>
+    </div>
+</div>

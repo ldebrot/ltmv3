@@ -44,7 +44,7 @@ export class NavigationService implements OnInit {
             "Je n'ai pas encore fait le point sur mon projet de reconversion",
             "btn ldb_btn ldb_btn_primary",
             "/beneficiaire/jefaislepoint",
-            "Je fais le point sur ma reconversion professionnelle.",
+            "Je fais le point sur ma reconversion professionnelle",
             "modulejefaislepoint",
             "notdone",
             1000
@@ -54,7 +54,7 @@ export class NavigationService implements OnInit {
             "Je peux refaire le point à n'importe quel moment.",
             "btn ldb_btn ldb_btn_done",
             "/beneficiaire/jefaislepoint",
-            "J'ai fait le point sur ma reconversion professionnelle.",
+            "J'ai fait le point sur ma reconversion professionnelle",
             "modulejefaislepoint",
             "done",
             0
@@ -64,7 +64,7 @@ export class NavigationService implements OnInit {
             "Je peux consulter mon bilan à tout moment",
             "btn ldb_btn ldb_btn_primary",
             "/beneficiaire/jeconsultemonbilan",
-            "Je consulte mon bilan.",
+            "Je consulte mon bilan",
             "modulejeconsultemonbilan",
             "notdone",
             1000
@@ -74,7 +74,7 @@ export class NavigationService implements OnInit {
             "Je ne peux pas encore contacter une personne.",
             "btn ldb_btn ldb_btn_unavailable",
             "/beneficiaire/jeprendsrendezvous",
-            "Je contacte une personne qui a déjà changé de métier.",
+            "Je contacte une personne qui a déjà changé de métier",
             "modulejeprendsrendezvous",
             "unavailable",
             0
@@ -84,7 +84,7 @@ export class NavigationService implements OnInit {
             "Je n'ai pas encore contacté de personne.",
             "btn ldb_btn ldb_btn_notdone",
             "/beneficiaire/jeprendsrendezvous",
-            "Je contacte une personne qui a déjà changé de métier.",
+            "Je contacte une personne qui a déjà changé de métier",
             "modulejeprendsrendezvous",
             "notdone",
             100
@@ -94,7 +94,7 @@ export class NavigationService implements OnInit {
             "J'ai déjà contacté une personne. A refaire ?",
             "btn ldb_btn ldb_btn_done",
             "/beneficiaire/jeprendsrendezvous",
-            "Je contacte une personne qui a déjà changé de métier.",
+            "Je contacte une personne qui a déjà changé de métier",
             "modulejeprendsrendezvous",
             "done",
             10
@@ -104,7 +104,7 @@ export class NavigationService implements OnInit {
             "Je ne peux pas préparer de rencontre. Il faut d'abord prendre rendez-vous.",
             "btn ldb_btn ldb_btn_unavailable",
             "/beneficiaire/jepreparemarencontre",
-            "Je prépare ma rencontre avec un témoin.",
+            "Je prépare ma rencontre avec un témoin",
             "modulejepreparemarencontre",
             "unavailable",
             0
@@ -114,7 +114,7 @@ export class NavigationService implements OnInit {
             "Je n'ai pas encore préparé de rencontre.",
             "btn ldb_btn ldb_btn_notdone",
             "/beneficiaire/jepreparemarencontre",
-            "Je prépare ma rencontre avec un témoin.",
+            "Je prépare ma rencontre avec un témoin",
             "modulejepreparemarencontre",
             "notdone",
             1000
@@ -124,7 +124,7 @@ export class NavigationService implements OnInit {
             "J'ai une rencontre à préparer.",
             "btn ldb_btn ldb_btn_todo",
             "/beneficiaire/jepreparemarencontre",
-            "Je prépare ma rencontre avec un témoin.",
+            "Je prépare ma rencontre avec un témoin",
             "modulejepreparemarencontre",
             "todo",
             10000
@@ -134,7 +134,7 @@ export class NavigationService implements OnInit {
             "J'ai fait la préparation de rencontre.",
             "btn ldb_btn ldb_btn_done",
             "/beneficiaire/jepreparemarencontre",
-            "Je prépare ma rencontre avec un témoin.",
+            "Je prépare ma rencontre avec un témoin",
             "modulejepreparemarencontre",
             "done",
             0
@@ -144,7 +144,7 @@ export class NavigationService implements OnInit {
             "Je ne peux pas encore faire le suivi. Je dois d'abord faire une rencontre.",
             "btn ldb_btn ldb_btn_unavailable",
             "/beneficiaire/jefaislesuivi",
-            "Je fais le suivi de ma rencontre.",
+            "Je fais le suivi de ma rencontre",
             "modulejefaislesuivi",
             "unavailable",
             0
@@ -154,7 +154,7 @@ export class NavigationService implements OnInit {
             "Je n'ai pas encore fait le suivi.",
             "btn ldb_btn ldb_btn_notdone",
             "/beneficiaire/jefaislesuivi",
-            "Je fais le suivi de ma rencontre.",
+            "Je fais le suivi de ma rencontre",
             "modulejefaislesuivi",
             "notdone",
             100
@@ -164,7 +164,7 @@ export class NavigationService implements OnInit {
             "J'ai un suivi à faire!",
             "btn ldb_btn ldb_btn_todo",
             "/beneficiaire/jefaislesuivi",
-            "Je fais le suivi de ma rencontre.",
+            "Je fais le suivi de ma rencontre",
             "modulejefaislesuivi",
             "todo",
             1000
@@ -174,7 +174,7 @@ export class NavigationService implements OnInit {
             "J'ai fait le suivi.",
             "btn ldb_btn ldb_btn_done",
             "/beneficiaire/jefaislesuivi",
-            "Je fais le suivi de ma rencontre.",
+            "Je fais le suivi de ma rencontre",
             "modulejefaislesuivi",
             "done",
             0
@@ -221,7 +221,7 @@ export class NavigationService implements OnInit {
             "Je ne peux pas encore passer à cette étape.",
             "btn ldb_btn_small ldb_btn_unavailable",
             "/beneficiaire/jeconstruismonprojet",
-            "Je construis mon projet de reconversion.",
+            "Je construis mon projet de reconversion",
             "etapejeconstruismonprojet",
             "unavailable",
             0
@@ -231,7 +231,7 @@ export class NavigationService implements OnInit {
             "Je n'ai pas encore construit mon projet.",
             "btn ldb_btn_small ldb_btn_notdone",
             "/beneficiaire/jeconstruismonprojet",
-            "Je construis mon projet de reconversion.",
+            "Je construis mon projet de reconversion",
             "etapejeconstruismonprojet",
             "notdone",
             9999
@@ -241,7 +241,7 @@ export class NavigationService implements OnInit {
             "J'ai commencé à construire mon projet. Je reprends mon travail.",
             "btn ldb_btn_small ldb_btn_inprogress",
             "/beneficiaire/jeconstruismonprojet",
-            "Je construis mon projet de reconversion.",
+            "Je construis mon projet de reconversion",
             "etapejeconstruismonprojet",
             "inprogress",
             9999
@@ -251,7 +251,7 @@ export class NavigationService implements OnInit {
             "J'ai construit mon projet.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jeconstruismonprojet",
-            "Je construis mon projet de reconversion.",
+            "Je construis mon projet de reconversion",
             "etapejeconstruismonprojet",
             "done",
             0
@@ -261,7 +261,7 @@ export class NavigationService implements OnInit {
             "Je ne peux pas encore passer à cette étape.",
             "btn ldb_btn_small ldb_btn_unavailable",
             "/beneficiaire/jetrouvedesideesdemetier",
-            "Je trouve des pistes de métier.",
+            "Je trouve des pistes de métier",
             "etapejetrouvedesideesdemetier",
             "unavailable",
             0
@@ -271,7 +271,7 @@ export class NavigationService implements OnInit {
             "Je ne sais pas encore comment trouver des pistes de métier.",
             "btn ldb_btn_small ldb_btn_notdone",
             "/beneficiaire/jetrouvedesideesdemetier",
-            "Je trouve des pistes de métier.",
+            "Je trouve des pistes de métier",
             "etapejetrouvedesideesdemetier",
             "notdone",
             9999
@@ -281,7 +281,7 @@ export class NavigationService implements OnInit {
             "J'ai commencé à identifier des pistes de métier. Je reprends mon travail.",
             "btn ldb_btn_small ldb_btn_inprogress",
             "/beneficiaire/jetrouvedesideesdemetier",
-            "Je trouve des pistes de métier.",
+            "Je trouve des pistes de métier",
             "etapejetrouvedesideesdemetier",
             "inprogress",
             9999
@@ -291,7 +291,7 @@ export class NavigationService implements OnInit {
             "J'ai identifié des pistes de métier ou sais comment le faire.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jetrouvedesideesdemetier",
-            "Je trouve des pistes de métier.",
+            "Je trouve des pistes de métier",
             "etapejetrouvedesideesdemetier",
             "done",
             0
@@ -301,7 +301,7 @@ export class NavigationService implements OnInit {
             "Je ne peux pas encore passer à cette étape.",
             "btn ldb_btn_small ldb_btn_unavailable",
             "/beneficiaire/jechoisismonnouveaumetier",
-            "Je choisis un métier qui m'intéresse.",
+            "Je choisis un métier qui m'intéresse",
             "etapejechoisismonnouveaumetier",
             "unavailable",
             0
@@ -311,7 +311,7 @@ export class NavigationService implements OnInit {
             "Je n'ai pas encore identifié un métier qui m'intéresse.",
             "btn ldb_btn_small ldb_btn_notdone",
             "/beneficiaire/jechoisismonnouveaumetier",
-            "Je choisis un métier qui m'intéresse.",
+            "Je choisis un métier qui m'intéresse",
             "etapejechoisismonnouveaumetier",
             "notdone",
             9999
@@ -321,7 +321,7 @@ export class NavigationService implements OnInit {
             "J'ai commencé à choisir un métier qui m'intéresse.",
             "btn ldb_btn_small ldb_btn_inprogress",
             "/beneficiaire/jechoisismonnouveaumetier",
-            "Je choisis un métier qui m'intéresse.",
+            "Je choisis un métier qui m'intéresse",
             "etapejechoisismonnouveaumetier",
             "inprogress",
             9999
@@ -331,7 +331,7 @@ export class NavigationService implements OnInit {
             "J'ai identifié un métier qui m'intéresse.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jechoisismonnouveaumetier",
-            "Je choisis un métier qui m'intéresse.",
+            "Je choisis un métier qui m'intéresse",
             "etapejechoisismonnouveaumetier",
             "done",
             0
@@ -341,7 +341,7 @@ export class NavigationService implements OnInit {
             "Je ne peux pas encore passer à cette étape.",
             "btn ldb_btn_small ldb_btn_unavailable",
             "/beneficiaire/jemerenseignesurmonmetier",
-            "Je me renseigne sur mon métier.",
+            "Je me renseigne sur mon métier",
             "etapejemerenseignesurmonmetier",
             "unavailable",
             0
@@ -351,7 +351,7 @@ export class NavigationService implements OnInit {
             "Je ne me suis pas encore renseigné sur mon métier.",
             "btn ldb_btn_small ldb_btn_notdone",
             "/beneficiaire/jemerenseignesurmonmetier",
-            "Je me renseigne sur mon métier.",
+            "Je me renseigne sur mon métier",
             "etapejemerenseignesurmonmetier",
             "notdone",
             9999
@@ -361,7 +361,7 @@ export class NavigationService implements OnInit {
             "J'ai commencé à me renseigner sur mon métier.",
             "btn ldb_btn_small ldb_btn_inprogress",
             "/beneficiaire/jemerenseignesurmonmetier",
-            "Je me renseigne sur mon métier.",
+            "Je me renseigne sur mon métier",
             "etapejemerenseignesurmonmetier",
             "inprogress",
             9999
@@ -371,7 +371,7 @@ export class NavigationService implements OnInit {
             "Je me suis renseigné sur mon métier ou sais comment le faire.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jemerenseignesurmonmetier",
-            "Je me renseigne sur mon métier.",
+            "Je me renseigne sur mon métier",
             "etapejemerenseignesurmonmetier",
             "done",
             0
@@ -381,7 +381,7 @@ export class NavigationService implements OnInit {
             "Je ne peux pas encore passer à cette étape.",
             "btn ldb_btn_small ldb_btn_unavailable",
             "/beneficiaire/japprendsapresentermonprojet",
-            "J'apprends à présenter mon projet'.",
+            "J'apprends à présenter mon projet",
             "etapejapprendsapresentermonprojet",
             "unavailable",
             0
@@ -391,7 +391,7 @@ export class NavigationService implements OnInit {
             "Je n'ai pas encore appris à présenter mon projet.",
             "btn ldb_btn_small ldb_btn_notdone",
             "/beneficiaire/japprendsapresentermonprojet",
-            "J'apprends à présenter mon projet'.",
+            "J'apprends à présenter mon projet",
             "etapejapprendsapresentermonprojet",
             "notdone",
             9999
@@ -401,7 +401,7 @@ export class NavigationService implements OnInit {
             "J'ai commencé à apprendre à présenter mon projet.",
             "btn ldb_btn_small ldb_btn_inprogress",
             "/beneficiaire/japprendsapresentermonprojet",
-            "J'apprends à présenter mon projet'.",
+            "J'apprends à présenter mon projet",
             "etapejapprendsapresentermonprojet",
             "inprogress",
             9999
@@ -411,7 +411,7 @@ export class NavigationService implements OnInit {
             "J'ai appris à présenter mon projet.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/japprendsapresentermonprojet",
-            "J'apprends à présenter mon projet'.",
+            "J'apprends à présenter mon projet",
             "etapejapprendsapresentermonprojet",
             "done",
             0
@@ -421,7 +421,7 @@ export class NavigationService implements OnInit {
             "Je ne peux pas encore passer à cette étape.",
             "btn ldb_btn_small ldb_btn_unavailable",
             "/beneficiaire/jedeveloppeetactivemonreseau",
-            "Je développe et active mon réseau'.",
+            "Je développe et active mon réseau",
             "etapejedeveloppeetactivemonreseau",
             "unavailable",
             0
@@ -431,7 +431,7 @@ export class NavigationService implements OnInit {
             "Je n'ai pas encore développé et activé mon réseau.",
             "btn ldb_btn_small ldb_btn_notdone",
             "/beneficiaire/jedeveloppeetactivemonreseau",
-            "Je développe et active mon réseau'.",
+            "Je développe et active mon réseau",
             "etapejedeveloppeetactivemonreseau",
             "notdone",
             9999
@@ -441,7 +441,7 @@ export class NavigationService implements OnInit {
             "J'ai commencé à développer et activer mon réseau.",
             "btn ldb_btn_small ldb_btn_inprogress",
             "/beneficiaire/jedeveloppeetactivemonreseau",
-            "Je développe et active mon réseau'.",
+            "Je développe et active mon réseau",
             "etapejedeveloppeetactivemonreseau",
             "inprogress",
             9999
@@ -451,7 +451,7 @@ export class NavigationService implements OnInit {
             "Je sais comment développer et activer mon réseau.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jedeveloppeetactivemonreseau",
-            "Je développe et active mon réseau'.",
+            "Je développe et active mon réseau",
             "etapejedeveloppeetactivemonreseau",
             "done",
             0
@@ -461,7 +461,7 @@ export class NavigationService implements OnInit {
             "Je ne peux pas encore passer à cette étape.",
             "btn ldb_btn_small ldb_btn_unavailable",
             "/beneficiaire/jidentifiemessoutiens",
-            "J'identifie mes soutiens.",
+            "J'identifie mes soutiens",
             "etapejidentifiemessoutiens",
             "unavailable",
             0
@@ -471,7 +471,7 @@ export class NavigationService implements OnInit {
             "Je n'ai pas encore identifié les soutiens à mon projet.",
             "btn ldb_btn_small ldb_btn_notdone",
             "/beneficiaire/jidentifiemessoutiens",
-            "J'identifie mes soutiens.",
+            "J'identifie mes soutiens",
             "etapejidentifiemessoutiens",
             "notdone",
             9999
@@ -481,7 +481,7 @@ export class NavigationService implements OnInit {
             "J'ai commencé à identifier les soutiens à mon projet.",
             "btn ldb_btn_small ldb_btn_inprogress",
             "/beneficiaire/jidentifiemessoutiens",
-            "J'identifie mes soutiens.",
+            "J'identifie mes soutiens",
             "etapejidentifiemessoutiens",
             "inprogress",
             9999
@@ -491,7 +491,7 @@ export class NavigationService implements OnInit {
             "J'ai identifié les soutiens à mon projet ou sais comment le faire.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jidentifiemessoutiens",
-            "J'identifie mes soutiens.",
+            "J'identifie mes soutiens",
             "etapejidentifiemessoutiens",
             "done",
             0
