@@ -25,7 +25,12 @@
 
 <div *ngIf="this.dbuserinfoservice.userinfo.experience.modulejefaislepoint==='done'">
     <div class="ldb_elementbackground">
-        <app-bilantemoin></app-bilantemoin>
+        <div *ngIf="(this.bilanservice.bilan_disqualify.annihilates.beneficiaire.length + this.bilanservice.bilan_disqualify.annihilates.temoin.length)>0">
+            <app-bilandisqualify></app-bilandisqualify>
+        </div>
+        <div *ngIf="(this.bilanservice.bilan_disqualify.annihilates.beneficiaire.length + this.bilanservice.bilan_disqualify.annihilates.temoin.length)===0">
+            <app-bilantemoin></app-bilantemoin>
+        </div>
     </div>
     <div class="ldb_elementbackground">
         <div class="ldb_elementtextbold ldb_elementtext">

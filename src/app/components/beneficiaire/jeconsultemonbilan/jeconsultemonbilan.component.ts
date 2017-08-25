@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { TitleService } from './../../../services/title.service';
 import { NavigationService } from './../../../services/navigation.service';
 import { BilanService } from './../../../services/bilan.service';
+import { ReadwriteService } from './../../../services/readwrite.service';
+import { DbuserinfoService } from './../../../services/dbuserinfo.service';
 
 //PrimeNG
 import { 
@@ -25,7 +27,9 @@ export class JeconsultemonbilanComponent implements OnInit {
     constructor(
         public titleservice : TitleService,//used to set corresponding title
         public navigationservice : NavigationService,//used to find items of jefaislepoint
-        public bilanservice : BilanService//this one prepares the elements of the situation recap (bilan)
+        public bilanservice : BilanService,
+        public dbuserinfoservice : DbuserinfoService,
+        public readwriteservice : ReadwriteService//this one prepares the elements of the situation recap (bilan)
     ) {
         
     }
@@ -44,7 +48,7 @@ export class JeconsultemonbilanComponent implements OnInit {
 
     ngOnInit() {
         this.titleservice.titlesubject.next("Je consulte mon bilan");//sets title in title service to "Je consulte mon bilan" after half a second        
-        this.bilanservice.assesslevel();
+        setTimeout(this.bilanservice.assesslevel(),2000);
     }
     
 }

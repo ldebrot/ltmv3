@@ -20,8 +20,7 @@ export class BilanbeneficiaireComponent implements OnInit {
     ) { }
     
     ngOnInit() {
-        this.bilanservice.assesslevel();
-        this.bilanservice.setbilantemoin_currentitem('allmodules','beneficiaire');
+        this.bilanservice.setbilan_currentitem('allmodules','beneficiaire');
     }
     
 }

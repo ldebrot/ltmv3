@@ -20,8 +20,7 @@ export class BilantemoinComponent implements OnInit {
     ) { }
     
     ngOnInit() {
-        this.bilanservice.assesslevel();
-        this.bilanservice.setbilantemoin_currentitem('allmodules','temoin');
+        this.bilanservice.setbilan_currentitem('allmodules','temoin');
     }
     
 }

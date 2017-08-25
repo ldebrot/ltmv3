@@ -1,0 +1,15 @@
+<div class="ldb_elementbackground">
+    <div class=" ldb_elementtext ratiobeneficiairetemoin ldb_white_space">
+        <div class="ratiobeneficiairetemoin ldb_elementimagecontainer"><img [src]=temoingrayurl>vs.<img class="ldb_elementimagecentered" [src]=beneficiairegrayurl></div>
+        <div class="ldb_elementtextbold">Comparaison</div>
+        <div class="ldb_bilan_container ldb_bilan ldb_bilan_ratio">
+            <p-progressBar class="ldb_bilan_progressbar"
+            [showValue]="false" 
+            [value]="this.bilanservice.bilan_percentage.ratio.allmodules">
+        </p-progressBar>
+        <div class="ldb_bilan_infront">{{this.bilanservice.bilan_items.ratio.label[this.bilanservice.bilan_current.ratio.allmodules]}}</div>
+    </div>
+    <div class="ldb_aftercontainer"></div>
+    <div class=" ldb_elementtextsmall">{{this.bilanservice.bilan_items.ratio.message[this.bilanservice.bilan_current.ratio.allmodules]}}</div>
+</div>
+</div>

@@ -2,8 +2,14 @@
     <p-tabView>
         <p-tabPanel header="Aperçu" [selected]="true">
 
+            <div *ngIf="(this.bilanservice.bilan_disqualify.annihilates.beneficiaire.length + this.bilanservice.bilan_disqualify.annihilates.temoin.length)>0">
+                <app-bilandisqualify></app-bilandisqualify>
+            </div>
+            <div *ngIf="(this.bilanservice.bilan_disqualify.annihilates.beneficiaire.length + this.bilanservice.bilan_disqualify.annihilates.temoin.length)===0">
                 <app-bilantemoin></app-bilantemoin>
                 <app-bilanbeneficiaire></app-bilanbeneficiaire>
+                <app-bilanratio></app-bilanratio>                
+            </div>
             
         </p-tabPanel>
         <p-tabPanel header="Module par module" class="jeconsultemonbilan">
@@ -46,7 +52,7 @@
                                 <div class="jeconsultemonbilan_icon">
                                     <i [class]="bilanitem.iconclass"></i>
                                 </div>
-                                <div  class="jeconsultemonbilan_name ldb_elementtextsmall">
+                                <div  class="jeconsultemonbilan_name ldb_elementtextsmall" [class]="bilanitem.assignedto==='beneficiaire'? 'afairesoimeme' : 'afaireavecuntemoin'">
                                     {{bilanitem.name}}
                                 </div>
                                 <div class="jeconsultemonbilan_message ldb_elementtextsmall">

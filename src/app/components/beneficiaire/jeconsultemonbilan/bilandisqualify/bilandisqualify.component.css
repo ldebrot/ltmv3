@@ -1,0 +1,10 @@
+/* For scoping reasons, certain elements in this module are styled in the styles.css sheet */
+
+.bilandisqualify_name {
+    width:100%;
+    font-weight: bold;
+}
+
+.bilandisqualify_message {
+    width:100%;
+}

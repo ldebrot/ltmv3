@@ -109,7 +109,7 @@ export class DbuserinfoService {
                 this.userinfo.hasOwnProperty(key)
                 && inputobject.hasOwnProperty(key)//check if inputobject has this key as well
             ) {
-                console.log("both have key '"+key+"'");
+                //console.log("both have key '"+key+"'");
                 //loop through subkeys of userinfo object
                 let userinfosublevel:object = this.userinfo[key];//key as object
                 let subkeycount:number = 0;
@@ -126,7 +126,7 @@ export class DbuserinfoService {
                 if(subkeycount===0) {//this means they only have the key in common (therefore no common subkey)
                     this.userinfo[key] = inputobject[key];
                 } else {
-                    console.log("Saved "+subkeycount+" items in dbuserinfoservice!");
+                    //console.log("Saved "+subkeycount+" items in dbuserinfoservice!");
                 }
             }
         }

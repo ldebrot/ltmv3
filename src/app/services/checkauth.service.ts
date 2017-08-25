@@ -26,22 +26,11 @@ export class CheckauthService implements OnInit{
 
     //There are three available options: "not-connectd", "temoin" and "beneficiaire"
     //There can be only one value per path (because of the lack of IndexOf on IE...)
-    public paths:any = {
-        home : "not-connected",//=equivalent of www.blabla.com/"" or ""-path
-        signinup : "not-connected",
-        decouvrirlunchtime : "not-connected",
-        lesactus : "not-connected",
-        quisommesnous : "not-connected",
-        introuvable : "not-connected",
-        beneficiaire : "beneficiaire",
-        monplanning : "beneficiaire",
-        jefaislepoint : "beneficiaire",
-        jeconstruismonprojet: "beneficiaire",
-        jeconsultemonbilan : "beneficiaire",
-        jeprendsrendezvous :"beneficiaire",
-        jeprepapremarencontre: "beneficiaire",
-        jefaislesuivi: "beneficiaire"
+    public paths:any = { 
+        notconnected : ["","signinup","decouvrirlunchtime","lesactus","quisommesnous","introuvable"],
+        beneficiaire : ["beneficiaire","monplanning","jefaislepoint","jeconstruismonprojet","jeconstruismonprojet/:step","jeconsultemonbilan","jeprendsrendezvous","jepreparemarencontre","jefaislesuivi"]
     };
+    
 
     loggedIn : boolean= true;
 
@@ -51,7 +40,7 @@ export class CheckauthService implements OnInit{
             this.currentauthstate = this.dbuserinfoservice.userinfo.publicinfo.status;
         }else{
             //console.log("not connected");
-            this.currentauthstate = "not-connected";
+            this.currentauthstate = "notconnected";
         }
         console.log("currentauthstate: "+ this.currentauthstate);
     }
@@ -61,7 +50,6 @@ export class CheckauthService implements OnInit{
         //console.log(this.activatedroute.toString());
         //console.log("route.parent");
         //console.log(route);
-        if (route === "") { route = "home"; }//if route is set to "", set the path to "home" (as there could be no empty value "" for this route)
 
         const promise = new Promise(
             (resolve, reject) => {
@@ -70,7 +58,12 @@ export class CheckauthService implements OnInit{
                 this.updatecurrentauthstate ();
                 //console.log("route: "+route.replace("/",""));                
                 //console.log("this.paths[route]: "+this.paths[route]);
-                allow = this.paths[route]===this.currentauthstate ? true : false
+                console.log("route");
+                console.log(route);
+
+                for (let i = 0; i < this.paths[this.currentauthstate].length;i++) {
+                    if (this.paths[this.currentauthstate][i]===route) {allow = true;}                    
+                }
                 
                 /*TEMPORARY WITHOUT INTERNET
                 allow = true;
@@ -82,7 +75,7 @@ export class CheckauthService implements OnInit{
     }
 
     ngOnInit() {
-        this.currentauthstate = "not-connected";
+        this.currentauthstate = "notconnected";
     }
 
 }

@@ -59,6 +59,9 @@ export class SigninupComponent implements OnInit {
             break;
             case "auth/user-not-found" :
             errormessagefr = "Identifiant erroné."
+            break;
+            case "auth/network-request-failed" :
+            errormessagefr = "Problème de connexion Internet"
             break;            
             default :
             errormessagefr = "Il y a comme un souci..."

@@ -1,0 +1,34 @@
+<div class="ldb_elementbackground">
+    <div class=" ldb_elementtext disqualify ldb_white_space">
+        <div class="ratiobeneficiairetemoin ldb_elementimagecontainer"><i class="mdi mdi-36px mdi-block-helper disqualify"></i></div>
+        <div class="ldb_elementtextbold">Attention !</div>
+        <div *ngFor="let bilanitem of this.bilanservice.bilan_disqualify.annihilates.temoin">
+            <div *ngIf="bilanitem.message!=''">
+                <div  class="bilandisqualify_name ldb_elementtextsmall">
+                    {{bilanitem.name}}
+                </div>
+                <div class="bilandisqualify_message ldb_elementtextsmall">
+                    {{bilanitem.message}}
+                </div>
+                <div class="ldb_elementsinglebutton">
+                    <a [routerLink]="[bilanitem.route,bilanitem.step]" class="btn ldb_btn_small ldb_btn_primary">Je refais le point</a>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div *ngFor="let bilanitem of this.bilanservice.bilan_disqualify.annihilates.beneficiaire">
+            <div *ngIf="bilanitem.message!=''">
+                <div  class="bilandisqualify_name ldb_elementtextsmall">
+                    {{bilanitem.name}}
+                </div>
+                <div class="bilandisqualify_message ldb_elementtextsmall">
+                    {{bilanitem.message}}
+                </div>
+                <div class="ldb_elementsinglebutton">
+                    <a [routerLink]="[bilanitem.route,bilanitem.step]" class="btn ldb_btn_small ldb_btn_primary">Je refais le point</a>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>

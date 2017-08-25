@@ -1,5 +1,6 @@
 //Built-in
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 //PrimeNG
 import { ProgressBarModule, CheckboxModule, SelectButtonModule, SelectItem, ToggleButtonModule } from 'primeng/primeng';
 
@@ -63,7 +64,8 @@ export class JeconstruismonprojetComponent implements OnInit {
     constructor(
         public navigationservice: NavigationService,
         public dbuserinfoservice: DbuserinfoService,
-        public readwritebufferservice: ReadwritebufferService
+        public readwritebufferservice: ReadwritebufferService,
+        public activatedroute : ActivatedRoute
     ) {
         this.ouinon = [];
         this.ouinon.push({label:'OUI', value:'oui'})
@@ -74,6 +76,9 @@ export class JeconstruismonprojetComponent implements OnInit {
         this.setstepatbeginning();
         this.initiate();
         this.checkifstepvalid();
+        if (this.activatedroute.snapshot.params['step'].toString()!==""){
+            this.navigationservice.jeconstruismonprojetcurrentstep=Number(this.activatedroute.snapshot.params['step']);
+        }
     }
 
     ngOnDestroy() {
@@ -86,7 +91,7 @@ export class JeconstruismonprojetComponent implements OnInit {
     public initiate():void {
         for (let i = 0; i < Object.keys(this.localvalues).length; i++) {
             if (this.dbuserinfoservice.userinfo.experience[Object.keys(this.localvalues)[i]]!==undefined) {
-                console.log(Object.keys(this.localvalues)[i]);
+                //console.log(Object.keys(this.localvalues)[i]);
                 this.localvalues[Object.keys(this.localvalues)[i]]=this.dbuserinfoservice.userinfo.experience[Object.keys(this.localvalues)[i]];
             }
         }

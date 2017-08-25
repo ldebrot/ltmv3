@@ -145,10 +145,21 @@ i.mdi-ldb-primary {
     text-align: center;
 }
 
+.ratiobeneficiairetemoin {
+    color: #999;
+    text-align: center;
+}
+
+.disqualify {
+    color: #AA0000;
+    text-align: center;
+}
+
 /* Image element */
 
 .ldb_elementimagecontainer {
     width : 100%;
+    padding-top:1%;
 }
 
 /* White circle element in enumerations */
@@ -350,6 +361,10 @@ input.ng-invalid.ng-touched {
 
 .ldb_bilan_temoin .ui-progressbar-value {
     background:#CAF !important;
+}
+
+.ldb_bilan_ratio .ui-progressbar-value {
+    background:#DDD !important;
 }
 
 /* BOOTSTRAP EXTENSION - BUTTON COLORS */

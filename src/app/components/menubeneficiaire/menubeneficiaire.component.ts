@@ -109,8 +109,8 @@ export class MenuBeneficiaireComponent implements OnInit, OnDestroy {
         for (let i=0; i < this.menuitems.length;i++) {
             //console.log(this.menuitems[i].title +"vs"+ newtitle);
             if (this.menuitems[i].title === newtitle) {//checks which route corresponds to new title
-                console.log("found right title!");
-                console.log("this.menuitems[i].route: " + this.menuitems[i].route);
+                //console.log("found right title!");
+                //console.log("this.menuitems[i].route: " + this.menuitems[i].route);
                 this.myrouter.navigate([this.menuitems[i].route]);//reroutes to route
             }
         }        

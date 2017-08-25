@@ -39,11 +39,10 @@ const appRoutes: Routes = [
         { path: 'jefaislepoint', canActivate: [authGuardService], component: JefaislepointComponent},
         { path: 'jeconsultemonbilan', canActivate: [authGuardService], component: JeconsultemonbilanComponent},
         { path: 'jeprendsrendezvous', canActivate: [authGuardService], component: JeprendsrendezvousComponent},
-        //TEMPORARY
-        //{ path: 'jeprendsrendezvous', canActivate: [authGuardService], component: LesactusComponent},
         { path: 'jeprepapremarencontre', canActivate: [authGuardService], component: JepreparemarencontreComponent},
         { path: 'jefaislesuivi', canActivate: [authGuardService], component: JefaislesuiviComponent},
-        { path: 'jeconstruismonprojet', canActivate: [authGuardService], component: JeconstruismonprojetComponent}
+        { path: 'jeconstruismonprojet', canActivate: [authGuardService], component: JeconstruismonprojetComponent},
+        { path: 'jeconstruismonprojet/:step', canActivate: [authGuardService], component: JeconstruismonprojetComponent}
     ]},
     { path: '**', redirectTo: '/introuvable'}
 ]

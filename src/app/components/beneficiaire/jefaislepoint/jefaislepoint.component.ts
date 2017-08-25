@@ -17,8 +17,7 @@ export class JefaislepointComponent implements OnInit {
     constructor(
         public titleservice:TitleService,
         public navigationservice: NavigationService
-
-    ) {
+        ) {
     }
     
     ngOnInit() {

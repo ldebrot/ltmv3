@@ -1,14 +1,15 @@
-<div class=" ldb_elementtext afaireavecuntemoin">
-    <div class="afairesoimeme ldb_elementimagecontainer"><img class="ldb_elementimagecentered" [src]=temoinurl></div>
-    <div class="ldb_elementtextbold">Utilité d'une rencontre avec un témoin</div>
-    <div class="ldb_bilan_container ldb_bilan ldb_bilan_temoin">
-        <p-progressBar class="ldb_bilan_progressbar"
-        [showValue]="false" 
-        [value]="this.bilanservice.bilan_percentage.temoin.allmodules">
-        </p-progressBar>
-        <div class="ldb_bilan_infront">{{this.bilanservice.bilan_items.temoin.label[this.bilanservice.bilan_current.temoin.allmodules]}}</div>
+<div class="ldb_elementbackground">
+    <div class=" ldb_elementtext afaireavecuntemoin ldb_white_space">
+        <div class="afairesoimeme ldb_elementimagecontainer "><img [src]=temoinurl></div>
+        <div class="ldb_elementtextbold">Utilité d'une rencontre avec un grand témoin</div>
+        <div class="ldb_bilan_container ldb_bilan ldb_bilan_temoin">
+            <p-progressBar class="ldb_bilan_progressbar"
+            [showValue]="false" 
+            [value]="this.bilanservice.bilan_percentage.temoin.allmodules">
+            </p-progressBar>
+            <div class="ldb_bilan_infront">{{this.bilanservice.bilan_items.temoin.label[this.bilanservice.bilan_current.temoin.allmodules]}}</div>
+        </div>
+        <div class="ldb_aftercontainer"></div>
+        <div class=" ldb_elementtextsmall">{{this.bilanservice.bilan_items.temoin.message[this.bilanservice.bilan_current.temoin.allmodules]}}</div>
     </div>
-    <div class="ldb_aftercontainer"></div>
-    <div class=" ldb_elementtextsmall">{{this.bilanservice.bilan_items.temoin.message[this.bilanservice.bilan_current.temoin.allmodules]}}</div>
-    {{this.bilanservice.bilan_percentage.temoin.allmodules}}
 </div>

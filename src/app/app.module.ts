@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 //Modules
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -63,6 +64,8 @@ import { JeconstruismonprojetComponent } from './components/beneficiaire/jefaisl
 import { JeconsultemonbilanComponent } from './components/beneficiaire/jeconsultemonbilan/jeconsultemonbilan.component';
 import { BilantemoinComponent } from './components/beneficiaire/jeconsultemonbilan/bilantemoin/bilantemoin.component';
 import { BilanbeneficiaireComponent } from './components/beneficiaire/jeconsultemonbilan/bilanbeneficiaire/bilanbeneficiaire.component';
+import { BilanratioComponent } from './components/beneficiaire/jeconsultemonbilan/bilanratio/bilanratio.component';
+import { BilandisqualifyComponent } from './components/beneficiaire/jeconsultemonbilan/bilandisqualify/bilandisqualify.component';
 
 export const firebaseconfig = {
     apiKey: "AIzaSyCdWffhlLWk5olASIDHMw0Y7rzXsc_Sxu8",
@@ -100,7 +103,9 @@ firebase.initializeApp(firebaseconfig);
     JeconstruismonprojetComponent,
     JeconsultemonbilanComponent,
     BilantemoinComponent,
-    BilanbeneficiaireComponent
+    BilanbeneficiaireComponent,
+    BilanratioComponent,
+    BilandisqualifyComponent
     ],
     imports: [
     FormsModule,
@@ -121,6 +126,7 @@ firebase.initializeApp(firebaseconfig);
     MenubarModule,
     TabMenuModule,
     RoutingService,
+    RouterModule,
     ButtonModule,
     ],
     providers: [

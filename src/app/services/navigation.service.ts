@@ -198,7 +198,7 @@ export class NavigationService implements OnInit {
         let maxemergencylevel:number = 0;
         let itemnumber:number = 0;
         for (let i = 0; i < this.monplanningitems.length; i++) {
-            console.log(this.monplanningitems[i].atext+"level : "+this.monplanningitems[i].emergencylevel);
+            //console.log(this.monplanningitems[i].atext+"level : "+this.monplanningitems[i].emergencylevel);
             if (this.monplanningitems[i].emergencylevel >= maxemergencylevel) {
                 maxemergencylevel=this.monplanningitems[i].emergencylevel;
                 itemnumber = i;
@@ -548,8 +548,6 @@ export class NavigationService implements OnInit {
         //console.log(this.dbuserinfoservice.userinfo.experience);
         for (let i = 0; i < this.jefaislepointitemrepository.length; i++) {
             if (this.dbuserinfoservice.userinfo.experience[this.jefaislepointitemrepository[i].formodule]==this.jefaislepointitemrepository[i].ifvalue) {
-                console.log("here!");
-                //Here, before pushing it to the jefaislepointitems, you can enhance them, check whether there are pending issues (meeting to prepare, etc.)
                 this.jefaislepointitems.push(this.jefaislepointitemrepository[i]);
             }
         }
