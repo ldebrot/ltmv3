@@ -1,3 +1,4 @@
+import { JedeviensunproComponent } from './../components/beneficiaire/jedeviensunpro/jedeviensunpro.component';
 //Services:
 import { authGuardService } from './authguard.service';
 
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
         { path: 'jefaislesuivi', canActivate: [authGuardService], component: JefaislesuiviComponent},
         { path: 'jeconstruismonprojet', canActivate: [authGuardService], component: JeconstruismonprojetComponent},
         { path: 'jeconstruismonprojet/:step', canActivate: [authGuardService], component: JeconstruismonprojetComponent}
+        { path: 'jedeviensunpro', canActivate: [authGuardService], component: JedeviensunproComponent},
     ]},
     { path: '**', redirectTo: '/introuvable'}
 ]

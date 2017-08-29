@@ -66,6 +66,7 @@ import { BilantemoinComponent } from './components/beneficiaire/jeconsultemonbil
 import { BilanbeneficiaireComponent } from './components/beneficiaire/jeconsultemonbilan/bilanbeneficiaire/bilanbeneficiaire.component';
 import { BilanratioComponent } from './components/beneficiaire/jeconsultemonbilan/bilanratio/bilanratio.component';
 import { BilandisqualifyComponent } from './components/beneficiaire/jeconsultemonbilan/bilandisqualify/bilandisqualify.component';
+import { JedeviensunproComponent } from './components/beneficiaire/jedeviensunpro/jedeviensunpro.component';
 
 export const firebaseconfig = {
     apiKey: "AIzaSyCdWffhlLWk5olASIDHMw0Y7rzXsc_Sxu8",
@@ -105,7 +106,8 @@ firebase.initializeApp(firebaseconfig);
     BilantemoinComponent,
     BilanbeneficiaireComponent,
     BilanratioComponent,
-    BilandisqualifyComponent
+    BilandisqualifyComponent,
+    JedeviensunproComponent
     ],
     imports: [
     FormsModule,

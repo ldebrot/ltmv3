@@ -28,7 +28,7 @@ export class CheckauthService implements OnInit{
     //There can be only one value per path (because of the lack of IndexOf on IE...)
     public paths:any = { 
         notconnected : ["","signinup","decouvrirlunchtime","lesactus","quisommesnous","introuvable"],
-        beneficiaire : ["beneficiaire","monplanning","jefaislepoint","jeconstruismonprojet","jeconstruismonprojet/:step","jeconsultemonbilan","jeprendsrendezvous","jepreparemarencontre","jefaislesuivi"]
+        beneficiaire : ["beneficiaire","monplanning","jefaislepoint","jeconstruismonprojet","jeconstruismonprojet/:step","jeconsultemonbilan","jeprendsrendezvous","jepreparemarencontre","jefaislesuivi","jedeviensunpro"]
     };
     
 
@@ -46,23 +46,21 @@ export class CheckauthService implements OnInit{
     }
 
     isAuthenticated (route) {
-        //console.log("this.activatedroute");
-        //console.log(this.activatedroute.toString());
-        //console.log("route.parent");
-        //console.log(route);
-
         const promise = new Promise(
             (resolve, reject) => {
                 let allow : boolean=false;
                 
                 this.updatecurrentauthstate ();
-                //console.log("route: "+route.replace("/",""));                
-                //console.log("this.paths[route]: "+this.paths[route]);
-                console.log("route");
-                console.log(route);
+                //console.log("route");
+                //console.log(route);
 
                 for (let i = 0; i < this.paths[this.currentauthstate].length;i++) {
-                    if (this.paths[this.currentauthstate][i]===route) {allow = true;}                    
+                    if (this.paths[this.currentauthstate][i]===route) {
+                        allow = true;
+                        //console.log("route allowed !");
+                    }else{
+                        //console.log("not allowed : "+this.paths[this.currentauthstate][i]);
+                    }              
                 }
                 
                 /*TEMPORARY WITHOUT INTERNET
