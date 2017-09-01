@@ -5,10 +5,11 @@ import * as firebase from 'firebase';
 
 @Injectable()
 export class ReadwriteService {
-    
+
     constructor(
         public dbuserinfoservice: DbuserinfoService
     ) {}
+
 
     public getcurrentuserinfo():any{
         let ref:string = "users/"+ firebase.auth().currentUser.uid+"/";
@@ -64,4 +65,45 @@ export class ReadwriteService {
             console.log("readwrite: error happened: "+error.message);
         });
     }
+
+    public simplyset(ref:string,value:any):any{
+        return firebase.database().ref(ref).set(value);
+    }
+
+    public simplyonce (ref:string,type:string):any{
+        return firebase.database().ref(ref).once(type)
+        .then(function(this, snapshot) {
+            return snapshot.val();
+        });
+    }
+
+    public getcurrentusermeetings(status:string):any{
+        //make a list of all meeting ids of the 
+        let temp_meetings : object = {};
+        let temp_meetinglist : string[] = [];
+        let temp_promises : any[] = [];
+        for (let i = 0; i < Object.keys(this.dbuserinfoservice.userinfo.meetings).length; i++){
+            if (this.dbuserinfoservice.userinfo.meetings[Object.keys(this.dbuserinfoservice.userinfo.meetings)[i]].status===status){
+                temp_meetinglist.push(Object.keys(this.dbuserinfoservice.userinfo.meetings)[i]);
+            }
+        };
+
+        //prepare promises used for firebase operations
+        for (let i:number = 0; i < temp_meetinglist.length;i++){
+            temp_promises.push(this.simplyonce("/meetings/"+temp_meetinglist[i],'value'));
+        }
+        console.log("temp_promises");
+        console.log(temp_promises);
+        //Launch all firebase operations
+        return Promise.all(temp_promises)
+        .then((input)=>{
+            //input holds firebase snapshot in an array
+            console.log(input);
+            console.log("done");
+            return input;
+        });
+    }
+
+
+
 }

@@ -1,3 +1,4 @@
+import { MeetingService } from './services/meeting.service';
 import { RouterModule } from '@angular/router';
 //Modules
 import { NgModule } from '@angular/core';
@@ -143,6 +144,7 @@ firebase.initializeApp(firebaseconfig);
         TitleService,//service which stores the current title
         BilanService,//This service handles the situation recap ("bilan") of the jefaislepoint module
         FakedbuserinfoService,
+        MeetingService,//This service handles the meetings based on dbuserinfo
         NavigationService//handles navigation modules
     ],
     bootstrap: [AppComponent]

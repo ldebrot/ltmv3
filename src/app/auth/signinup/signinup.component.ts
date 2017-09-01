@@ -9,6 +9,8 @@ import { FirebaseauthService } from './../../services/firebaseauth.service';//Fi
 import { TitleService } from './../../services/title.service';//title handling service
 import { ReadwriteService } from './../../services/readwrite.service';//handles read and write operations with Firebase
 import { DbuserinfoService } from './../../services/dbuserinfo.service';//handles user info operations with Firebase
+import { MeetingService } from './../../services/meeting.service';//This service handles the meetings based on dbuserinfo
+ 
 //Graphic
 import { 
     MessagesModule,
@@ -31,7 +33,8 @@ export class SigninupComponent implements OnInit {
         public router : Router,
         public titleservice: TitleService,
         public readwriteservice:ReadwriteService,
-        public dbuserinfoservice:DbuserinfoService
+        public dbuserinfoservice:DbuserinfoService,
+        public meetingservice:MeetingService
     ) {
         setTimeout(function (){titleservice.titlesubject.next("Se connecter");},500);//sets title in title service to "Se connecter" after half a second
     }
@@ -88,6 +91,7 @@ export class SigninupComponent implements OnInit {
             (response) => {
                 this.firebaseauth.setToken();
                 console.log("signinup: firebase signin successful");
+                this.meetingservice.getcurrentusermeetings();
                 this.readwriteservice.getcurrentuserinfo()
                 .then ((userinfo)=> {
                     this.dbuserinfoservice.integrate(userinfo)

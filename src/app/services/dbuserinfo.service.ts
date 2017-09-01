@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 @Injectable()
 export class DbuserinfoService {
 
+    public currentuserid : string;
     private meetings: object;
     private privateinfo: object;
     private publicinfo: object;

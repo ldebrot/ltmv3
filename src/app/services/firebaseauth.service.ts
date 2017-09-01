@@ -5,6 +5,11 @@ import * as firebase from 'firebase';
 export class FirebaseauthService {
     token : string = "";
 
+    constructor(
+    ){
+
+    }
+
     signupUser(email: string, password: string) {
         return firebase.auth().createUserWithEmailAndPassword(email, password);//promise is returned to component which uses method
     }

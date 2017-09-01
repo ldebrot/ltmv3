@@ -36,15 +36,30 @@
         <div class="ldb_elementtextbold ldb_elementtext">
             Je prends contact :
         </div>
+        <div class="ldb_elementsinglebutton">
+            <a (click)="this.meetingservice.tryme_createnew()" class="btn ldb_btn_small ldb_btn_primary">Create new</a>
+        </div>
+        <div class="ldb_elementsinglebutton">
+            <a class="btn ldb_btn_small ldb_btn_primary">J'invite quelqu'un à devenir témoin</a>
+        </div>
+        <div class="ldb_elementsinglebutton">
+            <a class="btn ldb_btn_small ldb_btn_primary">Je contacte un témoin Lunchtime</a>
+        </div>
     </div>
     <div class="ldb_elementbackground">
         <div class="ldb_elementtextbold ldb_elementtext">
             Rencontre à préparer :
         </div>
+        <div class="ldb_elementsinglebutton">
+            <a class="btn ldb_btn_small ldb_btn_primary">Je prépare ma rencontre</a>
+        </div>
     </div>
     <div class="ldb_elementbackground">
         <div class="ldb_elementtextbold ldb_elementtext">
-            invitations en cours :
+            J'ai {{this.meetingservice.meetings.countbystep.invitationsent}} {{this.singulierpluriel(this.meetingservice.meetings.countbystep.invitationsent,"invitation","invitations")}} en cours :
+        </div>
+        <div class="ldb_elementsinglebutton">
+            <a class="btn ldb_btn_small ldb_btn_primary">Je consulte mes invitations</a>
         </div>
     </div>
 </div>
