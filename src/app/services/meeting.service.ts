@@ -10,6 +10,7 @@ import { OnInit, Injectable } from '@angular/core';
 import { meetingtypeitem } from './meetingtype.model';
 import { ReadwriteService } from './readwrite.service';
 import { meetingitem } from './meeting.model';
+import { CommonService } from './common.service';
 
 //Firebase
 
@@ -18,9 +19,13 @@ import { meetingitem } from './meeting.model';
 export class MeetingService implements OnInit{
     
     public meetings : any;
+    public meetingparameters = {
+        maxinvitations : 3
+    }
 
     constructor(
-        public readwriteservice:ReadwriteService
+        public readwriteservice:ReadwriteService,
+        public commonservice:CommonService
     ) {
         
     }
@@ -43,13 +48,35 @@ export class MeetingService implements OnInit{
         console.log("this.meetings");
         
     }
-    
-    public createnew(actionname:string,creatoruids:object,participantuids:object,date:string,address:string):void {
+
+
+    public setdeadline(meetingtypeid:number,meetingdate:string):string {
+        let deadlinevalue:number = this.meetingtypes[meetingtypeid].maximumduration
+        //remember that the meetingdate is saved as follows : YYYYMMDDHHmm
+        let temp_deadline:string;
+        let temp_meetingdatematrix = this.commonservice.getdatematrix(meetingdate);
+        let temp_currentdateinmilliseconds = Date.now();
+        if (deadlinevalue===0){
+            //if zero : date of meeting
+            temp_deadline = meetingdate;
+        } else if (deadlinevalue > 0) {
+            //if positive : count down (34 = 34 hours count-down ==> dead line = now + 34 hours )
+            temp_deadline = this.commonservice.getformatteddate(temp_currentdateinmilliseconds + (deadlinevalue*60*1000));
+        } else if (deadlinevalue < 0) {
+            //if negative : date of the availability - this amount = deadline (-72 => dead line = date of meeting - 72 hours)
+            temp_deadline = this.commonservice.getformatteddate(this.commonservice.getdatematrix(meetingdate).inmilliseconds - (deadlinevalue*60*1000));
+        }
+        return temp_deadline;
+    }
+
+    public createnew(actionname:string,creatoruids:object,participantuids:object,meetingdate:string,address:string):any {
         let temp_id:number = this.createid();
         let temp_step:string = "";
+        let temp_deadline:string = "";
         for (let i = 0; i < this.meetingtypes.length; i++) {
             if (this.meetingtypes[i].name===actionname) {
                 temp_step = this.meetingtypes[i].afterstep;
+                temp_deadline = this.setdeadline(i,meetingdate);
             }
         }
         let temp_meeting = new meetingitem (
@@ -57,14 +84,15 @@ export class MeetingService implements OnInit{
             temp_step,
             creatoruids,
             participantuids,
-            date,
+            meetingdate,
+            temp_deadline,
             address
         )
         let temp_updates = {};
         let temp_date = Date.now();
         let temp_meetingobject = {created:temp_date, status:"creator"};
         temp_updates["/users/"+firebase.auth().currentUser.uid+"/meetings/"+temp_id]=temp_meetingobject;
-        firebase.database().ref().update(temp_updates)
+        return firebase.database().ref().update(temp_updates)
         .then(()=> {
             temp_updates={};
             temp_updates["/meetings/"+temp_id]=temp_meeting;
@@ -84,7 +112,10 @@ export class MeetingService implements OnInit{
     }
 
     public tryme_createnew():void {
-        this.createnew("invitationcreate",{bvomnxmapRSAXBDE05Gh5TU3odj1:"okay"},{YDggrswjcIfWmrGYNOdh6fBThI12:"okay"},"1709301230","9, rue du Rhin, 75010 PARIS");
+        this.createnew("invitationcreate",{bvomnxmapRSAXBDE05Gh5TU3odj1:"okay"},{YDggrswjcIfWmrGYNOdh6fBThI12:"okay"},"201710301230","9, rue du Rhin, 75010 PARIS")
+        .then(()=>{
+            setTimeout(()=>{this.getcurrentusermeetings();},5000);
+        });
     }
 
     public getcurrentusermeetings():void {

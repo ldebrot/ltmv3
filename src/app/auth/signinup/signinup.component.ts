@@ -75,7 +75,7 @@ export class SigninupComponent implements OnInit {
 
     //tryme just testing stuff:
     public tryme():void {
-        setTimeout(()=>{this.router.navigate(["beneficiaire/monplanning"]);},2000);
+        this.readwriteservice.tryme();
     }
 
     //FUnction triggered when user clicks on sign in
@@ -91,16 +91,20 @@ export class SigninupComponent implements OnInit {
             (response) => {
                 this.firebaseauth.setToken();
                 console.log("signinup: firebase signin successful");
-                this.meetingservice.getcurrentusermeetings();
+                /*
                 this.readwriteservice.getcurrentuserinfo()
-                .then ((userinfo)=> {
-                    this.dbuserinfoservice.integrate(userinfo)
+                .then ((snapshot)=>{
+                    console.log("here we are again!");
+                    console.log(snapshot);
+                    this.dbuserinfoservice.integrate(snapshot);
+                    this.meetingservice.getcurrentusermeetings();
                     let hellomsg:string = "Bonjour "+this.dbuserinfoservice.userinfo.publicinfo.firstname;
                     this.errormsg = [];
                     this.errormsg.push({severity:'success', summary:'Connexion', detail:hellomsg});
                     //console.log("this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status] = "+ this.dbuserinfoservice.userinfo.publicinfo.status +")");
                     setTimeout(()=>{this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);},1);//go to main after logging in
                 });
+                */
             }
         )
         .catch(

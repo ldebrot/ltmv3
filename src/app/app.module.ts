@@ -1,4 +1,3 @@
-import { MeetingService } from './services/meeting.service';
 import { RouterModule } from '@angular/router';
 //Modules
 import { NgModule } from '@angular/core';
@@ -37,6 +36,8 @@ import { ReadwritebufferService } from './services/readwritebuffer.service';
 import { FakedbuserinfoService } from './services/fakedbuserinfo.service';//TEMPORARY serivce filling in dbuserinfo with a data set (for offline moments...)
 import { NavigationService } from './services/navigation.service';//handles navigation modules
 import { BilanService } from './services/bilan.service';//This service handles the situation recap ("bilan") of the jefaislepoint module
+import { CommonService } from './services/common.service';
+import { MeetingService } from './services/meeting.service';
 
 //Components
 import { AppComponent } from './app.component';
@@ -144,6 +145,7 @@ firebase.initializeApp(firebaseconfig);
         TitleService,//service which stores the current title
         BilanService,//This service handles the situation recap ("bilan") of the jefaislepoint module
         FakedbuserinfoService,
+        CommonService,//This services provides handy functions for various situations
         MeetingService,//This service handles the meetings based on dbuserinfo
         NavigationService//handles navigation modules
     ],

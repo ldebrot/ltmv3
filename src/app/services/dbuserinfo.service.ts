@@ -105,6 +105,8 @@ export class DbuserinfoService {
     //This function integrates the values passed in the inputobject into the userinfo object, which is available as a service. The inputobject usually comes from firebase.
     public integrate(inputobject:object):void {
         //loop through keys of userinfo object
+        console.log("here I am!");
+        console.log(inputobject);
         for (var key in this.userinfo) {
             if (
                 this.userinfo.hasOwnProperty(key)

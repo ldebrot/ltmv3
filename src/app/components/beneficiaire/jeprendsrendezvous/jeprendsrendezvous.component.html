@@ -34,21 +34,27 @@
     </div>
     <div class="ldb_elementbackground">
         <div class="ldb_elementtextbold ldb_elementtext">
+            <a (click)="this.meetingservice.tryme_createnew()" class="btn ldb_btn_small ldb_btn_primary">create new</a>
+        </div>
+    </div>
+    <div class="ldb_elementbackground">
+        <div class="ldb_elementtextbold ldb_elementtext">
             Je prends contact :
         </div>
-        <div class="ldb_elementsinglebutton">
-            <a (click)="this.meetingservice.tryme_createnew()" class="btn ldb_btn_small ldb_btn_primary">Create new</a>
-        </div>
-        <div class="ldb_elementsinglebutton">
+        <div *ngIf="this.meetingservice.meetings.countbystep.invitationsent<this.meetingservice.meetingparameters.maxinvitations" class="ldb_elementsinglebutton">
             <a class="btn ldb_btn_small ldb_btn_primary">J'invite quelqu'un à devenir témoin</a>
+        </div>
+        <div *ngIf="this.meetingservice.meetings.countbystep.invitationsent>=this.meetingservice.meetingparameters.maxinvitations" class="ldb_elementsinglebutton">
+            <div class="ldb_elementtextred ldb_elementtextsmall">
+                J'ai atteint le maximum d'invitations à envoyer. Je dois attendre la confirmation d'un témoin ou l'expiration d'une invitation.
+            </div>
         </div>
         <div class="ldb_elementsinglebutton">
             <a class="btn ldb_btn_small ldb_btn_primary">Je contacte un témoin Lunchtime</a>
         </div>
     </div>
     <div class="ldb_elementbackground">
-        <div class="ldb_elementtextbold ldb_elementtext">
-            Rencontre à préparer :
+        <div class="ldb_elementtextbold ldb_elementtext" [innerText]="this.meetingservice.meetings.countbystep.invitationsent">
         </div>
         <div class="ldb_elementsinglebutton">
             <a class="btn ldb_btn_small ldb_btn_primary">Je prépare ma rencontre</a>
@@ -56,7 +62,7 @@
     </div>
     <div class="ldb_elementbackground">
         <div class="ldb_elementtextbold ldb_elementtext">
-            J'ai {{this.meetingservice.meetings.countbystep.invitationsent}} {{this.singulierpluriel(this.meetingservice.meetings.countbystep.invitationsent,"invitation","invitations")}} en cours :
+            J'ai {{this.meetingservice.meetings.countbystep.invitationsent}} {{this.commonservice.singulierpluriel(this.meetingservice.meetings.countbystep.invitationsent,"invitation","invitations")}} en cours :
         </div>
         <div class="ldb_elementsinglebutton">
             <a class="btn ldb_btn_small ldb_btn_primary">Je consulte mes invitations</a>

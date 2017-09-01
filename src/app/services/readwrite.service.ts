@@ -17,6 +17,7 @@ export class ReadwriteService {
         console.log("userprefix:" + ref);
         return firebase.database().ref(ref).once('value')
         .then(function(snapshot) {
+            console.log("GETCURRENTUSERINFO once");
             return snapshot.val();
         })
         .catch(function(error) {
@@ -24,12 +25,31 @@ export class ReadwriteService {
         });
     }
 
+
+
+    public tryme():any{
+        let ref:string = "users/"+ firebase.auth().currentUser.uid+"/";
+        console.log("GETCURRENTUSERINFO");
+        console.log("userprefix:" + ref);
+        let momo : any;
+        let mumu = firebase.database().ref(ref).on('value', function(snapshot) {
+            console.log("snapshot.val()");
+            console.log(snapshot.val());
+            momo = snapshot.val();
+        });
+        console.log("momo");
+        console.log(momo);
+        console.log("mumu");
+        console.log(mumu);
+    }
+
+    
     public readcurrentuser(ref:string,child:string):any{
         let userprefix:string = "users/"+ firebase.auth().currentUser.uid+"/";
         console.log("READCURRENTUSER");
         console.log("userprefix + ref:" + userprefix + ref);
         console.log("child:" + child);
-        return firebase.database().ref(userprefix + ref).once('value')
+        return firebase.database().ref(userprefix + ref).once ('value')
         .then(function(snapshot) {            
             if (child !== "") {
                 console.log("get child...");
@@ -82,25 +102,27 @@ export class ReadwriteService {
         let temp_meetings : object = {};
         let temp_meetinglist : string[] = [];
         let temp_promises : any[] = [];
-        for (let i = 0; i < Object.keys(this.dbuserinfoservice.userinfo.meetings).length; i++){
-            if (this.dbuserinfoservice.userinfo.meetings[Object.keys(this.dbuserinfoservice.userinfo.meetings)[i]].status===status){
-                temp_meetinglist.push(Object.keys(this.dbuserinfoservice.userinfo.meetings)[i]);
-            }
-        };
+        return this.getcurrentuserinfo()
+        .then ((userinfo)=> {
+            this.dbuserinfoservice.integrate(userinfo);
+            for (let i = 0; i < Object.keys(this.dbuserinfoservice.userinfo.meetings).length; i++){
+                if (this.dbuserinfoservice.userinfo.meetings[Object.keys(this.dbuserinfoservice.userinfo.meetings)[i]].status===status){
+                    temp_meetinglist.push(Object.keys(this.dbuserinfoservice.userinfo.meetings)[i]);
+                }
+            };
 
-        //prepare promises used for firebase operations
-        for (let i:number = 0; i < temp_meetinglist.length;i++){
-            temp_promises.push(this.simplyonce("/meetings/"+temp_meetinglist[i],'value'));
-        }
-        console.log("temp_promises");
-        console.log(temp_promises);
-        //Launch all firebase operations
-        return Promise.all(temp_promises)
-        .then((input)=>{
-            //input holds firebase snapshot in an array
-            console.log(input);
-            console.log("done");
-            return input;
+            //prepare promises used for firebase operations
+            for (let i:number = 0; i < temp_meetinglist.length;i++){
+                temp_promises.push(this.simplyonce("/meetings/"+temp_meetinglist[i],'value'));
+            }
+            //Launch all firebase operations
+            return Promise.all(temp_promises)
+            .then((input)=>{
+                //input holds firebase snapshot in an array
+                console.log("done! Input : ");
+                console.log(input);
+                return input;
+            });
         });
     }
 

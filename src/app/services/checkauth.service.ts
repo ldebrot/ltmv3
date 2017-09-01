@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 //This service checks whether the route path is accessible according to the current auth state (whether the user is connected and if so, as a temoin or a benficiaire )
 
 //Built-in stuff:
@@ -17,7 +18,8 @@ export class CheckauthService implements OnInit{
     
     constructor(
         private dbuserinfoservice : DbuserinfoService,
-        private activatedroute : ActivatedRoute
+        private activatedroute : ActivatedRoute,
+        private router:Router
     ) {
         
     }
@@ -67,6 +69,10 @@ export class CheckauthService implements OnInit{
                 allow = true;
                 */
                 resolve(allow);
+                if (!allow) {
+                    //setTimeout(()=>{this.router.navigate(['/']);},1000);
+                    this.router.navigate(['/']);
+                }
             }
         )
         return promise;
