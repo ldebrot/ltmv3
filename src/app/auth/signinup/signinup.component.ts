@@ -103,11 +103,13 @@ export class SigninupComponent implements OnInit, OnDestroy {
                 this.readwriteservice.getcurrentuserinfo();
                 this.firebaseitemsubscription = this.readwriteservice.firebaseitem.subscribe(snapshot=>{
                     this.dbuserinfoservice.integrate(snapshot);
-                    this.meetingservice.getcurrentusermeetings("creator");
-                    let hellomsg:string = "Bonjour "+this.dbuserinfoservice.userinfo.publicinfo.firstname;
-                    this.errormsg = [];
-                    this.errormsg.push({severity:'success', summary:'Connexion', detail:hellomsg});
-                    setTimeout(()=>{this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);},500);//go to main after logging in
+                    this.meetingservice.getcurrentusermeetings("creator")
+                    .then(()=>{
+                        let hellomsg:string = "Bonjour "+this.dbuserinfoservice.userinfo.publicinfo.firstname;
+                        this.errormsg = [];
+                        this.errormsg.push({severity:'success', summary:'Connexion', detail:hellomsg});
+                        setTimeout(()=>{this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);},500);//go to main after logging in
+                    });
                 });
             }
         )
@@ -124,9 +126,10 @@ export class SigninupComponent implements OnInit, OnDestroy {
 
     //FUnction triggered when user clicks on sign up
     onSignup(form: NgForm) {
+        this.dbuserinfoservice.userinfo.publicinfo.firstname = form.value.signupfirstname;
+        this.dbuserinfoservice.userinfo.publicinfo.surname = form.value.signupsurname;
+        this.dbuserinfoservice.userinfo.privateinfo.email = form.value.signupemail;
         const email = form.value.signupemail;
-        const firstname = form.value.signupfirstname;
-        const surname = form.value.signupsurname;
         const password = form.value.signuppassword;
         this.firebaseauthservice.signupUser(email, password)
         .then(
@@ -135,15 +138,14 @@ export class SigninupComponent implements OnInit, OnDestroy {
                 this.errormsg.push({severity:'success', summary:'Création de compte', detail:response});
                 this.firebaseauthservice.setToken();
                 console.log("signinup: firebase signup successful")
-                //console.log(response);
-                this.readwriteservice.registercurrentuser(firstname,surname);
-/*
-                this.firebaseitemsubscription = this.readwriteservice.firebaseitem.subscribe(snapshot=>{
-                    this.dbuserinfoservice.integrate(snapshot);
-                    this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);//go to main after creating account                
-                });                
-*/
-                }
+                this.readwriteservice.registercurrentuser()
+                .then(()=>{
+                    this.firebaseitemsubscription = this.readwriteservice.firebaseitem.subscribe(snapshot=>{
+                        this.dbuserinfoservice.integrate(snapshot);
+                        this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);//go to main after creating account                
+                    });                
+                });
+            }
         )
         .catch(
             (firebaseerror) => {

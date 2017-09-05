@@ -96,11 +96,21 @@ export class DbuserinfoService {
 
     //This function sets the default (starting) values for newly registered users
     public setstartvalues():void {
-        this.userinfo.experience.modulejefaislepoint = "notdone",
-        this.userinfo.experience.modulejeconsultemonbilan = "notdone",
+        this.userinfo.experience.modulejefaislepoint= "notdone",
+        this.userinfo.experience.modulejeconsultemonbilan = "unavailable",
         this.userinfo.experience.modulejeprendsrendezvous = "unavailable",
         this.userinfo.experience.modulejepreparemarencontre = "unavailable",
-        this.userinfo.experience.modulejefaislesuivi = "unavailable"
+        this.userinfo.experience.modulejefaislesuivi = "unavailable",
+        this.userinfo.experience.etapejeconstruismonprojet = "notdone",
+        this.userinfo.experience.etapejetrouvedesideesdemetier = "notdone",
+        this.userinfo.experience.etapejechoisismonnouveaumetier = "notdone",
+        this.userinfo.experience.etapejemerenseignesurmonmetier = "notdone",
+        this.userinfo.experience.etapejapprendsapresentermonprojet = "notdone",
+        this.userinfo.experience.etapejedeveloppeetactivemonreseau = "notdone",
+        this.userinfo.experience.etapejidentifiemessoutiens = "notdone",
+        this.userinfo.experience.etapejemeprepareetmelance = "notdone",
+        this.userinfo.publicinfo.status= "beneficiaire"
+
     }
 
     //This function integrates the values passed in the inputobject into the userinfo object, which is available as a service. The inputobject usually comes from firebase.

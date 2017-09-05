@@ -92,26 +92,14 @@ export class MeetingService implements OnInit{
             temp_deadline,
             address
         )
-        let temp_updates = {};
         let temp_date = Date.now();
-        let temp_meetingobject = {created:temp_date, status:"creator"};
-        temp_updates["/users/"+firebase.auth().currentUser.uid+"/meetings/"+temp_id]=temp_meetingobject;
-        return firebase.database().ref().update(temp_updates)
-        .then(()=> {
-            temp_updates={};
-            temp_updates["/meetings/"+temp_id]=temp_meeting;
-            return firebase.database().ref().update(temp_updates);
-        })
-        .catch( function(error) {
-                console.log("meeting service createnew error 1:");
-                console.log(error);
-        })
-        .then(() => {
-            console.log("createnew : updates okay");
-        })
-        .catch( function(error) {
-                console.log("meeting service createnew error 2:");
-                console.log(error);
+        //save meeting in /users/uid/ folder
+        let temp_updates = {created:temp_date, status:"creator"};
+        let temp_ref = "/users/"+this.firebaseauthservice.angularfireauth.auth.currentUser.uid+"/meetings/"+temp_id;
+        return this.readwriteservice.simplyupdate(temp_ref,temp_updates)
+        .then(()=>{
+            //save meeting in /meetings/ folder
+
         });
     }
 

@@ -34,6 +34,8 @@ export class CheckauthService implements OnInit{
     loggedIn : boolean= true;
 
     public updatecurrentauthstate ():void {
+        //console.log("this.dbuserinfoservice.userinfo.publicinfo.status");
+        //console.log(this.dbuserinfoservice.userinfo.publicinfo.status);
         if (this.dbuserinfoservice.userinfo.publicinfo.status !== "") {
             //console.log("connected: ");
             this.currentauthstate = this.dbuserinfoservice.userinfo.publicinfo.status;
@@ -67,8 +69,8 @@ export class CheckauthService implements OnInit{
                 */
                 resolve(allow);
                 if (!allow) {
-                    //setTimeout(()=>{this.router.navigate(['/']);},1000);
-                    this.router.navigate(['/']);
+                    console.log("not allowed reroute !");
+                    setTimeout(()=>{this.router.navigate(['/']);},1000);
                 }
             }
         )

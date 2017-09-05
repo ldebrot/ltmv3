@@ -566,6 +566,10 @@ export class NavigationService implements OnInit {
                 itemnumber = i;
             }
         }
+        //console.log("itemnumber");
+        //console.log(itemnumber);
+        //console.log("this.jefaislepointitems");
+        //console.log(this.jefaislepointitems);
         this.jefaislepointnexttask.item = this.jefaislepointitems[itemnumber];
     }
 

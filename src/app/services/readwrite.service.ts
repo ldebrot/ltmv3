@@ -29,55 +29,46 @@ export class ReadwriteService {
     public tryme():any{
     }
 
-    public registercurrentuser(firstname:string,surname:string):any {
+    public registercurrentuser():any {
         //save stuff locally
         this.dbuserinfoservice.empty();
         this.dbuserinfoservice.setstartvalues();
-        this.dbuserinfoservice.userinfo.publicinfo.firstname = firstname;
-        this.dbuserinfoservice.userinfo.publicinfo.surname = surname;
         this.dbuserinfoservice.userinfo.privateinfo.email = this.firebaseauthservice.angularfireauth.auth.currentUser.email;
         //prepare for creating a new user on Firebase
         let temp_value : any = {};
-        let temp_ref:string = "/users/";
-        temp_value[this.firebaseauthservice.angularfireauth.auth.currentUser.uid] = this.dbuserinfoservice.userinfo;
+        let temp_ref:string = "/users/"+this.firebaseauthservice.angularfireauth.auth.currentUser.uid;
+        temp_value = this.dbuserinfoservice.userinfo;
         console.log(temp_value);
         console.log(temp_ref);
-        //CANNOT USE ANGULARFIRE2
-        return this.simplyupdate(temp_ref,JSON.parse(JSON.stringify({momo:{momo:"123",momoomo:"13545"}})))
-//        return this.simplyupdate(temp_ref,temp_value)
-        .then(()=>{
-            console.log("readwrite: registered user");
-        })
-        .catch((error)=>{
-            console.log(error);
-        });
-    }
-
-    public simplyonce (ref:string,type:string):any{
-        this.firebaseitem = this.firebaseauthservice.angularfiredatabase.object(ref);
+        return this.simplyset(temp_ref,temp_value);
     }
 
     public simplyset(ref:string,value:any):any{
         this.firebaseitem = this.firebaseauthservice.angularfiredatabase.object(ref);
-        return this.firebaseitem.set(value);
+        return this.firebaseitem.set(value)
+        .then((response)=>{
+            console.log("simplyset response:");
+            console.log(response);
+        })
+        .catch((error)=>{
+            console.log("simplyset error:");
+            console.log(error.message);
+            console.log(error);
+        });
     }
 
     public simplyupdate(ref:string,value:any):any{
         this.firebaseitem = this.firebaseauthservice.angularfiredatabase.object(ref);
-        return this.firebaseitem.update(value);
-    }
-
-    public massiveupdate(ref:string,value:any):any{
-        /*
-        return firebase.database().ref(ref).set(JSON.parse(JSON.stringify(value)))//stringify because 'value' is a JS object, not a JSON 
-        .then( function() {
-            console.log("readwrite: registered user");
+        return this.firebaseitem.update(value)
+        .then((response)=>{
+            console.log("simplyupdate response:");
+            console.log(response);
         })
-        .catch( function(error) {
-            console.log("readwrite: error happened: "+error.message);
+        .catch((error)=>{
+            console.log("simplyupdate error:");
+            console.log(error.message);
+            console.log(error);
         });
-        */
     }
-
 
 }
