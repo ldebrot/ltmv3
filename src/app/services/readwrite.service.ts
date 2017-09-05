@@ -67,6 +67,17 @@ export class ReadwriteService {
         return this.firebaseitem.update(value);
     }
 
+    public massiveupdate(ref:string,value:any):any{
+        /*
+        return firebase.database().ref(ref).set(JSON.parse(JSON.stringify(value)))//stringify because 'value' is a JS object, not a JSON 
+        .then( function() {
+            console.log("readwrite: registered user");
+        })
+        .catch( function(error) {
+            console.log("readwrite: error happened: "+error.message);
+        });
+        */
+    }
 
 
 }
