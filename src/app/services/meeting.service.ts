@@ -5,12 +5,15 @@ import * as firebase from 'firebase';
 
 //Built-in stuff:
 import { OnInit, Injectable } from '@angular/core';
+import { Subscription } from 'rxjs/Rx';
 
 //Hand-made
 import { meetingtypeitem } from './meetingtype.model';
 import { ReadwriteService } from './readwrite.service';
 import { meetingitem } from './meeting.model';
 import { CommonService } from './common.service';
+import { FirebaseauthService } from './firebaseauth.service';
+import { DbuserinfoService } from './dbuserinfo.service';
 
 //Firebase
 
@@ -18,6 +21,8 @@ import { CommonService } from './common.service';
 @Injectable()
 export class MeetingService implements OnInit{
     
+    public firebaseitem : any;
+
     public meetings : any;
     public meetingparameters = {
         maxinvitations : 3
@@ -25,7 +30,9 @@ export class MeetingService implements OnInit{
 
     constructor(
         public readwriteservice:ReadwriteService,
-        public commonservice:CommonService
+        public commonservice:CommonService,
+        public dbuserinfoservice:DbuserinfoService,
+        public firebaseauthservice:FirebaseauthService
     ) {
         
     }
@@ -44,9 +51,6 @@ export class MeetingService implements OnInit{
             this.meetings.itemsbystep[this.meetingtypes[i].afterstep] = [];
             this.meetings.itemsbystep[this.meetingtypes[i].beforestep] = [];
         }
-        console.log(this.meetings);
-        console.log("this.meetings");
-        
     }
 
 
@@ -114,30 +118,72 @@ export class MeetingService implements OnInit{
     public tryme_createnew():void {
         this.createnew("invitationcreate",{bvomnxmapRSAXBDE05Gh5TU3odj1:"okay"},{YDggrswjcIfWmrGYNOdh6fBThI12:"okay"},"201710301230","9, rue du Rhin, 75010 PARIS")
         .then(()=>{
-            setTimeout(()=>{this.getcurrentusermeetings();},5000);
+            setTimeout(()=>{this.getcurrentusermeetings("creator");},5000);
         });
     }
 
-    public getcurrentusermeetings():void {
-        this.readwriteservice.getcurrentusermeetings("creator")
-        .then((input)=>{
-            //console.log("input");
-            //console.log(input);
-            this.initiatemeetingsobject();
-            for (let i = 0; i < input.length; i++) {
-                if (input[i].currentstep!==""){
-                    if (this.meetings.countbystep[input[i].currentstep]===""){
-                        console.log("this currentstep is not registered in this.meetings");
-                    }else{
-                        this.meetings.countbystep[input[i].currentstep]=this.meetings.countbystep[input[i].currentstep]+1;
-                        this.meetings.itemsbystep[input[i].currentstep].push(input[i]);
+    public getcurrentusermeetings(status:string):any{
+
+        //Make a list of all meeting IDs
+        let temp_meetingidlist : string[] = [];
+        let temp_meetinglist : any[] = [];
+        for (let i = 0; i < Object.keys(this.dbuserinfoservice.userinfo.meetings).length; i++){
+            if (this.dbuserinfoservice.userinfo.meetings[Object.keys(this.dbuserinfoservice.userinfo.meetings)[i]].status===status){
+                temp_meetingidlist.push(Object.keys(this.dbuserinfoservice.userinfo.meetings)[i]);
+            }
+        };
+        console.log("temp_meetingidlist");
+        console.log(temp_meetingidlist);
+
+        //prepare promises used for firebase operations
+        let temp_subscription : Subscription[] = [];
+        let temp_promises : any[] = [];
+        this.initiatemeetingsobject();
+        for (let i:number = 0; i < temp_meetingidlist.length;i++){
+            //console.log("meeting ID  nb : "+i);
+            this.firebaseitem = this.firebaseauthservice.angularfiredatabase.object("/meetings/"+temp_meetingidlist[i]);
+            temp_promises[i]= new Promise((resolve,reject)=>{
+                temp_subscription[i] = this.firebaseitem.subscribe((data)=>{
+                    if (data.currentstep!==""){
+                        if (this.meetings.countbystep[data.currentstep]===""){
+                            console.log("this currentstep is not registered in this.meetings");
+                        }else{
+                            this.meetings.countbystep[data.currentstep]=this.meetings.countbystep[data.currentstep]+1;
+                            this.meetings.itemsbystep[data.currentstep].push(data);
+                        }
                     }
+                    resolve();
+                });
+            })
+        }
+
+        return Promise.all(temp_promises)
+        .then(()=>{
+            for (let i = 0; i < temp_subscription.length;i++){
+                if(temp_subscription[i]!==undefined){
+                    temp_subscription[i].unsubscribe();
                 }
             }
-            //input holds array of meeting items
-
+            //console.log("this.meetings");
+            //console.log(this.meetings);
         });
+
     }
+
+    public integratemeetings(input:any){
+        this.initiatemeetingsobject();
+        for (let i = 0; i < input.length; i++) {
+            if (input[i].currentstep!==""){
+                if (this.meetings.countbystep[input[i].currentstep]===""){
+                    console.log("this currentstep is not registered in this.meetings");
+                }else{
+                    this.meetings[input[i].currentstep]=this.meetings.countbystep[input[i].currentstep]+1;
+                    this.meetings.itemsbystep[input[i].currentstep].push(this.meetings[i]);
+                }
+            }
+        }
+    }
+
 
     public createid():number{
         let tempstring = Date.now().toString() + Math.round(Math.random()*1000000).toString();

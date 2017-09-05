@@ -1,21 +1,31 @@
-import { Injectable } from '@angular/core';
+
+import { Subscription } from 'rxjs/Rx';
+import { Injectable, OnDestroy } from '@angular/core';
 
 //Firebase
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 
 //Home-grown
 import { ReadwriteService } from './readwrite.service';
 import { DbuserinfoService } from './dbuserinfo.service';
+import { FirebaseauthService } from './firebaseauth.service';
 
 @Injectable()
-export class ReadwritebufferService {
-    
+export class ReadwritebufferService implements OnDestroy {
+    public firebaseitemsubscription : Subscription;
     public buffer:any = {};
 
     constructor(
         public dbuserinfoservice: DbuserinfoService,
-        public readwriteservice : ReadwriteService
+        public readwriteservice : ReadwriteService,
+        public firebaseauthservice: FirebaseauthService
     ) {}
+
+    ngOnDestroy() {
+        if (this.firebaseitemsubscription!==undefined){
+            this.firebaseitemsubscription.unsubscribe();
+        }
+    }
 
     public updatebuffer(objectname,value, command):void {
         if (command==="update") {
@@ -33,47 +43,35 @@ export class ReadwritebufferService {
         this.buffer = {};
     }
 
-    public transmitbuffer():void{
-        let usersexperienceprefix:string = "users/"+ firebase.auth().currentUser.uid+"/experience/";
-        let updates = {};
-        for (let i = 0; i < Object.keys(this.buffer).length; i++) {
-            //console.log(usersexperienceprefix+Object.keys(this.buffer)[i]);
-            //console.log(this.buffer[Object.keys(this.buffer)[i]].value);
-            if (this.buffer[Object.keys(this.buffer)[i]].value==="" || this.buffer[Object.keys(this.buffer)[i]].value===undefined){
-                updates[usersexperienceprefix+Object.keys(this.buffer)[i]]=JSON.parse(JSON.stringify(""));
-            } else {
-                updates[usersexperienceprefix+Object.keys(this.buffer)[i]]=JSON.parse(JSON.stringify(this.buffer[Object.keys(this.buffer)[i]].value));
+    public transmitbuffer():any{
+        console.log("transmitbuffer// this.buffer:");
+        console.log(this.buffer);
+
+        let ref_prefix : string = "/users/"+this.firebaseauthservice.angularfireauth.auth.currentUser.uid+"/experience/";
+        let temp_object : object = {};
+
+        for (let i = 0; i < Object.keys(this.buffer).length;i++){
+            let command = this.buffer[Object.keys(this.buffer)[i]].command;
+            if (command === "update") {
+                temp_object[Object.keys(this.buffer)[i]] = this.buffer[Object.keys(this.buffer)[i]].value;
             }
         }
-        console.log("updates");
-        console.log(updates);
-        firebase.database().ref().update(updates)
-        .then(()=> {
-            console.log("transmitbuffer: worked just fine!");
-            this.readwriteservice.getcurrentuserinfo()//now refresh local dbuserinfo
-            .then ((userinfo)=> {
-                this.dbuserinfoservice.integrate(userinfo);
-            });
-        })
-        .catch( function(error) {
-                console.log("transmitbuffer error:");
-                console.log(error);
-        });
-        this.buffer = {};//empty buffer now!
 
+        let temp_promises : any;
+        temp_promises = new Promise((resolve,reject)=>{
+            this.readwriteservice.simplyupdate(ref_prefix, temp_object)
+            .then(()=>{
+                console.log("ref: "+ref_prefix);
+                console.log(temp_object);
+                resolve();
+            });
+        });
+        
+        return Promise.all(temp_promises)
+        .then(()=>{
+            console.log("transmitbuffer done!");
+            this.buffer = {};//empty buffer now!
+        });
     }
 
 }
-
-                /*
-                //WE HAD TROUBLE WITH THE JSON PARSER, SHOULD BE FINE NOW
-                //THIS WAS PART OF transmitbuffer()
-                console.log(this.buffer[Object.keys(this.buffer)[i]].value);
-                try {
-                    JSON.parse(JSON.stringify(this.buffer[Object.keys(this.buffer)[i]].value));
-                } catch (e) {
-                    console.log("hell of an erreur!");
-                    console.log(e);
-                    console.log(this.buffer[Object.keys(this.buffer)[i]].value);
-                }
-                */

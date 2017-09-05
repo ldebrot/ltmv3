@@ -194,7 +194,9 @@ export class MenuNotconnectedComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.titleservicesubscription.unsubscribe();
+        if(this.titleservicesubscription!==undefined){
+            this.titleservicesubscription.unsubscribe();
+        }
     }
     
     

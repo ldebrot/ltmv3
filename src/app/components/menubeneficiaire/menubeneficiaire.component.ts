@@ -199,8 +199,9 @@ export class MenuBeneficiaireComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.titleservicesubscription.unsubscribe();
+        if(this.titleservicesubscription!==undefined){
+            this.titleservicesubscription.unsubscribe();
+        }
     }
-    
     
 }

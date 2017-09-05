@@ -1,3 +1,4 @@
+import { OnDestroy } from '@angular/core';
 //Built-in
 import { Component, OnInit, Injectable } from '@angular/core';
 import { element } from 'protractor';
@@ -16,6 +17,7 @@ import {
     MessagesModule,
     GrowlModule,
     TabViewModule} from 'primeng/primeng';//PrimeNG error message handling
+import { Subscription } from "rxjs/Rx";
 
 @Component({
     selector: 'app-signinup',
@@ -23,13 +25,14 @@ import {
     styleUrls: ['./signinup.component.css']
 })
 
-export class SigninupComponent implements OnInit {
+export class SigninupComponent implements OnInit, OnDestroy {
 
     private errormessagefr:string;
+    public firebaseitemsubscription:Subscription;
     errormsg = []; 
     
     constructor(
-        public firebaseauth: FirebaseauthService,
+        public firebaseauthservice: FirebaseauthService,
         public router : Router,
         public titleservice: TitleService,
         public readwriteservice:ReadwriteService,
@@ -40,6 +43,12 @@ export class SigninupComponent implements OnInit {
     }
     
     ngOnInit() {
+    }
+
+    ngOnDestroy() {
+        if(this.firebaseitemsubscription!==undefined){
+            this.firebaseitemsubscription.unsubscribe();
+        }
     }
 
     public getfrencherrormessage(errorcode:string):string {
@@ -86,25 +95,20 @@ export class SigninupComponent implements OnInit {
     }
     
     signin(email, password){
-        this.firebaseauth.signinUser(email, password)
+        this.firebaseauthservice.signinUser(email, password)
         .then(
             (response) => {
-                this.firebaseauth.setToken();
+                this.firebaseauthservice.setToken();
                 console.log("signinup: firebase signin successful");
-                /*
-                this.readwriteservice.getcurrentuserinfo()
-                .then ((snapshot)=>{
-                    console.log("here we are again!");
-                    console.log(snapshot);
+                this.readwriteservice.getcurrentuserinfo();
+                this.firebaseitemsubscription = this.readwriteservice.firebaseitem.subscribe(snapshot=>{
                     this.dbuserinfoservice.integrate(snapshot);
-                    this.meetingservice.getcurrentusermeetings();
+                    this.meetingservice.getcurrentusermeetings("creator");
                     let hellomsg:string = "Bonjour "+this.dbuserinfoservice.userinfo.publicinfo.firstname;
                     this.errormsg = [];
                     this.errormsg.push({severity:'success', summary:'Connexion', detail:hellomsg});
-                    //console.log("this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status] = "+ this.dbuserinfoservice.userinfo.publicinfo.status +")");
-                    setTimeout(()=>{this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);},1);//go to main after logging in
+                    setTimeout(()=>{this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);},500);//go to main after logging in
                 });
-                */
             }
         )
         .catch(
@@ -124,16 +128,21 @@ export class SigninupComponent implements OnInit {
         const firstname = form.value.signupfirstname;
         const surname = form.value.signupsurname;
         const password = form.value.signuppassword;
-        this.firebaseauth.signupUser(email, password)
+        this.firebaseauthservice.signupUser(email, password)
         .then(
             (response) => {
                 this.errormsg = [];
                 this.errormsg.push({severity:'success', summary:'Création de compte', detail:response});
-                this.firebaseauth.setToken();
+                this.firebaseauthservice.setToken();
                 console.log("signinup: firebase signup successful")
                 //console.log(response);
-                this.readwriteservice.registercurrentuser(firstname,surname);                
-                this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);//go to main after creating account                
+                this.readwriteservice.registercurrentuser(firstname,surname);
+/*
+                this.firebaseitemsubscription = this.readwriteservice.firebaseitem.subscribe(snapshot=>{
+                    this.dbuserinfoservice.integrate(snapshot);
+                    this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);//go to main after creating account                
+                });                
+*/
                 }
         )
         .catch(
@@ -146,5 +155,6 @@ export class SigninupComponent implements OnInit {
             }
         );
     }
+
 
 }

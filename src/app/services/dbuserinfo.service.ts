@@ -1,7 +1,8 @@
 //This service handles the local copy of the user information (copied from firebase)
 import { OnInit, Injectable } from '@angular/core';
+
 //Firebase service
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 
 @Injectable()
 export class DbuserinfoService {

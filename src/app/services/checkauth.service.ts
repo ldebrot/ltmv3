@@ -9,9 +9,6 @@ import { Injectable } from '@angular/core';
 //Hand-made
 import { DbuserinfoService } from './dbuserinfo.service';
 
-//Firebase
-import * as firebase from 'firebase';
-
 
 @Injectable()
 export class CheckauthService implements OnInit{

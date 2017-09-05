@@ -33,7 +33,8 @@
                 <hr>
                 Une reconversion professionnelle peut consister à changer de métier, de statut ou les deux simultanément.
                 <table class="ldb_table_alignleft"><td><tr>
-                <p-checkbox name="jeconstruismonprojetstep1" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet1" (click)="valuechanged('jeconstruismonprojetstep1jeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                <p-checkbox name="jeconstruismonprojetstep1" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet1" 
+                (click)="valuechanged('jeconstruismonprojetstep1jeveuxensavoirplus')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep1jeveuxensavoirplus"></p-checkbox>
                 </tr></td></table>                   
             </div>
         </div>
@@ -57,7 +58,7 @@
                 <hr>
                 <table class="ldb_table_alignleft"><td><tr>
                 <p-checkbox name="jeconstruismonprojetstep2" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet2" 
-                (click)="valuechanged('jeconstruismonprojetstep2jeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                (click)="valuechanged('jeconstruismonprojetstep2jeveuxensavoirplus')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep2jeveuxensavoirplus"></p-checkbox>
                 </tr></td></table>                   
             </div>
         </div>
@@ -87,7 +88,8 @@
             <div class="ldb_elementcommenttext">
                 <hr>
                 <table class="ldb_table_alignleft"><td><tr>
-                <p-checkbox name="jeconstruismonprojetstep3" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet3" (click)="valuechanged('jeconstruismonprojetstep3jeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                <p-checkbox name="jeconstruismonprojetstep3" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet3" 
+                (click)="valuechanged('jeconstruismonprojetstep3jeveuxensavoirplus')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep3jeveuxensavoirplus"></p-checkbox>
                 </tr></td></table>                   
             </div>
         </div>
@@ -113,7 +115,7 @@
                 Des tests vous permettent de trouver les secteurs et causes qui vous intéressent.
                 <table class="ldb_table_alignleft"><td><tr>
                 <p-checkbox name="jeconstruismonprojetstep4a" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet4a" 
-                (click)="valuechanged('jeconstruismonprojetstep4ajeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                (click)="valuechanged('jeconstruismonprojetstep4ajeveuxensavoirplus')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep4ajeveuxensavoirplus"></p-checkbox>
                 </tr></td></table>                   
             </div>
         </div>
@@ -130,7 +132,7 @@
                 Un bilan de compétences vous permet d'identiﬁer vos connaissances, votre savoir-être et votre savoir-faire.
                 <table class="ldb_table_alignleft"><td><tr>
                 <p-checkbox name="jeconstruismonprojetstep4b" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet4b" 
-                (click)="valuechanged('jeconstruismonprojetstep4ajeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                (click)="valuechanged('jeconstruismonprojetstep4bjeveuxensavoirplus')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep4bjeveuxensavoirplus"></p-checkbox>
                 </tr></td></table>                   
             </div>
         </div>
@@ -156,7 +158,7 @@
                 Pôle emploi vous propose un service vous permettant de vous renseigner sur les opportunités dans un métier, un secteur d'activité ou une région de votre choix. 
                 <table class="ldb_table_alignleft"><td><tr>
                 <p-checkbox name="jeconstruismonprojetstep5a" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet5a" 
-                (click)="valuechanged('jeconstruismonprojetstep5ajeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                (click)="valuechanged('jeconstruismonprojetstep5ajeveuxensavoirplus')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep5ajeveuxensavoirplus"></p-checkbox>
                 </tr></td></table>                   
             </div>
         </div>
@@ -173,7 +175,7 @@
                 Aspirez-vous à un poste de direction, souhaitez-vous gérer une équipe, en faire partie ou plutôt la soutenir ? Une série de tests vous permet de trancher cette question.
                 <table class="ldb_table_alignleft"><td><tr>
                 <p-checkbox name="jeconstruismonprojetstep5b" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet5b" 
-                (click)="valuechanged('jeconstruismonprojetstep5ajeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                (click)="valuechanged('jeconstruismonprojetstep5bjeveuxensavoirplus')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep5bjeveuxensavoirplus"></p-checkbox>
                 </tr></td></table>                   
             </div>
         </div>
@@ -216,7 +218,7 @@
                 Des outils vous permettent de trouver un métier en fonction de votre type de personnalité.
                 <table class="ldb_table_alignleft"><td><tr>
                 <p-checkbox name="jeconstruismonprojetstep6b" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet6b" 
-                (click)="valuechanged('jeconstruismonprojetstep6ajeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                (click)="valuechanged('jeconstruismonprojetstep6bjeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
                 </tr></td></table>                   
             </div>
         </div>
@@ -242,7 +244,7 @@
                 Différents tests de personnalité vous permettent de déterminer si vous êtes plutôt extraverti/introverti, observateur/intuitif, etc. 
                 <table class="ldb_table_alignleft"><td><tr>
                 <p-checkbox name="jeconstruismonprojetstep7a" class="ldb_jeveuxensavoirplus" label="Je veux en savoir plus" value="jeconstruismonprojet7a" 
-                (click)="valuechanged('jeconstruismonprojetstep7ajeveuxensavoirplus')" [(ngModel)]="this.jeconstruismonprojetjeveuxensavoirplus"></p-checkbox>
+                (click)="valuechanged('jeconstruismonprojetstep7ajeveuxensavoirplus')" [(ngModel)]="this.localvalues.jeconstruismonprojetstep7ajeveuxensavoirplus"></p-checkbox>
                 </tr></td></table>                   
             </div>
         </div>

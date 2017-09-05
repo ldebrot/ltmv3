@@ -54,7 +54,8 @@
         </div>
     </div>
     <div class="ldb_elementbackground">
-        <div class="ldb_elementtextbold ldb_elementtext" [innerText]="this.meetingservice.meetings.countbystep.invitationsent">
+        <div class="ldb_elementtextbold ldb_elementtext">
+            J'ai {{this.meetingservice.meetings.countbystep.preparationbeneficiaire}} {{this.commonservice.singulierpluriel(this.meetingservice.meetings.countbystep.preparationbeneficiaire,"rencontre","rencontres")}} à préparer :
         </div>
         <div class="ldb_elementsinglebutton">
             <a class="btn ldb_btn_small ldb_btn_primary">Je prépare ma rencontre</a>

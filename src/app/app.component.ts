@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title }     from '@angular/platform-browser';//This is the Title service
 
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -8,13 +9,14 @@ import { Title }     from '@angular/platform-browser';//This is the Title servic
 })
 
 export class AppComponent implements OnInit {
-    
+
     public constructor(
         private titleService: Title
     ) {
         this.titleService.setTitle('Lunchtime Version 1');//Sets title
      }
-    
+
+
     ngOnInit() {
     }
 }

@@ -1,5 +1,5 @@
+//Built-in Modules
 import { RouterModule } from '@angular/router';
-//Modules
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -56,7 +56,13 @@ import { QuisommesnousComponent } from './components/notconnected/quisommesnous/
 import { StartbeneficiaireComponent } from './components/startbeneficiaire/startbeneficiaire.component';
 
 // Firebase
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import { AngularFireModule } from 'angularfire2';//AngularFire2
+import { environment } from '../environments/environment';//AngularFire2
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+//Components
 import { MonplanningComponent } from './components/beneficiaire/monplanning/monplanning.component';
 import { JefaislepointComponent } from './components/beneficiaire/jefaislepoint/jefaislepoint.component';
 import { JeprendsrendezvousComponent } from './components/beneficiaire/jeprendsrendezvous/jeprendsrendezvous.component';
@@ -70,68 +76,61 @@ import { BilanratioComponent } from './components/beneficiaire/jeconsultemonbila
 import { BilandisqualifyComponent } from './components/beneficiaire/jeconsultemonbilan/bilandisqualify/bilandisqualify.component';
 import { JedeviensunproComponent } from './components/beneficiaire/jedeviensunpro/jedeviensunpro.component';
 
-export const firebaseconfig = {
-    apiKey: "AIzaSyCdWffhlLWk5olASIDHMw0Y7rzXsc_Sxu8",
-    authDomain: "ltmv1-8873c.firebaseapp.com",
-    databaseURL: "https://ltmv1-8873c.firebaseio.com",
-    projectId: "ltmv1-8873c",
-    storageBucket: "ltmv1-8873c.appspot.com",
-    messagingSenderId: "605451735287"
-};
-
-firebase.initializeApp(firebaseconfig);
 //console.log("initializedApp at app.mdoule.ts level!");
 
 @NgModule({
     declarations: [
-    AppComponent,
-    TestComponent,
-    SectionTopComponent,
-    ConnectComponent,
-    MenuNotconnectedComponent,//menu for not-connected user
-    MenuBeneficiaireComponent,//menu for connected beneficiaire
-    MenuTemoinComponent,//menu for témoins
-    StartNotconnectedComponent,//starting point for not-connected user
-    IntrouvableComponent,
-    SigninupComponent,//sign in and sign up
-    JedecouvrelunchtimeComponent,//discover Lunchtime - used as "home" component
-    LesactusComponent,
-    QuisommesnousComponent,
-    StartbeneficiaireComponent,
-    MonplanningComponent,
-    JefaislepointComponent,
-    JeprendsrendezvousComponent,
-    JepreparemarencontreComponent,
-    JefaislesuiviComponent,
-    JeconstruismonprojetComponent,
-    JeconsultemonbilanComponent,
-    BilantemoinComponent,
-    BilanbeneficiaireComponent,
-    BilanratioComponent,
-    BilandisqualifyComponent,
-    JedeviensunproComponent
+        AppComponent,
+        TestComponent,
+        SectionTopComponent,
+        ConnectComponent,
+        MenuNotconnectedComponent,//menu for not-connected user
+        MenuBeneficiaireComponent,//menu for connected beneficiaire
+        MenuTemoinComponent,//menu for témoins
+        StartNotconnectedComponent,//starting point for not-connected user
+        IntrouvableComponent,
+        SigninupComponent,//sign in and sign up
+        JedecouvrelunchtimeComponent,//discover Lunchtime - used as "home" component
+        LesactusComponent,
+        QuisommesnousComponent,
+        StartbeneficiaireComponent,
+        MonplanningComponent,
+        JefaislepointComponent,
+        JeprendsrendezvousComponent,
+        JepreparemarencontreComponent,
+        JefaislesuiviComponent,
+        JeconstruismonprojetComponent,
+        JeconsultemonbilanComponent,
+        BilantemoinComponent,
+        BilanbeneficiaireComponent,
+        BilanratioComponent,
+        BilandisqualifyComponent,
+        JedeviensunproComponent
     ],
     imports: [
-    FormsModule,
-    HttpModule,
-    ConfirmDialogModule,//PrimeNG here
-    BrowserModule,//PrimeNG here
-    BrowserAnimationsModule,//PrimeNG here
-    MessagesModule,//PrimeNG here
-    TabViewModule,//PrimeNG here
-    GrowlModule,//PrimeNG here
-    DialogModule,//PrimeNG here
-    TooltipModule,//PrimeNG here
-    ProgressBarModule,//PrimeNG here
-    CheckboxModule,//PrimeNG here
-    SelectButtonModule,//PrimeNG here
-    ToggleButtonModule,//PrimeNG here
-    NgbModule.forRoot(),//NG-Bootstrap added here
-    MenubarModule,
-    TabMenuModule,
-    RoutingService,
-    RouterModule,
-    ButtonModule,
+        FormsModule,
+        HttpModule,
+        ConfirmDialogModule,//PrimeNG here
+        BrowserModule,//PrimeNG here
+        BrowserAnimationsModule,//PrimeNG here
+        MessagesModule,//PrimeNG here
+        TabViewModule,//PrimeNG here
+        GrowlModule,//PrimeNG here
+        DialogModule,//PrimeNG here
+        TooltipModule,//PrimeNG here
+        ProgressBarModule,//PrimeNG here
+        CheckboxModule,//PrimeNG here
+        SelectButtonModule,//PrimeNG here
+        ToggleButtonModule,//PrimeNG here
+        NgbModule.forRoot(),//NG-Bootstrap added here
+        MenubarModule,
+        TabMenuModule,
+        RoutingService,
+        RouterModule,
+        ButtonModule,
+        AngularFireModule.initializeApp(environment.firebase),//AngularFire2 
+        AngularFireDatabaseModule, //AngularFire2  imports firebase/database, only needed for database features
+        AngularFireAuthModule //AngularFire2  imports firebase/auth, only needed for auth features        
     ],
     providers: [
         Title,

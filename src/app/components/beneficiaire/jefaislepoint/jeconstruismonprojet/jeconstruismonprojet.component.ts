@@ -52,6 +52,7 @@ export class JeconstruismonprojetComponent implements OnInit {
         jeconstruismonprojetstep7bselectedvalue:0,
         jeconstruismonprojetstep1jeveuxensavoirplus:"",
         jeconstruismonprojetstep2jeveuxensavoirplus:"",
+        jeconstruismonprojetstep3jeveuxensavoirplus:"",
         jeconstruismonprojetstep4ajeveuxensavoirplus:"",
         jeconstruismonprojetstep4bjeveuxensavoirplus:"",
         jeconstruismonprojetstep5ajeveuxensavoirplus:"",
@@ -76,8 +77,10 @@ export class JeconstruismonprojetComponent implements OnInit {
         this.setstepatbeginning();
         this.initiate();
         this.checkifstepvalid();
-        if (this.activatedroute.snapshot.params['step'].toString()!==""){
-            this.navigationservice.jeconstruismonprojetcurrentstep=Number(this.activatedroute.snapshot.params['step']);
+        if (this.activatedroute.snapshot.params['step']!==undefined) {
+            if (this.activatedroute.snapshot.params['step'].toString()!==""){
+                this.navigationservice.jeconstruismonprojetcurrentstep=Number(this.activatedroute.snapshot.params['step']);
+            }
         }
     }
 

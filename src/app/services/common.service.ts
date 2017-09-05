@@ -6,8 +6,6 @@ import { OnInit, Injectable } from '@angular/core';
 
 //Hand-made
 
-//Firebase
-
 
 @Injectable()
 export class CommonService implements OnInit{
