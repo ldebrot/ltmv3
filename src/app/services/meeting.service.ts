@@ -1,7 +1,7 @@
 //This service handles the meetings based on dbuserinfo
 
 //Firebase service
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 
 //Built-in stuff:
 import { OnInit, Injectable } from '@angular/core';
