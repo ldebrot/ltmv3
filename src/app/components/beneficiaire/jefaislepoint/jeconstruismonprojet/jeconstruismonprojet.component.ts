@@ -74,6 +74,7 @@ export class JeconstruismonprojetComponent implements OnInit {
     }
 
     ngOnInit() {
+        
         this.setstepatbeginning();
         this.initiate();
         this.checkifstepvalid();
@@ -93,6 +94,7 @@ export class JeconstruismonprojetComponent implements OnInit {
     //it fills in only for the steps indicated in OnInit
     public initiate():void {
         for (let i = 0; i < Object.keys(this.localvalues).length; i++) {
+            //console.log(Object.keys(this.localvalues)[i])
             if (this.dbuserinfoservice.userinfo.experience[Object.keys(this.localvalues)[i]]!==undefined) {
                 //console.log(Object.keys(this.localvalues)[i]);
                 this.localvalues[Object.keys(this.localvalues)[i]]=this.dbuserinfoservice.userinfo.experience[Object.keys(this.localvalues)[i]];

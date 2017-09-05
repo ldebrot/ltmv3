@@ -1,3 +1,4 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 //This service handles the meetings based on dbuserinfo
 
 //Firebase service
@@ -96,15 +97,23 @@ export class MeetingService implements OnInit{
         //save meeting in /users/uid/ folder
         let temp_updates = {created:temp_date, status:"creator"};
         let temp_ref = "/users/"+this.firebaseauthservice.angularfireauth.auth.currentUser.uid+"/meetings/"+temp_id;
-        return this.readwriteservice.simplyupdate(temp_ref,temp_updates)
+        this.dbuserinfoservice.userinfo.meetings[temp_id]=temp_updates;//saving things locally
+        return this.readwriteservice.simplyupdate(temp_ref,temp_updates)//saving it on Firebase
         .then(()=>{
             //save meeting in /meetings/ folder
+            temp_ref = "/meetings/"+temp_id+"/";
+            return this.readwriteservice.simplyupdate(temp_ref,temp_meeting)
+            .then(()=>{
+                console.log("Created new meeting");
+                this.getcurrentusermeetings('creator');
 
+            })
+            
         });
     }
 
     public tryme_createnew():void {
-        this.createnew("invitationcreate",{bvomnxmapRSAXBDE05Gh5TU3odj1:"okay"},{YDggrswjcIfWmrGYNOdh6fBThI12:"okay"},"201710301230","9, rue du Rhin, 75010 PARIS")
+        this.createnew("invitationcreate",{"5egMZRLqVJMsDq477qgb9Nrr3kA3":"okay"},{YDggrswjcIfWmrGYNOdh6fBThI12:"okay"},"201710301230","9, rue du Rhin, 75010 PARIS")
         .then(()=>{
             setTimeout(()=>{this.getcurrentusermeetings("creator");},5000);
         });

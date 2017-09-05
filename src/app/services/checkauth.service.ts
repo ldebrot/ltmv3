@@ -70,7 +70,7 @@ export class CheckauthService implements OnInit{
                 resolve(allow);
                 if (!allow) {
                     console.log("not allowed reroute !");
-                    setTimeout(()=>{this.router.navigate(['/']);},1000);
+                    setTimeout(()=>{this.router.navigate(['/'+this.paths[this.currentauthstate]]);},1000);                        
                 }
             }
         )

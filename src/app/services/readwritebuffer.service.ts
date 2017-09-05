@@ -53,7 +53,8 @@ export class ReadwritebufferService implements OnDestroy {
         for (let i = 0; i < Object.keys(this.buffer).length;i++){
             let command = this.buffer[Object.keys(this.buffer)[i]].command;
             if (command === "update") {
-                temp_object[Object.keys(this.buffer)[i]] = this.buffer[Object.keys(this.buffer)[i]].value;
+                temp_object[Object.keys(this.buffer)[i]] = this.buffer[Object.keys(this.buffer)[i]].value;//add to temp_object, which will be passed on to Firefox
+                this.dbuserinfoservice.userinfo.experience[Object.keys(this.buffer)[i]] = this.buffer[Object.keys(this.buffer)[i]].value;//update dbuserinfo automatically
             }
         }
 
