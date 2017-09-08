@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 
 //family-owned:
+import { buttonmodel } from './../../../../services/button.model';
 import { CommonService } from './../../../../services/common.service';
 import { MeetingService } from './../../../../services/meeting.service';
 import { BilanService } from './../../../../services/bilan.service';
@@ -13,7 +14,8 @@ import { TitleService } from './../../../../services/title.service';
     styleUrls: ['./jeconsultemesinvitations.component.css']
 })
 export class JeconsultemesinvitationsComponent implements OnInit {
-    
+    public buttonitems : buttonmodel[];
+
     constructor(
         public titleservice:TitleService,
         public bilanservice:BilanService,
@@ -24,8 +26,7 @@ export class JeconsultemesinvitationsComponent implements OnInit {
     }
     
     ngOnInit() {
-        console.log("this.meetingservice.returnbuttonitems(this.meetingservice.meetings)");
-        console.log(this.meetingservice.returnbuttonitems(this.meetingservice.meetings));
+        this.buttonitems = this.meetingservice.returnbuttonitems(this.meetingservice.meetings.allitems);
     }
     
 }

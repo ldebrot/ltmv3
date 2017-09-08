@@ -1,8 +1,8 @@
-import { AngularFireAuth } from 'angularfire2/auth';
 //This service handles the meetings based on dbuserinfo
 
 //Firebase service
 import * as firebase from 'firebase/app';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 //Built-in stuff:
 import { OnInit, Injectable } from '@angular/core';
@@ -15,6 +15,7 @@ import { meetingitem } from './meeting.model';
 import { CommonService } from './common.service';
 import { FirebaseauthService } from './firebaseauth.service';
 import { DbuserinfoService } from './dbuserinfo.service';
+import { buttonmodel } from './button.model';
 
 //Firebase
 
@@ -46,13 +47,14 @@ export class MeetingService implements OnInit{
     public initiatemeetingsobject():void {
         this.meetings = {
             countbystep : {},
-            itemsbystep : {}
+            itemsbystep : {},
+            allitems : []
         }
         for (let i = 0 ; i < this.meetingtypes.length; i++) {
-            this.meetings.countbystep[this.meetingtypes[i].afterstep] = 0;
             this.meetings.countbystep[this.meetingtypes[i].beforestep] = 0;
-            this.meetings.itemsbystep[this.meetingtypes[i].afterstep] = [];
+            this.meetings.countbystep[this.meetingtypes[i].currentstep] = 0;
             this.meetings.itemsbystep[this.meetingtypes[i].beforestep] = [];
+            this.meetings.itemsbystep[this.meetingtypes[i].currentstep] = [];
         }
     }
 
@@ -76,13 +78,13 @@ export class MeetingService implements OnInit{
         return temp_deadline;
     }
 
-    public createnew(actionname:string,creatoruids:object,participantuids:object,participants:object,meetingdate:string,address:string):any {
+    public createnew(triggeractionname:string,creatoruids:object,participantuids:object,participantemails:object,meetingdate:string,address:string):any {
         let temp_id:number = this.createid();
         let temp_step:string = "";
         let temp_deadline:string = "";
         for (let i = 0; i < this.meetingtypes.length; i++) {
-            if (this.meetingtypes[i].name===actionname) {
-                temp_step = this.meetingtypes[i].afterstep;
+            if (this.meetingtypes[i].triggeractionname===triggeractionname) {
+                temp_step = this.meetingtypes[i].currentstep;
                 temp_deadline = this.setdeadline(i,meetingdate);
             }
         }
@@ -91,7 +93,7 @@ export class MeetingService implements OnInit{
             temp_step,
             creatoruids,
             participantuids,
-            participants,
+            participantemails,
             meetingdate,
             temp_deadline,
             address
@@ -112,13 +114,6 @@ export class MeetingService implements OnInit{
 
             })
             
-        });
-    }
-
-    public tryme_createnew():void {
-        this.createnew("invitationcreate",{"5egMZRLqVJMsDq477qgb9Nrr3kA3":"okay"},{YDggrswjcIfWmrGYNOdh6fBThI12:"okay"},{temoin : {email:"ldebrot@yahoo.de"}, beneficiaire:{email:"mumu@mumu.com"}},"201710301230","9, rue du Rhin, 75010 PARIS")
-        .then(()=>{
-            setTimeout(()=>{this.getcurrentusermeetings("creator");},5000);
         });
     }
 
@@ -150,6 +145,7 @@ export class MeetingService implements OnInit{
                         }else{
                             this.meetings.countbystep[data.currentstep]=this.meetings.countbystep[data.currentstep]+1;
                             this.meetings.itemsbystep[data.currentstep].push(data);
+                            this.meetings.allitems.push(data);
                         }
                     }
                     resolve();
@@ -164,8 +160,8 @@ export class MeetingService implements OnInit{
                     temp_subscription[i].unsubscribe();
                 }
             }
-            //console.log("this.meetings");
-            //console.log(this.meetings);
+            console.log("this.meetings");
+            console.log(this.meetings);
         });
 
     }
@@ -191,16 +187,21 @@ export class MeetingService implements OnInit{
     }
 
     //Creates button items (which can be displayed with ngFor) --> check button.model to see what's in there
-    public returnbuttonitems(meetings:meetingitem[]):any{
+    public returnbuttonitems(meetings:meetingitem[]):buttonmodel[]{
+        console.log("meetings.length");
+        console.log(meetings.length);
         let temp_return : any = [];
         if (meetings.length!==0){
             for (let i = 0; i < meetings.length; i++){
                 for (let i2 = 0; i2 < this.meetingtypes.length;i2++){
                     if (meetings[i].currentstep===this.meetingtypes[i2].currentstep){
-                        temp_return[i].buttonclass = this.meetingtypes[i2].buttonclass;
-                        temp_return[i].tooltiptext = this.meetingtypes[i2].tooltiptext;
-                        temp_return[i].routerlink = this.meetingtypes[i2].routerlink;
-                        temp_return[i].buttoncaption = this.returnbuttoncaption(meetings[i],this.meetingtypes[i2].buttoncaption);
+                        temp_return[i]={};
+                        temp_return[i] = new buttonmodel(
+                            this.returnbuttoncaption(meetings[i],this.meetingtypes[i2].buttoncaption),
+                            this.meetingtypes[i2].buttonclass,
+                            this.meetingtypes[i2].routerlink,
+                            this.meetingtypes[i2].tooltiptext
+                        )
                         break;
                     }            
                 }
@@ -213,7 +214,8 @@ export class MeetingService implements OnInit{
 
     //Returns the caption of a button with keywords replaced
     public returnbuttoncaption(meeting:meetingitem, inputbuttoncaption:string):string{
-        let temp_buttoncaption : string = inputbuttoncaption;
+
+        //Find keywords in caption text
         let temp_startpos:number[] = [];
         let temp_endpos:number[] = [];
         let temp_keyword:string[] = [];
@@ -221,27 +223,29 @@ export class MeetingService implements OnInit{
         let temp_inputbuttoncaptionrest : string = inputbuttoncaption;
         let next_startpos : number = 0;
         let next_endpos : number = 0;
-        for (let i = 0; i < 10; i++){
-            next_startpos = temp_inputbuttoncaptionrest.search("\\[") + temp_currentpos;
-            next_endpos = temp_inputbuttoncaptionrest.search("\\]") + temp_currentpos;
-            if(next_startpos>=0){
-                temp_startpos[i] = next_startpos;
-                temp_endpos[i] = next_endpos+1;
+        for (let i = 0; i < 10; i++){//there cannot be more than 10 keywords in a caption text
+            next_startpos = temp_inputbuttoncaptionrest.search("\\[");
+            next_endpos = temp_inputbuttoncaptionrest.search("\\]");
+            if(temp_inputbuttoncaptionrest.search("\\[")>=0){
+                temp_startpos[i] = next_startpos + temp_currentpos;
+                temp_endpos[i] = next_endpos+1 + temp_currentpos;
                 temp_currentpos += next_endpos+1;
                 temp_keyword[i] = inputbuttoncaption.substring(temp_startpos[i]+1,temp_endpos[i]-1);
-                temp_inputbuttoncaptionrest = temp_inputbuttoncaptionrest.substring(next_endpos+1);
+                temp_inputbuttoncaptionrest = inputbuttoncaption.substring(temp_endpos[i]);
             } else {
                 break;
             }          
         }
 
+        //console.log("temp_keyword");
+       // console.log(temp_keyword);
+        
+        //Find replacement strings for each keyword
         let temp_replacement : string[] = [];
         for (let i = 0; i < temp_keyword.length; i++){
             switch (temp_keyword[i]) {
                 case "temoinemail" :
-                    //insert the email of the temoin here
-                    ///--> must resolve problem of accessing private info of other --> to be stored in meeting ?
-                    temp_replacement[i]=meeting.participants.temoin.email;
+                    temp_replacement[i]=Object.keys(meeting.participantemails.temoin)[0];
                 break;
                 case "meetingdate" :
                     //insert the meeting date here
@@ -258,106 +262,111 @@ export class MeetingService implements OnInit{
             }
 
         }
+        //console.log("temp_replacement");
+        //console.log(temp_replacement);
 
-        for (let i = (temp_keyword.length - 1); i = 0; i--){
-            temp_buttoncaption = inputbuttoncaption.replace("["+temp_keyword[i]+"]",temp_replacement[i]);
+        //Replace keywords
+        let temp_buttoncaption :string = inputbuttoncaption;
+        for (let i = (temp_keyword.length - 1); i >= 0; i--){
+            temp_buttoncaption = temp_buttoncaption.replace("["+temp_keyword[i]+"]",temp_replacement[i]);
         }
 
+        //return result
         return temp_buttoncaption;
     }
 
     public meetingtypes : any = [
         new meetingtypeitem (
-            "invitationcreate",
-            "",
-            "invitationsent",
-            "invitationexpired",
-            0,
+            "invitationsent",//current step
+            "",//beforestep
+            "invitationexpired",//automatic step if dead line is reached
+            0,//
             168,
+            "invitationcreate",//name of action
             "Le bénéficiaire a envoyé une invitation.",
             "Le témoin doit accepter l'invitation.",
             "Invitation envoyée à [temoinemail] le [meetingdate]. Il reste [deadline] à votre contact pour l'accepter.",
             "ldb_btn_inprogress"
         ),
         new meetingtypeitem (
-            "temoinaddsnewavailability",
-            "",
             "availabilityopen",
+            "",
             "availabilityexpired",
             0,
             -360,//date of the availability - this amount = deadline
+            "temoinaddsnewavailability",
             "Le témoin a ajouté un nouveau créneau.",
             "Un bénéficiaire doit choisir ce créneau.",
             "to be set in meeting.service.",
             ""
         ),
         new meetingtypeitem (
-            "beneficiaireconfirmsavailability",
-            "availabilityopen",
             "availabilityconfirmed",
+            "availabilityopen",
             "availabilityopen",
             0,
             48,
+            "beneficiaireconfirmsavailability",
             "Le bénéficiaire a choisi le créneau.",
             "Le témoin doit confirmer le rendez-vous dans les 48h.",
             "to be set in meeting.service.",
             ""
         ),
         new meetingtypeitem (
-            "temoinconfirmsmeeting",
-            "availabilityconfirmed",
             "preparationbeneficiaire",
+            "availabilityconfirmed",
             "",
             0,
             -144,//144hrs before meeting 
+            "temoinconfirmsmeeting",
             "Le témoin a confirmé le rendez-vous.",
             "Le bénéficiaire doit préparer la rencontre.",
             "to be set in meeting.service.",
             ""
         ),
         new meetingtypeitem (
-            "beneficiaireterminatespreparation",
-            "preparationbeneficiaire",
             "preparationtemoin",
+            "preparationbeneficiaire",
             "meetingautocancelledbeneficiaire",//beneficiaire has not prepared the meeting
             0,
             -72,//72hrs before meeting
+            "beneficiaireterminatespreparation",
             "Le bénéficiaire a terminé sa préparation.",
             "Le témoin doit préparer la rencontre.",
             "to be set in meeting.service.",
             ""
         ),
         new meetingtypeitem (
-            "temointerminatespreparation",
-            "preparationtemoin",
             "meeting",
+            "preparationtemoin",
             "meeting",
             0,
             0,//dead line = meeting date
+            "temointerminatespreparation",
             "Le témoin a fini la préparation de la rencontre",
             "C'est le jour de la rencontre",
             "to be set in meeting.service.",
             ""
         ),
         new meetingtypeitem (
-            "meetingterminates",
-            "meeting",
             "meetingfollowup",
+            "meeting",
             "meetingfollowup",
             0,
             24,
+            "meetingterminates",
             "La rencontre a eu lieu.",
             "Les participants doivent faire le suivi de la rencontre",
             "to be set in meeting.service.",
             ""
         ),
         new meetingtypeitem (
-            "beneficiaireterminatesfollowup",
-            "meetingfollowup",
             "meetingdone",
+            "meetingfollowup",
             "meetingwithoutfollowup",
             0,
             168,
+            "beneficiaireterminatesfollowup",
             "Le bénéficiaire a fait le suivi de la rencontre.",
             "La rencontre est terminée.",
             "to be set in meeting.service.",

@@ -9,5 +9,5 @@
         Je peux encore envoyer {{(this.meetingservice.meetingparameters.maxinvitations - this.meetingservice.meetings.countbystep.invitationsent)}} {{this.commonservice.singulierpluriel((this.meetingservice.meetingparameters.maxinvitations - this.meetingservice.meetings.countbystep.invitationsent),"invitation","invitations")}}.
     </div>
 </div>
-<app-jenvoieuneinvitation></app-jenvoieuneinvitation>
+<app-jenvoieuneinvitation *ngIf="this.meetingservice.meetings.countbystep.invitationsent<this.meetingservice.meetingparameters.maxinvitations"></app-jenvoieuneinvitation>
 <app-jeconsultemesinvitations></app-jeconsultemesinvitations>

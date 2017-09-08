@@ -148,10 +148,10 @@ export class BilanService implements OnInit {
             this.bilan_percentage[forwhom][formodule] = 100*(this.totalcount[forwhom][formodule]/this.bilan_parameters.max[forwhom]);
         }
 
-        console.log("this.bilan_percentage");
-        console.log(this.bilan_percentage);
-        console.log("this.bilan_current");
-        console.log(this.bilan_current);
+        //console.log("this.bilan_percentage");
+        //console.log(this.bilan_percentage);
+        //console.log("this.bilan_current");
+        //console.log(this.bilan_current);
     }
 
     public assesslevel():void {
@@ -289,14 +289,14 @@ export class BilanService implements OnInit {
             this.levelitems[i].ratio=this.levelitems[i].temoincount/tempbeneficiaire;
         }
         
-        console.log("this.bilan_disqualify");
-        console.log(this.bilan_disqualify);
-        console.log("this.totalcount");
-        console.log(this.totalcount);
-        console.log("this.levelitems");
-        console.log(this.levelitems);
-        console.log("this.bilanitemrepository_selected");
-        console.log(this.bilanitemrepository_selected);
+        //console.log("this.bilan_disqualify");
+        //console.log(this.bilan_disqualify);
+        //console.log("this.totalcount");
+        //console.log(this.totalcount);
+        //console.log("this.levelitems");
+        //console.log(this.levelitems);
+        //console.log("this.bilanitemrepository_selected");
+        //console.log(this.bilanitemrepository_selected);
       
     }
 

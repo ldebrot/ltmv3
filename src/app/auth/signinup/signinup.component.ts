@@ -103,6 +103,7 @@ export class SigninupComponent implements OnInit, OnDestroy {
                 this.readwriteservice.getcurrentuserinfo();
                 this.firebaseitemsubscription = this.readwriteservice.firebaseitem.subscribe(snapshot=>{
                     this.dbuserinfoservice.integrate(snapshot);
+                    this.dbuserinfoservice.currentuserid=this.firebaseauthservice.angularfireauth.auth.currentUser.uid;
                     this.meetingservice.getcurrentusermeetings("creator")
                     .then(()=>{
                         let hellomsg:string = "Bonjour "+this.dbuserinfoservice.userinfo.publicinfo.firstname;
@@ -140,7 +141,7 @@ export class SigninupComponent implements OnInit, OnDestroy {
                 this.errormsg.push({severity:'success', summary:'Création de compte', detail:"Compte créé !"});
                 this.firebaseauthservice.setToken();
                 console.log("signinup: firebase signup successful")
-                this.readwriteservice.registercurrentuser()
+                this.readwriteservice.registercurrentuser("beneficiaire")
                 .then(()=>{
                     this.firebaseitemsubscription = this.readwriteservice.firebaseitem.subscribe(snapshot=>{
                         this.dbuserinfoservice.integrate(snapshot);

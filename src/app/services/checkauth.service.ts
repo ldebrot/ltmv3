@@ -48,7 +48,7 @@ export class CheckauthService implements OnInit{
             //console.log("not connected");
             this.currentauthstate = "notconnected";
         }
-        console.log("currentauthstate: "+ this.currentauthstate);
+        //console.log("currentauthstate: "+ this.currentauthstate);
     }
 
     isAuthenticated (route) {
@@ -64,17 +64,12 @@ export class CheckauthService implements OnInit{
                     if (this.paths[this.currentauthstate][i]===route) {
                         allow = true;
                         //console.log("route allowed !");
-                    }else{
-                        //console.log("not allowed : "+this.paths[this.currentauthstate][i]);
                     }              
                 }
                 
-                /*TEMPORARY WITHOUT INTERNET
-                allow = true;
-                */
                 resolve(allow);
                 if (!allow) {
-                    console.log("not allowed reroute !");
+                    //console.log("not allowed reroute !");
                     setTimeout(()=>{this.router.navigate(['/'+this.paths[this.currentauthstate]]);},1000);                        
                 }
             }
