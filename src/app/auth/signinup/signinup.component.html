@@ -17,7 +17,6 @@
                         id="email"
                         name="signinemail"
                         ngModel
-                        class="form-control"
                         required
                         email
                         #signinemail="ngModel"
@@ -54,7 +53,9 @@
                         </div>
                     </div>                    
                 </div>
-                <button class="btn btn-primary" (click)="onSignin(fsignin)" [disabled]="!fsignin.valid">Se connecter</button>
+                <div class="ldb_elementsinglebutton">
+                    <button class="btn ldb_btn_small ldb_btn_primary" (click)="onSignin(fsignin)" [disabled]="!fsignin.valid">Se connecter</button>
+                </div>
             </form>
 
         </p-tabPanel>
@@ -147,8 +148,10 @@
                         <div *ngIf="signuppassword.errors.minlength">
                             Le mot de passe doit être composé d'au moins 8 caractères.
                         </div>
-                    </div>                    
-                    <button class="btn btn-primary" (click)="onSignup(fsignup)" [disabled]="!fsignup.valid">Créer un compte</button>
+                    </div>
+                    <div class="ldb_elementsinglebutton">
+                        <button class="btn ldb_btn_small ldb_btn_primary" (click)="onSignup(fsignup)" [disabled]="!fsignup.valid">Créer un compte</button>
+                    </div>
                 </div>
             </form>
         </p-tabPanel>

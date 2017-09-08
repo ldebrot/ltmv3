@@ -53,10 +53,18 @@ i.mdi-ldb-primary {
     padding:10px 5px;
     margin:10px 0px;
 }
+.ldb_elementframe {
+    background: #EEE;
+    border: 1px solid white;
+    text-align: center;
+    width: 95%;
+    margin: 2% 2%;
+    padding: 2% 2%;
+}
 
 /* This is an element with one button in the middle */
 .ldb_elementsinglebutton {
-    margin: 0px 10%;
+    margin: 5px 10%;
 }
 /* bold  title of element */
 
@@ -381,6 +389,7 @@ input.ng-invalid.ng-touched {
     padding: 3px 10px;
     width:100%;
     font-size: small;
+    margin: 5px 0;
 }
 
 .ldb_btn_primary{

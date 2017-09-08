@@ -27,7 +27,12 @@ export class CheckauthService implements OnInit{
     //There can be only one value per path (because of the lack of IndexOf on IE...)
     public paths:any = { 
         notconnected : ["","signinup","decouvrirlunchtime","lesactus","quisommesnous","introuvable"],
-        beneficiaire : ["beneficiaire","monplanning","jefaislepoint","jeconstruismonprojet","jeconstruismonprojet/:step","jeconsultemonbilan","jeprendsrendezvous","jepreparemarencontre","jefaislesuivi","jedeviensunpro"]
+        beneficiaire : [
+            "beneficiaire","monplanning",
+            "jefaislepoint","jeconstruismonprojet",
+            "jeconstruismonprojet/:step","jeconsultemonbilan",
+            "jeprendsrendezvous","jeconsultemesinvitations","jenvoieuneinvitation","invitationsdashboard",
+            "jepreparemarencontre","jefaislesuivi","jedeviensunpro"]
     };
     
 

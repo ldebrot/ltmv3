@@ -75,6 +75,9 @@ import { BilanbeneficiaireComponent } from './components/beneficiaire/jeconsulte
 import { BilanratioComponent } from './components/beneficiaire/jeconsultemonbilan/bilanratio/bilanratio.component';
 import { BilandisqualifyComponent } from './components/beneficiaire/jeconsultemonbilan/bilandisqualify/bilandisqualify.component';
 import { JedeviensunproComponent } from './components/beneficiaire/jedeviensunpro/jedeviensunpro.component';
+import { JeconsultemesinvitationsComponent } from './components/beneficiaire/jeprendsrendezvous/jeconsultemesinvitations/jeconsultemesinvitations.component';
+import { JenvoieuneinvitationComponent } from './components/beneficiaire/jeprendsrendezvous/jenvoieuneinvitation/jenvoieuneinvitation.component';
+import { InvitationsdashboardComponent } from './components/beneficiaire/jeprendsrendezvous/invitationsdashboard/invitationsdashboard.component';
 
 //console.log("initializedApp at app.mdoule.ts level!");
 
@@ -105,7 +108,10 @@ import { JedeviensunproComponent } from './components/beneficiaire/jedeviensunpr
         BilanbeneficiaireComponent,
         BilanratioComponent,
         BilandisqualifyComponent,
-        JedeviensunproComponent
+        JedeviensunproComponent,
+        JeconsultemesinvitationsComponent,
+        JenvoieuneinvitationComponent,
+        InvitationsdashboardComponent
     ],
     imports: [
         FormsModule,

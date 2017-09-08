@@ -1,7 +1,7 @@
 import { OnDestroy } from '@angular/core';
 //Built-in
 import { Component, OnInit, Injectable } from '@angular/core';
-import { element } from 'protractor';
+//import { element } from 'protractor';
 import { NgForm } from "@angular/forms/forms";
 import { Router } from '@angular/router';
 import { NgClass } from '@angular/common';
@@ -126,6 +126,8 @@ export class SigninupComponent implements OnInit, OnDestroy {
 
     //FUnction triggered when user clicks on sign up
     onSignup(form: NgForm) {
+        this.dbuserinfoservice.empty();
+        this.dbuserinfoservice.setstartvalues();
         this.dbuserinfoservice.userinfo.publicinfo.firstname = form.value.signupfirstname;
         this.dbuserinfoservice.userinfo.publicinfo.surname = form.value.signupsurname;
         this.dbuserinfoservice.userinfo.privateinfo.email = form.value.signupemail;
@@ -135,7 +137,7 @@ export class SigninupComponent implements OnInit, OnDestroy {
         .then(
             (response) => {
                 this.errormsg = [];
-                this.errormsg.push({severity:'success', summary:'Création de compte', detail:response});
+                this.errormsg.push({severity:'success', summary:'Création de compte', detail:"Compte créé !"});
                 this.firebaseauthservice.setToken();
                 console.log("signinup: firebase signup successful")
                 this.readwriteservice.registercurrentuser()

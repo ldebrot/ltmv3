@@ -10,7 +10,9 @@ export class meetingtypeitem {
     //if zero : date of meeting
     public triggeraction:string;//description of the action triggering the new step
     public stepdescription:string;//description of the current description
-    
+    public buttoncaption:string;//this is the text of the button (with [tags] to be replaced)
+    public buttonclass:string;//this holds the css classes for each type
+
     constructor(
         name : string,
         beforestep : string,
@@ -19,7 +21,9 @@ export class meetingtypeitem {
         minimumduration : number,
         maximumduration : number,
         triggeraction:string,
-        stepdescription:string
+        stepdescription:string,
+        buttoncaption:string,
+        buttonclass:string
     ) {
         this.name = name;
         this.beforestep = beforestep;
@@ -29,5 +33,7 @@ export class meetingtypeitem {
         this.maximumduration = maximumduration;
         this.triggeraction = triggeraction;
         this.stepdescription = stepdescription;
+        this.buttoncaption = buttoncaption;
+        this.buttonclass = buttonclass;
     }
 }  

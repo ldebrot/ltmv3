@@ -1,4 +1,3 @@
-import { JedeviensunproComponent } from './../components/beneficiaire/jedeviensunpro/jedeviensunpro.component';
 //Services:
 import { authGuardService } from './authguard.service';
 
@@ -21,6 +20,10 @@ import { JeprendsrendezvousComponent } from './../components/beneficiaire/jepren
 import { JefaislepointComponent } from './../components/beneficiaire/jefaislepoint/jefaislepoint.component';
 import { JeconstruismonprojetComponent } from './../components/beneficiaire/jefaislepoint/jeconstruismonprojet/jeconstruismonprojet.component';
 import { JeconsultemonbilanComponent } from './../components/beneficiaire/jeconsultemonbilan/jeconsultemonbilan.component';
+import { JeconsultemesinvitationsComponent } from './../components/beneficiaire/jeprendsrendezvous/jeconsultemesinvitations/jeconsultemesinvitations.component';
+import { JedeviensunproComponent } from './../components/beneficiaire/jedeviensunpro/jedeviensunpro.component';
+import { JenvoieuneinvitationComponent } from './../components/beneficiaire/jeprendsrendezvous/jenvoieuneinvitation/jenvoieuneinvitation.component';
+import { InvitationsdashboardComponent } from './../components/beneficiaire/jeprendsrendezvous/invitationsdashboard/invitationsdashboard.component';
 
 //Routes:
 const appRoutes: Routes = [
@@ -40,6 +43,9 @@ const appRoutes: Routes = [
         { path: 'jefaislepoint', canActivate: [authGuardService], component: JefaislepointComponent},
         { path: 'jeconsultemonbilan', canActivate: [authGuardService], component: JeconsultemonbilanComponent},
         { path: 'jeprendsrendezvous', canActivate: [authGuardService], component: JeprendsrendezvousComponent},
+        { path: 'invitationsdashboard', canActivate: [authGuardService], component: InvitationsdashboardComponent},
+        { path: 'jenvoieuneinvitation', canActivate: [authGuardService], component: JenvoieuneinvitationComponent},        
+        { path: 'jeconsultemesinvitations', canActivate: [authGuardService], component: JeconsultemesinvitationsComponent},
         { path: 'jepreparemarencontre', canActivate: [authGuardService], component: JepreparemarencontreComponent},
         { path: 'jefaislesuivi', canActivate: [authGuardService], component: JefaislesuiviComponent},
         { path: 'jeconstruismonprojet', canActivate: [authGuardService], component: JeconstruismonprojetComponent},

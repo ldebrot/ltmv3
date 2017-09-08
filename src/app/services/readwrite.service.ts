@@ -31,8 +31,6 @@ export class ReadwriteService {
 
     public registercurrentuser():any {
         //save stuff locally
-        this.dbuserinfoservice.empty();
-        this.dbuserinfoservice.setstartvalues();
         this.dbuserinfoservice.userinfo.privateinfo.email = this.firebaseauthservice.angularfireauth.auth.currentUser.email;
         //prepare for creating a new user on Firebase
         let temp_value : any = {};
@@ -69,6 +67,10 @@ export class ReadwriteService {
             console.log(error.message);
             console.log(error);
         });
+    }
+
+    public simplyget(ref:string):any{
+        return this.firebaseauthservice.angularfiredatabase.object(ref)
     }
 
 }

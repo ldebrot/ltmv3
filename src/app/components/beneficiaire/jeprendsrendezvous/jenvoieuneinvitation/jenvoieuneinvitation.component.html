@@ -1,0 +1,40 @@
+<div class="ldb_elementbackground">
+
+    <div class="ldb_elementtextbold ldb_elementtext">
+        J'invite quelqu'un à devenir mon témoin
+    </div>
+    <div class="ldb_elementtext ldb_elementtextsmall">
+        Votre témoin recevra un courriel l'invitation à proposer un créneau sur Lunchtime.
+    </div>
+
+    <div class="">
+        <form #f='ngForm'>
+            <div class="form_group">
+                <input
+                type="email"
+                id="email"
+                name="temoinemail"
+                ngModel
+                class="form-control"
+                required
+                email
+                #temoinemail="ngModel"
+                >
+                <div *ngIf="temoinemail.invalid && (temoinemail.dirty || temoinemail.touched)"
+                class="alert alert-danger">
+                    <div *ngIf="temoinemail.errors.email">
+                        Veuillez entrer une adresse électronique valide.
+                    </div>
+                    <div *ngIf="temoinemail.errors.required">
+                        Veuillez indiquer votre adresse électronique.
+                    </div>
+                </div>
+            </div>
+            <div class="ldb_elementsinglebutton">
+                <button class="btn ldb_btn_small ldb_btn_primary" (click)="this.meetingservice.tryme_createnew()" [disabled]="!f.valid">Envoyer une invitation</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+    

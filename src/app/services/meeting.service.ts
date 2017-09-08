@@ -24,6 +24,8 @@ export class MeetingService implements OnInit{
     
     public firebaseitem : any;
 
+    public buttoncaptiontypes : any;//this holds the keywords to be used in the buttoncaption texts
+
     public meetings : any;
     public meetingparameters = {
         maxinvitations : 3
@@ -74,7 +76,7 @@ export class MeetingService implements OnInit{
         return temp_deadline;
     }
 
-    public createnew(actionname:string,creatoruids:object,participantuids:object,meetingdate:string,address:string):any {
+    public createnew(actionname:string,creatoruids:object,participantuids:object,participants:object,meetingdate:string,address:string):any {
         let temp_id:number = this.createid();
         let temp_step:string = "";
         let temp_deadline:string = "";
@@ -89,6 +91,7 @@ export class MeetingService implements OnInit{
             temp_step,
             creatoruids,
             participantuids,
+            participants,
             meetingdate,
             temp_deadline,
             address
@@ -113,7 +116,7 @@ export class MeetingService implements OnInit{
     }
 
     public tryme_createnew():void {
-        this.createnew("invitationcreate",{"5egMZRLqVJMsDq477qgb9Nrr3kA3":"okay"},{YDggrswjcIfWmrGYNOdh6fBThI12:"okay"},"201710301230","9, rue du Rhin, 75010 PARIS")
+        this.createnew("invitationcreate",{"5egMZRLqVJMsDq477qgb9Nrr3kA3":"okay"},{YDggrswjcIfWmrGYNOdh6fBThI12:"okay"},{temoin : {email:"ldebrot@yahoo.de"}, beneficiaire:{email:"mumu@mumu.com"}},"201710301230","9, rue du Rhin, 75010 PARIS")
         .then(()=>{
             setTimeout(()=>{this.getcurrentusermeetings("creator");},5000);
         });
@@ -187,6 +190,82 @@ export class MeetingService implements OnInit{
         return Number(tempstring);
     }
 
+    //Creates button items (which can be displayed with ngFor) --> check button.model to see what's in there
+    public returnbuttonitems(meetings:meetingitem[]):any{
+        let temp_return : any = [];
+        if (meetings.length!==0){
+            for (let i = 0; i < meetings.length; i++){
+                for (let i2 = 0; i2 < this.meetingtypes.length;i2++){
+                    if (meetings[i].currentstep===this.meetingtypes[i2].currentstep){
+                        temp_return[i].buttonclass = this.meetingtypes[i2].buttonclass;
+                        temp_return[i].tooltiptext = this.meetingtypes[i2].tooltiptext;
+                        temp_return[i].routerlink = this.meetingtypes[i2].routerlink;
+                        temp_return[i].buttoncaption = this.returnbuttoncaption(meetings[i],this.meetingtypes[i2].buttoncaption);
+                        break;
+                    }            
+                }
+            }                
+        } else {
+            console.log("returnmeetingitems: meetingtypes empty!");
+        }
+        return temp_return;
+    }
+
+    //Returns the caption of a button with keywords replaced
+    public returnbuttoncaption(meeting:meetingitem, inputbuttoncaption:string):string{
+        let temp_buttoncaption : string = inputbuttoncaption;
+        let temp_startpos:number[] = [];
+        let temp_endpos:number[] = [];
+        let temp_keyword:string[] = [];
+        let temp_currentpos:number = 0
+        let temp_inputbuttoncaptionrest : string = inputbuttoncaption;
+        let next_startpos : number = 0;
+        let next_endpos : number = 0;
+        for (let i = 0; i < 10; i++){
+            next_startpos = temp_inputbuttoncaptionrest.search("\\[") + temp_currentpos;
+            next_endpos = temp_inputbuttoncaptionrest.search("\\]") + temp_currentpos;
+            if(next_startpos>=0){
+                temp_startpos[i] = next_startpos;
+                temp_endpos[i] = next_endpos+1;
+                temp_currentpos += next_endpos+1;
+                temp_keyword[i] = inputbuttoncaption.substring(temp_startpos[i]+1,temp_endpos[i]-1);
+                temp_inputbuttoncaptionrest = temp_inputbuttoncaptionrest.substring(next_endpos+1);
+            } else {
+                break;
+            }          
+        }
+
+        let temp_replacement : string[] = [];
+        for (let i = 0; i < temp_keyword.length; i++){
+            switch (temp_keyword[i]) {
+                case "temoinemail" :
+                    //insert the email of the temoin here
+                    ///--> must resolve problem of accessing private info of other --> to be stored in meeting ?
+                    temp_replacement[i]=meeting.participants.temoin.email;
+                break;
+                case "meetingdate" :
+                    //insert the meeting date here
+                    let temp_dateinmilliseconds:number = this.commonservice.getdatematrix(meeting.date).inmilliseconds;
+                    temp_replacement[i]=this.commonservice.getdateasaphrasefrommilliseconds(temp_dateinmilliseconds);
+                break;
+                case "deadline" :
+                    //insert the dead line here
+                    let temp_delta:number = this.commonservice.getdatematrix(meeting.deadline).inmilliseconds - Date.now();
+                    temp_replacement[i] = this.commonservice.getdeadlineasaphrasefrommilliseconds(temp_delta);
+                break;    
+                default :
+                temp_replacement[i] = "";
+            }
+
+        }
+
+        for (let i = (temp_keyword.length - 1); i = 0; i--){
+            temp_buttoncaption = inputbuttoncaption.replace("["+temp_keyword[i]+"]",temp_replacement[i]);
+        }
+
+        return temp_buttoncaption;
+    }
+
     public meetingtypes : any = [
         new meetingtypeitem (
             "invitationcreate",
@@ -196,7 +275,9 @@ export class MeetingService implements OnInit{
             0,
             168,
             "Le bénéficiaire a envoyé une invitation.",
-            "Le témoin doit accepter l'invitation."
+            "Le témoin doit accepter l'invitation.",
+            "Invitation envoyée à [temoinemail] le [meetingdate]. Il reste [deadline] à votre contact pour l'accepter.",
+            "ldb_btn_inprogress"
         ),
         new meetingtypeitem (
             "temoinaddsnewavailability",
@@ -206,7 +287,9 @@ export class MeetingService implements OnInit{
             0,
             -360,//date of the availability - this amount = deadline
             "Le témoin a ajouté un nouveau créneau.",
-            "Un bénéficiaire doit choisir ce créneau."
+            "Un bénéficiaire doit choisir ce créneau.",
+            "to be set in meeting.service.",
+            ""
         ),
         new meetingtypeitem (
             "beneficiaireconfirmsavailability",
@@ -216,7 +299,9 @@ export class MeetingService implements OnInit{
             0,
             48,
             "Le bénéficiaire a choisi le créneau.",
-            "Le témoin doit confirmer le rendez-vous dans les 48h."
+            "Le témoin doit confirmer le rendez-vous dans les 48h.",
+            "to be set in meeting.service.",
+            ""
         ),
         new meetingtypeitem (
             "temoinconfirmsmeeting",
@@ -226,7 +311,9 @@ export class MeetingService implements OnInit{
             0,
             -144,//144hrs before meeting 
             "Le témoin a confirmé le rendez-vous.",
-            "Le bénéficiaire doit préparer la rencontre."
+            "Le bénéficiaire doit préparer la rencontre.",
+            "to be set in meeting.service.",
+            ""
         ),
         new meetingtypeitem (
             "beneficiaireterminatespreparation",
@@ -236,7 +323,9 @@ export class MeetingService implements OnInit{
             0,
             -72,//72hrs before meeting
             "Le bénéficiaire a terminé sa préparation.",
-            "Le témoin doit préparer la rencontre."
+            "Le témoin doit préparer la rencontre.",
+            "to be set in meeting.service.",
+            ""
         ),
         new meetingtypeitem (
             "temointerminatespreparation",
@@ -246,7 +335,9 @@ export class MeetingService implements OnInit{
             0,
             0,//dead line = meeting date
             "Le témoin a fini la préparation de la rencontre",
-            "C'est le jour de la rencontre"
+            "C'est le jour de la rencontre",
+            "to be set in meeting.service.",
+            ""
         ),
         new meetingtypeitem (
             "meetingterminates",
@@ -256,7 +347,9 @@ export class MeetingService implements OnInit{
             0,
             24,
             "La rencontre a eu lieu.",
-            "Les participants doivent faire le suivi de la rencontre"
+            "Les participants doivent faire le suivi de la rencontre",
+            "to be set in meeting.service.",
+            ""
         ),
         new meetingtypeitem (
             "beneficiaireterminatesfollowup",
@@ -266,7 +359,9 @@ export class MeetingService implements OnInit{
             0,
             168,
             "Le bénéficiaire a fait le suivi de la rencontre.",
-            "La rencontre est terminée."
+            "La rencontre est terminée.",
+            "to be set in meeting.service.",
+            ""
         )
     ]
 }
