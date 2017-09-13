@@ -1,3 +1,4 @@
+import { JapprendsapresentermonprojetComponent } from './../components/beneficiaire/jefaislepoint/japprendsapresentermonprojet/japprendsapresentermonprojet.component';
 import { JemeprepareetmelanceComponent } from './../components/beneficiaire/jefaislepoint/jemeprepareetmelance/jemeprepareetmelance.component';
 import { JidentifiemessoutiensComponent } from './../components/beneficiaire/jefaislepoint/jidentifiemessoutiens/jidentifiemessoutiens.component';
 import { JedeveloppeetactivemonreseauComponent } from './../components/beneficiaire/jefaislepoint/jedeveloppeetactivemonreseau/jedeveloppeetactivemonreseau.component';
@@ -63,6 +64,8 @@ const appRoutes: Routes = [
         { path: 'jechoisismonnouveaumetier/:step', canActivate: [authGuardService], component: JechoisismonnouveaumetierComponent},
         { path: 'jemerenseignesurmonmetier', canActivate: [authGuardService], component: JemerenseignesurmonmetierComponent},
         { path: 'jemerenseignesurmonmetier/:step', canActivate: [authGuardService], component: JemerenseignesurmonmetierComponent},
+        { path: 'japprendsapresentermonprojet', canActivate: [authGuardService], component: JapprendsapresentermonprojetComponent},
+        { path: 'japprendsapresentermonprojet/:step', canActivate: [authGuardService], component: JapprendsapresentermonprojetComponent},
         { path: 'jedeveloppeetactivemonreseau', canActivate: [authGuardService], component: JedeveloppeetactivemonreseauComponent},
         { path: 'jedeveloppeetactivemonreseau/:step', canActivate: [authGuardService], component: JedeveloppeetactivemonreseauComponent},
         { path: 'jidentifiemessoutiens', canActivate: [authGuardService], component: JidentifiemessoutiensComponent},

@@ -7,12 +7,14 @@ import { Injectable } from '@angular/core';
 //Hand-made
 import { DbuserinfoService } from './dbuserinfo.service';
 import { monplanningitem } from './monplanning.model';
+import { ReadwritebufferService } from './readwritebuffer.service';
 
 @Injectable()
 export class NavigationService implements OnInit {
 
     constructor(
-        public dbuserinfoservice:DbuserinfoService
+        public dbuserinfoservice:DbuserinfoService,
+        public readwritebufferservice:ReadwritebufferService
     ){
 
     }
@@ -40,14 +42,14 @@ export class NavigationService implements OnInit {
 
     public monplanningitemrepository = [
         new monplanningitem(
-            "mdi mdi-36px mdi-clipboard mdi-ldb-primary",
+            "mdi mdi-36px mdi-clipboard mdi-ldb-available",
             "Je n'ai pas encore fait le point sur mon projet de reconversion",
-            "btn ldb_btn ldb_btn_primary",
+            "btn ldb_btn ldb_btn_available",
             "/beneficiaire/jefaislepoint",
             "Je fais le point sur ma reconversion professionnelle",
             "modulejefaislepoint",
-            "notdone",
-            1000
+            "available",
+            999
         ),
         new monplanningitem(
             "mdi mdi-36px mdi-clipboard-check mdi-ldb-done",
@@ -60,14 +62,14 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
-            "mdi mdi-36px mdi-clipboard mdi-ldb-primary",
+            "mdi mdi-36px mdi-clipboard mdi-ldb-available",
             "Je peux consulter mon bilan à tout moment",
-            "btn ldb_btn ldb_btn_primary",
+            "btn ldb_btn ldb_btn_available",
             "/beneficiaire/jeconsultemonbilan",
             "Je consulte mon bilan",
             "modulejeconsultemonbilan",
-            "notdone",
-            1000
+            "available",
+            0
         ),
         new monplanningitem(
             "mdi mdi-36px mdi-clipboard mdi-ldb-unavailable",
@@ -80,14 +82,14 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
-            "mdi mdi-36px mdi-clipboard mdi-ldb-notdone",
+            "mdi mdi-36px mdi-clipboard mdi-ldb-available",
             "Je n'ai pas encore contacté de personne.",
-            "btn ldb_btn ldb_btn_notdone",
+            "btn ldb_btn ldb_btn_available",
             "/beneficiaire/jeprendsrendezvous",
             "Je contacte une personne qui a déjà changé de métier",
             "modulejeprendsrendezvous",
-            "notdone",
-            100
+            "available",
+            998
         ),
         new monplanningitem(
             "mdi mdi-36px mdi-clipboard-check mdi-ldb-done",
@@ -97,7 +99,7 @@ export class NavigationService implements OnInit {
             "Je contacte une personne qui a déjà changé de métier",
             "modulejeprendsrendezvous",
             "done",
-            10
+            8
         ),
         new monplanningitem(
             "mdi mdi-36px mdi-clipboard mdi-ldb-unavailable",
@@ -117,7 +119,7 @@ export class NavigationService implements OnInit {
             "Je prépare ma rencontre avec un témoin",
             "modulejepreparemarencontre",
             "notdone",
-            1000
+            997
         ),
         new monplanningitem(
             "mdi mdi-36px mdi-clipboard-alert mdi-ldb-todo",
@@ -127,7 +129,7 @@ export class NavigationService implements OnInit {
             "Je prépare ma rencontre avec un témoin",
             "modulejepreparemarencontre",
             "todo",
-            10000
+            9997
         ),
         new monplanningitem(
             "mdi mdi-36px mdi-clipboard-check mdi-ldb-done",
@@ -157,7 +159,7 @@ export class NavigationService implements OnInit {
             "Je fais le suivi de ma rencontre",
             "modulejefaislesuivi",
             "notdone",
-            100
+            995
         ),
         new monplanningitem(
             "mdi mdi-36px mdi-clipboard-alert mdi-ldb-todo",
@@ -167,7 +169,7 @@ export class NavigationService implements OnInit {
             "Je fais le suivi de ma rencontre",
             "modulejefaislesuivi",
             "todo",
-            1000
+            9995
         ),
         new monplanningitem(
             "mdi mdi-36px mdi-clipboard-check mdi-ldb-done",
@@ -180,6 +182,64 @@ export class NavigationService implements OnInit {
             0
         ),
     ]
+
+    public monplanningupdateconditions = {
+        modulejefaislepoint : {//name of the experience field to be updated
+            updatevalue : "done",//value to which the experience field will be set in case conditions are met
+            conditions : {//conditions (experience fields) to be met with corresponding value
+                etapejapprendsapresentermonprojet : "done",
+                etapejechoisismonnouveaumetier : "done",
+                etapejeconstruismonprojet : "done",
+                etapejedeveloppeetactivemonreseau : "done",
+                etapejemeprepareetmelance : "done",
+                etapejemerenseignesurmonmetier : "done",
+                etapejetrouvedesideesdemetier : "done",
+                etapejidentifiemessoutiens : "done"
+            }
+        },
+        modulejeprendsrendezvous : {
+            updatevalue : "available",
+            conditions : {
+                modulejefaislepoint : "done"
+            }
+        }
+    }
+
+    //this function checks all condition in the monplanningupdateconditions variable and updates experience fields accordingly
+    public updatemodulelevels():void{
+        let temp_somethingchanged : boolean = false;
+        //console.log("updatemodulelevels here!");
+        //console.log("Object.keys(this.monplanningupdateconditions).length");
+        //console.log(Object.keys(this.monplanningupdateconditions).length);
+        for (let i = 0; i < Object.keys(this.monplanningupdateconditions).length; i++){
+            let temp_key = Object.keys(this.monplanningupdateconditions)[i];
+            let temp_numberofconditions = Object.keys(this.monplanningupdateconditions[temp_key].conditions).length;
+            let temp_metconditionscount = 0;
+            for (let i2 = 0; i2 < Object.keys(this.monplanningupdateconditions[temp_key].conditions).length; i2++) {
+                let temp_condition = Object.keys(this.monplanningupdateconditions[temp_key].conditions)[i2];
+                let temp_conditionvalue = this.monplanningupdateconditions[temp_key].conditions[temp_condition];
+                console.log(temp_condition);
+                console.log(this.dbuserinfoservice.userinfo.experience[temp_condition]+"==="+temp_conditionvalue);
+                if (this.dbuserinfoservice.userinfo.experience[temp_condition]===temp_conditionvalue){
+                    temp_metconditionscount++;
+                }
+            }
+            //console.log("temp_key");
+            //console.log(temp_key);
+            //console.log("temp_numberofconditions");
+            //console.log(temp_numberofconditions);
+            //console.log("temp_metconditionscount");
+            //console.log(temp_metconditionscount);
+            if (temp_metconditionscount===temp_numberofconditions){
+                let temp_updatevalue = this.monplanningupdateconditions[temp_key].updatevalue;
+                this.readwritebufferservice.updatebuffer(temp_key,temp_updatevalue,"update");  
+                temp_somethingchanged = true;    
+            }
+        }
+        if (temp_somethingchanged) {
+            setTimeout(()=>{this.updatemodulelevels()},1000)
+        }              
+    }
 
     //sets up the list of button in the monplanning menu.
     preparemonplanningitems ():void {
@@ -198,7 +258,7 @@ export class NavigationService implements OnInit {
         let maxemergencylevel:number = 0;
         let itemnumber:number = 0;
         for (let i = 0; i < this.monplanningitems.length; i++) {
-            //console.log(this.monplanningitems[i].atext+"level : "+this.monplanningitems[i].emergencylevel);
+            console.log(this.monplanningitems[i].atext+"level : "+this.monplanningitems[i].emergencylevel);
             if (this.monplanningitems[i].emergencylevel >= maxemergencylevel) {
                 maxemergencylevel=this.monplanningitems[i].emergencylevel;
                 itemnumber = i;
@@ -730,8 +790,13 @@ export class NavigationService implements OnInit {
         //console.log(itemnumber);
         //console.log("this.jefaislepointitems");
         //console.log(this.jefaislepointitems);
-        this.jefaislepointnexttask.item = this.jefaislepointitems[itemnumber];
+        if(this.jefaislepointitems[itemnumber].emergencylevel!==0) {
+            this.jefaislepointnexttask.item = this.jefaislepointitems[itemnumber];
+        }else{
+            this.jefaislepointnexttask.item = {};
+        }
     }
+
 
     // JE CONSTRUIS MON PROJET
 
@@ -748,10 +813,62 @@ export class NavigationService implements OnInit {
         false, //you have to select options 
         true, //you have to read it
     ];
+
+    //J'IDENTIFIE DES PISTES DE METIER
     public jetrouvedesideesdemetiernumberofsteps:number = 1; //Here we set the number of steps in this module. This is used for the progress bar.
     public jetrouvedesideesdemetiercurrentstep:number = 1; //This variable shows at which step we are in this module.
     public jetrouvedesideesdemetiervalidatable = [
         false, //THIS IS NOT A STEP, THERE IS NO STEP 0
         true, //you have to read it
     ];
+
+    //JE CHOISIS MON NOUVEAU METIER
+    public jechoisismonnouveaumetiernumberofsteps:number = 1; //Here we set the number of steps in this module. This is used for the progress bar.
+    public jechoisismonnouveaumetiercurrentstep:number = 1; //This variable shows at which step we are in this module.
+    public jechoisismonnouveaumetiervalidatable = [
+        false, //THIS IS NOT A STEP, THERE IS NO STEP 0
+        true, //you have to read it
+    ];
+
+    //JE ME RENSEIGNE SUR MON METIER
+    public jemerenseignesurmonmetiernumberofsteps:number = 1; //Here we set the number of steps in this module. This is used for the progress bar.
+    public jemerenseignesurmonmetiercurrentstep:number = 1; //This variable shows at which step we are in this module.
+    public jemerenseignesurmonmetiervalidatable = [
+        false, //THIS IS NOT A STEP, THERE IS NO STEP 0
+        true, //you have to read it
+    ];
+
+    //J'APPRENDS A PRESENTER MON PROJET'
+    public japprendsapresentermonprojetnumberofsteps:number = 1; //Here we set the number of steps in this module. This is used for the progress bar.
+    public japprendsapresentermonprojetcurrentstep:number = 1; //This variable shows at which step we are in this module.
+    public japprendsapresentermonprojetvalidatable = [
+        false, //THIS IS NOT A STEP, THERE IS NO STEP 0
+        true, //you have to read it
+    ];
+
+    //JE DEVELOPPE ET ACTIVE MON RESEAU
+    public jedeveloppeetactivemonreseaunumberofsteps:number = 1; //Here we set the number of steps in this module. This is used for the progress bar.
+    public jedeveloppeetactivemonreseaucurrentstep:number = 1; //This variable shows at which step we are in this module.
+    public jedeveloppeetactivemonreseauvalidatable = [
+        false, //THIS IS NOT A STEP, THERE IS NO STEP 0
+        true, //you have to read it
+    ];
+
+    //J'IDENTIFIE MES SOUTIENS'
+    public jidentifiemessoutiensnumberofsteps:number = 1; //Here we set the number of steps in this module. This is used for the progress bar.
+    public jidentifiemessoutienscurrentstep:number = 1; //This variable shows at which step we are in this module.
+    public jidentifiemessoutiensvalidatable = [
+        false, //THIS IS NOT A STEP, THERE IS NO STEP 0
+        true, //you have to read it
+    ];
+
+    //JE ME PREPARE ET ME LANCE
+    public jemeprepareetmelancenumberofsteps:number = 1; //Here we set the number of steps in this module. This is used for the progress bar.
+    public jemeprepareetmelancecurrentstep:number = 1; //This variable shows at which step we are in this module.
+    public jemeprepareetmelancevalidatable = [
+        false, //THIS IS NOT A STEP, THERE IS NO STEP 0
+        true, //you have to read it
+    ];
+    
+
 }

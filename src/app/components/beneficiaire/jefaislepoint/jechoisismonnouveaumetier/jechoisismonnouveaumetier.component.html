@@ -1,3 +1,68 @@
-<p>
-  jechoisismonnouveaumetier works!
-</p>
+<div class="ldbway">
+  <p-progressBar 
+      [showValue]="false" 
+      [value]="100*(this.navigationservice.jechoisismonnouveaumetiercurrentstep/this.navigationservice.jechoisismonnouveaumetiernumberofsteps)">
+  </p-progressBar>
+</div>
+<div class="ldb_elementbackground">
+  <div class="ldb_elementtextbold ldb_elementtext">
+      Je choisis mon nouveau métier 
+  </div>
+
+  <div *ngIf="this.navigationservice.jechoisismonnouveaumetiercurrentstep===1">
+      <table class="ldb_instruction"><td><tr>
+          <i class="mdi mdi-information-outline mdi-24px"></i>
+          </tr></td><td><tr>
+          A vous de lire
+          </tr></td>
+      </table>
+      <div class="ldb_white_space">
+              <div class="ldb_elementtextbold">
+                  Félicitations!
+                  <br>
+                  Vous avez terminé la 2ème étape !
+              </div>
+
+              <div class="ldb_elementcongratulationsicon">
+                  <i class="mdi mdi-clipboard-check mdi-24px"></i>
+              </div>
+
+              <div class="ldb_elementtextsmall ldb_elementtext">
+                  Retrouvez le bilan en cliquant sur le porte-bloc vert dans le menu du module "Je fais le point".
+                  <br>
+                  Il vous présentera : 
+                  <br>- une évaluation de votre niveau de préparation
+                  <br>- des pistes pour avancer en toute indépendance
+                  <br>- des points à clariﬁer auprès d'un témoin Lunchtime
+              </div>
+
+      </div>
+  </div>
+  
+</div> 
+
+<div class="ldb_elementbackground ldb_elementnavbutton">
+  <a *ngIf="this.navigationservice.jechoisismonnouveaumetiercurrentstep < 2" 
+  class="btn ldb_btn_small ldb_btn_unaivailable ldb_elementnavbutton_side">&lt;</a> 
+  <a (click)="goonestepback()" *ngIf="this.navigationservice.jechoisismonnouveaumetiercurrentstep > 1" 
+      class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&lt;</a> 
+  
+  <a *ngIf="!this.navigationservice.jechoisismonnouveaumetiervalidatable[this.navigationservice.jechoisismonnouveaumetiercurrentstep] 
+  && !this.currentstepvalid" 
+  class="btn ldb_btn_small ldb_btn_unavailable ldb_elementnavbutton_middle">J'ai terminé !</a> 
+  <a (click)="goonestepfurther()" *ngIf="(this.navigationservice.jechoisismonnouveaumetiervalidatable[this.navigationservice.jechoisismonnouveaumetiercurrentstep] 
+  || this.currentstepvalid) && this.navigationservice.jechoisismonnouveaumetiercurrentstep < this.navigationservice.jechoisismonnouveaumetiernumberofsteps" 
+  class="btn ldb_btn_small ldb_btn_done ldb_elementnavbutton_middle">J'ai terminé !</a> 
+
+  <a (click)="this.conclude()" [routerLink]="['/beneficiaire/jefaislepoint']" *ngIf="(this.navigationservice.jechoisismonnouveaumetiercurrentstep === this.navigationservice.jechoisismonnouveaumetiernumberofsteps)" 
+  class="btn ldb_btn_small ldb_btn_done ldb_elementnavbutton_middle">Retour au planning</a> 
+
+  <a *ngIf="!this.navigationservice.jechoisismonnouveaumetiervalidatable[this.navigationservice.jechoisismonnouveaumetiercurrentstep] 
+  && !this.currentstepvalid 
+  || this.navigationservice.jechoisismonnouveaumetiercurrentstep >= this.navigationservice.jechoisismonnouveaumetiernumberofsteps" 
+  class="btn ldb_btn_small ldb_btn_unavailable ldb_elementnavbutton_side">&gt;</a> 
+  <a (click)="goonestepfurther()" *ngIf="(this.navigationservice.jechoisismonnouveaumetiervalidatable[this.navigationservice.jechoisismonnouveaumetiercurrentstep] 
+  || this.currentstepvalid) 
+  && this.navigationservice.jechoisismonnouveaumetiercurrentstep < this.navigationservice.jechoisismonnouveaumetiernumberofsteps"
+  class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&gt;</a> 
+</div>

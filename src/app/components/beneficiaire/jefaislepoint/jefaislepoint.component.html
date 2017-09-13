@@ -9,7 +9,7 @@
         </tr>
     </table>
 </div>
-<div class="ldb_elementbackground">
+<div *ngIf="this.navigationservice.jefaislepointnexttask.item.route!==undefined" class="ldb_elementbackground">
     <div class="ldb_elementtextbold ldb_elementtext">
         {{ this.navigationservice.jefaislepointnexttask.title}}
     </div>

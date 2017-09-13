@@ -48,6 +48,8 @@ export class JetrouvedesideesdemetierComponent implements OnInit {
     }
     
     ngOnDestroy() {
+        this.checkifinprogress();
+        this.navigationservice.updatemodulelevels();
         this.readwritebufferservice.transmitbuffer();
         this.readwritebufferservice.emptybuffer();
     }
@@ -96,7 +98,18 @@ export class JetrouvedesideesdemetierComponent implements OnInit {
         this.readwritebufferservice.updatebuffer("etapejetrouvedesideesdemetier","done","update");
         this.readwritebufferservice.transmitbuffer();
     }
-    
+
+    //This function checks whether the current module is in progress (is not done, but does have changes)
+    public checkifinprogress():void{
+        if(
+            this.dbuserinfoservice.userinfo.experience.etapejeconstruismonprojet!=="done"
+            && this.dbuserinfoservice.userinfo.experience.etapejeconstruismonprojet!=="inprogress"
+            && Object.keys(this.readwritebufferservice.buffer).length!==0
+        ){
+            this.readwritebufferservice.updatebuffer("etapejeconstruismonprojet","inprogress","update");            
+        }        
+    }
+
     public goonestepback():void {
         this.navigationservice.jetrouvedesideesdemetiercurrentstep = this.navigationservice.jetrouvedesideesdemetiercurrentstep - 1;
         this.checkifstepvalid();

@@ -34,6 +34,7 @@ export class CheckauthService implements OnInit{
             "jetrouvedesideesdemetier","jetrouvedesideesdemetier/:step",
             "jechoisismonnouveaumetier","jechoisismonnouveaumetier/:step",
             "jemerenseignesurmonmetier","jemerenseignesurmonmetier/:step",
+            "japprendsapresentermonprojet","japprendsapresentermonprojet/:step",
             "jedeveloppeetactivemonreseau","jedeveloppeetactivemonreseau/:step",
             "jidentifiemessoutiens","jidentifiemessoutiens/:step",
             "jemeprepareetmelance","jemeprepareetmelance/:step",

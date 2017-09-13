@@ -74,7 +74,6 @@ export class JeconstruismonprojetComponent implements OnInit {
     }
 
     ngOnInit() {
-        
         this.setstepatbeginning();
         this.initiate();
         this.checkifstepvalid();
@@ -86,9 +85,11 @@ export class JeconstruismonprojetComponent implements OnInit {
     }
 
     ngOnDestroy() {
+        this.checkifinprogress();
+        this.navigationservice.updatemodulelevels();
         this.readwritebufferservice.transmitbuffer();
         this.readwritebufferservice.emptybuffer();
-    }
+        }
 
     //This function initiates the module by filling in values from dbuserservice
     //it fills in only for the steps indicated in OnInit
@@ -166,6 +167,21 @@ export class JeconstruismonprojetComponent implements OnInit {
     public conclude():void{
         this.readwritebufferservice.updatebuffer("etapejeconstruismonprojet","done","update");
         this.readwritebufferservice.transmitbuffer();
+    }
+
+    //This function checks whether the current module is in progress (is not done, but does have changes)
+    public checkifinprogress():void{
+        //console.log("this.dbuserinfoservice.userinfo.experience.etapejeconstruismonprojet");
+        //console.log(this.dbuserinfoservice.userinfo.experience.etapejeconstruismonprojet);
+        //console.log("Object.keys(this.readwritebufferservice.buffer).length");
+        //console.log(Object.keys(this.readwritebufferservice.buffer).length);
+        if(
+            this.dbuserinfoservice.userinfo.experience.etapejeconstruismonprojet!=="done"
+            && this.dbuserinfoservice.userinfo.experience.etapejeconstruismonprojet!=="inprogress"
+            && Object.keys(this.readwritebufferservice.buffer).length!==0
+        ){
+            this.readwritebufferservice.updatebuffer("etapejeconstruismonprojet","inprogress","update");            
+        }        
     }
 
     public goonestepback():void {

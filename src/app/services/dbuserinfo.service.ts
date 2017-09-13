@@ -103,7 +103,7 @@ export class DbuserinfoService {
 
     //This function sets the default (starting) values for newly registered users
     public setstartvalues():void {
-        this.userinfo.experience.modulejefaislepoint= "notdone",
+        this.userinfo.experience.modulejefaislepoint= "available",
         this.userinfo.experience.modulejeconsultemonbilan = "available",
         this.userinfo.experience.modulejeprendsrendezvous = "unavailable",
         this.userinfo.experience.modulejepreparemarencontre = "unavailable",
