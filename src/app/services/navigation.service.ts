@@ -215,25 +215,27 @@ export class NavigationService implements OnInit {
             let temp_key = Object.keys(this.monplanningupdateconditions)[i];
             let temp_numberofconditions = Object.keys(this.monplanningupdateconditions[temp_key].conditions).length;
             let temp_metconditionscount = 0;
-            for (let i2 = 0; i2 < Object.keys(this.monplanningupdateconditions[temp_key].conditions).length; i2++) {
-                let temp_condition = Object.keys(this.monplanningupdateconditions[temp_key].conditions)[i2];
-                let temp_conditionvalue = this.monplanningupdateconditions[temp_key].conditions[temp_condition];
-                console.log(temp_condition);
-                console.log(this.dbuserinfoservice.userinfo.experience[temp_condition]+"==="+temp_conditionvalue);
-                if (this.dbuserinfoservice.userinfo.experience[temp_condition]===temp_conditionvalue){
-                    temp_metconditionscount++;
+            if (this.dbuserinfoservice.userinfo.experience[temp_key]!==this.dbuserinfoservice.userinfo.experience[temp_key].updatevalue) {//make sure updatevalue is not already there
+                for (let i2 = 0; i2 < Object.keys(this.monplanningupdateconditions[temp_key].conditions).length; i2++) {
+                    let temp_condition = Object.keys(this.monplanningupdateconditions[temp_key].conditions)[i2];
+                    let temp_conditionvalue = this.monplanningupdateconditions[temp_key].conditions[temp_condition];
+                    //console.log(temp_condition);
+                    //console.log(this.dbuserinfoservice.userinfo.experience[temp_condition]+"==="+temp_conditionvalue);
+                    if (this.dbuserinfoservice.userinfo.experience[temp_condition]===temp_conditionvalue){
+                        temp_metconditionscount++;
+                    }
                 }
-            }
-            //console.log("temp_key");
-            //console.log(temp_key);
-            //console.log("temp_numberofconditions");
-            //console.log(temp_numberofconditions);
-            //console.log("temp_metconditionscount");
-            //console.log(temp_metconditionscount);
-            if (temp_metconditionscount===temp_numberofconditions){
-                let temp_updatevalue = this.monplanningupdateconditions[temp_key].updatevalue;
-                this.readwritebufferservice.updatebuffer(temp_key,temp_updatevalue,"update");  
-                temp_somethingchanged = true;    
+                //console.log("temp_key");
+                //console.log(temp_key);
+                //console.log("temp_numberofconditions");
+                //console.log(temp_numberofconditions);
+                //console.log("temp_metconditionscount");
+                //console.log(temp_metconditionscount);
+                if (temp_metconditionscount===temp_numberofconditions){
+                    let temp_updatevalue = this.monplanningupdateconditions[temp_key].updatevalue;
+                    this.readwritebufferservice.updatebuffer(temp_key,temp_updatevalue,"update");  
+                    temp_somethingchanged = true;    
+                }
             }
         }
         if (temp_somethingchanged) {

@@ -26,7 +26,7 @@ export class JeconsultemesinvitationsComponent implements OnInit {
     }
     
     ngOnInit() {
-        this.buttonitems = this.meetingservice.returnbuttonitems(this.meetingservice.meetings.allitems);
+        this.meetingservice.buttonitems = this.meetingservice.returnbuttonitems(this.meetingservice.meetings.allitems);
     }
     
 }

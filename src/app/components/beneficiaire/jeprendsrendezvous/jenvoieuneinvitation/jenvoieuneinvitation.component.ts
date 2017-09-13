@@ -40,7 +40,10 @@ export class JenvoieuneinvitationComponent implements OnInit {
         };
         this.meetingservice.createnew("invitationcreate",temp_creatoruids,{YDggrswjcIfWmrGYNOdh6fBThI12:"okay"},temp_participantemails,"201710301230","9, rue du Rhin, 75010 PARIS")
         .then(()=>{
-            this.meetingservice.getcurrentusermeetings("creator");
+            this.meetingservice.getcurrentusermeetings("creator")
+            .then(()=>{
+                this.meetingservice.buttonitems = this.meetingservice.returnbuttonitems(this.meetingservice.meetings.allitems);
+            });
         });
     }
 

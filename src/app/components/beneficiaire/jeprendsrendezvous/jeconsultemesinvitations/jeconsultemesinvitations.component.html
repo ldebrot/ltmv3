@@ -3,7 +3,7 @@
         J'ai {{this.meetingservice.meetings.countbystep.invitationsent}} {{this.commonservice.singulierpluriel(this.meetingservice.meetings.countbystep.invitationsent,"invitation","invitations")}} en cours :
     </div>
     <div class="ldb_elementframe">
-        <div *ngFor="let buttonitem of this.buttonitems" class="ldb_elementsinglebutton">
+        <div *ngFor="let buttonitem of this.meetingservice.buttonitems" class="ldb_elementsinglebutton">
             <a [routerLink]="[buttonitem.routerlink]" [class]="buttonitem.buttonclass + ' btn ldb_btn_small'">
                 {{buttonitem.buttoncaption}}                
             </a>

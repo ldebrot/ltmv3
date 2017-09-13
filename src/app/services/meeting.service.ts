@@ -44,6 +44,8 @@ export class MeetingService implements OnInit{
     ngOnInit() {
     }
 
+    public buttonitems : buttonmodel[];
+
     public initiatemeetingsobject():void {
         this.meetings = {
             countbystep : {},
@@ -108,12 +110,6 @@ export class MeetingService implements OnInit{
             //save meeting in /meetings/ folder
             temp_ref = "/meetings/"+temp_id+"/";
             return this.readwriteservice.simplyupdate(temp_ref,temp_meeting)
-            .then(()=>{
-                console.log("Created new meeting");
-                this.getcurrentusermeetings('creator');
-
-            })
-            
         });
     }
 
@@ -148,6 +144,7 @@ export class MeetingService implements OnInit{
                             this.meetings.allitems.push(data);
                         }
                     }
+                    console.log("shit happened!");
                     resolve();
                 });
             })
