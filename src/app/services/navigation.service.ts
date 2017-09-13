@@ -227,14 +227,24 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
+            "mdi mdi-24px mdi-clipboard mdi-ldb-available",
+            "Je peux maintenant apprendre à construire mon projet.",
+            "btn ldb_btn_small ldb_btn_available",
+            "/beneficiaire/jeconstruismonprojet",
+            "Je construis mon projet de reconversion",
+            "etapejeconstruismonprojet",
+            "available",
+            9
+        ),
+        new monplanningitem(
             "mdi mdi-24px mdi-clipboard mdi-ldb-notdone",
-            "Je n'ai pas encore construit mon projet.",
+            "Je n'ai pas encore appris à construire mon projet.",
             "btn ldb_btn_small ldb_btn_notdone",
             "/beneficiaire/jeconstruismonprojet",
             "Je construis mon projet de reconversion",
             "etapejeconstruismonprojet",
             "notdone",
-            9999
+            99
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-text mdi-ldb-inprogress",
@@ -244,11 +254,21 @@ export class NavigationService implements OnInit {
             "Je construis mon projet de reconversion",
             "etapejeconstruismonprojet",
             "inprogress",
+            999
+        ),
+        new monplanningitem(
+            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-todo",
+            "Il est temps de m'intéresser à comment construire mon projet !",
+            "btn ldb_btn_small ldb_btn_todo",
+            "/beneficiaire/jeconstruismonprojet",
+            "Je construis mon projet de reconversion",
+            "etapejeconstruismonprojet",
+            "todo",
             9999
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
-            "J'ai construit mon projet.",
+            "Je sais maintenant comment construire mon projet.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jeconstruismonprojet",
             "Je construis mon projet de reconversion",
@@ -267,24 +287,44 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
+            "mdi mdi-24px mdi-clipboard mdi-ldb-available",
+            "Je peux faire le point sur comment identifier des pistes de métier.",
+            "btn ldb_btn_small ldb_btn_available",
+            "/beneficiaire/jetrouvedesideesdemetier",
+            "Je trouve des pistes de métier",
+            "etapejetrouvedesideesdemetier",
+            "available",
+            8
+        ),
+        new monplanningitem(
             "mdi mdi-24px mdi-clipboard mdi-ldb-notdone",
-            "Je ne sais pas encore comment trouver des pistes de métier.",
+            "Je n'ai pas encore fait le point sur comment trouver des pistes de métier.",
             "btn ldb_btn_small ldb_btn_notdone",
             "/beneficiaire/jetrouvedesideesdemetier",
             "Je trouve des pistes de métier",
             "etapejetrouvedesideesdemetier",
             "notdone",
-            9999
+            98
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-text mdi-ldb-inprogress",
-            "J'ai commencé à identifier des pistes de métier. Je reprends mon travail.",
+            "J'ai commencé à travailler sur comment identifier des pistes de métier. Je reprends mon travail.",
             "btn ldb_btn_small ldb_btn_inprogress",
             "/beneficiaire/jetrouvedesideesdemetier",
             "Je trouve des pistes de métier",
             "etapejetrouvedesideesdemetier",
             "inprogress",
-            9999
+            998
+        ),
+        new monplanningitem(
+            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-todo",
+            "Il est temps de faire le point sur comment identifier des pistes de métier !",
+            "btn ldb_btn_small ldb_btn_todo",
+            "/beneficiaire/jetrouvedesideesdemetier",
+            "Je trouve des pistes de métier",
+            "etapejetrouvedesideesdemetier",
+            "todo",
+            9998
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
@@ -297,7 +337,7 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
-            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-unavailable",
+            "mdi mdi-24px mdi-clipboard mdi-ldb-unavailable",
             "Je ne peux pas encore passer à cette étape.",
             "btn ldb_btn_small ldb_btn_unavailable",
             "/beneficiaire/jechoisismonnouveaumetier",
@@ -305,6 +345,16 @@ export class NavigationService implements OnInit {
             "etapejechoisismonnouveaumetier",
             "unavailable",
             0
+        ),
+        new monplanningitem(
+            "mdi mdi-24px mdi-clipboard- mdi-ldb-available",
+            "Je peux maintenant identifier un métier qui m'intéresse.",
+            "btn ldb_btn_small ldb_btn_available",
+            "/beneficiaire/jechoisismonnouveaumetier",
+            "Je choisis un métier qui m'intéresse",
+            "etapejechoisismonnouveaumetier",
+            "available",
+            7
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard mdi-ldb-notdone",
@@ -314,7 +364,7 @@ export class NavigationService implements OnInit {
             "Je choisis un métier qui m'intéresse",
             "etapejechoisismonnouveaumetier",
             "notdone",
-            9999
+            97
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-text mdi-ldb-inprogress",
@@ -324,11 +374,21 @@ export class NavigationService implements OnInit {
             "Je choisis un métier qui m'intéresse",
             "etapejechoisismonnouveaumetier",
             "inprogress",
-            9999
+            997
+        ),
+        new monplanningitem(
+            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-todo",
+            "Il est temps de choisir un métier qui m'intéresse !",
+            "btn ldb_btn_small ldb_btn_done",
+            "/beneficiaire/jechoisismonnouveaumetier",
+            "Je choisis un métier qui m'intéresse",
+            "etapejechoisismonnouveaumetier",
+            "todo",
+            9997
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
-            "J'ai identifié un métier qui m'intéresse.",
+            "J'ai choisi un métier qui m'intéresse.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jechoisismonnouveaumetier",
             "Je choisis un métier qui m'intéresse",
@@ -337,7 +397,7 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
-            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-unavailable",
+            "mdi mdi-24px mdi-clipboard mdi-ldb-unavailable",
             "Je ne peux pas encore passer à cette étape.",
             "btn ldb_btn_small ldb_btn_unavailable",
             "/beneficiaire/jemerenseignesurmonmetier",
@@ -347,24 +407,44 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
+            "mdi mdi-24px mdi-clipboard mdi-ldb-available",
+            "Je peux maintenant faire le point sur comment me renseigner sur mon métier.",
+            "btn ldb_btn_small ldb_btn_available",
+            "/beneficiaire/jemerenseignesurmonmetier",
+            "Je me renseigne sur mon métier",
+            "etapejemerenseignesurmonmetier",
+            "available",
+            6
+        ),
+            new monplanningitem(
             "mdi mdi-24px mdi-clipboard mdi-ldb-notdone",
-            "Je ne me suis pas encore renseigné sur mon métier.",
+            "Je n'ai pas encore fait le point sur comment me renseigner sur mon métier.",
             "btn ldb_btn_small ldb_btn_notdone",
             "/beneficiaire/jemerenseignesurmonmetier",
             "Je me renseigne sur mon métier",
             "etapejemerenseignesurmonmetier",
             "notdone",
-            9999
+            96
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-text mdi-ldb-inprogress",
-            "J'ai commencé à me renseigner sur mon métier.",
+            "J'ai commencé à faire le point sur comment me renseigner sur mon métier.",
             "btn ldb_btn_small ldb_btn_inprogress",
             "/beneficiaire/jemerenseignesurmonmetier",
             "Je me renseigne sur mon métier",
             "etapejemerenseignesurmonmetier",
             "inprogress",
-            9999
+            996
+        ),
+        new monplanningitem(
+            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-todo",
+            "Il est temps de faire le point sur comment me renseigner sur mon métier.",
+            "btn ldb_btn_small ldb_btn_todo",
+            "/beneficiaire/jemerenseignesurmonmetier",
+            "Je me renseigne sur mon métier",
+            "etapejemerenseignesurmonmetier",
+            "todo",
+            9996
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
@@ -377,7 +457,7 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
-            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-unavailable",
+            "mdi mdi-24px mdi-clipboard mdi-ldb-unavailable",
             "Je ne peux pas encore passer à cette étape.",
             "btn ldb_btn_small ldb_btn_unavailable",
             "/beneficiaire/japprendsapresentermonprojet",
@@ -387,6 +467,16 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
+            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-available",
+            "Je peux maintenant apprendre à présenter mon projet.",
+            "btn ldb_btn_small ldb_btn_available",
+            "/beneficiaire/japprendsapresentermonprojet",
+            "J'apprends à présenter mon projet",
+            "etapejapprendsapresentermonprojet",
+            "available",
+            5
+        ),
+        new monplanningitem(
             "mdi mdi-24px mdi-clipboard mdi-ldb-notdone",
             "Je n'ai pas encore appris à présenter mon projet.",
             "btn ldb_btn_small ldb_btn_notdone",
@@ -394,7 +484,7 @@ export class NavigationService implements OnInit {
             "J'apprends à présenter mon projet",
             "etapejapprendsapresentermonprojet",
             "notdone",
-            9999
+            95
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-text mdi-ldb-inprogress",
@@ -404,7 +494,17 @@ export class NavigationService implements OnInit {
             "J'apprends à présenter mon projet",
             "etapejapprendsapresentermonprojet",
             "inprogress",
-            9999
+            995
+        ),
+        new monplanningitem(
+            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-todo",
+            "Il est temps d'apprendre à présenter mon projet.",
+            "btn ldb_btn_small ldb_btn_todo",
+            "/beneficiaire/japprendsapresentermonprojet",
+            "J'apprends à présenter mon projet",
+            "etapejapprendsapresentermonprojet",
+            "todo",
+            9995
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
@@ -417,7 +517,7 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
-            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-unavailable",
+            "mdi mdi-24px mdi-clipboard mdi-ldb-unavailable",
             "Je ne peux pas encore passer à cette étape.",
             "btn ldb_btn_small ldb_btn_unavailable",
             "/beneficiaire/jedeveloppeetactivemonreseau",
@@ -427,25 +527,45 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
+            "mdi mdi-24px mdi-clipboard mdi-ldb-available",
+            "Je peux maintenant faire le point sur comment développer et activer mon réseau.",
+            "btn ldb_btn_small ldb_btn_available",
+            "/beneficiaire/jedeveloppeetactivemonreseau",
+            "Je développe et active mon réseau",
+            "etapejedeveloppeetactivemonreseau",
+            "available",
+            4
+        ),    
+        new monplanningitem(
             "mdi mdi-24px mdi-clipboard mdi-ldb-notdone",
-            "Je n'ai pas encore développé et activé mon réseau.",
+            "Je n'ai pas fait le point sur mon réseau de contacts.",
             "btn ldb_btn_small ldb_btn_notdone",
             "/beneficiaire/jedeveloppeetactivemonreseau",
             "Je développe et active mon réseau",
             "etapejedeveloppeetactivemonreseau",
             "notdone",
-            9999
+            94
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-text mdi-ldb-inprogress",
-            "J'ai commencé à développer et activer mon réseau.",
+            "J'ai commencé à faire le point sur mon réseau professionnel.",
             "btn ldb_btn_small ldb_btn_inprogress",
             "/beneficiaire/jedeveloppeetactivemonreseau",
             "Je développe et active mon réseau",
             "etapejedeveloppeetactivemonreseau",
             "inprogress",
-            9999
+            994
         ),
+        new monplanningitem(
+            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-todo",
+            "Il est temps de faire le point sur comment développer et activer mon réseau.",
+            "btn ldb_btn_small ldb_btn_todo",
+            "/beneficiaire/jedeveloppeetactivemonreseau",
+            "Je développe et active mon réseau",
+            "etapejedeveloppeetactivemonreseau",
+            "todo",
+            9994
+        ),    
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
             "Je sais comment développer et activer mon réseau.",
@@ -455,9 +575,9 @@ export class NavigationService implements OnInit {
             "etapejedeveloppeetactivemonreseau",
             "done",
             0
-        ),    
+        ),
         new monplanningitem(
-            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-unavailable",
+            "mdi mdi-24px mdi-clipboard mdi-ldb-unavailable",
             "Je ne peux pas encore passer à cette étape.",
             "btn ldb_btn_small ldb_btn_unavailable",
             "/beneficiaire/jidentifiemessoutiens",
@@ -467,6 +587,16 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
+            "mdi mdi-24px mdi-clipboard mdi-ldb-available",
+            "Je peux maintenant identifier les soutiens à mon projet.",
+            "btn ldb_btn_small ldb_btn_available",
+            "/beneficiaire/jidentifiemessoutiens",
+            "J'identifie mes soutiens",
+            "etapejidentifiemessoutiens",
+            "available",
+            3
+        ),
+        new monplanningitem(
             "mdi mdi-24px mdi-clipboard mdi-ldb-notdone",
             "Je n'ai pas encore identifié les soutiens à mon projet.",
             "btn ldb_btn_small ldb_btn_notdone",
@@ -474,7 +604,7 @@ export class NavigationService implements OnInit {
             "J'identifie mes soutiens",
             "etapejidentifiemessoutiens",
             "notdone",
-            9999
+            93
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-text mdi-ldb-inprogress",
@@ -484,7 +614,17 @@ export class NavigationService implements OnInit {
             "J'identifie mes soutiens",
             "etapejidentifiemessoutiens",
             "inprogress",
-            9999
+            993
+        ),
+        new monplanningitem(
+            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-todo",
+            "Il est temps d'identifier les soutiens à mon projet !",
+            "btn ldb_btn_small ldb_btn_todo",
+            "/beneficiaire/jidentifiemessoutiens",
+            "J'identifie mes soutiens",
+            "etapejidentifiemessoutiens",
+            "todo",
+            9993
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
@@ -497,7 +637,7 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
-            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-unavailable",
+            "mdi mdi-24px mdi-clipboard mdi-ldb-unavailable",
             "Je ne peux pas encore passer à cette étape.",
             "btn ldb_btn_small ldb_btn_unavailable",
             "/beneficiaire/jemeprepareetmelance",
@@ -507,6 +647,16 @@ export class NavigationService implements OnInit {
             0
         ),
         new monplanningitem(
+            "mdi mdi-24px mdi-clipboard-check mdi-ldb-available",
+            "Je peux maintenant préparer le lancement de mon projet de reconversion.",
+            "btn ldb_btn_small ldb_btn_available",
+            "/beneficiaire/jemeprepareetmelance",
+            "Je me prépare et me lance",
+            "etapejemeprepareetmelance",
+            "available",
+            2
+        ),
+        new monplanningitem(
             "mdi mdi-24px mdi-clipboard mdi-ldb-notdone",
             "Je ne me suis pas encore préparé à me lancer dans mon projet.",
             "btn ldb_btn_small ldb_btn_notdone",
@@ -514,21 +664,31 @@ export class NavigationService implements OnInit {
             "Je me prépare et me lance",
             "etapejemeprepareetmelance",
             "notdone",
-            9999
+            92
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-text mdi-ldb-inprogress",
-            "J'ai commencé à préparer mon lancement.",
+            "J'ai commencé à préparer le lancement de mon projet de reconversion.",
             "btn ldb_btn_small ldb_btn_inprogress",
             "/beneficiaire/jemeprepareetmelance",
             "Je me prépare et me lance",
             "etapejemeprepareetmelance",
             "inprogress",
-            9999
+            992
+        ),
+        new monplanningitem(
+            "mdi mdi-24px mdi-clipboard-alert mdi-ldb-todo",
+            "Il est temps de préparer le lancement de mon projet de reconversion.",
+            "btn ldb_btn_small ldb_btn_todo",
+            "/beneficiaire/jemeprepareetmelance",
+            "Je me prépare et me lance",
+            "etapejemeprepareetmelance",
+            "todo",
+            9992
         ),
         new monplanningitem(
             "mdi mdi-24px mdi-clipboard-check mdi-ldb-done",
-            "J'ai préparé à me lancer dans mon projet. Je peux maintenant prendre rendez-vous.",
+            "Je me suis préparé à me lancer dans mon projet. Je peux maintenant prendre rendez-vous avec un grand témoin.",
             "btn ldb_btn_small ldb_btn_done",
             "/beneficiaire/jemeprepareetmelance",
             "Je me prépare et me lance",
@@ -547,7 +707,7 @@ export class NavigationService implements OnInit {
         //console.log("this.dbuserinfoservice.userinfo.experience");
         //console.log(this.dbuserinfoservice.userinfo.experience);
         for (let i = 0; i < this.jefaislepointitemrepository.length; i++) {
-            if (this.dbuserinfoservice.userinfo.experience[this.jefaislepointitemrepository[i].formodule]==this.jefaislepointitemrepository[i].ifvalue) {
+            if (this.dbuserinfoservice.userinfo.experience[this.jefaislepointitemrepository[i].formodule]===this.jefaislepointitemrepository[i].ifvalue) {
                 this.jefaislepointitems.push(this.jefaislepointitemrepository[i]);
             }
         }

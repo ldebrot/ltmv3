@@ -260,15 +260,17 @@
                 <a (click)="jeconstruismonprojetstep7bnextvalue()"class="btn ldb_btn_small ldb_btn_primary ldb_elementnavbutton_side">&gt;</a> 
             </div>
 
-            <div class="ldb_elementtextsmall ldb_elementtext">{{this.jeconstruismonprojetstep7bvalues.descriptiontext[this.localvalues.jeconstruismonprojetstep7bselectedvalue]}}</div>
-
             <div class="ldb_elementcommenttext">
-                <table class="ldb_table_alignleft"><td><tr>
-                <p-checkbox name="jeconstruismonprojetstep7b" class="ldb_jeveuxensavoirplus" label="Cette étape correspond à ma situation" value="true"
+                <table class="ldb_table_center"><td><tr>
+                <p-checkbox name="jeconstruismonprojetstep7b" [ngClass]="{'ldb_elementtextred':!this.localvalues.jeconstruismonprojetstep7bselected,'ldb_jeveuxensavoirplus':true}" 
+                label="Cette étape correspond à ma situation" value="true"
                 (click)="jeconstruismonprojetstep7bsetvalue()"
                 [(ngModel)]="this.localvalues.jeconstruismonprojetstep7bselected"></p-checkbox>
                 </tr></td></table>                   
             </div>
+
+            <div class="ldb_elementtextsmall ldb_elementtext">{{this.jeconstruismonprojetstep7bvalues.descriptiontext[this.localvalues.jeconstruismonprojetstep7bselectedvalue]}}</div>
+
         </div>
     </div>
 

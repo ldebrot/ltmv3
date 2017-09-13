@@ -95,8 +95,11 @@ export class JeconstruismonprojetComponent implements OnInit {
     public initiate():void {
         for (let i = 0; i < Object.keys(this.localvalues).length; i++) {
             //console.log(Object.keys(this.localvalues)[i])
-            if (this.dbuserinfoservice.userinfo.experience[Object.keys(this.localvalues)[i]]!==undefined) {
+            if (this.dbuserinfoservice.userinfo.experience[Object.keys(this.localvalues)[i]]!=="") {
+                //console.log("Object.keys(this.localvalues)[i]");
                 //console.log(Object.keys(this.localvalues)[i]);
+                //console.log("this.dbuserinfoservice.userinfo.experience[Object.keys(this.localvalues)[i]]");
+                //console.log(this.dbuserinfoservice.userinfo.experience[Object.keys(this.localvalues)[i]]);
                 this.localvalues[Object.keys(this.localvalues)[i]]=this.dbuserinfoservice.userinfo.experience[Object.keys(this.localvalues)[i]];
             }
         }
@@ -154,7 +157,6 @@ export class JeconstruismonprojetComponent implements OnInit {
         this.navigationservice.jeconstruismonprojetcurrentstep = this.navigationservice.jeconstruismonprojetcurrentstep + 1;
         this.checkifstepvalid();
         console.log("currentstep: "+this.navigationservice.jeconstruismonprojetcurrentstep);
-
         if (this.navigationservice.jeconstruismonprojetcurrentstep === this.navigationservice.jeconstruismonprojetnumberofsteps) {
             this.conclude();
         }
@@ -178,11 +180,17 @@ export class JeconstruismonprojetComponent implements OnInit {
         this.navigationservice.jeconstruismonprojetcurrentstep = step + 1;//if step == null, go to first step, if step == 2, go to the one after, and so on
     }
 
-    public jeconstruismonprojetstep7bnextvalue():void {
-        if (this.localvalues['jeconstruismonprojetstep7bselectedvalue']===this.jeconstruismonprojetstep7bvalues.descriptiontext.length-1) {
-            this.localvalues['jeconstruismonprojetstep7bselectedvalue']=0;
+
+
+    public jeconstruismonprojetstep7bnextvalue(step7bselectedvalue?:number):void {
+        if (step7bselectedvalue===undefined){
+            if (this.localvalues['jeconstruismonprojetstep7bselectedvalue']===this.jeconstruismonprojetstep7bvalues.descriptiontext.length-1) {
+                this.localvalues['jeconstruismonprojetstep7bselectedvalue']=0;
+            } else {
+                this.localvalues['jeconstruismonprojetstep7bselectedvalue']++;
+            }
         } else {
-            this.localvalues['jeconstruismonprojetstep7bselectedvalue']++;
+            this.localvalues['jeconstruismonprojetstep7bselectedvalue']=step7bselectedvalue;
         }
         this.localvalues['jeconstruismonprojetstep7bselected']="";
         this.checkifstepvalid();

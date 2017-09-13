@@ -38,6 +38,10 @@ i.mdi-ldb-inprogress {
 }
 
 i.mdi-ldb-unavailable {
+    color:#05F5;
+}
+
+i.mdi-ldb-unavailable {
     color:#FFFFFF;
 }
 
@@ -419,6 +423,12 @@ input.ng-invalid.ng-touched {
 .ldb_btn_todo {
     background: #F005;
     border-color: #A005;
+    color:#333 !important;
+}
+
+.ldb_btn_available {
+    background: #05F5;
+    border-color: #0095;
     color:#333 !important;
 }
 
