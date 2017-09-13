@@ -77,7 +77,14 @@ export class DbuserinfoService {
             jeconstruismonprojetstep5bjeveuxensavoirplus : "",//types de responsabilité
             jeconstruismonprojetstep6ajeveuxensavoirplus : "",//test de personnalité
             jeconstruismonprojetstep6bjeveuxensavoirplus : "",//comment interpréter les résultats test de personnalité
-            jeconstruismonprojetstep7jeveuxensavoirplus : ""//étapes clés d'une reconversion professionnelle
+            jeconstruismonprojetstep7jeveuxensavoirplus : "",//étapes clés d'une reconversion professionnelle
+            jetrouvedesideesdemetierstepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
+            jechoisismonnouveaumetierstepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
+            jemerenseignesurmonmetierstepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
+            japprendsapresentermonprojetstepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
+            jedeveloppeetactivemonreseaustepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
+            jidentifiemessoutiensstepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
+            jemeprepareetmelancestepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
         },
         meetings : {
         }
@@ -97,11 +104,11 @@ export class DbuserinfoService {
     //This function sets the default (starting) values for newly registered users
     public setstartvalues():void {
         this.userinfo.experience.modulejefaislepoint= "notdone",
-        this.userinfo.experience.modulejeconsultemonbilan = "unavailable",
+        this.userinfo.experience.modulejeconsultemonbilan = "available",
         this.userinfo.experience.modulejeprendsrendezvous = "unavailable",
         this.userinfo.experience.modulejepreparemarencontre = "unavailable",
         this.userinfo.experience.modulejefaislesuivi = "unavailable",
-        this.userinfo.experience.etapejeconstruismonprojet = "notdone",
+        this.userinfo.experience.etapejeconstruismonprojet = "available",
         this.userinfo.experience.etapejetrouvedesideesdemetier = "notdone",
         this.userinfo.experience.etapejechoisismonnouveaumetier = "notdone",
         this.userinfo.experience.etapejemerenseignesurmonmetier = "notdone",

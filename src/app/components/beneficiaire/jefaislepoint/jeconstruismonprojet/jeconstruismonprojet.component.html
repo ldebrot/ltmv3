@@ -319,7 +319,7 @@
     || this.currentstepvalid) && this.navigationservice.jeconstruismonprojetcurrentstep < this.navigationservice.jeconstruismonprojetnumberofsteps" 
     class="btn ldb_btn_small ldb_btn_done ldb_elementnavbutton_middle">J'ai terminé !</a> 
 
-    <a [routerLink]="['/beneficiaire/monplanning']" *ngIf="(this.navigationservice.jeconstruismonprojetcurrentstep === this.navigationservice.jeconstruismonprojetnumberofsteps)" 
+    <a (click)="this.conclude()" [routerLink]="['/beneficiaire/jefaislepoint']" *ngIf="(this.navigationservice.jeconstruismonprojetcurrentstep === this.navigationservice.jeconstruismonprojetnumberofsteps)" 
     class="btn ldb_btn_small ldb_btn_done ldb_elementnavbutton_middle">Retour au planning</a> 
 
     <a *ngIf="!this.navigationservice.jeconstruismonprojetvalidatable[this.navigationservice.jeconstruismonprojetcurrentstep] 

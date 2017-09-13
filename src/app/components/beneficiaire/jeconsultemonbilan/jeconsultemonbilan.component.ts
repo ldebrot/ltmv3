@@ -1,5 +1,6 @@
 //Built-in stuff
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 //home-grown pure-quality services
 import { TitleService } from './../../../services/title.service';
@@ -23,13 +24,15 @@ export class JeconsultemonbilanComponent implements OnInit {
     public beneficiaireurl:string = "assets/images/profilebeneficiaire_colored_50x50.png";
     public temoinurl:string = "assets/images/profiletemoin_colored_50x50.png";
     public currentmodule:string = "";
+    public whichpanel:string = "apercu";
 
     constructor(
         public titleservice : TitleService,//used to set corresponding title
         public navigationservice : NavigationService,//used to find items of jefaislepoint
         public bilanservice : BilanService,
         public dbuserinfoservice : DbuserinfoService,
-        public readwriteservice : ReadwriteService//this one prepares the elements of the situation recap (bilan)
+        public readwriteservice : ReadwriteService,//this one prepares the elements of the situation recap (bilan),
+        public activatedroute : ActivatedRoute
     ) {
         
     }
@@ -49,6 +52,12 @@ export class JeconsultemonbilanComponent implements OnInit {
     ngOnInit() {
         this.titleservice.titlesubject.next("Je consulte mon bilan");//sets title in title service to "Je consulte mon bilan" after half a second        
         setTimeout(this.bilanservice.assesslevel(),2000);
+        if (this.activatedroute.snapshot.params['etape']!==undefined) {
+            if (this.activatedroute.snapshot.params['etape'].toString()!==""){
+                this.currentmodule=this.activatedroute.snapshot.params['etape'].toString();
+                this.whichpanel="moduleparmodule";
+            }
+        }
     }
     
 }

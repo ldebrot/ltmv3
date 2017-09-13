@@ -29,13 +29,19 @@ export class CheckauthService implements OnInit{
         notconnected : ["","signinup","decouvrirlunchtime","lesactus","quisommesnous","introuvable"],
         beneficiaire : [
             "beneficiaire","monplanning",
-            "jefaislepoint","jeconstruismonprojet",
-            "jeconstruismonprojet/:step","jeconsultemonbilan",
+            "jefaislepoint",
+            "jeconstruismonprojet","jeconstruismonprojet/:step",
+            "jetrouvedesideesdemetier","jetrouvedesideesdemetier/:step",
+            "jechoisismonnouveaumetier","jechoisismonnouveaumetier/:step",
+            "jemerenseignesurmonmetier","jemerenseignesurmonmetier/:step",
+            "jedeveloppeetactivemonreseau","jedeveloppeetactivemonreseau/:step",
+            "jidentifiemessoutiens","jidentifiemessoutiens/:step",
+            "jemeprepareetmelance","jemeprepareetmelance/:step",
+            "jeconsultemonbilan","jeconsultemonbilan/:etape",
             "jeprendsrendezvous","jeconsultemesinvitations","jenvoieuneinvitation","invitationsdashboard",
             "jepreparemarencontre","jefaislesuivi","jedeviensunpro"]
     };
     
-
     loggedIn : boolean= true;
 
     public updatecurrentauthstate ():void {

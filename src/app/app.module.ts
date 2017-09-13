@@ -78,6 +78,13 @@ import { JedeviensunproComponent } from './components/beneficiaire/jedeviensunpr
 import { JeconsultemesinvitationsComponent } from './components/beneficiaire/jeprendsrendezvous/jeconsultemesinvitations/jeconsultemesinvitations.component';
 import { JenvoieuneinvitationComponent } from './components/beneficiaire/jeprendsrendezvous/jenvoieuneinvitation/jenvoieuneinvitation.component';
 import { InvitationsdashboardComponent } from './components/beneficiaire/jeprendsrendezvous/invitationsdashboard/invitationsdashboard.component';
+import { JetrouvedesideesdemetierComponent } from './components/beneficiaire/jefaislepoint/jetrouvedesideesdemetier/jetrouvedesideesdemetier.component';
+import { JechoisismonnouveaumetierComponent } from './components/beneficiaire/jefaislepoint/jechoisismonnouveaumetier/jechoisismonnouveaumetier.component';
+import { JemerenseignesurmonmetierComponent } from './components/beneficiaire/jefaislepoint/jemerenseignesurmonmetier/jemerenseignesurmonmetier.component';
+import { JapprendsapresentermonprojetComponent } from './components/beneficiaire/jefaislepoint/japprendsapresentermonprojet/japprendsapresentermonprojet.component';
+import { JedeveloppeetactivemonreseauComponent } from './components/beneficiaire/jefaislepoint/jedeveloppeetactivemonreseau/jedeveloppeetactivemonreseau.component';
+import { JidentifiemessoutiensComponent } from './components/beneficiaire/jefaislepoint/jidentifiemessoutiens/jidentifiemessoutiens.component';
+import { JemeprepareetmelanceComponent } from './components/beneficiaire/jefaislepoint/jemeprepareetmelance/jemeprepareetmelance.component';
 
 //console.log("initializedApp at app.mdoule.ts level!");
 
@@ -111,7 +118,14 @@ import { InvitationsdashboardComponent } from './components/beneficiaire/jeprend
         JedeviensunproComponent,
         JeconsultemesinvitationsComponent,
         JenvoieuneinvitationComponent,
-        InvitationsdashboardComponent
+        InvitationsdashboardComponent,
+        JetrouvedesideesdemetierComponent,
+        JechoisismonnouveaumetierComponent,
+        JemerenseignesurmonmetierComponent,
+        JapprendsapresentermonprojetComponent,
+        JedeveloppeetactivemonreseauComponent,
+        JidentifiemessoutiensComponent,
+        JemeprepareetmelanceComponent
     ],
     imports: [
         FormsModule,

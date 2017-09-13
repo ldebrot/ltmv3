@@ -4,7 +4,7 @@
     </div>
     <table class="ldb_table_separation_3 ldb_table_center minwidthmobiletable">
         <tr *ngFor="let items of this.navigationservice.jefaislepointitems">
-            <td><i [class]="items.iclass"  [pTooltip]="items.tooltip"></i></td>
+            <td><i [routerLink]="['/beneficiaire/jeconsultemonbilan/'+items.formodule]" [class]="items.iclass"  [pTooltip]="items.tooltip"></i></td>
             <td><a [routerLink]="items.route" [class]="items.aclass" [pTooltip]="items.tooltip">{{ items.atext }}</a></td>
         </tr>
     </table>

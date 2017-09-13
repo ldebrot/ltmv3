@@ -720,7 +720,7 @@ export class NavigationService implements OnInit {
         let maxemergencylevel:number = 0;
         let itemnumber:number = 0;
         for (let i = 0; i < this.jefaislepointitems.length; i++) {
-            console.log(this.jefaislepointitems[i].atext+"level : "+this.jefaislepointitems[i].emergencylevel);
+            //console.log(this.jefaislepointitems[i].atext+"level : "+this.jefaislepointitems[i].emergencylevel);
             if (this.jefaislepointitems[i].emergencylevel >= maxemergencylevel) {
                 maxemergencylevel=this.jefaislepointitems[i].emergencylevel;
                 itemnumber = i;
@@ -746,6 +746,12 @@ export class NavigationService implements OnInit {
         false, //you have to select options 
         false, //you have to select options 
         false, //you have to select options 
+        true, //you have to read it
+    ];
+    public jetrouvedesideesdemetiernumberofsteps:number = 1; //Here we set the number of steps in this module. This is used for the progress bar.
+    public jetrouvedesideesdemetiercurrentstep:number = 1; //This variable shows at which step we are in this module.
+    public jetrouvedesideesdemetiervalidatable = [
+        false, //THIS IS NOT A STEP, THERE IS NO STEP 0
         true, //you have to read it
     ];
 }

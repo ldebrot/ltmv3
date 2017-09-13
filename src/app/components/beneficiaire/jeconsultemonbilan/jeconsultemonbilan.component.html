@@ -1,6 +1,6 @@
 <div class="ldb_elementbackground ldbway">
     <p-tabView>
-        <p-tabPanel header="Aperçu" [selected]="true">
+        <p-tabPanel header="Aperçu" [selected]="this.whichpanel==='apercu'">
 
             <div *ngIf="(this.bilanservice.bilan_disqualify.annihilates.beneficiaire.length + this.bilanservice.bilan_disqualify.annihilates.temoin.length)>0">
                 <app-bilandisqualify></app-bilandisqualify>
@@ -12,7 +12,7 @@
             </div>
             
         </p-tabPanel>
-        <p-tabPanel header="Module par module" class="jeconsultemonbilan">
+        <p-tabPanel header="Module par module" class="jeconsultemonbilan" [selected]="this.whichpanel==='moduleparmodule'">
 
                 <table class="jeconsultemonbilan_width100">
                     <tr><td class="afairesoimeme jeconsultemonbilan_width50"><img [src]=beneficiaireurl></td><td class="afaireavecuntemoin"><img [src]=temoinurl></td></tr>

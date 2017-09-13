@@ -19,7 +19,7 @@
                 <a class="btn btn-circle-sm ldb_btn_white ">2</a>
             </td>
             <td>
-                <a [routerLink]="" (click)="showdisplay('jeprendsrendezvous')" class="btn ldb_btn ldb_btn_primary">Je contacte une personne<br/>qui a déjà changé de métier.</a>
+                <a [routerLink]="" (click)="showdisplay('jeconsultemonbilan')" class="btn ldb_btn ldb_btn_primary">Je consulte mon bilan<br/>pour savoir comment avancer.</a>
             </td>
         </tr>
         <tr>
@@ -27,12 +27,20 @@
                 <a class="btn btn-circle-sm ldb_btn_white ">3</a>
             </td>
             <td>
-                <a [routerLink]="" (click)="showdisplay('jepreparemarencontre')" class="btn ldb_btn  ldb_btn_primary">Je prépare ma rencontre<br/>avec un témoin.</a>
+                <a [routerLink]="" (click)="showdisplay('jeprendsrendezvous')" class="btn ldb_btn ldb_btn_primary">Je contacte une personne<br/>qui a déjà changé de métier.</a>
             </td>
         </tr>
         <tr>
             <td>
                 <a class="btn btn-circle-sm ldb_btn_white ">4</a>
+            </td>
+            <td>
+                <a [routerLink]="" (click)="showdisplay('jepreparemarencontre')" class="btn ldb_btn  ldb_btn_primary">Je prépare ma rencontre<br/>avec un témoin.</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="btn btn-circle-sm ldb_btn_white ">5</a>
             </td>
             <td>
                 <a [routerLink]="" (click)="showdisplay('jefaislesuivi')" class="btn ldb_btn  ldb_btn_primary">Je fais le suivi de ma rencontre.</a>
@@ -42,18 +50,22 @@
 </div>
 
 <p-dialog class="ldbway" [responsive]="true" header="Je fais le point sur ma reconversion professionnelle" [(visible)]="elementstobedisplayed['jefaislepoint']">
-    Je fais le point!
+    Je fais le point !
+</p-dialog>
+
+<p-dialog class="ldbway" [responsive]="true" header="Je consulte mon bilan" [(visible)]="elementstobedisplayed['jeconsultemonbilan']">
+    Je consulte mon bilan !
 </p-dialog>
 
 <p-dialog class="ldbway" [responsive]="true" header="Je prends rendez-vous" [(visible)]="elementstobedisplayed['jeprendsrendezvous']">
-    Je prends rendez-vous!
+    Je prends rendez-vous !
 </p-dialog>
 
 <p-dialog class="ldbway" [responsive]="true" header="Je prépare ma rencontre" [(visible)]="elementstobedisplayed['jepreparemarencontre']">
-   Je prépare ma rencontre!
+   Je prépare ma rencontre !
 </p-dialog>
 
 <p-dialog class="ldbway" [responsive]="true" header="Je fais le suivi" [(visible)]="elementstobedisplayed['jefaislesuivi']">
-    Je fais le suivi!
+    Je fais le suivi !
 </p-dialog>
 
