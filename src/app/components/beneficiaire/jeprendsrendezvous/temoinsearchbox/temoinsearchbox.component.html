@@ -1,0 +1,23 @@
+<div class="ldb_elementbackground">
+    <div class="ldb_elementtextbold ldb_elementtext">
+        Je trouve mon témoin :
+    </div>
+    <div class="mumu" (click)="this.hidden=!this.hidden">
+       mlmlmlml {{this.hidden}}
+    </div>
+    <div #lolo [hidden]="this.hidden" class="popupstyle">
+        <p-listbox [options]="criteria" [(ngModel)]="selectedcriterion" [style]="{'width':'190px','z-index':'2'}">
+            <ng-template let-criteria let-i="index" pTemplate="item">
+                <div class="ui-helper-clearfix">
+                    <i [class]="criteria.value.class"></i>
+                </div>
+            </ng-template>
+        </p-listbox>
+    </div>
+    asdasd
+    <br>
+    asdasdasd
+    <br>
+    sdasdasdasd
+    <br>
+</div>

@@ -6,10 +6,14 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';//add NG-Bootstrap
+import { SwipeCardsModule } from 'ng2-swipe-cards';
+import 'hammerjs';
 import { //PrimeNG modules here
     MenubarModule,
     TabMenuModule,
+    MenuModule,
     MenuItem,
+    ListboxModule,
     DialogModule,
     ButtonModule,
     MessagesModule,
@@ -21,8 +25,10 @@ import { //PrimeNG modules here
     SelectButtonModule,
     ToggleButtonModule,
     SelectItem,
-    ProgressBarModule } from 'primeng/primeng';
-import { ConfirmationService } from 'primeng/primeng';
+    MegaMenuModule,
+    ProgressBarModule,
+    ConfirmationService } from 'primeng/primeng';
+import { DropdownModule } from "primeng/components/dropdown/dropdown";
 
 //Services
 import { DbuserinfoService } from './services/dbuserinfo.service';//handles down- and upload of userinformation from DB
@@ -38,6 +44,8 @@ import { NavigationService } from './services/navigation.service';//handles navi
 import { BilanService } from './services/bilan.service';//This service handles the situation recap ("bilan") of the jefaislepoint module
 import { CommonService } from './services/common.service';
 import { MeetingService } from './services/meeting.service';
+import { DbusersearchService } from './services/dbusersearch.service';//handles user (temoin and beneficiaire) search
+import { QuizzService } from './services/quizz.service';
 
 //Components
 import { AppComponent } from './app.component';
@@ -85,6 +93,9 @@ import { JapprendsapresentermonprojetComponent } from './components/beneficiaire
 import { JedeveloppeetactivemonreseauComponent } from './components/beneficiaire/jefaislepoint/jedeveloppeetactivemonreseau/jedeveloppeetactivemonreseau.component';
 import { JidentifiemessoutiensComponent } from './components/beneficiaire/jefaislepoint/jidentifiemessoutiens/jidentifiemessoutiens.component';
 import { JemeprepareetmelanceComponent } from './components/beneficiaire/jefaislepoint/jemeprepareetmelance/jemeprepareetmelance.component';
+import { JetrouvemontemoinComponent } from './components/beneficiaire/jeprendsrendezvous/jetrouvemontemoin/jetrouvemontemoin.component';
+import { TemoinsearchboxComponent } from './components/beneficiaire/jeprendsrendezvous/temoinsearchbox/temoinsearchbox.component';
+import { TemoinsearchresultsComponent } from './components/beneficiaire/jeprendsrendezvous/temoinsearchresults/temoinsearchresults.component';
 
 //console.log("initializedApp at app.mdoule.ts level!");
 
@@ -125,7 +136,10 @@ import { JemeprepareetmelanceComponent } from './components/beneficiaire/jefaisl
         JapprendsapresentermonprojetComponent,
         JedeveloppeetactivemonreseauComponent,
         JidentifiemessoutiensComponent,
-        JemeprepareetmelanceComponent
+        JemeprepareetmelanceComponent,
+        JetrouvemontemoinComponent,
+        TemoinsearchboxComponent,
+        TemoinsearchresultsComponent
     ],
     imports: [
         FormsModule,
@@ -143,11 +157,16 @@ import { JemeprepareetmelanceComponent } from './components/beneficiaire/jefaisl
         SelectButtonModule,//PrimeNG here
         ToggleButtonModule,//PrimeNG here
         NgbModule.forRoot(),//NG-Bootstrap added here
+        MenuModule,//PrimeNG here
+        MegaMenuModule,//PrimeNG here
         MenubarModule,
         TabMenuModule,
+        ListboxModule,
         RoutingService,
         RouterModule,
         ButtonModule,
+        DropdownModule,//PrimeNG here
+        SwipeCardsModule,//NG SWIPE
         AngularFireModule.initializeApp(environment.firebase),//AngularFire2 
         AngularFireDatabaseModule, //AngularFire2  imports firebase/database, only needed for database features
         AngularFireAuthModule //AngularFire2  imports firebase/auth, only needed for auth features        
@@ -166,7 +185,9 @@ import { JemeprepareetmelanceComponent } from './components/beneficiaire/jefaisl
         FakedbuserinfoService,
         CommonService,//This services provides handy functions for various situations
         MeetingService,//This service handles the meetings based on dbuserinfo
-        NavigationService//handles navigation modules
+        DbusersearchService,//handles user (temoin and beneficiaire) search
+        NavigationService,//handles navigation modules
+        QuizzService//handles quizzes
     ],
     bootstrap: [AppComponent]
 })

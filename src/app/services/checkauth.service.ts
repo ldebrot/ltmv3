@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-//This service checks whether the route path is accessible according to the current auth state (whether the user is connected and if so, as a temoin or a benficiaire )
+//This service checks whether the route path is accessible according to the current auth state (whether the user is connected and if so, as a temoin or a beneficiaire )
 
 //Built-in stuff:
 import { ActivatedRoute } from '@angular/router';
@@ -26,7 +26,9 @@ export class CheckauthService implements OnInit{
     //There are three available options: "not-connectd", "temoin" and "beneficiaire"
     //There can be only one value per path (because of the lack of IndexOf on IE...)
     public paths:any = { 
-        notconnected : ["","signinup","decouvrirlunchtime","lesactus","quisommesnous","introuvable"],
+        notconnected : ["","signinup","decouvrirlunchtime","lesactus","quisommesnous","introuvable"
+        ,"jetrouvemontemoin","jetrouvemontemoin/:userid","temoinsearchbox","temoinsearchresults"
+    ],
         beneficiaire : [
             "beneficiaire","monplanning",
             "jefaislepoint",
@@ -40,6 +42,7 @@ export class CheckauthService implements OnInit{
             "jemeprepareetmelance","jemeprepareetmelance/:step",
             "jeconsultemonbilan","jeconsultemonbilan/:etape",
             "jeprendsrendezvous","jeconsultemesinvitations","jenvoieuneinvitation","invitationsdashboard",
+            "jetrouvemontemoin","jetrouvemontemoin/:userid","temoinsearchbox","temoinsearchresults",
             "jepreparemarencontre","jefaislesuivi","jedeviensunpro"]
     };
     
@@ -70,13 +73,13 @@ export class CheckauthService implements OnInit{
                 for (let i = 0; i < this.paths[this.currentauthstate].length;i++) {
                     if (this.paths[this.currentauthstate][i]===route) {
                         allow = true;
-                        //console.log("route allowed !");
+                        console.log("route allowed !");
                     }              
                 }
                 
                 resolve(allow);
                 if (!allow) {
-                    //console.log("not allowed reroute !");
+                    console.log("not allowed reroute !");
                     setTimeout(()=>{this.router.navigate(['/'+this.paths[this.currentauthstate]]);},1000);                        
                 }
             }

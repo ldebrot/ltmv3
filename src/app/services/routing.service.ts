@@ -1,10 +1,4 @@
-import { JapprendsapresentermonprojetComponent } from './../components/beneficiaire/jefaislepoint/japprendsapresentermonprojet/japprendsapresentermonprojet.component';
-import { JemeprepareetmelanceComponent } from './../components/beneficiaire/jefaislepoint/jemeprepareetmelance/jemeprepareetmelance.component';
-import { JidentifiemessoutiensComponent } from './../components/beneficiaire/jefaislepoint/jidentifiemessoutiens/jidentifiemessoutiens.component';
-import { JedeveloppeetactivemonreseauComponent } from './../components/beneficiaire/jefaislepoint/jedeveloppeetactivemonreseau/jedeveloppeetactivemonreseau.component';
-import { JemerenseignesurmonmetierComponent } from './../components/beneficiaire/jefaislepoint/jemerenseignesurmonmetier/jemerenseignesurmonmetier.component';
-import { JechoisismonnouveaumetierComponent } from './../components/beneficiaire/jefaislepoint/jechoisismonnouveaumetier/jechoisismonnouveaumetier.component';
-import { JetrouvedesideesdemetierComponent } from './../components/beneficiaire/jefaislepoint/jetrouvedesideesdemetier/jetrouvedesideesdemetier.component';
+import { TestComponent } from './../components/test/test.component';
 //Services:
 import { authGuardService } from './authguard.service';
 
@@ -31,6 +25,16 @@ import { JeconsultemesinvitationsComponent } from './../components/beneficiaire/
 import { JedeviensunproComponent } from './../components/beneficiaire/jedeviensunpro/jedeviensunpro.component';
 import { JenvoieuneinvitationComponent } from './../components/beneficiaire/jeprendsrendezvous/jenvoieuneinvitation/jenvoieuneinvitation.component';
 import { InvitationsdashboardComponent } from './../components/beneficiaire/jeprendsrendezvous/invitationsdashboard/invitationsdashboard.component';
+import { TemoinsearchboxComponent } from './../components/beneficiaire/jeprendsrendezvous/temoinsearchbox/temoinsearchbox.component';
+import { JetrouvemontemoinComponent } from './../components/beneficiaire/jeprendsrendezvous/jetrouvemontemoin/jetrouvemontemoin.component';
+import { JapprendsapresentermonprojetComponent } from './../components/beneficiaire/jefaislepoint/japprendsapresentermonprojet/japprendsapresentermonprojet.component';
+import { JemeprepareetmelanceComponent } from './../components/beneficiaire/jefaislepoint/jemeprepareetmelance/jemeprepareetmelance.component';
+import { JidentifiemessoutiensComponent } from './../components/beneficiaire/jefaislepoint/jidentifiemessoutiens/jidentifiemessoutiens.component';
+import { JedeveloppeetactivemonreseauComponent } from './../components/beneficiaire/jefaislepoint/jedeveloppeetactivemonreseau/jedeveloppeetactivemonreseau.component';
+import { JemerenseignesurmonmetierComponent } from './../components/beneficiaire/jefaislepoint/jemerenseignesurmonmetier/jemerenseignesurmonmetier.component';
+import { JechoisismonnouveaumetierComponent } from './../components/beneficiaire/jefaislepoint/jechoisismonnouveaumetier/jechoisismonnouveaumetier.component';
+import { JetrouvedesideesdemetierComponent } from './../components/beneficiaire/jefaislepoint/jetrouvedesideesdemetier/jetrouvedesideesdemetier.component';
+import { TemoinsearchresultsComponent } from "./../components/beneficiaire/jeprendsrendezvous/temoinsearchresults/temoinsearchresults.component";
 
 //Routes:
 const appRoutes: Routes = [
@@ -41,21 +45,18 @@ const appRoutes: Routes = [
         { path: 'decouvrirlunchtime', canActivate: [authGuardService], component: JedecouvrelunchtimeComponent },
         { path: 'lesactus', canActivate: [authGuardService], component: LesactusComponent },
         { path: 'quisommesnous', canActivate: [authGuardService], component: QuisommesnousComponent },
-        { path: 'introuvable', canActivate: [authGuardService], component: IntrouvableComponent}
+        { path: 'introuvable', canActivate: [authGuardService], component: IntrouvableComponent},
+        { path: 'jetrouvemontemoin', canActivate: [authGuardService], component: JetrouvemontemoinComponent},
+        { path: 'jetrouvemontemoin/:userid', canActivate: [authGuardService], component: JetrouvemontemoinComponent},
+        { path: 'temoinsearchbox', canActivate: [authGuardService], component: TemoinsearchboxComponent},
+        { path: 'temoinsearchresults', canActivate: [authGuardService], component: TemoinsearchresultsComponent},
+        { path: 'test', component: TestComponent}
     ]},
     { path: 'beneficiaire',  canActivate: [authGuardService], component: StartbeneficiaireComponent,
     children: [
         { path: '', canActivate: [authGuardService], pathMatch: 'prefix', redirectTo: 'monplanning'},
         { path: 'monplanning', canActivate: [authGuardService], component: MonplanningComponent},
         { path: 'jefaislepoint', canActivate: [authGuardService], component: JefaislepointComponent},
-        { path: 'jeconsultemonbilan', canActivate: [authGuardService], component: JeconsultemonbilanComponent},
-        { path: 'jeconsultemonbilan/:etape', canActivate: [authGuardService], component: JeconsultemonbilanComponent},
-        { path: 'jeprendsrendezvous', canActivate: [authGuardService], component: JeprendsrendezvousComponent},
-        { path: 'invitationsdashboard', canActivate: [authGuardService], component: InvitationsdashboardComponent},
-        { path: 'jenvoieuneinvitation', canActivate: [authGuardService], component: JenvoieuneinvitationComponent},        
-        { path: 'jeconsultemesinvitations', canActivate: [authGuardService], component: JeconsultemesinvitationsComponent},
-        { path: 'jepreparemarencontre', canActivate: [authGuardService], component: JepreparemarencontreComponent},
-        { path: 'jefaislesuivi', canActivate: [authGuardService], component: JefaislesuiviComponent},
         { path: 'jeconstruismonprojet', canActivate: [authGuardService], component: JeconstruismonprojetComponent},
         { path: 'jeconstruismonprojet/:step', canActivate: [authGuardService], component: JeconstruismonprojetComponent},
         { path: 'jetrouvedesideesdemetier', canActivate: [authGuardService], component: JetrouvedesideesdemetierComponent},
@@ -72,6 +73,14 @@ const appRoutes: Routes = [
         { path: 'jidentifiemessoutiens/:step', canActivate: [authGuardService], component: JidentifiemessoutiensComponent},
         { path: 'jemeprepareetmelance', canActivate: [authGuardService], component: JemeprepareetmelanceComponent},
         { path: 'jemeprepareetmelance/:step', canActivate: [authGuardService], component: JemeprepareetmelanceComponent},
+        { path: 'jeconsultemonbilan', canActivate: [authGuardService], component: JeconsultemonbilanComponent},
+        { path: 'jeconsultemonbilan/:etape', canActivate: [authGuardService], component: JeconsultemonbilanComponent},
+        { path: 'jeprendsrendezvous', canActivate: [authGuardService], component: JeprendsrendezvousComponent},
+        { path: 'invitationsdashboard', canActivate: [authGuardService], component: InvitationsdashboardComponent},
+        { path: 'jenvoieuneinvitation', canActivate: [authGuardService], component: JenvoieuneinvitationComponent},        
+        { path: 'jeconsultemesinvitations', canActivate: [authGuardService], component: JeconsultemesinvitationsComponent},
+        { path: 'jepreparemarencontre', canActivate: [authGuardService], component: JepreparemarencontreComponent},
+        { path: 'jefaislesuivi', canActivate: [authGuardService], component: JefaislesuiviComponent},
         { path: 'jedeviensunpro', canActivate: [authGuardService], component: JedeviensunproComponent}
     ]},
     { path: '**', redirectTo: '/introuvable'}

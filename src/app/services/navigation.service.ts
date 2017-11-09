@@ -760,7 +760,7 @@ export class NavigationService implements OnInit {
         )
     ]
 
-    
+     
     //sets up the list of button in the monplanning menu.
     preparejefaislepointitems ():void {
         this.jefaislepointitems = [];

@@ -53,10 +53,10 @@ export class ReadwriteService {
         }); 
         //register user in /users/userids folder
         temp_promises[1] = new Promise ((resolve,reject)=>{
-            temp_ref = "/useruids/"+status+"/";
+            temp_ref = "/useruids/"+status;
             temp_value = {};
             temp_value[this.firebaseauthservice.angularfireauth.auth.currentUser.uid]="okay";
-            this.simplyset(temp_ref,temp_value)
+            this.simplyupdate(temp_ref,temp_value)
             .then(()=>{
                 resolve()
             })

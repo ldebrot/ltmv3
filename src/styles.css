@@ -19,6 +19,15 @@ body{
     min-width: 310px;
 }
 
+.maxwidthmobile, img.maxwidthmobile {
+    width:320px;
+}
+
+/* */
+
+.card-heap {
+    box-shadow: none !important;
+}
 
 /* material icons extension */
 i.mdi-ldb-done {

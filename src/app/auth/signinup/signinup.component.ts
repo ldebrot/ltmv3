@@ -145,6 +145,7 @@ export class SigninupComponent implements OnInit, OnDestroy {
                 .then(()=>{
                     this.firebaseitemsubscription = this.readwriteservice.firebaseitem.subscribe(snapshot=>{
                         this.dbuserinfoservice.integrate(snapshot);
+                        this.meetingservice.getcurrentusermeetings("creator");
                         this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);//go to main after creating account                
                     });                
                 });

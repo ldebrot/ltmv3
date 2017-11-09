@@ -1,1 +1,77 @@
-<p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+it works!
+<!--
+<div class="left-panel maxwidthmobile">
+    <div class="card-container maxwidthmobile" >
+-->
+<div class="buttons">
+    <button (click)="like(false)">Dislike</button>
+    <button (click)="like(true)">Like</button>
+</div>
+<div class="maxwidthmobile">
+    <div class="maxwidthmobile" >
+        <sc-card
+            *ngFor="let card of cards;let i = index;"
+            [callDestroy]="card.destroyEvent"
+            [orientation]="orientation"
+            (onRelease)="onRelease($event)"
+            (onSwipe)="onSwipe($event)"
+            (onAbort)="onAbort($event)"
+            [tinder-card]="overlay"
+            [callLike]="card.likeEvent"
+            (onLike)="onCardLike($event)"
+            >
+            <div>
+                <span>{{card.id}}</span>
+            </div>
+            <div>
+                <img [src]="card.url" class="maxwidthmobile" draggable="false"/>
+            </div>
+        </sc-card>
+    </div>
+</div>
+<div hidden>
+    <div #swipelement1>
+        <p>Les rencontres déclic de Lunchtime vous aident à bénéﬁcier de l'expérience d'une personne ayant changé de métier.</p>
+        <p>Elles favorisent donc le partage d'expérience principalement autour du changement  de voie professionnelle.</p>
+        <p>D'autres programmes vous aideront davantage dans la construction de votre projet d'entreprenariat et le développement de vos activités indépendantes.</p>
+        <p>Sachez toutefois qu'un projet d'entreprenariat peut également vous conduire à changer de profession et à mieux vous situer par rapport à une activité salariée.</p>        
+    </div>
+</div>
+
+<!--
+</div>
+<div class="right-panel">
+    <h2>Parameters</h2>
+    <h3>Card</h3>
+    <h4>orientation</h4>
+    <p>
+        <label>value</label>
+        <select name="orientation" [(ngModel)]="orientation">
+            <option>x</option>
+            <option>y</option>
+            <option>xy</option>
+        </select>
+    </p>
+    <h4>Event logs</h4>
+    <div class="log-container" #cardLog>
+        <span *ngFor="let log of cardLogs">{{log}}</span>
+    </div>
+    <h3>Tinder Card</h3>
+    <h4>overlay</h4>
+    <h5>like</h5>
+    <p>
+        <label>backgroundColor</label>
+        <input type="color" [(ngModel)]="overlay.like.backgroundColor" />
+    </p>
+    <h5>dislike</h5>
+    <p>
+        <label>backgroundColor</label>
+        <input type="color" [(ngModel)]="overlay.dislike.backgroundColor" />
+    </p>
+    <h4>Event logs</h4>
+    <div class="log-container" #tinderCardLog>
+        <span *ngFor="let log of tinderCardLogs">{{log}}</span>
+    </div>
+</div>
+-->
+

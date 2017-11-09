@@ -42,7 +42,7 @@
                 <a [routerLink]="['/beneficiaire/invitationsdashboard']" class="btn ldb_btn_small ldb_btn_primary">J'invite quelqu'un à devenir témoin</a>
             </div>
             <div class="ldb_elementsinglebutton">
-                <a class="btn ldb_btn_small ldb_btn_primary">Je contacte un témoin Lunchtime</a>
+                <a [routerLink]="['/beneficiaire/jetrouvemontemoin']" class="btn ldb_btn_small ldb_btn_primary">Je contacte un témoin Lunchtime</a>
             </div>
         </div>
         <div *ngIf="this.meetingservice.meetings.countbystep.invitationsent>=this.meetingservice.meetingparameters.maxinvitations" class="ldb_elementsinglebutton">
