@@ -500,7 +500,14 @@ input.ng-invalid.ng-touched {
 }
 
 .csmultiplechoice_buttonitem {
-    width:40%;
+    width: 48%;
+    margin: 1% 1%;
+    float: left;
+    text-align: center;
+    border-radius: 5px;
+    padding: 2% 2%;
+    line-height: 1.5em;
+    min-height: 5.5em;
 }
 
 .randombackgroundcolor1 {
@@ -529,4 +536,35 @@ input.ng-invalid.ng-touched {
 
 .randombackgroundcolor7 {
     background: rgb(150,150,150);
+}
+
+/* cardsetcontainer */
+
+.instructionpanel {
+    position: absolute;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 3px 3px 12px #000;
+    width: 90%;
+    margin: 2%;
+    padding: 5%;
+}
+
+i.instructionbutton {
+    margin-right:5%;
+    vertical-align: middle;
+    right:5%;
+    line-height: 0px;
+}
+
+.questioncaption {
+    height: 36px;
+}
+
+.questioncaptionleft {
+    width:95%;
+}
+
+.questioncaptionright {
+    min-width: 48px;
 }

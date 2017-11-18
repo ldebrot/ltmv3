@@ -27,7 +27,8 @@ import { //PrimeNG modules here
     SelectItem,
     MegaMenuModule,
     ProgressBarModule,
-    ConfirmationService } from 'primeng/primeng';
+    ConfirmationService,
+    OverlayPanelModule } from 'primeng/primeng';
 import { DropdownModule } from "primeng/components/dropdown/dropdown";
 
 //Services
@@ -177,13 +178,14 @@ import { CsOrderComponent } from './components/beneficiaire/quizz/cs-order/cs-or
         NgbModule.forRoot(),//NG-Bootstrap added here
         MenuModule,//PrimeNG here
         MegaMenuModule,//PrimeNG here
-        MenubarModule,
-        TabMenuModule,
-        ListboxModule,
+        OverlayPanelModule,//PrimeNG here
+        MenubarModule,//PrimeNG here
+        TabMenuModule,//PrimeNG here
+        ListboxModule,//PrimeNG here
+        DropdownModule,//PrimeNG here
         RoutingService,
         RouterModule,
         ButtonModule,
-        DropdownModule,//PrimeNG here
         SwipeCardsModule,//NG SWIPE
         AngularFireModule.initializeApp(environment.firebase),//AngularFire2 
         AngularFireDatabaseModule, //AngularFire2  imports firebase/database, only needed for database features

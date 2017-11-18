@@ -110,13 +110,13 @@ public cards:any = {
     ],
     options: [//captions of options
         [
-            {id:1, caption:'Travailler dans une entreprise'},
-            {id:2, caption:'Travailler dans une institution publique'},
-            {id:3, caption:'Travailler dans une association / ONG'},
-            {id:4, caption:'Devenir indépendant (sans employés)'},
-            {id:5, caption:'Devenir entrepreneur (avec employés)'},
-            {id:6, caption:'Reprendre une société avec des employés'},
-            {id:7, caption:'Je ne suis pas encore sûr de mon choix'},
+            {id:1, caption:'Travailler dans une entreprise', class:"randombackgroundcolor1 csmultiplechoice_buttonitem"},
+            {id:2, caption:'Travailler dans une institution publique', class:"randombackgroundcolor2 csmultiplechoice_buttonitem"},
+            {id:3, caption:'Travailler dans une association / ONG', class:"randombackgroundcolor3 csmultiplechoice_buttonitem"},
+            {id:4, caption:'Devenir indépendant (sans employés)', class:"randombackgroundcolor4 csmultiplechoice_buttonitem"},
+            {id:5, caption:'Devenir entrepreneur (avec employés)', class:"randombackgroundcolor5 csmultiplechoice_buttonitem"},
+            {id:6, caption:'Reprendre une société avec des employés', class:"randombackgroundcolor6 csmultiplechoice_buttonitem"},
+            {id:7, caption:'Je ne suis pas encore sûr de mon choix', class:"randombackgroundcolor7 csmultiplechoice_buttonitem"},
         ]
     ]
 };

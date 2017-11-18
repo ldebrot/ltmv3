@@ -21,7 +21,10 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
     @ViewChild(CardsetDirective) csHost: CardsetDirective;
     subscription: any;
     currentquizzsubscription : Subscription;
-    
+    public instruction : String = "";
+    public questioncaption : String = "";
+    public instructionpanelvisible : boolean = true;
+
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
         private quizzservice: QuizzService
@@ -38,7 +41,11 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
     }
     
     public loadComponent(cardposition:number) {
-        let cardsetItem : any;        
+        //load correct instruction
+        this.instruction = this.quizzservice.cards.parameters[cardposition].instruction;
+        this.questioncaption = this.quizzservice.cards.parameters[cardposition].questioncaption;
+
+        let cardsetItem : any;
         switch(this.quizzservice.cards.parameters[cardposition].cardcomponentname) {
             case "CsMultipleChoiceComponent":
             cardsetItem = new CardsetItem(CsMultiplechoiceComponent, {});

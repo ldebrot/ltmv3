@@ -1,1 +1,22 @@
+
+<div class="questioncaption">
+    <table>
+        <tr>
+            <td class="questioncaptionleft">
+                {{ questioncaption }}
+            </td>
+            <td class="questioncaptionright">
+                <i class="mdi mdi-information-outline mdi-36px instructionbutton" (click)="instructionpanelvisible=!instructionpanelvisible"></i>
+            </td>
+            </tr>
+    </table>
+</div>
+<div #instructionpanel [hidden]="instructionpanelvisible" class="instructionpanel">
+    <div>
+        {{ instruction }}
+    </div>
+    <div class="ldb_elementsinglebutton">
+        <button class="btn ldb_btn_small ldb_btn_primary" (click)="instructionpanelvisible=!instructionpanelvisible">J'ai compris</button>
+    </div>
+</div>
 <ng-template dir-cardset></ng-template>

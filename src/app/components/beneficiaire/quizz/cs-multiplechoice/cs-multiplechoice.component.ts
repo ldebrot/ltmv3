@@ -12,11 +12,10 @@ export class CsMultiplechoiceComponent implements OnInit {
     public buttonitems : any[] = [];
 
     public populatebuttonitems () {
-        /*        this.buttonitems = [];
+        this.buttonitems = [];
         for (let i = 0; i < this.quizzservice.currentcardobject.options.length; i++) {
             this.buttonitems.push(this.quizzservice.currentcardobject.options[i]);
         }
-*/
     }
 
     constructor(
