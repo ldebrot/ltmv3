@@ -1,3 +1,5 @@
+import { QuizzComponent } from './../components/beneficiaire/quizz/quizz.component';
+import { CardsetcontainerComponent } from './../components/beneficiaire/quizz/cardset/cardsetcontainer.component';
 import { TestComponent } from './../components/test/test.component';
 //Services:
 import { authGuardService } from './authguard.service';
@@ -50,7 +52,8 @@ const appRoutes: Routes = [
         { path: 'jetrouvemontemoin/:userid', canActivate: [authGuardService], component: JetrouvemontemoinComponent},
         { path: 'temoinsearchbox', canActivate: [authGuardService], component: TemoinsearchboxComponent},
         { path: 'temoinsearchresults', canActivate: [authGuardService], component: TemoinsearchresultsComponent},
-        { path: 'test', component: TestComponent}
+        { path: 'test', component: TestComponent},//test component to try out things
+        { path: 'quizz', component: QuizzComponent}//quizz component showing cardsetcontainer>cardsets
     ]},
     { path: 'beneficiaire',  canActivate: [authGuardService], component: StartbeneficiaireComponent,
     children: [

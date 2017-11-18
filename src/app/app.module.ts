@@ -46,6 +46,7 @@ import { CommonService } from './services/common.service';
 import { MeetingService } from './services/meeting.service';
 import { DbusersearchService } from './services/dbusersearch.service';//handles user (temoin and beneficiaire) search
 import { QuizzService } from './services/quizz.service';
+import { CardsetDirective } from './components/beneficiaire/quizz/cardset/cardset.directive';
 
 //Components
 import { AppComponent } from './app.component';
@@ -62,6 +63,7 @@ import { JedecouvrelunchtimeComponent } from './components/notconnected/jedecouv
 import { LesactusComponent } from './components/notconnected/lesactus/lesactus.component';
 import { QuisommesnousComponent } from './components/notconnected/quisommesnous/quisommesnous.component';
 import { StartbeneficiaireComponent } from './components/startbeneficiaire/startbeneficiaire.component';
+
 
 // Firebase
 import * as firebase from 'firebase/app';
@@ -96,6 +98,14 @@ import { JemeprepareetmelanceComponent } from './components/beneficiaire/jefaisl
 import { JetrouvemontemoinComponent } from './components/beneficiaire/jeprendsrendezvous/jetrouvemontemoin/jetrouvemontemoin.component';
 import { TemoinsearchboxComponent } from './components/beneficiaire/jeprendsrendezvous/temoinsearchbox/temoinsearchbox.component';
 import { TemoinsearchresultsComponent } from './components/beneficiaire/jeprendsrendezvous/temoinsearchresults/temoinsearchresults.component';
+import { QuizzComponent } from './components/beneficiaire/quizz/quizz.component';
+import { CardsetcontainerComponent } from './components/beneficiaire/quizz/cardset/cardsetcontainer.component';
+import { CardsetComponent } from './components/beneficiaire/quizz/cardset/cardset.component';
+import { CsSwipecardComponent } from './components/beneficiaire/quizz/cs-swipecard/cs-swipecard.component';
+import { CsMultiplechoiceComponent } from './components/beneficiaire/quizz/cs-multiplechoice/cs-multiplechoice.component';
+import { CsReadcardComponent } from './components/beneficiaire/quizz/cs-readcard/cs-readcard.component';
+import { CsAssociationComponent } from './components/beneficiaire/quizz/cs-association/cs-association.component';
+import { CsOrderComponent } from './components/beneficiaire/quizz/cs-order/cs-order.component';
 
 //console.log("initializedApp at app.mdoule.ts level!");
 
@@ -139,7 +149,15 @@ import { TemoinsearchresultsComponent } from './components/beneficiaire/jeprends
         JemeprepareetmelanceComponent,
         JetrouvemontemoinComponent,
         TemoinsearchboxComponent,
-        TemoinsearchresultsComponent
+        TemoinsearchresultsComponent,
+        QuizzComponent,
+        CardsetcontainerComponent,
+        CardsetDirective,
+        CsSwipecardComponent,
+        CsMultiplechoiceComponent,
+        CsReadcardComponent,
+        CsAssociationComponent,
+        CsOrderComponent
     ],
     imports: [
         FormsModule,
@@ -189,6 +207,7 @@ import { TemoinsearchresultsComponent } from './components/beneficiaire/jeprends
         NavigationService,//handles navigation modules
         QuizzService//handles quizzes
     ],
+    entryComponents: [CsSwipecardComponent, CsAssociationComponent, CsMultiplechoiceComponent, CsOrderComponent, CsReadcardComponent],
     bootstrap: [AppComponent]
 })
 

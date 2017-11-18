@@ -493,3 +493,40 @@ input.ng-invalid.ng-touched {
   line-height: 2.00;
   border-radius: 70px;
 }
+
+/* QUIZZ FORMATTING */
+.csmultiplechoice_buttoncontainer {
+    width:95%;
+}
+
+.csmultiplechoice_buttonitem {
+    width:40%;
+}
+
+.randombackgroundcolor1 {
+    background: rgb(150,255,255);
+}
+
+.randombackgroundcolor2 {
+    background: rgb(255,150,255);
+}
+
+.randombackgroundcolor3 {
+    background: rgb(255,255,150);
+}
+
+.randombackgroundcolor4 {
+    background: rgb(255,150,150);
+}
+
+.randombackgroundcolor5 {
+    background: rgb(150,255,150);
+}
+
+.randombackgroundcolor6 {
+    background: rgb(150,150,255);
+}
+
+.randombackgroundcolor7 {
+    background: rgb(150,150,150);
+}
