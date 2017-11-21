@@ -110,13 +110,13 @@ public cards:any = {
     ],
     options: [//captions of options
         [
-            {id:1, caption:'Travailler dans une entreprise', class:"randombackgroundcolor1 csmultiplechoice_buttonitem"},
-            {id:2, caption:'Travailler dans une institution publique', class:"randombackgroundcolor2 csmultiplechoice_buttonitem"},
-            {id:3, caption:'Travailler dans une association / ONG', class:"randombackgroundcolor3 csmultiplechoice_buttonitem"},
-            {id:4, caption:'Devenir indépendant (sans employés)', class:"randombackgroundcolor4 csmultiplechoice_buttonitem"},
-            {id:5, caption:'Devenir entrepreneur (avec employés)', class:"randombackgroundcolor5 csmultiplechoice_buttonitem"},
-            {id:6, caption:'Reprendre une société avec des employés', class:"randombackgroundcolor6 csmultiplechoice_buttonitem"},
-            {id:7, caption:'Je ne suis pas encore sûr de mon choix', class:"randombackgroundcolor7 csmultiplechoice_buttonitem"},
+            {id:0, caption:'Travailler dans une entreprise', unselectedclass:"unselected1", selectedclass:"selected1"},
+            {id:1, caption:'Travailler dans une institution publique', unselectedclass:"unselected2", selectedclass:"selected2"},
+            {id:2, caption:'Travailler dans une association / ONG', unselectedclass:"unselected3", selectedclass:"selected3"},
+            {id:3, caption:'Devenir indépendant (sans employés)', unselectedclass:"unselected4", selectedclass:"selected4"},
+            {id:4, caption:'Devenir entrepreneur (avec employés)', unselectedclass:"unselected5", selectedclass:"selected5"},
+            {id:5, caption:'Reprendre une société avec des employés', unselectedclass:"unselected6", selectedclass:"selected6"},
+            {id:6, caption:'Je ne suis pas encore sûr de mon choix', unselectedclass:"unselected7", selectedclass:"selected7"}
         ]
     ]
 };

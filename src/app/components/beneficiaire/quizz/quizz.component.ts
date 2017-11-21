@@ -1,6 +1,7 @@
 import { QuizzService } from './../../../services/quizz.service';
 import { CardsetItem } from './cardset/cardset-item';
 import { Component, OnInit } from '@angular/core';
+import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 //Quizzcomponent shows the cardsets according to the cardset service
 
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: './quizz.component.html',
     styleUrls: ['./quizz.component.css']
 })
-export class QuizzComponent implements OnInit {
+export class QuizzComponent implements OnInit, AfterViewInit {
     CardsetcontainerComponent: any;
     QuizzComponent: any;
 
@@ -19,11 +20,12 @@ export class QuizzComponent implements OnInit {
         private quizzservice : QuizzService
     ) {}
     
-    public clickme(id:number){
-        this.quizzservice.changecurrentquizzid(id);
+    ngOnInit() {
     }
 
-    ngOnInit() {
+    ngAfterViewInit () {
+        //temporary starter
+        this.quizzservice.changecurrentquizzid(1);        
     }
 
 }

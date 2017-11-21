@@ -1,3 +1,4 @@
+import { ReadwritebufferService } from './../../../../services/readwritebuffer.service';
 import { CsMultiplechoiceComponent } from 'app/components/beneficiaire/quizz/cs-multiplechoice/cs-multiplechoice.component';
 import { Subscription } from 'rxjs/Rx';
 import { QuizzService } from './../../../../services/quizz.service';
@@ -27,6 +28,7 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
+        private readwritebufferservice : ReadwritebufferService,
         private quizzservice: QuizzService
     ) { }
     
@@ -65,4 +67,8 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
     ngOnInit() {
     }
     
+    temp_saveit () {
+        this.readwritebufferservice.transmitbuffer();        
+    }
+
 }

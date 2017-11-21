@@ -405,6 +405,20 @@ input.ng-invalid.ng-touched {
     margin: 5px 0;
 }
 
+.ldb_btn_next{
+    text-align: center;
+    width: 100%;
+    font-size: x-large;
+    background: #EEE;
+    border-radius: 5px;
+    -webkit-transition: all 0.5s; /* Safari */
+    transition: all 0.5s;
+}    
+
+.ldb_btn_next:hover{
+    background: #CCC;
+}
+
 .ldb_btn_primary{
     background: #BDF5;
     border-color: #BDF5;    
@@ -499,43 +513,135 @@ input.ng-invalid.ng-touched {
     width:95%;
 }
 
+.csmultiplechoice_afterbuttoncontainer {
+    clear:both;
+    float:none;
+}
+
 .csmultiplechoice_buttonitem {
     width: 48%;
     margin: 1% 1%;
     float: left;
     text-align: center;
     border-radius: 5px;
-    padding: 2% 2%;
     line-height: 1.5em;
     min-height: 5.5em;
+    padding: 2% 2%;
+    border-radius: 5px;
+    -webkit-transition: all 0.5s; /* Safari */
+    transition: all 0.5s;
 }
 
-.randombackgroundcolor1 {
+.unselected1 {
     background: rgb(150,255,255);
+    color:#292b2c;
+}
+.unselected1:hover {
+    box-shadow: 1px 1px 12px #599;
 }
 
-.randombackgroundcolor2 {
+.unselected2 {
     background: rgb(255,150,255);
+    color:#292b2c;
+}
+.unselected2:hover {
+    box-shadow: 1px 1px 12px #959;
 }
 
-.randombackgroundcolor3 {
+.unselected3 {
     background: rgb(255,255,150);
+    color:#292b2c;
+}
+.unselected3:hover {
+    box-shadow: 1px 1px 12px #995;
 }
 
-.randombackgroundcolor4 {
+.unselected4 {
     background: rgb(255,150,150);
+    color:#292b2c;
+}
+.unselected4:hover {
+    box-shadow: 1px 1px 12px #955;
 }
 
-.randombackgroundcolor5 {
+.unselected5 {
     background: rgb(150,255,150);
+    color:#292b2c;
+}
+.unselected5:hover {
+    box-shadow: 1px 1px 12px #595;
 }
 
-.randombackgroundcolor6 {
+.unselected6 {
     background: rgb(150,150,255);
+    color:#292b2c;
+}
+.unselected6:hover {
+    box-shadow: 1px 1px 12px #559;
 }
 
-.randombackgroundcolor7 {
+.unselected7 {
     background: rgb(150,150,150);
+    color:#292b2c;
+}
+.unselected7:hover {
+    box-shadow: 1px 1px 12px #555;
+}
+
+.selected1 {
+    background: rgb(50,150,150);
+    color:#FFF;
+    box-shadow:2px 2px 10px #055 inset;
+    -moz-box-shadow:2px 2px 10px #055 inset;
+    -webkit-box-shadow:2px 2px 10px #055 inset;
+}
+
+.selected2 {
+    background: rgb(150,50,150);
+    color:#FFF;
+    box-shadow:2px 2px 10px #505 inset;
+    -moz-box-shadow:2px 2px 10px #505 inset;
+    -webkit-box-shadow:2px 2px 10px #505 inset;
+}
+
+.selected3 {
+    background: rgb(150,150,50);
+    color:#FFF;
+    box-shadow:2px 2px 10px #550 inset;
+    -moz-box-shadow:2px 2px 10px #550 inset;
+    -webkit-box-shadow:2px 2px 10px #550 inset;
+}
+
+.selected4 {
+    background: rgb(150,50,50);
+    color:#FFF;
+    box-shadow:2px 2px 10px #500 inset;
+    -moz-box-shadow:2px 2px 10px #500 inset;
+    -webkit-box-shadow:2px 2px 10px #500 inset;
+}
+
+.selected5 {
+    background: rgb(50,150,50);
+    color:#FFF;
+    box-shadow:2px 2px 10px #050 inset;
+    -moz-box-shadow:2px 2px 10px #050 inset;
+    -webkit-box-shadow:2px 2px 10px #050 inset;
+}
+
+.selected6 {
+    background: rgb(50,50,150);
+    color:#FFF;
+    box-shadow:2px 2px 10px #005 inset;
+    -moz-box-shadow:2px 2px 10px #005 inset;
+    -webkit-box-shadow:2px 2px 10px #005 inset;
+}
+
+.selected7 {
+    background: rgb(50,50,50);
+    color:#FFF;
+    box-shadow:2px 2px 10px #000 inset;
+    -moz-box-shadow:2px 2px 10px #000 inset;
+    -webkit-box-shadow:2px 2px 10px #000 inset;
 }
 
 /* cardsetcontainer */
