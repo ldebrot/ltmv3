@@ -35,9 +35,10 @@ export class CsMultiplechoiceComponent implements OnInit {
         this.setupbuttonservice();
     }
 
+    //This one mixes up cardposition and cardit
     public togglebutton(id:any):void{
         this.button_value[String(id)]=!this.button_value[String(id)];
-        this.button_class[String(id)] = this.button_value[String(id)] === true ? this.quizzservice.currentcardobject.options[id].selectedclass+" "+this.buttonclassbasic  : this.quizzservice.currentcardobject.options[id].unselectedclass+" "+this.buttonclassbasic;
+        this.button_class[String(id)] = this.button_value[String(id)] === true ? this.quizzservice.currentcardobject["option"+String(id)].selectedclass+" "+this.buttonclassbasic  : this.quizzservice.currentcardobject["option"+String(id)].unselectedclass+" "+this.buttonclassbasic;
         let button_id = String(this.quizzservice.currentcardobject.parameters.quizzid) + "-" + String(this.quizzservice.currentcardobject.parameters.cardid) +"-" + String(id);
         this.readwritebufferservice.updatebuffer(button_id,this.button_value[String(id)],"update");
         console.log(id);
@@ -45,18 +46,19 @@ export class CsMultiplechoiceComponent implements OnInit {
 
     public populatebuttonitems () {
         this.buttonitems = [];
-        for (let i = 0; i < this.quizzservice.currentcardobject.options.length; i++) {
-            console.log("i"+String(i));
-            this.buttonitems.push(this.quizzservice.currentcardobject.options[i]);
+        for (let i = 0; i < this.quizzservice.currentcardobject.parameters.options.length; i++) {
+            let temp_cardid = this.quizzservice.currentcardobject.parameters.options[i];
+            this.buttonitems.push(this.quizzservice.currentcardobject["option"+String(temp_cardid)]);
         }
     }
 
     public setupbuttonservice () {
-        for (let i = 0; i < this.quizzservice.currentcardobject.options.length; i++) {
-            console.log("i"+String(i));
-            this.button_value[i]=false;
-            this.button_class[i]=this.quizzservice.currentcardobject.options[i].unselectedclass + " " + this.buttonclassbasic;          
+        for (let i = 0; i < this.quizzservice.currentcardobject.parameters.options.length; i++) {
+            let temp_cardid = this.quizzservice.currentcardobject.parameters.options[i];
+            this.button_value[temp_cardid]=false;
+            this.button_class[temp_cardid]=this.quizzservice.currentcardobject["option"+String(temp_cardid)].unselectedclass + " " + this.buttonclassbasic;          
         }
+        console.log(this.button_class);
     }
 
     temp_signin(email, password){

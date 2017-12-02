@@ -1,3 +1,4 @@
+import { CsSwipecardComponent } from './../cs-swipecard/cs-swipecard.component';
 import { ReadwritebufferService } from './../../../../services/readwritebuffer.service';
 import { CsMultiplechoiceComponent } from 'app/components/beneficiaire/quizz/cs-multiplechoice/cs-multiplechoice.component';
 import { Subscription } from 'rxjs/Rx';
@@ -33,38 +34,49 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
     ) { }
     
     ngAfterViewInit() {
-        this.quizzservice.currentcardsubject.subscribe((cardposition:number)=>{
-            this.loadComponent(cardposition);
-            console.log("loaded card in position "+cardposition)
-        });
     }
     
     ngOnDestroy() {
     }
     
-    public loadComponent(cardposition:number) {
-        //load correct instruction
-        this.instruction = this.quizzservice.cards.parameters[cardposition].instruction;
-        this.questioncaption = this.quizzservice.cards.parameters[cardposition].questioncaption;
+    public loadComponent() {
+        //loads component based on currentcardobject
+        this.instruction = this.quizzservice.currentcardobject.parameters.instruction;
+        this.questioncaption = this.quizzservice.currentcardobject.parameters.questioncaption;
 
         let cardsetItem : any;
-        switch(this.quizzservice.cards.parameters[cardposition].cardcomponentname) {
+        let validcomponent : boolean = true;
+        switch(String(this.quizzservice.currentcardobject.parameters.cardcomponentname)) {
             case "CsMultipleChoiceComponent":
-            cardsetItem = new CardsetItem(CsMultiplechoiceComponent, {});
+                cardsetItem = new CardsetItem(CsMultiplechoiceComponent, {});
+                console.log("loaded CsMultipleChoiceComponent")
+                break
+            case "CsSwipecardComponent":
+                cardsetItem = new CardsetItem(CsSwipecardComponent, {});
+                break
             default:
-            console.log("cardsetcontainer : cardcomponentname does not match any Component")
+                console.log("cardsetcontainer : cardcomponentname does not match any Component")
+                validcomponent = false;
+                break
         }
-               
-        let componentFactory = this.componentFactoryResolver.resolveComponentFactory(cardsetItem.component);
-        
-        let viewContainerRef = this.csHost.viewContainerRef;
-        viewContainerRef.clear();
-        
-        let componentRef = viewContainerRef.createComponent(componentFactory);
-        (<CardsetComponent>componentRef.instance).data = cardsetItem.data;
+
+        if (validcomponent){
+            let componentFactory = this.componentFactoryResolver.resolveComponentFactory(cardsetItem.component);
+            
+            let viewContainerRef = this.csHost.viewContainerRef;
+            viewContainerRef.clear();
+            
+            let componentRef = viewContainerRef.createComponent(componentFactory);
+            (<CardsetComponent>componentRef.instance).data = cardsetItem.data;
+        }
     }
     
     ngOnInit() {
+        this.loadComponent();
+        this.quizzservice.currentcardsubject.subscribe((cardid:number)=>{
+            console.log("cardsetcontainer subscribe");
+            this.loadComponent();
+        });
     }
     
     temp_saveit () {
