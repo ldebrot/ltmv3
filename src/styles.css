@@ -509,6 +509,8 @@ input.ng-invalid.ng-touched {
 }
 
 /* QUIZZ FORMATTING */
+
+/* CsMultiplechoice */
 .csmultiplechoice_buttoncontainer {
     width:95%;
 }
@@ -721,6 +723,8 @@ i.instructionbutton:hover {
     min-width: 48px;
 }
 
+/* CsSwipecard */
+
 .swipecardcontainer {
     box-shadow:none !important;
 }
@@ -859,4 +863,101 @@ i.instructionbutton:hover {
     position: fixed;
     bottom: 5%;
     width: 100%;
+}
+
+/* CsOrderrelative */
+
+.csorderrelative_buttonitem {
+    margin: 2%;
+    border-radius: 5px;
+    padding: 2%;
+    min-height: 4rem;
+    -webkit-transition: all .3s; /* Safari */
+    transition: all .3s;
+}
+
+.csorderrelative_buttoncontainer {
+
+}
+
+.csorderrelative_afterbuttoncontainer {
+}
+
+.csorderrelative_treasurebar{
+    height: 3.5rem;    
+}
+
+.csorderrelative_treasurecaption{
+    float: left;
+    margin: 2%;
+    padding: 2%;
+    width: 60%;
+}
+
+.csorderrelative_treasure{
+    margin: 2%;
+    left: 60%;
+    position: absolute;
+    box-shadow: 3px 3px 12px #000;
+    text-align: center;
+    color: #000;
+}
+
+.csorderrelative_0 {
+    padding: 0.2rem;
+    border-radius: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: x-small;
+    margin: 1rem;
+}
+
+.csorderrelative_1 {
+    padding: .3rem;
+    border-radius: 2rem;
+    width: 2rem;
+    height: 2rem;    
+    font-size: small;
+    margin: .8rem;
+}
+
+.csorderrelative_2 {
+    padding: .35rem;
+    border-radius: 2.5rem;
+    width: 2.5rem;
+    height: 2.5rem;    
+    font-size: medium;
+    margin: .6rem;
+}
+
+.csorderrelative_3 {
+    padding: .5rem;
+    border-radius: 2.7rem;
+    width: 2.7rem;
+    height: 2.7rem;
+    font-size: large;
+    margin: .5rem;
+}
+
+.csorderrelative_4 {
+    padding: .6rem;
+    border-radius: 3rem;
+    width: 3rem;
+    height: 3rem;
+    font-size: large;
+    font-weight: bold;
+    margin: 0.3rem;
+}
+
+.csorderrelative_pointrecipient{
+    float: left;
+    left: 2%;
+    position: absolute;
+    box-shadow: 3px 3px 12px #000;
+    text-align: center;
+    color: #000;
+}
+
+.csorderrelative_buttoncaption {
+    margin-left: 4rem;
 }

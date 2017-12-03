@@ -1,8 +1,11 @@
 import { CsSwipecardComponent } from './../cs-swipecard/cs-swipecard.component';
-import { ReadwritebufferService } from './../../../../services/readwritebuffer.service';
+import { CsOrderrelativeComponent } from 'app/components/beneficiaire/quizz/cs-orderrelative/cs-orderrelative.component';
 import { CsMultiplechoiceComponent } from 'app/components/beneficiaire/quizz/cs-multiplechoice/cs-multiplechoice.component';
-import { Subscription } from 'rxjs/Rx';
+
+import { ReadwritebufferService } from './../../../../services/readwritebuffer.service';
 import { QuizzService } from './../../../../services/quizz.service';
+
+import { Subscription } from 'rxjs/Rx';
 import { CardsetItem } from './cardset-item';
 import { CardsetDirective } from './cardset.directive';
 import { CardsetComponent } from './cardset.component'
@@ -53,6 +56,9 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
                 break
             case "CsSwipecardComponent":
                 cardsetItem = new CardsetItem(CsSwipecardComponent, {});
+                break
+            case "CsOrderrelativeComponent":
+                cardsetItem = new CardsetItem(CsOrderrelativeComponent, {});
                 break
             default:
                 console.log("cardsetcontainer : cardcomponentname does not match any Component")

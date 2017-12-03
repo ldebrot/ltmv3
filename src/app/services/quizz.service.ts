@@ -109,12 +109,29 @@ export class QuizzService implements OnInit{
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient4 swipecardicon"},
             option5: {id:5, caption:"je sais quel type et quel niveau de responsabilité je souhaite assumer",backgroundclass:"swipecard_1 background_5", 
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient5 swipecardicon"},
+        },
+        card3 : {
+            parameters:{
+                cardtype:"orderrelative",
+                instruction:"Distribution de points : distribue les 10 points selon ce qui correspond le plus à ta situation en cliquant sur les différents champs.",
+                questioncaption: "Pourquoi je pense changer de métier ?",
+                cardcomponentname: "CsOrderrelativeComponent",
+                maxpoints: 10,
+                options:[1,2,3,4,5]
+            },
+            optional : {
+            },
+            option1: {id:1, caption:"Je dois quitter mon poste.", optionvalue:10, basicclass:"unselected1", actionclass:"action1"},
+            option2: {id:2, caption:"Je ne m'épanouis plus.", optionvalue:8, basicclass:"unselected2", actionclass:"action2"},
+            option3: {id:3, caption:"Les conditions de travail ne me conviennent plus.", optionvalue:4, basicclass:"unselected3", actionclass:"action3"},
+            option4: {id:4, caption:"Le salaire ne me suffit pas.", optionvalue:2, basicclass:"unselected4", actionclass:"action4"},
+            option5: {id:5, caption:"je suis à un point mort dans ma carrière.", optionvalue:0, basicclass:"unselected5", actionclass:"action5"},
         }
     }
 
     public quizzes:any = {
         quizz1 : {
-            cardids : [1,2]
+            cardids : [1,2,3]
         }
     }
 

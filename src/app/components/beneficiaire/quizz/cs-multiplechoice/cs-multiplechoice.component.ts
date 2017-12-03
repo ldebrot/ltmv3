@@ -47,16 +47,16 @@ export class CsMultiplechoiceComponent implements OnInit {
     public populatebuttonitems () {
         this.buttonitems = [];
         for (let i = 0; i < this.quizzservice.currentcardobject.parameters.options.length; i++) {
-            let temp_cardid = this.quizzservice.currentcardobject.parameters.options[i];
-            this.buttonitems.push(this.quizzservice.currentcardobject["option"+String(temp_cardid)]);
+            let temp_optionid = this.quizzservice.currentcardobject.parameters.options[i];
+            this.buttonitems.push(this.quizzservice.currentcardobject["option"+String(temp_optionid)]);
         }
     }
 
     public setupbuttonservice () {
         for (let i = 0; i < this.quizzservice.currentcardobject.parameters.options.length; i++) {
-            let temp_cardid = this.quizzservice.currentcardobject.parameters.options[i];
-            this.button_value[temp_cardid]=false;
-            this.button_class[temp_cardid]=this.quizzservice.currentcardobject["option"+String(temp_cardid)].unselectedclass + " " + this.buttonclassbasic;          
+            let temp_optionid = this.quizzservice.currentcardobject.parameters.options[i];
+            this.button_value[temp_optionid]=false;
+            this.button_class[temp_optionid]=this.quizzservice.currentcardobject["option"+String(temp_optionid)].unselectedclass + " " + this.buttonclassbasic;          
         }
         console.log(this.button_class);
     }
