@@ -99,11 +99,16 @@ export class QuizzService implements OnInit{
             },
             optional : {
             },
-            option1: {id:1, caption:"je sais ce que j'ai envie de faire", backgroundclass:"swipecard_1", image:"", i:""},
-            option2: {id:2, caption:"Je sais identifier mes compétences", backgroundclass:"", image:"", i:""},
-            option3: {id:3, caption:"Je sais quels secteurs d'activité m'intéressent", backgroundclass:"", image:"", i:""},
-            option4: {id:4, caption:"Je sais quelles causes m'intéressent", backgroundclass:"", image:"", i:""},
-            option5: {id:5, caption:"je sais quel type et quel niveau de responsabilité je souhaite assumer",backgroundclass:"", image:"", i:""}
+            option1: {id:1, caption:"je sais ce que j'ai envie de faire", backgroundclass:"swipecard_1 background_1", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient1 swipecardicon"},
+            option2: {id:2, caption:"Je sais identifier mes compétences", backgroundclass:"swipecard_1 background_2", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient2 swipecardicon"},
+            option3: {id:3, caption:"Je sais quels secteurs d'activité m'intéressent", backgroundclass:"swipecard_1 background_3", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient3 swipecardicon"},
+            option4: {id:4, caption:"Je sais quelles causes m'intéressent", backgroundclass:"swipecard_1 background_4", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient4 swipecardicon"},
+            option5: {id:5, caption:"je sais quel type et quel niveau de responsabilité je souhaite assumer",backgroundclass:"swipecard_1 background_5", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient5 swipecardicon"},
         }
     }
 

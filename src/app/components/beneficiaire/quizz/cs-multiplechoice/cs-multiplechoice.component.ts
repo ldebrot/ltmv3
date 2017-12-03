@@ -39,7 +39,7 @@ export class CsMultiplechoiceComponent implements OnInit {
     public togglebutton(id:any):void{
         this.button_value[String(id)]=!this.button_value[String(id)];
         this.button_class[String(id)] = this.button_value[String(id)] === true ? this.quizzservice.currentcardobject["option"+String(id)].selectedclass+" "+this.buttonclassbasic  : this.quizzservice.currentcardobject["option"+String(id)].unselectedclass+" "+this.buttonclassbasic;
-        let button_id = String(this.quizzservice.currentcardobject.parameters.quizzid) + "-" + String(this.quizzservice.currentcardobject.parameters.cardid) +"-" + String(id);
+        let button_id = String(this.quizzservice.currentquizzid) + "-" + String(this.quizzservice.currentcardid) +"-" + String(id);
         this.readwritebufferservice.updatebuffer(button_id,this.button_value[String(id)],"update");
         console.log(id);
     }

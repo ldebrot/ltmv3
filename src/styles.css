@@ -654,6 +654,9 @@ input.ng-invalid.ng-touched {
     width: 90%;
     margin: 2%;
     padding: 5%;
+    z-index: 99;
+    -webkit-transition: all 1s; /* Safari */
+    transition: all 1s;    
 }
 
 i.instructionbutton {
@@ -664,7 +667,7 @@ i.instructionbutton {
 }
 
 .questioncaption {
-    height: 36px;
+    height: 72px;
 }
 
 .questioncaptionleft {
@@ -673,4 +676,145 @@ i.instructionbutton {
 
 .questioncaptionright {
     min-width: 48px;
+}
+
+.swipecardcontainer {
+    box-shadow:none !important;
+}
+
+.swipecard_1 {
+    border-radius: 15px;
+    width: 95%;
+    margin: 2%;
+    box-shadow: 3px 3px 12px #000;
+}
+
+.background_1 {
+    background: #FEF;    
+}
+
+.background_2 {
+    background: #FEE;    
+}
+
+.background_3 {
+    background: #EEE;    
+}
+
+.background_4 {
+    background: #FFE;    
+}
+
+.background_5 {
+    background: #EFE;    
+}
+
+
+
+.gradient1 {
+    display: initial;
+    background: #007ef4; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #007ef4 0%, #73b1e7 24%, #c0abdb 50%, #c84fd6 79%, #ff0558 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #007ef4 0%,#73b1e7 24%,#c0abdb 50%,#c84fd6 79%,#ff0558 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #007ef4 0%,#73b1e7 24%,#c0abdb 50%,#c84fd6 79%,#ff0558 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007ef4', endColorstr='#ff0558',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.gradient2 {
+    background: #f3c5bd; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #f3c5bd 0%, #e86c57 50%, #ea2803 51%, #ff6600 75%, #c72200 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #f3c5bd 0%,#e86c57 50%,#ea2803 51%,#ff6600 75%,#c72200 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #f3c5bd 0%,#e86c57 50%,#ea2803 51%,#ff6600 75%,#c72200 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3c5bd', endColorstr='#c72200',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.gradient3 {
+    background: #aebcbf; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #aebcbf 0%, #6e7774 50%, #0a0e0a 51%, #0a0809 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #aebcbf 0%,#6e7774 50%,#0a0e0a 51%,#0a0809 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #aebcbf 0%,#6e7774 50%,#0a0e0a 51%,#0a0809 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aebcbf', endColorstr='#0a0809',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gradient4 {
+    background: #f6e6b4; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #f6e6b4 0%, #ed9017 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #f6e6b4 0%,#ed9017 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #f6e6b4 0%,#ed9017 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6e6b4', endColorstr='#ed9017',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gradient5 {
+    background: #bfd255; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #bfd255 0%, #8eb92a 50%, #72aa00 51%, #9ecb2d 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', endColorstr='#9ecb2d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.swipecardbackground{
+
+}
+
+.swipecardoverlay{
+    font-size: x-large;
+    text-align: center;
+    position: absolute;
+    margin: 50% 5%;
+}
+
+.swipecardicon {
+    font-size:200px;
+}
+
+.swipecardwhite {
+    background:white;
+}
+
+.iconcontainer{
+    text-align: center;
+}
+
+.swipecardbutton{
+    text-align: center;    
+}
+
+.swipecardbuttonright{
+    -webkit-transition: all 0.5s; /* Safari */
+    transition: all 0.5s;
+    height: 2rem;
+    width: 50%;
+    float: left;
+}
+
+.swipecardbuttonleft{
+    float: left;
+    width: 50%;
+    height: 2rem;
+    -webkit-transition: all 0.5s; /* Safari */
+    transition: all 0.5s;
+}
+
+.swipecardbuttonleft:hover{
+    background:#FFBBBB;
+}    
+
+.swipecardbuttonright:hover{
+    background:#BBFFBB;
+}    
+
+.swipecardbuttoncontainer{
+    position: fixed;
+    bottom: 5%;
+    width: 100%;
 }
