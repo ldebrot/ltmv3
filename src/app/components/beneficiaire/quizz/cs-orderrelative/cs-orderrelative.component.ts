@@ -1,6 +1,7 @@
 import { ReadwritebufferService } from './../../../../services/readwritebuffer.service';
 import { QuizzService } from 'app/services/quizz.service';
 import { Component, OnInit } from '@angular/core';
+
 @Component({
     selector: 'app-cs-orderrelative',
     templateUrl: './cs-orderrelative.component.html',
