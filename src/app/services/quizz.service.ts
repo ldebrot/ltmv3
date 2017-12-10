@@ -121,17 +121,33 @@ export class QuizzService implements OnInit{
             },
             optional : {
             },
-            option1: {id:1, caption:"Je dois quitter mon poste.", optionvalue:10, basicclass:"unselected1", actionclass:"action1"},
-            option2: {id:2, caption:"Je ne m'épanouis plus.", optionvalue:8, basicclass:"unselected2", actionclass:"action2"},
-            option3: {id:3, caption:"Les conditions de travail ne me conviennent plus.", optionvalue:4, basicclass:"unselected3", actionclass:"action3"},
-            option4: {id:4, caption:"Le salaire ne me suffit pas.", optionvalue:2, basicclass:"unselected4", actionclass:"action4"},
+            option1: {id:1, caption:"Je dois quitter mon poste.", optionvalue:0, basicclass:"unselected1", actionclass:"action1"},
+            option2: {id:2, caption:"Je ne m'épanouis plus.", optionvalue:0, basicclass:"unselected2", actionclass:"action2"},
+            option3: {id:3, caption:"Les conditions de travail ne me conviennent plus.", optionvalue:0, basicclass:"unselected3", actionclass:"action3"},
+            option4: {id:4, caption:"Le salaire ne me suffit pas.", optionvalue:0, basicclass:"unselected4", actionclass:"action4"},
             option5: {id:5, caption:"je suis à un point mort dans ma carrière.", optionvalue:0, basicclass:"unselected5", actionclass:"action5"},
+        },
+        card4 : {
+            parameters:{
+                cardtype:"orderregular",
+                instruction:"  ",
+                questioncaption: "   ",
+                cardcomponentname: "CsOrderregularComponent",
+                options:[1,2,3,4,5]
+            },
+            optional : {
+            },
+            option1: {id:1, caption:" ", optionvalue:0, basicclass:"unselected1", actionclass:"action1"},
+            option2: {id:2, caption:" ", optionvalue:1, basicclass:"unselected2", actionclass:"action2"},
+            option3: {id:3, caption:" ", optionvalue:2, basicclass:"unselected3", actionclass:"action3"},
+            option4: {id:4, caption:" ", optionvalue:3, basicclass:"unselected4", actionclass:"action4"},
+            option5: {id:5, caption:" ", optionvalue:4, basicclass:"unselected5", actionclass:"action5"},
         }
     }
 
     public quizzes:any = {
         quizz1 : {
-            cardids : [1,2,3]
+            cardids : [1,2,3,4]
         }
     }
 

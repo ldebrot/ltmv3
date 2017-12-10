@@ -1,3 +1,4 @@
+import { CsOrderregularComponent } from './../cs-orderregular/cs-orderregular.component';
 import { CsSwipecardComponent } from './../cs-swipecard/cs-swipecard.component';
 import { CsOrderrelativeComponent } from 'app/components/beneficiaire/quizz/cs-orderrelative/cs-orderrelative.component';
 import { CsMultiplechoiceComponent } from 'app/components/beneficiaire/quizz/cs-multiplechoice/cs-multiplechoice.component';
@@ -59,6 +60,9 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
                 break
             case "CsOrderrelativeComponent":
                 cardsetItem = new CardsetItem(CsOrderrelativeComponent, {});
+                break
+            case "CsOrderregularComponent":
+                cardsetItem = new CardsetItem(CsOrderregularComponent, {});
                 break
             default:
                 console.log("cardsetcontainer : cardcomponentname does not match any Component")

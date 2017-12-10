@@ -73,6 +73,9 @@ import { environment } from '../environments/environment';//AngularFire2
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+//Sortable
+import { SortablejsModule } from  'angular-sortablejs';
+
 //Components
 import { MonplanningComponent } from './components/beneficiaire/monplanning/monplanning.component';
 import { JefaislepointComponent } from './components/beneficiaire/jefaislepoint/jefaislepoint.component';
@@ -107,6 +110,7 @@ import { CsMultiplechoiceComponent } from './components/beneficiaire/quizz/cs-mu
 import { CsReadcardComponent } from './components/beneficiaire/quizz/cs-readcard/cs-readcard.component';
 import { CsAssociationComponent } from './components/beneficiaire/quizz/cs-association/cs-association.component';
 import { CsOrderrelativeComponent } from './components/beneficiaire/quizz/cs-orderrelative/cs-orderrelative.component';
+import { CsOrderregularComponent } from './components/beneficiaire/quizz/cs-orderregular/cs-orderregular.component';
 
 //console.log("initializedApp at app.mdoule.ts level!");
 
@@ -158,7 +162,8 @@ import { CsOrderrelativeComponent } from './components/beneficiaire/quizz/cs-ord
         CsMultiplechoiceComponent,
         CsReadcardComponent,
         CsAssociationComponent,
-        CsOrderrelativeComponent
+        CsOrderrelativeComponent,
+        CsOrderregularComponent
     ],
     imports: [
         FormsModule,
@@ -189,7 +194,8 @@ import { CsOrderrelativeComponent } from './components/beneficiaire/quizz/cs-ord
         SwipeCardsModule,//NG SWIPE
         AngularFireModule.initializeApp(environment.firebase),//AngularFire2 
         AngularFireDatabaseModule, //AngularFire2  imports firebase/database, only needed for database features
-        AngularFireAuthModule //AngularFire2  imports firebase/auth, only needed for auth features        
+        AngularFireAuthModule, //AngularFire2  imports firebase/auth, only needed for auth features     
+        SortablejsModule.forRoot({ animation: 150 })
     ],
     providers: [
         Title,
@@ -209,7 +215,7 @@ import { CsOrderrelativeComponent } from './components/beneficiaire/quizz/cs-ord
         NavigationService,//handles navigation modules
         QuizzService//handles quizzes
     ],
-    entryComponents: [CsSwipecardComponent, CsAssociationComponent, CsMultiplechoiceComponent, CsOrderrelativeComponent, CsReadcardComponent],
+    entryComponents: [CsSwipecardComponent, CsAssociationComponent, CsMultiplechoiceComponent, CsOrderrelativeComponent, CsReadcardComponent, CsOrderregularComponent],
     bootstrap: [AppComponent]
 })
 
