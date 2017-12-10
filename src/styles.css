@@ -534,6 +534,11 @@ input.ng-invalid.ng-touched {
     transition: all 0.5s;
 }
 
+.csmultiplechoice_buttonitem:hover {
+    transform: scale(1.1);
+    z-index: 3;
+}
+
 .unselected1 {
     background: #6fc4c4; /* Old browsers */
     background: -moz-linear-gradient(-45deg, #6fc4c4 0%, #78d3d3 40%, #91ffff 100%); /* FF3.6-15 */
@@ -734,6 +739,12 @@ i.instructionbutton:hover {
     width: 95%;
     margin: 2%;
     box-shadow: 3px 3px 12px #000;
+    -webkit-transition: all 0.5s; /* Safari */
+    transition: all 0.5s;
+}
+
+.swipecard_1:hover{
+    transform: scale(1.05);
 }
 
 .background_1 {
@@ -876,6 +887,9 @@ i.instructionbutton:hover {
     transition: all .3s;
 }
 
+.csorderrelative_buttonitem:hover {
+    transform: scale(1.05);
+}     
 .csorderrelative_buttoncontainer {
 
 }
@@ -901,6 +915,13 @@ i.instructionbutton:hover {
     box-shadow: 3px 3px 12px #000;
     text-align: center;
     color: #000;
+    transition: all .3s;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .csorderrelative_0 {
@@ -956,8 +977,17 @@ i.instructionbutton:hover {
     box-shadow: 3px 3px 12px #000;
     text-align: center;
     color: #000;
+    -webkit-transition: all .3s; /* Safari */
+    transition: all .3s;
+    z-index: 3;
 }
 
 .csorderrelative_buttoncaption {
     margin-left: 4rem;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
