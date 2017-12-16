@@ -1,11 +1,17 @@
+//COMPONENTS
+import { CsPlacementsimpleComponent } from './../cs-placementsimple/cs-placementsimple.component';
+import { CsDropdownComponent } from './../cs-dropdown/cs-dropdown.component';
 import { CsOrderregularComponent } from './../cs-orderregular/cs-orderregular.component';
 import { CsSwipecardComponent } from './../cs-swipecard/cs-swipecard.component';
 import { CsOrderrelativeComponent } from 'app/components/beneficiaire/quizz/cs-orderrelative/cs-orderrelative.component';
 import { CsMultiplechoiceComponent } from 'app/components/beneficiaire/quizz/cs-multiplechoice/cs-multiplechoice.component';
+import { CsInfoComponent } from 'app/components/beneficiaire/quizz/cs-info/cs-info.component';
 
+//Hand-made services
 import { ReadwritebufferService } from './../../../../services/readwritebuffer.service';
 import { QuizzService } from './../../../../services/quizz.service';
 
+//Built-in and third-party
 import { Subscription } from 'rxjs/Rx';
 import { CardsetItem } from './cardset-item';
 import { CardsetDirective } from './cardset.directive';
@@ -63,6 +69,15 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
                 break
             case "CsOrderregularComponent":
                 cardsetItem = new CardsetItem(CsOrderregularComponent, {});
+                break
+            case "CsInfoComponent":
+                cardsetItem = new CardsetItem(CsInfoComponent, {});
+                break
+            case "CsDropdownComponent":
+                cardsetItem = new CardsetItem(CsDropdownComponent, {});
+                break
+            case "CsPlacementsimpleComponent":
+                cardsetItem = new CardsetItem(CsPlacementsimpleComponent, {});
                 break
             default:
                 console.log("cardsetcontainer : cardcomponentname does not match any Component")

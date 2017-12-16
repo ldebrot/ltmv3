@@ -1,0 +1,9 @@
+<div *ngIf="this.timervisible" class="ldbway">
+    <p-progressBar 
+    [showValue]="false" 
+    [value]="(this.timercurrentstep / this.timermaxsteps)*100">
+    </p-progressBar>
+</div>
+<div>
+    {{this.cardtext}}
+</div>

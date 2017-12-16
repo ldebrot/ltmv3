@@ -131,7 +131,7 @@ export class QuizzService implements OnInit{
             parameters:{
                 cardtype:"orderregular",
                 instruction:"Mettez les étapes dans l'ordre qui vous semble ",
-                questioncaption: "Je mets les grandes étapes de la reconversion professionnelle dans le bon ordre",
+                questioncaption: "Mettez les étapes de la reconversion dans le bon ordre",
                 cardcomponentname: "CsOrderregularComponent",
                 csorderregularshuffle: true,
                 options:[1,2,3,4,5]
@@ -143,12 +143,29 @@ export class QuizzService implements OnInit{
             option3: {id:3, caption:"Formation", optionvalue:2, basicclass:"unselected3", actionclass:"action3"},
             option4: {id:4, caption:"Insertion", optionvalue:3, basicclass:"unselected4", actionclass:"action4"},
             option5: {id:5, caption:"Nouvelle vie", optionvalue:4, basicclass:"unselected5", actionclass:"action5"},
+        },
+        card5 : {
+            parameters:{
+                cardtype:"info",
+                instruction:"Ceci est une carte d'information. A vous de lire ou de regarder attentivement. ",
+                questioncaption: "Ceci est une carte d'information.",
+                cardcomponentname: "CsInfoComponent"
+            },
+            optional : {
+                imageurl:"",
+                videourl:"",
+                text:"This is an important information text you have to read. This is an important information text you have to read. This is an important information text you have to read. ",
+                timer:true,
+                autotime:true,
+                time:0//in milliseconds
+            }
         }
     }
 
     public quizzes:any = {
         quizz1 : {
-            cardids : [1,2,3,4]
+            description:"Test quizz",
+            cardids : [1,2,3,4,5]
         }
     }
 

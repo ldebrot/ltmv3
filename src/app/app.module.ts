@@ -111,6 +111,9 @@ import { CsReadcardComponent } from './components/beneficiaire/quizz/cs-readcard
 import { CsAssociationComponent } from './components/beneficiaire/quizz/cs-association/cs-association.component';
 import { CsOrderrelativeComponent } from './components/beneficiaire/quizz/cs-orderrelative/cs-orderrelative.component';
 import { CsOrderregularComponent } from './components/beneficiaire/quizz/cs-orderregular/cs-orderregular.component';
+import { CsPlacementsimpleComponent } from './components/beneficiaire/quizz/cs-placementsimple/cs-placementsimple.component';
+import { CsInfoComponent } from './components/beneficiaire/quizz/cs-info/cs-info.component';
+import { CsDropdownComponent } from './components/beneficiaire/quizz/cs-dropdown/cs-dropdown.component';
 
 //console.log("initializedApp at app.mdoule.ts level!");
 
@@ -163,7 +166,10 @@ import { CsOrderregularComponent } from './components/beneficiaire/quizz/cs-orde
         CsReadcardComponent,
         CsAssociationComponent,
         CsOrderrelativeComponent,
-        CsOrderregularComponent
+        CsOrderregularComponent,
+        CsPlacementsimpleComponent,
+        CsInfoComponent,
+        CsDropdownComponent
     ],
     imports: [
         FormsModule,
@@ -215,7 +221,17 @@ import { CsOrderregularComponent } from './components/beneficiaire/quizz/cs-orde
         NavigationService,//handles navigation modules
         QuizzService//handles quizzes
     ],
-    entryComponents: [CsSwipecardComponent, CsAssociationComponent, CsMultiplechoiceComponent, CsOrderrelativeComponent, CsReadcardComponent, CsOrderregularComponent],
+    entryComponents: [
+        CsSwipecardComponent,
+        CsAssociationComponent,
+        CsMultiplechoiceComponent,
+        CsOrderrelativeComponent,
+        CsReadcardComponent,
+        CsOrderregularComponent,
+        CsInfoComponent,
+        CsPlacementsimpleComponent,
+        CsDropdownComponent
+    ],
     bootstrap: [AppComponent]
 })
 
