@@ -1,3 +1,9 @@
-<p>
-  cs-orderregular works!
-</p>
+<div class="csorderregular_buttoncontainer">
+    <div [sortablejs]="buttonitems">
+        <div *ngFor="let buttonitem of buttonitems" [class]="button_class[buttonitem.id]">
+            <div class="csorderregularbuttoncaption">
+                {{buttonitem.caption}}                    
+            </div>
+        </div>
+    </div>
+</div>

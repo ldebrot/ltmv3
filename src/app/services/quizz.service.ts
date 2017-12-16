@@ -130,18 +130,19 @@ export class QuizzService implements OnInit{
         card4 : {
             parameters:{
                 cardtype:"orderregular",
-                instruction:"  ",
-                questioncaption: "   ",
+                instruction:"Mettez les étapes dans l'ordre qui vous semble ",
+                questioncaption: "Je mets les grandes étapes de la reconversion professionnelle dans le bon ordre",
                 cardcomponentname: "CsOrderregularComponent",
+                csorderregularshuffle: true,
                 options:[1,2,3,4,5]
             },
             optional : {
             },
-            option1: {id:1, caption:" ", optionvalue:0, basicclass:"unselected1", actionclass:"action1"},
-            option2: {id:2, caption:" ", optionvalue:1, basicclass:"unselected2", actionclass:"action2"},
-            option3: {id:3, caption:" ", optionvalue:2, basicclass:"unselected3", actionclass:"action3"},
-            option4: {id:4, caption:" ", optionvalue:3, basicclass:"unselected4", actionclass:"action4"},
-            option5: {id:5, caption:" ", optionvalue:4, basicclass:"unselected5", actionclass:"action5"},
+            option1: {id:1, caption:"Réflexion", optionvalue:0, basicclass:"unselected1", actionclass:"action1"},
+            option2: {id:2, caption:"Préparation", optionvalue:1, basicclass:"unselected2", actionclass:"action2"},
+            option3: {id:3, caption:"Formation", optionvalue:2, basicclass:"unselected3", actionclass:"action3"},
+            option4: {id:4, caption:"Insertion", optionvalue:3, basicclass:"unselected4", actionclass:"action4"},
+            option5: {id:5, caption:"Nouvelle vie", optionvalue:4, basicclass:"unselected5", actionclass:"action5"},
         }
     }
 
