@@ -1,3 +1,20 @@
-<p>
-  cs-placementsimple works!
-</p>
+<div>
+    <div class="csplacementsimpleindicatorholder">
+        <div class="csplacementsimpleindicator" [ngStyle]="{left:this.slidervalue+'%'}">
+            vous<br>&#9660;
+        </div>
+    </div>
+    <div class="csplacementsimpleslider">
+        <p-slider [(ngModel)]="this.slidervalue" [min]="this.slidermin" [max]="this.slidermax" [step]="this.sliderstep"></p-slider>        
+    </div>
+    <div class="csplacementsimplebulletholder">
+        <div *ngFor="let option of this.options" [ngStyle]="{left:option.left, 'position':'absolute'}" class="csplacementsimplesliderbullet">
+            {{option.bulletcaption}}
+        </div>
+    </div>
+    <div class="csplacementsimplecaptionholder">
+        <div *ngFor="let option of this.options" [ngStyle]="{left:option.left, 'position':'absolute'}" class="csplacementsimpleslidercaption">
+            {{option.caption}}
+        </div>
+    </div>
+</div>

@@ -28,7 +28,8 @@ import { //PrimeNG modules here
     MegaMenuModule,
     ProgressBarModule,
     ConfirmationService,
-    OverlayPanelModule } from 'primeng/primeng';
+    OverlayPanelModule, 
+    SliderModule} from 'primeng/primeng';
 import { DropdownModule } from "primeng/components/dropdown/dropdown";
 
 //Services
@@ -194,6 +195,7 @@ import { CsDropdownComponent } from './components/beneficiaire/quizz/cs-dropdown
         TabMenuModule,//PrimeNG here
         ListboxModule,//PrimeNG here
         DropdownModule,//PrimeNG here
+        SliderModule,//PrimeNG here
         RoutingService,
         RouterModule,
         ButtonModule,

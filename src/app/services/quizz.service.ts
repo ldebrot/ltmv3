@@ -159,13 +159,43 @@ export class QuizzService implements OnInit{
                 autotime:true,
                 time:0//in milliseconds
             }
+        },
+        card6 : {
+            parameters:{
+                cardtype:"Placement simple",
+                instruction:"Pour répondre à la question, déplacez le curseur selon votre situation.",
+                questioncaption: "Je suis sûr(e) de vouloir changer de métier",
+                cardcomponentname: "CsPlacementsimpleComponent",
+                step :1,//min = 1
+                min: 0,
+                max: 100,
+                options: [1,2]
+            },
+            optional : {
+            },
+            options : {
+                option1 : {
+                    id:1,
+                    left:"0%",
+                    bulletcaption:"1",
+                    caption:"Absolument !",
+                    class:"csplacementsimple_red"
+                },
+                option2 : {
+                    id:2,
+                    left:"100%",
+                    bulletcaption:"2",
+                    caption:"Je ne sais pas encore.",
+                    class:"csplacementsimple_blue"
+                }
+            }
         }
     }
 
     public quizzes:any = {
         quizz1 : {
             description:"Test quizz",
-            cardids : [1,2,3,4,5]
+            cardids : [1,2,3,4,5,6]
         }
     }
 
