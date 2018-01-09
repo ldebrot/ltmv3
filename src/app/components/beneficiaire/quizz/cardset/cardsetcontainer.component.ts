@@ -59,25 +59,31 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
         switch(String(this.quizzservice.currentcardobject.parameters.cardcomponentname)) {
             case "CsMultipleChoiceComponent":
                 cardsetItem = new CardsetItem(CsMultiplechoiceComponent, {});
-                console.log("loaded CsMultipleChoiceComponent")
+                console.log("loaded CsMultipleChoiceComponent");
                 break
             case "CsSwipecardComponent":
                 cardsetItem = new CardsetItem(CsSwipecardComponent, {});
+                console.log("CsSwipecardComponent");
                 break
             case "CsOrderrelativeComponent":
                 cardsetItem = new CardsetItem(CsOrderrelativeComponent, {});
+                console.log("CsOrderrelativeComponent");
                 break
             case "CsOrderregularComponent":
                 cardsetItem = new CardsetItem(CsOrderregularComponent, {});
+                console.log("CsOrderregularComponent");
                 break
             case "CsInfoComponent":
                 cardsetItem = new CardsetItem(CsInfoComponent, {});
+                console.log("CsInfoComponent");
                 break
             case "CsDropdownComponent":
                 cardsetItem = new CardsetItem(CsDropdownComponent, {});
+                console.log("CsDropdownComponent");
                 break
             case "CsPlacementsimpleComponent":
                 cardsetItem = new CardsetItem(CsPlacementsimpleComponent, {});
+                console.log("CsPlacementsimpleComponent");
                 break
             default:
                 console.log("cardsetcontainer : cardcomponentname does not match any Component")

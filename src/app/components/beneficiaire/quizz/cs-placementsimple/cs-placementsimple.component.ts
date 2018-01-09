@@ -16,6 +16,7 @@ export class CsPlacementsimpleComponent implements OnInit {
     public slidermin : Number = 0;
     public slidermax : Number = 100;
     public sliderbasicclass : String = "csplacementsimpleslide";
+    public cursorcaption : String = "";
 
     //options
     public numberofoptions : Number = 0;
@@ -38,6 +39,7 @@ export class CsPlacementsimpleComponent implements OnInit {
         this.sliderstep = this.quizzservice.currentcardobject.parameters.step;
         this.slidermin = this.quizzservice.currentcardobject.parameters.min;
         this.slidermax = this.quizzservice.currentcardobject.parameters.max;
+        this.cursorcaption = this.quizzservice.currentcardobject.parameters.cursorcaption;
         console.log("this.sliderstep");
         console.log(this.sliderstep);
         console.log("this.slidermin");
