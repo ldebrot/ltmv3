@@ -31,6 +31,7 @@ import { //PrimeNG modules here
     OverlayPanelModule, 
     SliderModule} from 'primeng/primeng';
 import { DropdownModule } from "primeng/components/dropdown/dropdown";
+import { SidebarModule } from 'primeng/sidebar';
 
 //Services
 import { DbuserinfoService } from './services/dbuserinfo.service';//handles down- and upload of userinformation from DB
@@ -115,6 +116,7 @@ import { CsOrderregularComponent } from './components/beneficiaire/quizz/cs-orde
 import { CsPlacementsimpleComponent } from './components/beneficiaire/quizz/cs-placementsimple/cs-placementsimple.component';
 import { CsInfoComponent } from './components/beneficiaire/quizz/cs-info/cs-info.component';
 import { CsDropdownComponent } from './components/beneficiaire/quizz/cs-dropdown/cs-dropdown.component';
+import { TopbarComponent } from './components/topbar/topbar.component';
 
 //console.log("initializedApp at app.mdoule.ts level!");
 
@@ -170,7 +172,8 @@ import { CsDropdownComponent } from './components/beneficiaire/quizz/cs-dropdown
         CsOrderregularComponent,
         CsPlacementsimpleComponent,
         CsInfoComponent,
-        CsDropdownComponent
+        CsDropdownComponent,
+        TopbarComponent
     ],
     imports: [
         FormsModule,
@@ -196,6 +199,7 @@ import { CsDropdownComponent } from './components/beneficiaire/quizz/cs-dropdown
         ListboxModule,//PrimeNG here
         DropdownModule,//PrimeNG here
         SliderModule,//PrimeNG here
+        SidebarModule,//PrimeNG here
         RoutingService,
         RouterModule,
         ButtonModule,
