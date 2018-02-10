@@ -29,8 +29,8 @@ import { //PrimeNG modules here
     ProgressBarModule,
     ConfirmationService,
     OverlayPanelModule, 
+    SidebarModule,
     SliderModule} from 'primeng/primeng';
-import { DropdownModule } from "primeng/components/dropdown/dropdown";
 
 //Services
 import { DbuserinfoService } from './services/dbuserinfo.service';//handles down- and upload of userinformation from DB
@@ -139,8 +139,8 @@ import { NotconnectedstartingpageComponent } from './components/notconnected/not
         MenubarModule,//PrimeNG here
         TabMenuModule,//PrimeNG here
         ListboxModule,//PrimeNG here
-        DropdownModule,//PrimeNG here
         SliderModule,//PrimeNG here
+        SidebarModule,//PrimeNG here
         RoutingService,
         RouterModule,
         ButtonModule,
