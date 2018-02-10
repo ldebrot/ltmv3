@@ -31,7 +31,6 @@ import { //PrimeNG modules here
     OverlayPanelModule, 
     SliderModule} from 'primeng/primeng';
 import { DropdownModule } from "primeng/components/dropdown/dropdown";
-import { SidebarModule } from 'primeng/sidebar';
 
 //Services
 import { DbuserinfoService } from './services/dbuserinfo.service';//handles down- and upload of userinformation from DB
@@ -44,7 +43,6 @@ import { ReadwriteService } from './services/readwrite.service';//service handli
 import { ReadwritebufferService } from './services/readwritebuffer.service';
 import { FakedbuserinfoService } from './services/fakedbuserinfo.service';//TEMPORARY serivce filling in dbuserinfo with a data set (for offline moments...)
 import { NavigationService } from './services/navigation.service';//handles navigation modules
-import { BilanService } from './services/bilan.service';//This service handles the situation recap ("bilan") of the jefaislepoint module
 import { CommonService } from './services/common.service';
 import { MeetingService } from './services/meeting.service';
 import { DbusersearchService } from './services/dbusersearch.service';//handles user (temoin and beneficiaire) search
@@ -56,13 +54,9 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './components/test/test.component';
 import { SectionTopComponent } from './components/section-top/section-top.component';
 import { ConnectComponent } from './components/connect/connect.component';
-import { MenuNotconnectedComponent } from './components/menunotconnected/menunotconnected.component';
-import { MenuBeneficiaireComponent } from './components/menubeneficiaire/menubeneficiaire.component';
-import { MenuTemoinComponent } from './components/menutemoin/menutemoin.component';
 import { StartNotconnectedComponent } from './components/startnotconnected/startnotconnected.component';
 import { IntrouvableComponent } from './components/introuvable/introuvable.component';
 import { SigninupComponent } from './auth/signinup/signinup.component';
-import { JedecouvrelunchtimeComponent } from './components/notconnected/jedecouvrelunchtime/jedecouvrelunchtime.component';
 import { LesactusComponent } from './components/notconnected/lesactus/lesactus.component';
 import { QuisommesnousComponent } from './components/notconnected/quisommesnous/quisommesnous.component';
 import { StartbeneficiaireComponent } from './components/startbeneficiaire/startbeneficiaire.component';
@@ -79,31 +73,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { SortablejsModule } from  'angular-sortablejs';
 
 //Components
-import { MonplanningComponent } from './components/beneficiaire/monplanning/monplanning.component';
-import { JefaislepointComponent } from './components/beneficiaire/jefaislepoint/jefaislepoint.component';
-import { JeprendsrendezvousComponent } from './components/beneficiaire/jeprendsrendezvous/jeprendsrendezvous.component';
-import { JepreparemarencontreComponent } from './components/beneficiaire/jepreparemarencontre/jepreparemarencontre.component';
-import { JefaislesuiviComponent } from './components/beneficiaire/jefaislesuivi/jefaislesuivi.component';
-import { JeconstruismonprojetComponent } from './components/beneficiaire/jefaislepoint/jeconstruismonprojet/jeconstruismonprojet.component';
-import { JeconsultemonbilanComponent } from './components/beneficiaire/jeconsultemonbilan/jeconsultemonbilan.component';
-import { BilantemoinComponent } from './components/beneficiaire/jeconsultemonbilan/bilantemoin/bilantemoin.component';
-import { BilanbeneficiaireComponent } from './components/beneficiaire/jeconsultemonbilan/bilanbeneficiaire/bilanbeneficiaire.component';
-import { BilanratioComponent } from './components/beneficiaire/jeconsultemonbilan/bilanratio/bilanratio.component';
-import { BilandisqualifyComponent } from './components/beneficiaire/jeconsultemonbilan/bilandisqualify/bilandisqualify.component';
-import { JedeviensunproComponent } from './components/beneficiaire/jedeviensunpro/jedeviensunpro.component';
-import { JeconsultemesinvitationsComponent } from './components/beneficiaire/jeprendsrendezvous/jeconsultemesinvitations/jeconsultemesinvitations.component';
-import { JenvoieuneinvitationComponent } from './components/beneficiaire/jeprendsrendezvous/jenvoieuneinvitation/jenvoieuneinvitation.component';
-import { InvitationsdashboardComponent } from './components/beneficiaire/jeprendsrendezvous/invitationsdashboard/invitationsdashboard.component';
-import { JetrouvedesideesdemetierComponent } from './components/beneficiaire/jefaislepoint/jetrouvedesideesdemetier/jetrouvedesideesdemetier.component';
-import { JechoisismonnouveaumetierComponent } from './components/beneficiaire/jefaislepoint/jechoisismonnouveaumetier/jechoisismonnouveaumetier.component';
-import { JemerenseignesurmonmetierComponent } from './components/beneficiaire/jefaislepoint/jemerenseignesurmonmetier/jemerenseignesurmonmetier.component';
-import { JapprendsapresentermonprojetComponent } from './components/beneficiaire/jefaislepoint/japprendsapresentermonprojet/japprendsapresentermonprojet.component';
-import { JedeveloppeetactivemonreseauComponent } from './components/beneficiaire/jefaislepoint/jedeveloppeetactivemonreseau/jedeveloppeetactivemonreseau.component';
-import { JidentifiemessoutiensComponent } from './components/beneficiaire/jefaislepoint/jidentifiemessoutiens/jidentifiemessoutiens.component';
-import { JemeprepareetmelanceComponent } from './components/beneficiaire/jefaislepoint/jemeprepareetmelance/jemeprepareetmelance.component';
-import { JetrouvemontemoinComponent } from './components/beneficiaire/jeprendsrendezvous/jetrouvemontemoin/jetrouvemontemoin.component';
-import { TemoinsearchboxComponent } from './components/beneficiaire/jeprendsrendezvous/temoinsearchbox/temoinsearchbox.component';
-import { TemoinsearchresultsComponent } from './components/beneficiaire/jeprendsrendezvous/temoinsearchresults/temoinsearchresults.component';
 import { QuizzComponent } from './components/beneficiaire/quizz/quizz.component';
 import { CardsetcontainerComponent } from './components/beneficiaire/quizz/cardset/cardsetcontainer.component';
 import { CardsetComponent } from './components/beneficiaire/quizz/cardset/cardset.component';
@@ -117,6 +86,7 @@ import { CsPlacementsimpleComponent } from './components/beneficiaire/quizz/cs-p
 import { CsInfoComponent } from './components/beneficiaire/quizz/cs-info/cs-info.component';
 import { CsDropdownComponent } from './components/beneficiaire/quizz/cs-dropdown/cs-dropdown.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
+import { NotconnectedstartingpageComponent } from './components/notconnected/notconnectedstartingpage/notconnectedstartingpage.component';
 
 //console.log("initializedApp at app.mdoule.ts level!");
 
@@ -126,41 +96,12 @@ import { TopbarComponent } from './components/topbar/topbar.component';
         TestComponent,
         SectionTopComponent,
         ConnectComponent,
-        MenuNotconnectedComponent,//menu for not-connected user
-        MenuBeneficiaireComponent,//menu for connected beneficiaire
-        MenuTemoinComponent,//menu for témoins
         StartNotconnectedComponent,//starting point for not-connected user
         IntrouvableComponent,
         SigninupComponent,//sign in and sign up
-        JedecouvrelunchtimeComponent,//discover Lunchtime - used as "home" component
         LesactusComponent,
         QuisommesnousComponent,
         StartbeneficiaireComponent,
-        MonplanningComponent,
-        JefaislepointComponent,
-        JeprendsrendezvousComponent,
-        JepreparemarencontreComponent,
-        JefaislesuiviComponent,
-        JeconstruismonprojetComponent,
-        JeconsultemonbilanComponent,
-        BilantemoinComponent,
-        BilanbeneficiaireComponent,
-        BilanratioComponent,
-        BilandisqualifyComponent,
-        JedeviensunproComponent,
-        JeconsultemesinvitationsComponent,
-        JenvoieuneinvitationComponent,
-        InvitationsdashboardComponent,
-        JetrouvedesideesdemetierComponent,
-        JechoisismonnouveaumetierComponent,
-        JemerenseignesurmonmetierComponent,
-        JapprendsapresentermonprojetComponent,
-        JedeveloppeetactivemonreseauComponent,
-        JidentifiemessoutiensComponent,
-        JemeprepareetmelanceComponent,
-        JetrouvemontemoinComponent,
-        TemoinsearchboxComponent,
-        TemoinsearchresultsComponent,
         QuizzComponent,
         CardsetcontainerComponent,
         CardsetDirective,
@@ -173,7 +114,8 @@ import { TopbarComponent } from './components/topbar/topbar.component';
         CsPlacementsimpleComponent,
         CsInfoComponent,
         CsDropdownComponent,
-        TopbarComponent
+        TopbarComponent,
+        NotconnectedstartingpageComponent
     ],
     imports: [
         FormsModule,
@@ -199,7 +141,6 @@ import { TopbarComponent } from './components/topbar/topbar.component';
         ListboxModule,//PrimeNG here
         DropdownModule,//PrimeNG here
         SliderModule,//PrimeNG here
-        SidebarModule,//PrimeNG here
         RoutingService,
         RouterModule,
         ButtonModule,
@@ -219,7 +160,6 @@ import { TopbarComponent } from './components/topbar/topbar.component';
         ReadwritebufferService,//handles buffer between user mofidications and Firebase readwrite operations
         FirebaseauthService,//handles Firebase authentication
         TitleService,//service which stores the current title
-        BilanService,//This service handles the situation recap ("bilan") of the jefaislepoint module
         FakedbuserinfoService,
         CommonService,//This services provides handy functions for various situations
         MeetingService,//This service handles the meetings based on dbuserinfo
