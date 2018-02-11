@@ -431,6 +431,13 @@ input.ng-invalid.ng-touched {
     color:#555 !important;
 }
 
+.ldb_btn_ltm {
+    background: #EEF;;
+    border: none;
+    color:#555 !important;
+}
+
+
 .ldb_btn_done {
     background: #0F05;
     border-color: #0A05;
@@ -506,6 +513,16 @@ input.ng-invalid.ng-touched {
   font-size: 30px;
   line-height: 2.00;
   border-radius: 70px;
+}
+
+.nopadding {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+.topbartitle {
+    text-align: center;
+    margin-top: 0.5rem;
 }
 
 /* QUIZZ FORMATTING */
@@ -694,38 +711,20 @@ input.ng-invalid.ng-touched {
     transition: all 1s;    
 }
 
-i.instructionbutton {
-    margin-right:5%;
-    vertical-align: middle;
-    right:5%;
-    line-height: 0px;
-    -webkit-transition: all 0.5s; /* Safari */
-    transition: all 0.5s;    
-}
-
-i.instructionbutton:hover {
-    color:#99F;
-}
-
 .questioncaption {
-    padding: 0.5rem 0rem;
     background: #EEF;
-    margin: 5% 0;
-}
-
-.questioncaptionitself{
-    margin: 0 5%;
+    margin: 0.5rem 0 0.5rem 0;
     text-align: center;
 }
 
-.questioncaptionleft {
-    width:95%;
-    margin: 0 5%;
-    text-align: center;
+.questionitself{
+    padding: 0.5rem 0.25rem;
 }
 
-.questioncaptionright {
-    min-width: 48px;
+.buttonbar {
+    margin:0;
+    padding: 0 0 .5rem 0;
+    text-align: center;
 }
 
 /* CsSwipecard */

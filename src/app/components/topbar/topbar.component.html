@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col col-2 text-center nopadding">
+            <button type="text" (click)="this.display = true" class="btn ldb_btn_ltm">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="col col-8 text-center topbartitle nopadding">
+            <div>
+                Title comes here
+            </div>
+        </div>
+        <div class="col col-2 text-center nopadding">
+            <button type="text" class="btn ldb_btn_ltm">
+                <i class="fa fa-user-o" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<p-sidebar 
+    [(visible)]="this.display" 
+    position="left">
+Content
+</p-sidebar>
