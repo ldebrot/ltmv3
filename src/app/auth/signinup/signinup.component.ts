@@ -101,7 +101,7 @@ export class SigninupComponent implements OnInit, OnDestroy {
                 this.firebaseauthservice.setToken();
                 console.log("signinup: firebase signin successful");
                 this.readwriteservice.getcurrentuserinfo();
-                this.firebaseitemsubscription = this.readwriteservice.firebaseitem.subscribe(snapshot=>{
+                this.firebaseitemsubscription = this.readwriteservice.firebaseitem.valueChanges().subscribe(snapshot=>{
                     this.dbuserinfoservice.integrate(snapshot);
                     this.dbuserinfoservice.currentuserid=this.firebaseauthservice.angularfireauth.auth.currentUser.uid;
                     this.meetingservice.getcurrentusermeetings("creator")
@@ -143,7 +143,7 @@ export class SigninupComponent implements OnInit, OnDestroy {
                 console.log("signinup: firebase signup successful")
                 this.readwriteservice.registercurrentuser("beneficiaire")
                 .then(()=>{
-                    this.firebaseitemsubscription = this.readwriteservice.firebaseitem.subscribe(snapshot=>{
+                    this.firebaseitemsubscription = this.readwriteservice.firebaseitem.valueChanges().subscribe(snapshot=>{
                         this.dbuserinfoservice.integrate(snapshot);
                         this.meetingservice.getcurrentusermeetings("creator");
                         this.router.navigate([this.dbuserinfoservice.userinfo.publicinfo.status]);//go to main after creating account                

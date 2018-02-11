@@ -4,14 +4,16 @@ import { DbuserinfoService } from './dbuserinfo.service';
 
 //Firebase service
 import * as firebase from 'firebase/app';
-import { FirebaseObjectObservable } from "angularfire2/database";
 import { FirebaseauthService } from './firebaseauth.service';
+import { AngularFireObject } from 'angularfire2/database';
 
 
 @Injectable()
 export class ReadwriteService {
 
-    public firebaseitem : FirebaseObjectObservable<any>;
+
+//    public firebaseitem : FirebaseObjectObservable<any>;
+    public firebaseitem : AngularFireObject<any>;
     public firebaseitemsubscription : Subscription;
 
     constructor(

@@ -128,7 +128,7 @@ export class CsMultiplechoiceComponent implements OnInit {
                 this.firebaseauthservice.setToken();
                 console.log("signinup: firebase signin successful");
                 this.readwriteservice.getcurrentuserinfo();
-                this.firebaseitemsubscription = this.readwriteservice.firebaseitem.subscribe(snapshot=>{
+                this.firebaseitemsubscription = this.readwriteservice.firebaseitem.valueChanges().subscribe(snapshot=>{
                     this.dbuserinfoservice.integrate(snapshot);
                     this.dbuserinfoservice.currentuserid=this.firebaseauthservice.angularfireauth.auth.currentUser.uid;
                 });
