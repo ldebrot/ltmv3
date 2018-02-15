@@ -32,8 +32,8 @@ export class CsSwipecardComponent implements OnInit {
             backgroundColor: '#e92828'
         }
     };
-    
     cardLogs: any = [];
+    public swipecardbuttoncontainerhidden : boolean = false;
 
     ngOnInit() {
     }
@@ -43,6 +43,7 @@ export class CsSwipecardComponent implements OnInit {
         private quizzservice : QuizzService,
         private readwritebufferservice : ReadwritebufferService
     ) {
+        this.quizzservice.setcheckbutton(false);//set start value of check button to false
         this.populatecards();
     }
     
@@ -75,13 +76,22 @@ export class CsSwipecardComponent implements OnInit {
         console.log(like);
         let button_id = String(this.quizzservice.currentquizzid) + "-" + String(this.quizzservice.currentcardid) +"-" + String(temp_optionid);
         this.readwritebufferservice.updatebuffer(button_id,like,"update");
+        this.checkiflastcard();
 }
+
+    public checkiflastcard(){
+        if (this.cardCursor == this.swipecards.length){
+            console.log("reached end of swipecard set");
+            this.swipecardbuttoncontainerhidden = true;
+            this.quizzservice.setcheckbutton(true);//check button is now available
+        }
+    }
 
     public like(like) {
         var self = this;
         if (this.swipecards.length > 0) {
-            this.registeraction(like);
             self.swipecards[this.cardCursor++].likeEvent.emit({ like });
+            this.registeraction(like);
             // DO STUFF WITH YOUR CARD
         }
     }
@@ -91,13 +101,7 @@ export class CsSwipecardComponent implements OnInit {
         this.registeraction(event.like);
         // DO STUFF WITH YOUR CARD
     }
-    
-    public getKittenUrl() {
-        var w = 500 - Math.floor((Math.random() * 100) + 1);
-        var h = 500 - Math.floor((Math.random() * 100) + 1);
-        return "http://placekitten.com/" + w + "/" + h;
-    }
-    
+      
     public onRelease(event) {
         this.cardLogs.push("onRelease(event)");
     }

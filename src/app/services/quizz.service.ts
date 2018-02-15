@@ -1,7 +1,3 @@
-import { QuizzComponent } from './../components/beneficiaire/quizz/quizz.component';
-import { Injectable, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { CardsetItem } from './../components/beneficiaire/quizz/cardset/cardset-item';
 
 //ReactiveX
 import "rxjs/Rx";
@@ -12,8 +8,11 @@ import { Subject } from "rxjs/Subject";
 //Firebase service
 
 //Built-in stuff:
+import { Injectable, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 //Hand-made
+import { QuizzComponent } from './../components/beneficiaire/quizz/quizz.component';
 
 //Firebase
 
@@ -28,16 +27,13 @@ export class QuizzService implements OnInit{
     ngOnInit() {
     }
 
-    //XXX problem here is that we mix up quizz id & position and cardset id & position and cards
-    // 1) you load the quizz
-    // 2) you load the card sequence : loads either a new cardset or a card
-
     public currentquizzid : number = 0;
     public currentquizzobject : any = {};//this holds the current quizz object
     public currentcardid : number = 0;
     public currentcardsubject : Subject<number> = new Subject();
     public currentcardobject : any = {};//this holds the current card object
     public currentcardposition : number = 0;//this is the position of the current card in the currentcardset
+    public checkbuttonsubject : Subject<boolean> = new Subject();//this observable subject holds the value of check button being enabled or disabled
 
 
     //go to next card
@@ -106,6 +102,10 @@ export class QuizzService implements OnInit{
         this.currentcardid = this.currentquizzobject.cardids[cardposition];
     }
 
+    public setcheckbutton (value:boolean){
+        this.checkbuttonsubject.next(value);
+    }
+
     public cards:any = {
         card1 : {
             parameters:{
@@ -128,7 +128,7 @@ export class QuizzService implements OnInit{
         },
         card2 : {
             parameters:{
-                cardtype:"multiplechoice_multiple",
+                cardtype:"Swipecards",
                 instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par oui ou à droite pour répondre par non",
                 questioncaption: "Ce que je sais sur mon projet de reconversion",
                 cardcomponentname: "CsSwipecardComponent",
@@ -349,7 +349,7 @@ export class QuizzService implements OnInit{
     public quizzes:any = {
         quizz1 : {
             description:"Test quizz",
-            cardids : [1,2,3,4,5,6]
+            cardids : [1,2,2,3,4,5,6]
         },
         quizz2 : {
             description:"Accueil",

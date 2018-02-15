@@ -35,7 +35,8 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
     currentquizzsubscription : Subscription;
     public instruction : String = "";
     public questioncaption : String = "";
-    public instructionpanelvisible : boolean = true;
+    public instructionpanelhidden : boolean = true;
+    public checkbuttonhidden : boolean = true;
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
@@ -111,6 +112,10 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
         this.quizzservice.currentcardsubject.subscribe((cardid:number)=>{
             console.log("cardsetcontainer subscribe");
             this.loadComponent();
+        });
+        this.quizzservice.checkbuttonsubject.subscribe((value:boolean)=>{
+            console.log("checkbutton set to"+value+" // checkbuttonhidden set to"+!value);
+            this.checkbuttonhidden = !value; 
         });
     }
     

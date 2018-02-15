@@ -431,6 +431,12 @@ input.ng-invalid.ng-touched {
     color:#555 !important;
 }
 
+.ldb_btn_disabled {
+    background: #FFF;
+    border-color: #DDD;
+    color:#CCC !important;
+}
+
 .ldb_btn_ltm {
     background: #EEF;;
     border: none;
