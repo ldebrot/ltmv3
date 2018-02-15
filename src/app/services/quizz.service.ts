@@ -97,7 +97,8 @@ export class QuizzService implements OnInit{
         //gets current card object based on current card position
         let temp_cardid = this.currentquizzobject.cardids[cardposition];
         this.currentcardobject = this.cards["card"+String(temp_cardid)]
-        //console.log(this.currentcardobject);
+        console.log("this.currentcardobject");
+        console.log(this.currentcardobject);
     }
 
     public updatecurrentcardid(cardposition:number) {
@@ -122,8 +123,7 @@ export class QuizzService implements OnInit{
                 titlecaption: "Je veux changer de situation pour...",
                 cardcomponentname: "CsMultipleChoiceComponent",
                 options:[1,2,3,4,5,6,7],
-                minselected:1,
-                maxselected:7
+                minselected:1
             },
             optional : {
             },
@@ -142,7 +142,7 @@ export class QuizzService implements OnInit{
                 questioncaption: "Ce que je sais sur mon projet de reconversion",
                 cardcomponentname: "CsSwipecardComponent",
                 options:[1,2,3,4,5],
-                maxselected:5
+                maxselected:2
             },
             optional : {
             },
@@ -359,7 +359,7 @@ export class QuizzService implements OnInit{
     public quizzes:any = {
         quizz1 : {
             description:"Test quizz",
-            cardids : [1,2,2,3,4,5,6]
+            cardids : [1,2,3,4,5,6]
         },
         quizz2 : {
             description:"Accueil",

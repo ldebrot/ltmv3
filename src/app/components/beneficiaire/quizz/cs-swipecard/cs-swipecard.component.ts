@@ -28,7 +28,6 @@ export class CsSwipecardComponent implements OnInit {
     //SWIPECARD MANAGEMENT
     @ViewChild('cardLog') cardLogContainer: any;
     @ViewChild('tinderCardLog') tinderCardLogContainer: any;
-    
     swipecards: any[] = [];
     cardCursor: number = 0;
     orientation: string = "x";
@@ -41,11 +40,15 @@ export class CsSwipecardComponent implements OnInit {
         }
     };
     cardLogs: any = [];
+
+    //component mavariables
     public swipecardbuttoncontainerhidden : boolean = false;//says if swipecard button container is visible or not
+    public maxselected : number = 0;
+    public minselected : number = 0;
+    public countselected : number = 0;
 
     ngOnInit() {
     }
-    
     
     constructor(
         private quizzservice : QuizzService,
@@ -56,6 +59,8 @@ export class CsSwipecardComponent implements OnInit {
     }
     
     public populatecards() {
+        this.maxselected = (this.quizzservice.currentcardobject.parameters.maxselected == null) ? this.quizzservice.currentcardobject.parameters.options.length : this.quizzservice.currentcardobject.parameters.maxselected;
+        this.minselected = (this.quizzservice.currentcardobject.parameters.minselected == null) ? 0 : this.quizzservice.currentcardobject.parameters.minselected;
         for (let i = 0; i < this.quizzservice.currentcardobject.parameters.options.length; i++){
             let temp_optionid = this.quizzservice.currentcardobject.parameters.options[i];
             this.swipecards.push({
@@ -75,25 +80,36 @@ export class CsSwipecardComponent implements OnInit {
     }
 
     public registeraction(like) {
-        console.log("currentswipecardposition");
-        console.log(this.cardCursor);
-        let temp_optionid = this.quizzservice.currentcardobject.parameters.options[this.cardCursor];
-        console.log("temp_optionid");
-        console.log(temp_optionid);
-        console.log("like");
-        console.log(like);
-        let button_id = String(this.quizzservice.currentquizzid) + "-" + String(this.quizzservice.currentcardid) +"-" + String(temp_optionid);
-        this.readwritebufferservice.updatebuffer(button_id,like,"update");
-        this.checkiflastcard();
+        if (this.countselected < this.maxselected) {
+            let temp_optionid = this.quizzservice.currentcardobject.parameters.options[this.cardCursor];
+            console.log("currentswipecardposition");
+            console.log(this.cardCursor);
+            console.log("temp_optionid");
+            console.log(temp_optionid);
+            console.log("like");
+            console.log(like);
+            if (like == true) {
+                this.countselected++;
+            }
+            let button_id = String(this.quizzservice.currentquizzid) + "-" + String(this.quizzservice.currentcardid) +"-" + String(temp_optionid);
+            this.readwritebufferservice.updatebuffer(button_id,like,"update");
+            this.checkiflastcard();
+        }
 }
 
-    public checkiflastcard(){
-        if (this.cardCursor == this.swipecards.length){
-            console.log("reached end of swipecard set");
-            this.swipecardbuttoncontainerhidden = true;
+    public checkiflastcard():void{
+        if (this.countselected >= this.maxselected) {
             setTimeout(()=>{
                 this.quizzservice.gotonextcard();//it's the last swipecard so let's move on to the next card in the quizz
             },1000);
+    }else{
+            if (this.cardCursor == this.swipecards.length){
+                console.log("reached end of swipecard set");
+                this.swipecardbuttoncontainerhidden = true;
+                setTimeout(()=>{
+                    this.quizzservice.gotonextcard();//it's the last swipecard so let's move on to the next card in the quizz
+                },1000);
+            }    
         }
     }
 

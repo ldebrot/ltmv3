@@ -19,7 +19,7 @@ export class CsMultiplechoiceComponent implements OnInit {
     public button_value : any = {};
     public button_class : any = {};
     public firebaseitemsubscription:Subscription;
-    public buttonclassbasic : string = "csmultiplechoice_buttonitem";
+    public buttonclassbasic : String = "csmultiplechoice_buttonitem";
     public maxselected : number = 0;
     public minselected : number = 0;
     public listofselectedbuttons : any[] = [];
@@ -44,17 +44,23 @@ export class CsMultiplechoiceComponent implements OnInit {
     }
 
     //This one mixes up cardposition and cardit
-    public togglebutton(id:any):void{
+    public togglebutton(buttonid:string):void{
+        console.log("togglebutton - ID is :"+buttonid);
+        console.log("togglebutton - String(ID) is :"+String(buttonid));  
+        console.log("this.maxselected");
+        console.log(this.maxselected);
+  
         if (this.gettotalselected()<this.maxselected) {
             //we can still select one more
-            this.changebuttonvalue(id);
+            console.log("togglebutton - ID is :"+buttonid);
+            this.changebuttonvalue(buttonid);
             this.sounds_buttontick.play();
         }else{
             //we have reached the maximum number of selected items
-            if (this.button_value[String(id)] === false){//if this change would mean adding one too many (rather than deactivating a choice)
+            if (this.button_value[String(buttonid)] === false){//if this change would mean adding one too many (rather than deactivating a choice)
                 this.deletesfirstselection();
             }
-            this.changebuttonvalue(id);            
+            this.changebuttonvalue(buttonid);            
             this.sounds_buttontick.play();
         }
         if (this.gettotalselected()>=this.minselected){
@@ -81,21 +87,23 @@ export class CsMultiplechoiceComponent implements OnInit {
     }
 
     //changes buttonvalue and saves changes
-    public changebuttonvalue(id:any){
-        if (this.button_value[String(id)] === true) {
+    public changebuttonvalue(buttonid:any):void{
+        console.log("changebuttonvalue - ID is :"+buttonid);
+        console.log("changebuttonvalue - String(ID) is :"+String(buttonid));        
+        if (this.button_value[String(buttonid)] === true) {
             //was selected, is now unselected
-            this.button_value[String(id)] = false;
-            this.button_class[String(id)] = this.quizzservice.currentcardobject["option"+String(id)].unselectedclass+" "+this.buttonclassbasic;
-            this.deleteselectionfromlist(id);
+            this.button_value[String(buttonid)] = false;
+            this.button_class[String(buttonid)] = this.quizzservice.currentcardobject["option"+String(buttonid)].unselectedclass+" "+this.buttonclassbasic;
+            this.deleteselectionfromlist(buttonid);
         } else {
             //was unselected, is now selected
-            this.button_value[String(id)] = true;
-            this.button_class[String(id)] = this.quizzservice.currentcardobject["option"+String(id)].selectedclass+" "+this.buttonclassbasic
-            this.addsselectiontolist(id);
+            this.button_value[String(buttonid)] = true;
+            this.button_class[String(buttonid)] = this.quizzservice.currentcardobject["option"+String(buttonid)].selectedclass+" "+this.buttonclassbasic
+            this.addsselectiontolist(buttonid);
         }
         //save changes
-        let button_id = String(this.quizzservice.currentquizzid) + "-" + String(this.quizzservice.currentcardid) +"-" + String(id);
-        this.readwritebufferservice.updatebuffer(button_id,this.button_value[String(id)],"update");
+        let button_id = String(this.quizzservice.currentquizzid) + "-" + String(this.quizzservice.currentcardid) +"-" + String(buttonid);
+        this.readwritebufferservice.updatebuffer(button_id,this.button_value[String(buttonid)],"update");
         console.log(this.listofselectedbuttons);
     }
 
@@ -124,11 +132,11 @@ export class CsMultiplechoiceComponent implements OnInit {
             let temp_optionid = this.quizzservice.currentcardobject.parameters.options[i];
             this.buttonitems.push(this.quizzservice.currentcardobject["option"+String(temp_optionid)]);
         }
-        this.maxselected = this.quizzservice.currentcardobject.parameters.maxselected != "undefined" ? this.quizzservice.currentcardobject.parameters.maxselected : this.quizzservice.currentcardobject.parameters.options.length;
-        this.minselected = this.quizzservice.currentcardobject.parameters.minselected != "undefined" ? this.quizzservice.currentcardobject.parameters.minselected : 0;
+        this.maxselected = (this.quizzservice.currentcardobject.parameters.maxselected == null) ? this.quizzservice.currentcardobject.parameters.options.length : this.quizzservice.currentcardobject.parameters.maxselected;
+        this.minselected = (this.quizzservice.currentcardobject.parameters.minselected == null) ? 0 : this.quizzservice.currentcardobject.parameters.minselected;
     }
 
-    public setupbuttonservice () {
+    public setupbuttonservice ():void {
         for (let i = 0; i < this.quizzservice.currentcardobject.parameters.options.length; i++) {
             let temp_optionid = this.quizzservice.currentcardobject.parameters.options[i];
             this.button_value[temp_optionid]=false;
@@ -137,8 +145,8 @@ export class CsMultiplechoiceComponent implements OnInit {
         console.log(this.button_class);
     }
 
-    public setuptitle() {
-        if (this.quizzservice.currentcardobject.parameters.titlecaption != "undefined") {
+    public setuptitle():void {
+        if (this.quizzservice.currentcardobject.parameters.titlecaption !== null) {
             this.titlecaption = this.quizzservice.currentcardobject.parameters.titlecaption;
         }
     }
