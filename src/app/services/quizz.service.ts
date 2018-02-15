@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
 
 //Hand-made
 import { QuizzComponent } from './../components/beneficiaire/quizz/quizz.component';
+import { checkbuttontooltipmodel } from "./checkbuttontooltipmodel.model";
 
 //Firebase
 
@@ -32,9 +33,10 @@ export class QuizzService implements OnInit{
     public currentcardid : number = 0;
     public currentcardsubject : Subject<number> = new Subject();
     public currentcardobject : any = {};//this holds the current card object
-    public currentcardposition : number = 0;//this is the position of the current card in the currentcardset
+    public currentcardposition : number = -99;//this is the position of the current card in the currentcardset
     public checkbuttonsubject : Subject<boolean> = new Subject();//this observable subject holds the value of check button being enabled or disabled
-
+    public checkbuttonttsubject : Subject<checkbuttontooltipmodel> = new Subject();//this observable subject triggers changes in and shows checkbutton tooltip
+    public checkbuttonstatus : boolean = false;//stores value of checkbutton. False means not visible
 
     //go to next card
     public gotonextcard(){
@@ -103,7 +105,12 @@ export class QuizzService implements OnInit{
     }
 
     public setcheckbutton (value:boolean){
+        this.checkbuttonstatus = value;
         this.checkbuttonsubject.next(value);
+    }
+
+    public setcheckbuttontt (instructions:checkbuttontooltipmodel){
+        this.checkbuttonttsubject.next(instructions);
     }
 
     public cards:any = {
@@ -111,20 +118,22 @@ export class QuizzService implements OnInit{
             parameters:{
                 cardtype:"multiplechoice_multiple", 
                 instruction:"Choix multiple: sélectionne toutes les réponses qui te correspondent", 
-                questioncaption: "Je veux changer de métier et...",
+                questioncaption: "Quelles citations te correspondent ?",
+                titlecaption: "Je veux changer de situation pour...",
                 cardcomponentname: "CsMultipleChoiceComponent",
                 options:[1,2,3,4,5,6,7],
+                minselected:1,
                 maxselected:7
             },
             optional : {
             },
-            option1: {id:1, caption:'Travailler dans une entreprise', unselectedclass:"unselected1", selectedclass:"selected1"},
-            option2: {id:2, caption:'Travailler dans une institution publique', unselectedclass:"unselected2", selectedclass:"selected2"},
-            option3: {id:3, caption:'Travailler dans une association / ONG', unselectedclass:"unselected3", selectedclass:"selected3"},
-            option4: {id:4, caption:'Devenir indépendant (sans employés)', unselectedclass:"unselected4", selectedclass:"selected4"},
-            option5: {id:5, caption:'Devenir entrepreneur (avec employés)', unselectedclass:"unselected5", selectedclass:"selected5"},
-            option6: {id:6, caption:'Reprendre une société avec des employés', unselectedclass:"unselected6", selectedclass:"selected6"},
-            option7: {id:7, caption:'Je ne suis pas encore sûr de mon choix', unselectedclass:"unselected7", selectedclass:"selected7"}
+            option1: {id:1, caption:'...travailler dans une entreprise', unselectedclass:"unselected1", selectedclass:"selected1"},
+            option2: {id:2, caption:'...travailler dans une institution publique', unselectedclass:"unselected2", selectedclass:"selected2"},
+            option3: {id:3, caption:'...travailler dans une association / ONG', unselectedclass:"unselected3", selectedclass:"selected3"},
+            option4: {id:4, caption:'...devenir indépendant (sans employés)', unselectedclass:"unselected4", selectedclass:"selected4"},
+            option5: {id:5, caption:'...devenir entrepreneur (avec employés)', unselectedclass:"unselected5", selectedclass:"selected5"},
+            option6: {id:6, caption:'...reprendre une société avec des employés', unselectedclass:"unselected6", selectedclass:"selected6"},
+            option7: {id:7, caption:'...je ne suis pas encore sûr de mon choix', unselectedclass:"unselected7", selectedclass:"selected7"}
         },
         card2 : {
             parameters:{
@@ -252,6 +261,7 @@ export class QuizzService implements OnInit{
                 questioncaption: "Qu'est-ce que j'attends de Lunchtime ?",
                 cardcomponentname: "CsMultipleChoiceComponent",
                 options:[1,2,3,4,5,6],
+                minselected:1,
                 maxselected:6
             },
             optional : {

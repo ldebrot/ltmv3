@@ -1,9 +1,17 @@
+
+//hand-made services
 import { ReadwritebufferService } from './../../../../services/readwritebuffer.service';
 import { QuizzService } from 'app/services/quizz.service';
+
+//built-in stuff
 import { Component, ViewEncapsulation, ViewChild, TemplateRef, EventEmitter, NgModule, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+
+//ngswipecards
 import { SwipeCardsModule } from 'ng2-swipe-cards';
+
+//PrimeNG
 
 @Component({
     selector: 'app-cs-swipecard',
@@ -33,7 +41,7 @@ export class CsSwipecardComponent implements OnInit {
         }
     };
     cardLogs: any = [];
-    public swipecardbuttoncontainerhidden : boolean = false;
+    public swipecardbuttoncontainerhidden : boolean = false;//says if swipecard button container is visible or not
 
     ngOnInit() {
     }
@@ -83,7 +91,9 @@ export class CsSwipecardComponent implements OnInit {
         if (this.cardCursor == this.swipecards.length){
             console.log("reached end of swipecard set");
             this.swipecardbuttoncontainerhidden = true;
-            this.quizzservice.setcheckbutton(true);//check button is now available
+            setTimeout(()=>{
+                this.quizzservice.gotonextcard();//it's the last swipecard so let's move on to the next card in the quizz
+            },1000);
         }
     }
 

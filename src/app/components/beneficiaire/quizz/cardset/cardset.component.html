@@ -6,8 +6,8 @@
         <button class="btn btn-info btn-sm" (click)="instructionpanelhidden=!instructionpanelhidden">
             <i class="fa fa-question" aria-hidden="true"></i>
         </button>
-        <button [hidden]="checkbuttonhidden" class="btn btn-success btn-sm" (click)="this.gotonextcard()"  
-            pTooltip="Enter your username" tooltipPosition="top" tooltipEvent="hover" hideDelay="500">
+        <button [hidden]="checkbuttonhidden" class="btn btn-success btn-sm" (click)="this.gotonextcard()"
+            placement="bottom" ngbTooltip="{{checkbuttontooltiptext}}" #checkbuttontooltip="ngbTooltip" triggers="manual">
             <i class="fa fa-check" aria-hidden="true"></i>
         </button>
         <button [hidden]="!checkbuttonhidden" class="btn ldb_btn_disabled btn-sm">

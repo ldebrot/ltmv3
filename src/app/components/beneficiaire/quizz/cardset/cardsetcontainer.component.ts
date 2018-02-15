@@ -1,3 +1,5 @@
+import { checkbuttontooltipmodel } from './../../../../services/checkbuttontooltipmodel.model';
+import { EventEmitter, ElementRef } from '@angular/core';
 //COMPONENTS
 import { CsPlacementsimpleComponent } from './../cs-placementsimple/cs-placementsimple.component';
 import { CsDropdownComponent } from './../cs-dropdown/cs-dropdown.component';
@@ -17,6 +19,7 @@ import { CardsetItem } from './cardset-item';
 import { CardsetDirective } from './cardset.directive';
 import { CardsetComponent } from './cardset.component'
 import { Component, OnInit, AfterViewInit, OnDestroy, ComponentFactoryResolver, ViewChild, Input, Injectable } from '@angular/core';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 //Cardsetcontainer includes the cardset according to the cardset service
 
@@ -37,6 +40,10 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
     public questioncaption : String = "";
     public instructionpanelhidden : boolean = true;
     public checkbuttonhidden : boolean = true;
+    @ViewChild('checkbuttontooltip') public checkbuttontooltip: NgbTooltip;
+    public checkbuttontooltiptext : String = "";
+    public checkbuttontooltipintervalstart : number = 500;
+    public checkbuttontooltipintervalend : number = 3000;
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
@@ -106,17 +113,36 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
             (<CardsetComponent>componentRef.instance).data = cardsetItem.data;
         }
     }
-    
+
+    public showcheckbuttontooltip(instructions:checkbuttontooltipmodel) {
+        console.log("showing tooltip now");
+        this.checkbuttontooltiptext = instructions.message;
+        this.checkbuttontooltip.open();
+        this.checkbuttontooltip.close();
+        setTimeout(()=>{
+            this.checkbuttontooltip.open();
+        },instructions.intervalstart);
+        setTimeout(()=>{
+            this.checkbuttontooltip.close();
+        },instructions.intervalend);
+    }
+
     ngOnInit() {
+        this.checkbuttontooltip.close();
         this.loadComponent();
-        this.quizzservice.currentcardsubject.subscribe((cardid:number)=>{
+        this.quizzservice.currentcardsubject.subscribe((cardid:number)=>{//checks if new card is loaded
             console.log("cardsetcontainer subscribe");
             this.loadComponent();
         });
-        this.quizzservice.checkbuttonsubject.subscribe((value:boolean)=>{
+        this.quizzservice.checkbuttonsubject.subscribe((value:boolean)=>{//check if checkbutton should be available
             console.log("checkbutton set to"+value+" // checkbuttonhidden set to"+!value);
-            this.checkbuttonhidden = !value; 
+            this.checkbuttonhidden = !value;
         });
+        this.quizzservice.checkbuttonttsubject.subscribe((instructions: checkbuttontooltipmodel)=>{//shows checkbutton tooltip
+            this.showcheckbuttontooltip(instructions);
+        });
+
+
     }
     
     temp_saveit () {

@@ -534,6 +534,12 @@ input.ng-invalid.ng-touched {
 /* QUIZZ FORMATTING */
 
 /* CsMultiplechoice */
+
+.csmultiplechoice_title{
+    text-align: center;
+    padding: .5rem 0 .5rem 0;
+}
+
 .csmultiplechoice_buttoncontainer {
     width:95%;
 }

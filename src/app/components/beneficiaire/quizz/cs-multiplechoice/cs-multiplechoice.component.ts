@@ -5,6 +5,7 @@ import { ReadwritebufferService } from './../../../../services/readwritebuffer.s
 import { Component, OnInit, Injectable } from '@angular/core';
 import { QuizzService } from "app/services/quizz.service";
 import { FirebaseauthService } from 'app/services/firebaseauth.service';
+import { checkbuttontooltipmodel } from '../../../../services/checkbuttontooltipmodel.model';
 
 @Injectable()
 @Component({
@@ -18,10 +19,12 @@ export class CsMultiplechoiceComponent implements OnInit {
     public button_value : any = {};
     public button_class : any = {};
     public firebaseitemsubscription:Subscription;
-    public buttonclassbasic : String = "csmultiplechoice_buttonitem";
+    public buttonclassbasic : string = "csmultiplechoice_buttonitem";
     public maxselected : number = 0;
+    public minselected : number = 0;
     public listofselectedbuttons : any[] = [];
     public sounds_buttontick : any = {};
+    public titlecaption : string = "";
     
     constructor(
         private quizzservice : QuizzService,
@@ -36,6 +39,7 @@ export class CsMultiplechoiceComponent implements OnInit {
         this.temp_signin("mc@mc.com", "mcmcmcmc");
         this.populatebuttonitems();
         this.setupbuttonservice();
+        this.setuptitle();
         this.sounds_buttontick = new Audio('./../../../../assets/sounds/buttontick.mp3')
     }
 
@@ -47,9 +51,20 @@ export class CsMultiplechoiceComponent implements OnInit {
             this.sounds_buttontick.play();
         }else{
             //we have reached the maximum number of selected items
-            this.deletesfirstselection();
+            if (this.button_value[String(id)] === false){//if this change would mean adding one too many (rather than deactivating a choice)
+                this.deletesfirstselection();
+            }
             this.changebuttonvalue(id);            
             this.sounds_buttontick.play();
+        }
+        if (this.gettotalselected()>=this.minselected){
+            if(this.quizzservice.checkbuttonstatus!=true){
+                this.quizzservice.setcheckbutton(true);
+                let temp_instructions = new checkbuttontooltipmodel("Clique ici quand tu as fait ta sélection", 500, 3500);
+                this.quizzservice.setcheckbuttontt(temp_instructions);    
+            }
+        } else {
+            this.quizzservice.setcheckbutton(false);
         }
     }
 
@@ -109,7 +124,8 @@ export class CsMultiplechoiceComponent implements OnInit {
             let temp_optionid = this.quizzservice.currentcardobject.parameters.options[i];
             this.buttonitems.push(this.quizzservice.currentcardobject["option"+String(temp_optionid)]);
         }
-        this.maxselected = this.quizzservice.currentcardobject.parameters.maxselected;
+        this.maxselected = this.quizzservice.currentcardobject.parameters.maxselected != "undefined" ? this.quizzservice.currentcardobject.parameters.maxselected : this.quizzservice.currentcardobject.parameters.options.length;
+        this.minselected = this.quizzservice.currentcardobject.parameters.minselected != "undefined" ? this.quizzservice.currentcardobject.parameters.minselected : 0;
     }
 
     public setupbuttonservice () {
@@ -119,6 +135,12 @@ export class CsMultiplechoiceComponent implements OnInit {
             this.button_class[temp_optionid]=this.quizzservice.currentcardobject["option"+String(temp_optionid)].unselectedclass + " " + this.buttonclassbasic;          
         }
         console.log(this.button_class);
+    }
+
+    public setuptitle() {
+        if (this.quizzservice.currentcardobject.parameters.titlecaption != "undefined") {
+            this.titlecaption = this.quizzservice.currentcardobject.parameters.titlecaption;
+        }
     }
 
     temp_signin(email, password){
