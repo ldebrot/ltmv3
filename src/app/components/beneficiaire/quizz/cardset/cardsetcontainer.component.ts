@@ -49,6 +49,10 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
     ngOnDestroy() {
     }
     
+    public gotonextcard() {
+        this.quizzservice.gotonextcard();
+    }
+
     public loadComponent() {
         //loads component based on currentcardobject
         this.instruction = this.quizzservice.currentcardobject.parameters.instruction;

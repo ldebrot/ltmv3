@@ -39,18 +39,54 @@ export class QuizzService implements OnInit{
     public currentcardobject : any = {};//this holds the current card object
     public currentcardposition : number = 0;//this is the position of the current card in the currentcardset
 
-    //initiates quizz and cardset change, launches load of first card
-    public changecurrentquizzid(quizzid,cardposition:number){
-        if (this.currentquizzid !== quizzid || this.currentcardposition !== cardposition) {
+
+    //go to next card
+    public gotonextcard(){
+        if(this.setcurrentcardpositiontonext()){
+            this.chargecardbyposition(this.currentcardposition, false);
+        }
+    }
+
+    //initiates quizz
+    public chargequizzbyid(quizzid:number, checkifchanged?:boolean){
+        if (this.currentquizzid !== quizzid || checkifchanged==false) {
             this.currentquizzid = quizzid;//updates current quizz id
-            this.currentcardposition = cardposition;//updates current card position (which is not the card id!)
             this.updatecurrentquizzobject();//updates current quizz object
+            console.log("quizzservice : loaded quizz id "+ this.currentquizzid);
+        } else {
+            console.log("quizzservice : quizz id did not change!")
+        }
+    }
+
+    //set card position to the beginning
+    public setcurrentcardpositiontofirst(){
+        this.currentcardposition = 0;
+        console.log("current card position set to"+this.currentcardposition);
+    }
+
+    //set card position to next
+    public setcurrentcardpositiontonext():boolean{
+        let temp_maxposition : number = this.currentquizzobject.cardids.length - 1;
+        if (this.currentcardposition < temp_maxposition) {
+            this.currentcardposition++;
+            console.log("current card position set to"+this.currentcardposition);
+            return true;
+        } else {
+            console.log("you reached the end of the quizz. Current card position remains at"+this.currentcardposition);
+            return false;
+        }
+    }
+
+    //launches card by specified position
+    public chargecardbyposition(cardposition:number, checkifchanged?:boolean){
+        if (this.currentcardposition !== cardposition || checkifchanged==false) {
+            this.currentcardposition = cardposition;//updates current card position (which is not the card id!)
             this.updatecurrentcardobjectbyposition(this.currentcardposition);//updates current card object
             this.updatecurrentcardid(this.currentcardposition);
-            console.log("quizzservice : loaded quizz id "+ this.currentquizzid + " and card id "+ this.currentcardid);
+            console.log("quizzservice : loaded  card id "+ this.currentcardid);
             this.currentcardsubject.next(this.currentcardid);
         } else {
-            console.log("quizzservice : card and quizz ids did not change!")
+            console.log("quizzservice : card position did not change!")
         }
     }
 

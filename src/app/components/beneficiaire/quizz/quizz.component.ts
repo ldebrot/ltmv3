@@ -22,7 +22,8 @@ export class QuizzComponent implements OnInit, AfterViewInit {
     
     ngOnInit() {
         //temporary starter
-        this.quizzservice.changecurrentquizzid(1,1);     
+        this.quizzservice.chargequizzbyid(1);
+        this.quizzservice.chargecardbyposition(1);     
     }
 
     ngAfterViewInit () {
