@@ -1,6 +1,8 @@
 import { ReadwritebufferService } from './../../../../services/readwritebuffer.service';
 import { QuizzService } from 'app/services/quizz.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import { checkbuttontooltipmodel } from '../../../../services/checkbuttontooltipmodel.model';
 
 @Component({
     selector: 'app-cs-orderrelative',
@@ -19,6 +21,7 @@ export class CsOrderrelativeComponent implements OnInit {
         this.button_value[this.treasureid] = this.maxpoints;
         this.populatebuttonitems();
         this.setupbuttonservice();
+        this.setlocaltooltips();
     }
     
     public buttonitems : any[] = [];//holds button options, but stored according to position (not id!)
@@ -34,6 +37,8 @@ export class CsOrderrelativeComponent implements OnInit {
     public treasureid = 99; //all 99 values pertain to treasure
     public pressison : boolean = false;
     public presscurrentid : string = "";
+    @ViewChild('pointtooltip') public pointtooltip: NgbTooltip;
+    @ViewChild('buttoncontainertooltip') public buttoncontainertooltip: NgbTooltip;
 
     public llpress(event:any, optionid:string):void{
         this.pressison = true;
@@ -71,6 +76,7 @@ export class CsOrderrelativeComponent implements OnInit {
             this.button_value[this.treasureid]--;
             this.updaterecipientclasses();
             this.updatetreasureclass();
+            this.checkifpointsdistributed();
         }
     }
 
@@ -80,10 +86,21 @@ export class CsOrderrelativeComponent implements OnInit {
             this.button_value[this.treasureid]++;
             this.updaterecipientclasses();
             this.updatetreasureclass();
+            this.checkifpointsdistributed();
         }
         return false;
     }
     
+    public checkifpointsdistributed():void{
+        if (this.button_value[99] == 0) {
+            this.quizzservice.setcheckbutton(true);
+            let temp_instructions = new checkbuttontooltipmodel ("Clique ici pour continuer",500,4500);
+            this.quizzservice.setcheckbuttontt(temp_instructions);
+        } else {
+            this.quizzservice.setcheckbutton(false);
+        }
+    }
+
     public populatebuttonitems () {
         this.buttonitems = [];
         for (let i = 0; i < this.quizzservice.currentcardobject.parameters.options.length; i++) {
@@ -125,5 +142,23 @@ export class CsOrderrelativeComponent implements OnInit {
         console.log(this.pointrecipient_class);
     }
     
+    public setlocaltooltips() {
+        this.pointtooltip.open();
+        this.pointtooltip.close();
+        this.buttoncontainertooltip.open();
+        this.buttoncontainertooltip.close();
+        setTimeout(()=>{
+            this.pointtooltip.open();
+        },1000);
+        setTimeout(()=>{
+            this.pointtooltip.close();
+        },5000);
+        setTimeout(()=>{
+            this.buttoncontainertooltip.open();
+        },5000);
+        setTimeout(()=>{
+            this.buttoncontainertooltip.close();
+        },9000);
+    }
     
 }

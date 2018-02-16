@@ -1,12 +1,14 @@
 <div class="csorderrelative_treasurebar">
-    <div [class]="pointrecipient_class[99]">
+    <div [class]="pointrecipient_class[99]" 
+        placement="right" ngbTooltip="Voici le nombre de points à distribuer..." #pointtooltip="ngbTooltip" triggers="manual">
         {{button_value[99]}}
     </div>
     <div class="csorderrelative_treasurecaption">
         points à distribuer
     </div>
 </div>
-<div class="csorderrelative_buttoncontainer">
+<div class="csorderrelative_buttoncontainer"
+    placement="top" ngbTooltip="...en cliquant ou en appuyant longtemps sur les suggestions." #buttoncontainertooltip="ngbTooltip" triggers="manual">
     <div *ngFor="let buttonitem of buttonitems">
         <div [class]="pointrecipient_class[buttonitem.id]"  
             (tap)="lltap($event, buttonitem.id)" (pressup)="llpressup($event, buttonitem.id)" (press)="llpress($event, buttonitem.id)" (contextmenu)="decrease(buttonitem.id)">
