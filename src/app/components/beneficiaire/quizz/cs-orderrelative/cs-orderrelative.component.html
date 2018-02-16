@@ -1,17 +1,19 @@
 <div class="csorderrelative_treasurebar">
-    <div class="csorderrelative_treasurecaption">
-        Points à distribuer :
-    </div>
     <div [class]="pointrecipient_class[99]">
         {{button_value[99]}}
+    </div>
+    <div class="csorderrelative_treasurecaption">
+        points à distribuer
     </div>
 </div>
 <div class="csorderrelative_buttoncontainer">
     <div *ngFor="let buttonitem of buttonitems">
-        <div [class]="pointrecipient_class[buttonitem.id]" (click)="decrease(buttonitem.id)">
+        <div [class]="pointrecipient_class[buttonitem.id]"  
+            (tap)="lltap($event, buttonitem.id)" (pressup)="llpressup($event, buttonitem.id)" (press)="llpress($event, buttonitem.id)" (contextmenu)="decrease(buttonitem.id)">
             {{button_value[buttonitem.id]}}                                    
         </div>
-        <div [class]="button_class[buttonitem.id]" (click)="increase(buttonitem.id)" (contextmenu)="decrease(buttonitem.id)">
+        <div [class]="button_class[buttonitem.id]" 
+            (tap)="lltap($event, buttonitem.id)" (pressup)="llpressup($event, buttonitem.id)" (press)="llpress($event, buttonitem.id)" (contextmenu)="decrease(buttonitem.id)">
             <div class="csorderrelative_buttoncaption">
                     {{buttonitem.caption}}
             </div>

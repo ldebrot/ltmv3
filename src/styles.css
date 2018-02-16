@@ -913,16 +913,14 @@ input.ng-invalid.ng-touched {
 }
 
 .csorderrelative_treasurecaption{
-    float: left;
-    margin: 2%;
-    padding: 2%;
-    width: 60%;
+    position: absolute;
+    left:25%;
+    padding: 1rem 0rem;
 }
 
 .csorderrelative_treasure{
-    margin: 2%;
-    left: 60%;
-    position: absolute;
+    float: left;
+    margin: 0rem 1rem;
     box-shadow: 3px 3px 12px #000;
     text-align: center;
     color: #000;
@@ -941,7 +939,7 @@ input.ng-invalid.ng-touched {
     width: 1.5rem;
     height: 1.5rem;
     font-size: x-small;
-    margin: 1rem;
+    margin: 1rem 1rem;
 }
 
 .csorderrelative_1 {
@@ -950,7 +948,7 @@ input.ng-invalid.ng-touched {
     width: 2rem;
     height: 2rem;    
     font-size: small;
-    margin: .8rem;
+    margin: .8rem 1rem;
 }
 
 .csorderrelative_2 {
@@ -959,7 +957,7 @@ input.ng-invalid.ng-touched {
     width: 2.5rem;
     height: 2.5rem;    
     font-size: medium;
-    margin: .6rem;
+    margin: .6rem 1rem;
 }
 
 .csorderrelative_3 {
@@ -968,7 +966,7 @@ input.ng-invalid.ng-touched {
     width: 2.7rem;
     height: 2.7rem;
     font-size: large;
-    margin: .5rem;
+    margin: .5rem 1rem;
 }
 
 .csorderrelative_4 {
@@ -978,7 +976,7 @@ input.ng-invalid.ng-touched {
     height: 3rem;
     font-size: large;
     font-weight: bold;
-    margin: 0.3rem;
+    margin: 0.3rem 1rem;
 }
 
 .csorderrelative_pointrecipient{

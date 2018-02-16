@@ -32,6 +32,38 @@ export class CsOrderrelativeComponent implements OnInit {
     public minpoints : number = 0;
     public treasurelevels : number = 4;//this is linked to the css classes, where there are 5 levels
     public treasureid = 99; //all 99 values pertain to treasure
+    public pressison : boolean = false;
+    public presscurrentid : string = "";
+
+    public llpress(event:any, optionid:string):void{
+        this.pressison = true;
+        this.presscurrentid = optionid;
+        this.decreaseifpressison();
+        //console.log(event.type);
+    }
+
+    public llpressup(event:any, optionid:string):void{
+        this.pressison = false;
+        this.presscurrentid = optionid;
+        //console.log(event.type);
+    }
+
+    public lltap(event:any, optionid:string):void{
+        this.pressison = false;
+        this.presscurrentid = optionid;
+        this.increase(optionid);
+        //console.log(event.type);
+    }
+
+    public decreaseifpressison():void{
+        if(this.pressison){
+            this.decrease(this.presscurrentid);
+        }
+        setTimeout(() => {
+            this.decreaseifpressison();
+        }, 500);
+    }
+
 
     public increase(optionid){
         if (this.button_value[this.treasureid] > 0 && this.button_value[optionid] < this.maxpoints) {

@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';//add NG-Bootstrap
 import { SwipeCardsModule } from 'ng2-swipe-cards';
 import 'hammerjs';
+import 'hammer-timejs';
 import { //PrimeNG modules here
     MenubarModule,
     TabMenuModule,
