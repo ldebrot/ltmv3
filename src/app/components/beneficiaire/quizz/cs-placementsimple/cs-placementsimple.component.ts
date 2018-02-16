@@ -1,6 +1,8 @@
 import { QuizzService } from './../../../../services/quizz.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SliderModule } from 'primeng/primeng'
+import { checkbuttontooltipmodel } from '../../../../services/checkbuttontooltipmodel.model';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-cs-placementsimple',
@@ -24,6 +26,8 @@ export class CsPlacementsimpleComponent implements OnInit {
     public elementbasicclass : String = "csplacementsimpleelement";
     public elementheightclasssuffix : String = "csplacementsimpleelementheight";
 
+    @ViewChild('indicatortooltip') public indicatortooltip: NgbTooltip;
+
     constructor(
         private quizzservice : QuizzService
     ) { }
@@ -31,6 +35,21 @@ export class CsPlacementsimpleComponent implements OnInit {
     ngOnInit() {
         this.setupconfiguration();
         this.setupelements();
+        this.initialtooltipsetup();
+    }
+
+    public initialtooltipsetup():void{
+        this.quizzservice.setcheckbutton(true);
+        let temp_instructions = new checkbuttontooltipmodel ("Clique ici quand tu as terminé",5000,9000);
+        this.quizzservice.setcheckbuttontt(temp_instructions);
+        this.indicatortooltip.open();
+        this.indicatortooltip.close();
+        setTimeout(()=>{
+            this.indicatortooltip.open();
+        },1000);
+        setTimeout(()=>{
+            this.indicatortooltip.close();
+        },5000);
     }
 
     public setupconfiguration(){

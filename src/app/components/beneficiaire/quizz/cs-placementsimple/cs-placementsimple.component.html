@@ -1,6 +1,7 @@
 <div>
     <div class="csplacementsimpleindicatorholder">
-        <div class="csplacementsimpleindicator" [ngStyle]="{left:this.slidervalue+'%'}">
+        <div class="csplacementsimpleindicator" [ngStyle]="{left:this.slidervalue+'%'}"
+        placement="right" ngbTooltip="Déplace ce slider selon ta réponse" #indicatortooltip="ngbTooltip" triggers="manual">
             {{this.cursorcaption}}<br>&#9660;
         </div>
     </div>
