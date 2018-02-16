@@ -22,6 +22,7 @@ export class CsOrderrelativeComponent implements OnInit {
         this.populatebuttonitems();
         this.setupbuttonservice();
         this.setlocaltooltips();
+        this.quizzservice.setcheckbutton(false);
     }
     
     public buttonitems : any[] = [];//holds button options, but stored according to position (not id!)

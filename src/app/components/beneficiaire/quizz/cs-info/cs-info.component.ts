@@ -1,6 +1,7 @@
 import { QuizzService } from 'app/services/quizz.service';
 import { Component, OnInit } from '@angular/core';
 import { ProgressBarModule } from 'primeng/primeng';
+import { checkbuttontooltipmodel } from '../../../../services/checkbuttontooltipmodel.model';
 
 @Component({
     selector: 'app-cs-info',
@@ -28,6 +29,7 @@ export class CsInfoComponent implements OnInit {
     ngOnInit() {
         this.setuptimer();
         this.setupcard();
+        this.quizzservice.setcheckbutton(false);
     }
 
     //Timer stuff
@@ -50,6 +52,10 @@ export class CsInfoComponent implements OnInit {
         if (this.timercurrentstep < this.timermaxsteps) {
             this.timercurrentstep++;
             setTimeout(()=>{this.movetimer();},this.timerstepinterval);
+        } else {
+            this.quizzservice.setcheckbutton(true);
+            let temp_instructions = new checkbuttontooltipmodel ("Clique ici quand tu as terminé",0,4000);
+            this.quizzservice.setcheckbuttontt(temp_instructions);
         }
     }
 
