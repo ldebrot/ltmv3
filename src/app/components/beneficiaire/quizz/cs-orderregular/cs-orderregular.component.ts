@@ -1,6 +1,7 @@
 import { QuizzService } from 'app/services/quizz.service';
 import { Component, OnInit } from '@angular/core';
 import { SortablejsModule } from 'angular-sortablejs'
+import { checkbuttontooltipmodel } from '../../../../services/checkbuttontooltipmodel.model';
 
 @Component({
     selector: 'app-cs-orderregular',
@@ -21,6 +22,9 @@ export class CsOrderregularComponent implements OnInit {
     ngOnInit() {
         this.populatebuttonitems();
         this.setupbuttonservice();
+        this.quizzservice.setcheckbutton(true);
+        let temp_instructions = new checkbuttontooltipmodel ("Clique ici quand tu as réarrangé les éléments",4000,8000);
+        this.quizzservice.setcheckbuttontt(temp_instructions);
     }
     
     public populatebuttonitems () {
