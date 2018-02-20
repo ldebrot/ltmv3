@@ -1,3 +1,4 @@
+import { ReadwritebufferService } from './readwritebuffer.service';
 
 //ReactiveX
 import "rxjs/Rx";
@@ -22,6 +23,7 @@ import { checkbuttontooltipmodel } from "./checkbuttontooltipmodel.model";
 export class QuizzService implements OnInit{
     
     constructor(
+        private readwritebufferservice : ReadwritebufferService
     ) {
     }
 
@@ -42,6 +44,7 @@ export class QuizzService implements OnInit{
     public gotonextcard(){
         if(this.setcurrentcardpositiontonext()){
             this.chargecardbyposition(this.currentcardposition, false);
+            this.readwritebufferservice.transmitbuffer();
         }
     }
 

@@ -47,7 +47,6 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
-        private readwritebufferservice : ReadwritebufferService,
         private quizzservice: QuizzService
     ) { }
     
@@ -145,8 +144,4 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
 
     }
     
-    temp_saveit () {
-        this.readwritebufferservice.transmitbuffer();        
-    }
-
 }

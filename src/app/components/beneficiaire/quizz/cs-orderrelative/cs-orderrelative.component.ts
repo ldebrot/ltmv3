@@ -95,10 +95,21 @@ export class CsOrderrelativeComponent implements OnInit {
     public checkifpointsdistributed():void{
         if (this.button_value[99] == 0) {
             this.quizzservice.setcheckbutton(true);
+            this.updaterwbuffer();
             let temp_instructions = new checkbuttontooltipmodel ("Clique ici pour continuer",500,4500);
             this.quizzservice.setcheckbuttontt(temp_instructions);
         } else {
             this.quizzservice.setcheckbutton(false);
+        }
+    }
+
+    public updaterwbuffer():void{
+        let temp_length = Object.keys(this.button_value).length;
+        for (let i = 0; i < temp_length; i++ ){
+            let temp_button_id = Object.keys(this.button_value)[i];
+            let temp_button_value = this.button_value[String(temp_button_id)];
+            let temp_option_id = String(this.quizzservice.currentquizzid) + "-" + String(this.quizzservice.currentcardid) +"-" + String(temp_button_id);
+            this.readwritebufferservice.updatebuffer(temp_option_id,temp_button_value,"update");            
         }
     }
 

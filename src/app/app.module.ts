@@ -1,3 +1,4 @@
+import { ConnectService } from './services/connect.service';
 //Built-in Modules
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -166,7 +167,8 @@ import { NotconnectedstartingpageComponent } from './components/notconnected/not
         MeetingService,//This service handles the meetings based on dbuserinfo
         DbusersearchService,//handles user (temoin and beneficiaire) search
         NavigationService,//handles navigation modules
-        QuizzService//handles quizzes
+        QuizzService,//handles quizzes
+        ConnectService//handles connection to firebase db
     ],
     entryComponents: [
         CsSwipecardComponent,

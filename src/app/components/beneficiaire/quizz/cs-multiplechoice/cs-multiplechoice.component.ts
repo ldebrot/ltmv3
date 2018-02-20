@@ -1,3 +1,4 @@
+import { ConnectService } from './../../../../services/connect.service';
 import { Subscription } from 'rxjs/Rx';
 import { DbuserinfoService } from './../../../../services/dbuserinfo.service';
 import { ReadwriteService } from './../../../../services/readwrite.service';
@@ -18,7 +19,6 @@ export class CsMultiplechoiceComponent implements OnInit {
     public buttonitems : any[] = [];
     public button_value : any = {};
     public button_class : any = {};
-    public firebaseitemsubscription:Subscription;
     public buttonclassbasic : String = "csmultiplechoice_buttonitem";
     public maxselected : number = 0;
     public minselected : number = 0;
@@ -31,12 +31,11 @@ export class CsMultiplechoiceComponent implements OnInit {
         private readwritebufferservice : ReadwritebufferService,
         private firebaseauthservice : FirebaseauthService,
         private readwriteservice : ReadwriteService,
-        private dbuserinfoservice : DbuserinfoService
+        private dbuserinfoservice : DbuserinfoService,
     ) {
     }
     
     ngOnInit() {
-        this.temp_signin("mc@mc.com", "mcmcmcmc");
         this.populatebuttonitems();
         this.setupbuttonservice();
         this.setuptitle();
@@ -102,9 +101,18 @@ export class CsMultiplechoiceComponent implements OnInit {
             this.addsselectiontolist(buttonid);
         }
         //save changes
-        let button_id = String(this.quizzservice.currentquizzid) + "-" + String(this.quizzservice.currentcardid) +"-" + String(buttonid);
-        this.readwritebufferservice.updatebuffer(button_id,this.button_value[String(buttonid)],"update");
+        this.updaterwbuffer();
         console.log(this.listofselectedbuttons);
+    }
+
+    public updaterwbuffer():void{
+        let temp_length = Object.keys(this.button_value).length;
+        for (let i = 0; i < temp_length; i++ ){
+            let temp_button_id = Object.keys(this.button_value)[i];
+            let temp_button_value = this.button_value[String(temp_button_id)];
+            let temp_option_id = String(this.quizzservice.currentquizzid) + "-" + String(this.quizzservice.currentcardid) +"-" + String(temp_button_id);
+            this.readwritebufferservice.updatebuffer(temp_option_id,temp_button_value,"update");            
+        }
     }
 
     public deleteselectionfromlist(id:any){
@@ -150,27 +158,5 @@ export class CsMultiplechoiceComponent implements OnInit {
             this.titlecaption = this.quizzservice.currentcardobject.parameters.titlecaption;
         }
     }
-
-    temp_signin(email, password){
-        this.firebaseauthservice.signinUser(email, password)
-        .then(
-            (response) => {
-                this.firebaseauthservice.setToken();
-                console.log("signinup: firebase signin successful");
-                this.readwriteservice.getcurrentuserinfo();
-                this.firebaseitemsubscription = this.readwriteservice.firebaseitem.valueChanges().subscribe(snapshot=>{
-                    this.dbuserinfoservice.integrate(snapshot);
-                    this.dbuserinfoservice.currentuserid=this.firebaseauthservice.angularfireauth.auth.currentUser.uid;
-                });
-            }
-        )
-        .catch(
-            (firebaseerror) => {
-                console.log("signinup: firebase signin failed!")
-                console.log(firebaseerror);
-            }
-        );
-    }
-
 
 }
