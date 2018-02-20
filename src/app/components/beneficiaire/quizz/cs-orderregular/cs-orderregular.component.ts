@@ -39,6 +39,7 @@ export class CsOrderregularComponent implements OnInit {
             this.updaterwbuffer();
         }
     }
+    
     public populatebuttonitems () {
         this.buttonitems = [];
         let temp_itemnumbersequence = this.quizzservice.currentcardobject.parameters.options;

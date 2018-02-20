@@ -1,5 +1,6 @@
+import { ReadwritebufferService } from './../../../../services/readwritebuffer.service';
 import { QuizzService } from './../../../../services/quizz.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, SimpleChanges } from '@angular/core';
 import { SliderModule } from 'primeng/primeng'
 import { checkbuttontooltipmodel } from '../../../../services/checkbuttontooltipmodel.model';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
@@ -29,8 +30,10 @@ export class CsPlacementsimpleComponent implements OnInit {
     @ViewChild('indicatortooltip') public indicatortooltip: NgbTooltip;
 
     constructor(
-        private quizzservice : QuizzService
-    ) { }
+        private quizzservice : QuizzService,
+        private readwritebufferservice : ReadwritebufferService
+    ) { 
+    }
     
     ngOnInit() {
         this.setupconfiguration();
@@ -77,5 +80,13 @@ export class CsPlacementsimpleComponent implements OnInit {
             this.options.push(temp_option);
         }
     }
+
+    public updaterwbuffer():void{
+        let temp_button_id = 1;//value is stored without taking into account steps/options
+        let temp_button_value = this.slidervalue;
+        let temp_option_id = String(this.quizzservice.currentquizzid) + "-" + String(this.quizzservice.currentcardid) +"-" + String(temp_button_id);
+        this.readwritebufferservice.updatebuffer(temp_option_id,temp_button_value,"update");            
+    }
+
     
 }
