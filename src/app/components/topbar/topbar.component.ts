@@ -24,7 +24,7 @@ export class TopbarComponent implements OnInit {
         private confirmationService: ConfirmationService,//PrimeNG confirmation dialog here
         private router : Router,
         private connectservice : ConnectService,
-        private firebaseauthservice : FirebaseauthService
+        public firebaseauthservice : FirebaseauthService
     ) { }
 
     ngOnInit() {

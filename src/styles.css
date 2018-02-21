@@ -788,6 +788,7 @@ input.ng-invalid.ng-touched {
     background: -moz-linear-gradient(-45deg, #007ef4 0%, #73b1e7 24%, #c0abdb 50%, #c84fd6 79%, #ff0558 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(-45deg, #007ef4 0%,#73b1e7 24%,#c0abdb 50%,#c84fd6 79%,#ff0558 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(135deg, #007ef4 0%,#73b1e7 24%,#c0abdb 50%,#c84fd6 79%,#ff0558 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007ef4', endColorstr='#ff0558',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
@@ -798,6 +799,7 @@ input.ng-invalid.ng-touched {
     background: -moz-linear-gradient(-45deg, #f3c5bd 0%, #e86c57 50%, #ea2803 51%, #ff6600 75%, #c72200 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(-45deg, #f3c5bd 0%,#e86c57 50%,#ea2803 51%,#ff6600 75%,#c72200 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(135deg, #f3c5bd 0%,#e86c57 50%,#ea2803 51%,#ff6600 75%,#c72200 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3c5bd', endColorstr='#c72200',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
@@ -809,6 +811,7 @@ input.ng-invalid.ng-touched {
     background: -webkit-linear-gradient(-45deg, #aebcbf 0%,#6e7774 50%,#0a0e0a 51%,#0a0809 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(135deg, #aebcbf 0%,#6e7774 50%,#0a0e0a 51%,#0a0809 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aebcbf', endColorstr='#0a0809',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -819,6 +822,7 @@ input.ng-invalid.ng-touched {
     background: -webkit-linear-gradient(-45deg, #f6e6b4 0%,#ed9017 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(135deg, #f6e6b4 0%,#ed9017 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6e6b4', endColorstr='#ed9017',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -829,6 +833,7 @@ input.ng-invalid.ng-touched {
     background: -webkit-linear-gradient(-45deg, #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(135deg, #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', endColorstr='#9ecb2d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -1092,6 +1097,40 @@ input.ng-invalid.ng-touched {
     white-space: nowrap;
     transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
+}
+
+/* Quizz selection */
+.quizzselection_title{
+    text-align: center;
+    padding: .5rem 0 .5rem 0;
+}
+
+.quizzselection_container {
+    width:95%;
+}
+
+.quizzselection_aftercontainer {
+    clear:both;
+    float:none;
+}
+
+.quizzselection_item {
+    width: 48%;
+    margin: 1% 1%;
+    float: left;
+    text-align: center;
+    border-radius: 5px;
+    line-height: 1.5em;
+    min-height: 5.5em;
+    padding: 2% 2%;
+    border-radius: 5px;
+    -webkit-transition: all 0.5s; /* Safari */
+    transition: all 0.5s;
+}
+
+.quizzselection_item:hover {
+    transform: scale(1.1);
+    z-index: 3;
 }
 
 /* Check next card */

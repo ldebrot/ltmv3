@@ -1,0 +1,11 @@
+<div class="quizzselection_title">
+    Quizz Selection:
+</div>
+<div class="quizzselection_container">
+    <div *ngFor="let quizzitem of this.quizzservice.currentquizzselection" class="quizzselection_item" (click)="gotoquizz(quizzitem.quizzid)">
+        <i class="{{quizzitem.iconclass}}"></i>
+        <div>{{quizzitem.caption}}</div>
+    </div>
+    <div class="quizzselection_aftercontainer">
+    </div>
+</div>

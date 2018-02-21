@@ -1,4 +1,3 @@
-import { ReadwritebufferService } from './readwritebuffer.service';
 
 //ReactiveX
 import "rxjs/Rx";
@@ -15,6 +14,9 @@ import { Observable } from 'rxjs/Observable';
 //Hand-made
 import { QuizzComponent } from './../components/beneficiaire/quizz/quizz.component';
 import { checkbuttontooltipmodel } from "./checkbuttontooltipmodel.model";
+import { DbuserinfoService } from './dbuserinfo.service';
+import { ReadwritebufferService } from './readwritebuffer.service';
+import { quizzitemmodel } from "./quizzitem.model";
 
 //Firebase
 
@@ -23,7 +25,8 @@ import { checkbuttontooltipmodel } from "./checkbuttontooltipmodel.model";
 export class QuizzService implements OnInit{
     
     constructor(
-        private readwritebufferservice : ReadwritebufferService
+        private readwritebufferservice : ReadwritebufferService,
+        private dbuserinfoservice : DbuserinfoService
     ) {
     }
 
@@ -36,9 +39,12 @@ export class QuizzService implements OnInit{
     public currentcardsubject : Subject<number> = new Subject();
     public currentcardobject : any = {};//this holds the current card object
     public currentcardposition : number = -99;//this is the position of the current card in the currentcardset
+
     public checkbuttonsubject : Subject<boolean> = new Subject();//this observable subject holds the value of check button being enabled or disabled
     public checkbuttonttsubject : Subject<checkbuttontooltipmodel> = new Subject();//this observable subject triggers changes in and shows checkbutton tooltip
     public checkbuttonstatus : boolean = false;//stores value of checkbutton. False means not visible
+
+    public currentquizzselection : any[] = [];//holds the current quizz selection shown in quizzselection component
 
     //go to next card
     public gotonextcard(){
@@ -115,6 +121,50 @@ export class QuizzService implements OnInit{
 
     public setcheckbuttontt (instructions:checkbuttontooltipmodel){
         this.checkbuttonttsubject.next(instructions);
+    }
+
+    public createquizzselection():void{
+        this.currentquizzselection = [];
+        Object.keys(this.quizzes).map((key)=>{
+            console.log(key);
+            console.log(this.quizzes[key]);
+            let temp_iconclass = this.quizzes[key].iconclass;
+            let temp_description = this.quizzes[key].description;
+            let temp_caption = this.quizzes[key].caption;
+            let temp_visible = false;
+            let temp_quizzid = key.slice(5,);//this takes off 'quizz' in the beginning of the key
+            //check if to be visible
+            if (this.quizzes[key].conditionvisible!==false){
+                let temp_conditions = this.quizzes[key].conditionvisible.length;
+                console.log("We have "+temp_conditions+" condition(s) to be met for visibility");
+                this.quizzes[key].conditionvisible.forEach(element => {
+                    if (element.compulsory) {
+                        //if condition is compulsory, visible is set to false it if condition unmet
+                        temp_visible = this.checkifconditionmet(element.experience, element.value);
+                    } else {
+                        //if condition is not compulsory, visible is set to true only if condition met
+                        if (this.checkifconditionmet(element.experience, element.value)) {
+                            temp_visible = true;
+                        }
+                    }
+                });
+            } else {
+                console.log ("no visibility condition")
+                temp_visible = true;//as no condition to be met
+            }
+            let temp_newentry = new quizzitemmodel(temp_iconclass,temp_description,temp_caption,temp_visible, temp_quizzid);
+            this.currentquizzselection.push(temp_newentry);
+        });
+        console.log("created quizz selection");
+        console.log(this.currentquizzselection);
+    }
+
+    public checkifconditionmet(experience:string, value:any):boolean{
+        let temp_result : boolean = false;
+        if (this.dbuserinfoservice.userinfo.experience[experience]!=null){
+            temp_result = (this.dbuserinfoservice.userinfo.experience[experience] == value) ? true : false;
+        }
+        return temp_result;
     }
 
     public cards:any = {
@@ -361,12 +411,21 @@ export class QuizzService implements OnInit{
 
     public quizzes:any = {
         quizz1 : {
-            description:"Test quizz",
-            cardids : [1,2,3,4,5,6]
+            caption:"Test quizz",
+            description:"Ceci est un quizz de test. Il te permettra de mieux tester l'application.",
+            cardids : [1,2,3,4,5,6],
+            conditionvisible: false,
+            conditionenabled: [{experience:"1-1-1",value:true, compulsory:true}],
+            iconclass: "mdi mdi-dice-multiple mdi-48px"
+
         },
         quizz2 : {
-            description:"Accueil",
-            cardids : [7,8,9,10,11]
+            caption:"Accueil",
+            description:"Ceci est un quizz d'accueil. Il est donc idéal pour démarrer !",
+            cardids : [7,8,9,10,11],
+            conditionvisible: [{experience:"1-1-1",value:true, compulsory:false}],
+            conditionenabled: false,
+            iconclass: "mdi mdi-dice-1 mdi-48px"
         }
     }
 

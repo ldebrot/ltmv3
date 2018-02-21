@@ -85,6 +85,7 @@ import { CsInfoComponent } from './components/beneficiaire/quizz/cs-info/cs-info
 import { CsDropdownComponent } from './components/beneficiaire/quizz/cs-dropdown/cs-dropdown.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { NotconnectedstartingpageComponent } from './components/notconnected/notconnectedstartingpage/notconnectedstartingpage.component';
+import { QuizzselectionComponent } from './components/beneficiaire/quizz/quizzselection/quizzselection.component';
 
 //console.log("initializedApp at app.mdoule.ts level!");
 
@@ -110,7 +111,8 @@ import { NotconnectedstartingpageComponent } from './components/notconnected/not
         CsInfoComponent,
         CsDropdownComponent,
         TopbarComponent,
-        NotconnectedstartingpageComponent
+        NotconnectedstartingpageComponent,
+        QuizzselectionComponent
     ],
     imports: [
         FormsModule,
