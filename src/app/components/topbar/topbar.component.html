@@ -10,9 +10,14 @@
                 Title comes here
             </div>
         </div>
-        <div class="col col-2 text-center nopadding">
-            <button type="text" class="btn ldb_btn_ltm">
-                <i class="fa fa-user-o" aria-hidden="true"></i>
+        <div class="col col-2 text-center nopadding" *ngIf="firebaseauthservice.isAuthenticated()">
+            <button type="text" class="btn ldb_btn_ltm" (click)="signOut()">
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="col col-2 text-center nopadding" *ngIf="!firebaseauthservice.isAuthenticated()">
+            <button type="text" class="btn ldb_btn_ltm" [routerLink]="['/signinup']">
+                <i  class="fa fa-user-o" aria-hidden="true"></i>
             </button>
         </div>
     </div>
@@ -24,3 +29,10 @@
     position="left">
 Content
 </p-sidebar>
+
+<p-confirmDialog class="ldbway" header="Se déconnecter" icon="fa fa-question-circle" width="270" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-close" label="Non" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="Oui" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>

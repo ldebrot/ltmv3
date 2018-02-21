@@ -29,10 +29,6 @@ const appRoutes: Routes = [
         { path: 'test', component: TestComponent},//test component to try out things
         { path: 'quizz', component: QuizzComponent}//quizz component showing cardsetcontainer>cardsets
     ]},
-    { path: 'beneficiaire',  canActivate: [authGuardService], component: StartbeneficiaireComponent,
-    children: [
-        { path: '', canActivate: [authGuardService], pathMatch: 'prefix', redirectTo: 'monplanning'},// XXX change this !
-    ]},
     { path: '**', redirectTo: '/introuvable'}
 ]
 

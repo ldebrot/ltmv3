@@ -42,5 +42,10 @@ export class ConnectService implements OnDestroy{
             }
         );
     }
+
+    public signout():void{
+        this.firebaseauthservice.signOut();
+        this.dbuserinfoservice.empty();
+    }
     
 }

@@ -47,21 +47,17 @@ import { FakedbuserinfoService } from './services/fakedbuserinfo.service';//TEMP
 import { NavigationService } from './services/navigation.service';//handles navigation modules
 import { CommonService } from './services/common.service';
 import { MeetingService } from './services/meeting.service';
-import { DbusersearchService } from './services/dbusersearch.service';//handles user (temoin and beneficiaire) search
 import { QuizzService } from './services/quizz.service';
 import { CardsetDirective } from './components/beneficiaire/quizz/cardset/cardset.directive';
 
 //Components
 import { AppComponent } from './app.component';
 import { TestComponent } from './components/test/test.component';
-import { SectionTopComponent } from './components/section-top/section-top.component';
-import { ConnectComponent } from './components/connect/connect.component';
 import { StartNotconnectedComponent } from './components/startnotconnected/startnotconnected.component';
 import { IntrouvableComponent } from './components/introuvable/introuvable.component';
 import { SigninupComponent } from './auth/signinup/signinup.component';
 import { LesactusComponent } from './components/notconnected/lesactus/lesactus.component';
 import { QuisommesnousComponent } from './components/notconnected/quisommesnous/quisommesnous.component';
-import { StartbeneficiaireComponent } from './components/startbeneficiaire/startbeneficiaire.component';
 
 
 // Firebase
@@ -96,14 +92,11 @@ import { NotconnectedstartingpageComponent } from './components/notconnected/not
     declarations: [
         AppComponent,
         TestComponent,
-        SectionTopComponent,
-        ConnectComponent,
         StartNotconnectedComponent,//starting point for not-connected user
         IntrouvableComponent,
         SigninupComponent,//sign in and sign up
         LesactusComponent,
         QuisommesnousComponent,
-        StartbeneficiaireComponent,
         QuizzComponent,
         CardsetcontainerComponent,
         CardsetDirective,
@@ -165,7 +158,6 @@ import { NotconnectedstartingpageComponent } from './components/notconnected/not
         FakedbuserinfoService,
         CommonService,//This services provides handy functions for various situations
         MeetingService,//This service handles the meetings based on dbuserinfo
-        DbusersearchService,//handles user (temoin and beneficiaire) search
         NavigationService,//handles navigation modules
         QuizzService,//handles quizzes
         ConnectService//handles connection to firebase db

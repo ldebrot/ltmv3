@@ -44,47 +44,6 @@ export class DbuserinfoService {
             status: ""
         },
         experience : {
-            modulejefaislepoint : "",
-            modulejeconsultemonbilan : "",
-            modulejeprendsrendezvous : "",
-            modulejepreparemarencontre : "",
-            modulejefaislesuivi : "",
-            etapejeconstruismonprojet : "",
-            etapejetrouvedesideesdemetier : "",
-            etapejechoisismonnouveaumetier : "",
-            etapejemerenseignesurmonmetier : "",
-            etapejapprendsapresentermonprojet : "",
-            etapejedeveloppeetactivemonreseau : "",
-            etapejidentifiemessoutiens : "",
-            etapejemeprepareetmelance : "",
-            jeconstruismonprojetstepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
-            jeconstruismonprojetstep1values : "",//this holds all values of step1 (checkboxes)
-            jeconstruismonprojetstep4avalues : "",//this holds all values of step4 (checkboxes)
-            jeconstruismonprojetstep4bvalues : "",//this holds all values of step4 (checkboxes)
-            jeconstruismonprojetstep5avalues : "",//this holds all values of step5 (checkboxes)
-            jeconstruismonprojetstep5bvalues : "",//this holds all values of step5 (checkboxes)
-            jeconstruismonprojetstep6avalues : "",//this holds all values of step6 (checkboxes)
-            jeconstruismonprojetstep6bvalues : "",//this holds all values of step6 (checkboxes)
-            jeconstruismonprojetstep7avalues : "",//this holds all values of step7 (checkboxes)
-            jeconstruismonprojetstep7bvalues : "",//this holds all values of step7 (checkboxes)
-            jeconstruismonprojetstep7bselected:"",//this states whether a value has been confirmed by the user
-            jeconstruismonprojetstep7bselectedvalue:0,//this holds all values of step7 (checkboxes)
-            jeconstruismonprojetstep1jeveuxensavoirplus : "",//définition d'une reconversion
-            jeconstruismonprojetstep2jeveuxensavoirplus : "",//présentation de la rencontre déclic et du partage d'expérience
-            jeconstruismonprojetstep4ajeveuxensavoirplus : "",//comment cerner ses centres d'intérêts
-            jeconstruismonprojetstep4bjeveuxensavoirplus : "",//bilan de compétences
-            jeconstruismonprojetstep5ajeveuxensavoirplus : "",//informations du marché du travail
-            jeconstruismonprojetstep5bjeveuxensavoirplus : "",//types de responsabilité
-            jeconstruismonprojetstep6ajeveuxensavoirplus : "",//test de personnalité
-            jeconstruismonprojetstep6bjeveuxensavoirplus : "",//comment interpréter les résultats test de personnalité
-            jeconstruismonprojetstep7jeveuxensavoirplus : "",//étapes clés d'une reconversion professionnelle
-            jetrouvedesideesdemetierstepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
-            jechoisismonnouveaumetierstepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
-            jemerenseignesurmonmetierstepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
-            japprendsapresentermonprojetstepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
-            jedeveloppeetactivemonreseaustepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
-            jidentifiemessoutiensstepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
-            jemeprepareetmelancestepvalidation : [0],//this array contains the numbers of validated steps, if a number is not there, the step is not validated
         },
         meetings : {
         }
@@ -103,21 +62,6 @@ export class DbuserinfoService {
 
     //This function sets the default (starting) values for newly registered users
     public setstartvalues():void {
-        this.userinfo.experience.modulejefaislepoint= "available",
-        this.userinfo.experience.modulejeconsultemonbilan = "available",
-        this.userinfo.experience.modulejeprendsrendezvous = "unavailable",
-        this.userinfo.experience.modulejepreparemarencontre = "unavailable",
-        this.userinfo.experience.modulejefaislesuivi = "unavailable",
-        this.userinfo.experience.etapejeconstruismonprojet = "available",
-        this.userinfo.experience.etapejetrouvedesideesdemetier = "notdone",
-        this.userinfo.experience.etapejechoisismonnouveaumetier = "notdone",
-        this.userinfo.experience.etapejemerenseignesurmonmetier = "notdone",
-        this.userinfo.experience.etapejapprendsapresentermonprojet = "notdone",
-        this.userinfo.experience.etapejedeveloppeetactivemonreseau = "notdone",
-        this.userinfo.experience.etapejidentifiemessoutiens = "notdone",
-        this.userinfo.experience.etapejemeprepareetmelance = "notdone",
-        this.userinfo.publicinfo.status= "beneficiaire"
-
     }
 
     //This function integrates the values passed in the inputobject into the userinfo object, which is available as a service. The inputobject usually comes from firebase.

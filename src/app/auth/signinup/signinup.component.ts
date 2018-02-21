@@ -1,4 +1,4 @@
-import { OnDestroy } from '@angular/core';
+import { OnDestroy, ViewChild } from '@angular/core';
 //Built-in
 import { Component, OnInit, Injectable } from '@angular/core';
 //import { element } from 'protractor';
@@ -30,7 +30,7 @@ export class SigninupComponent implements OnInit, OnDestroy {
     private errormessagefr:string;
     public firebaseitemsubscription:Subscription;
     errormsg = []; 
-    
+
     constructor(
         public firebaseauthservice: FirebaseauthService,
         public router : Router,
