@@ -1,4 +1,3 @@
-import { ConnectService } from './services/connect.service';
 //Built-in Modules
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -49,6 +48,10 @@ import { CommonService } from './services/common.service';
 import { MeetingService } from './services/meeting.service';
 import { QuizzService } from './services/quizz.service';
 import { CardsetDirective } from './components/beneficiaire/quizz/cardset/cardset.directive';
+import { ConnectService } from './services/connect.service';
+import { QuizzesService } from './services/quizzes.service';//stores quizzes
+import { QuizzcardsService } from './services/quizzcards.service';//stores cards
+
 
 //Components
 import { AppComponent } from './app.component';
@@ -162,7 +165,9 @@ import { QuizzselectionComponent } from './components/beneficiaire/quizz/quizzse
         MeetingService,//This service handles the meetings based on dbuserinfo
         NavigationService,//handles navigation modules
         QuizzService,//handles quizzes
-        ConnectService//handles connection to firebase db
+        ConnectService,//handles connection to firebase db
+        QuizzcardsService,//stores quizz cards
+        QuizzesService//stores quizzes
     ],
     entryComponents: [
         CsSwipecardComponent,

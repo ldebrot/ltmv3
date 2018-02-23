@@ -9,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./quizzselection.component.css']
 })
 export class QuizzselectionComponent implements OnInit {
-    
+
+    public quizzdescription : string = "";
+    public descriptionpanelhidden : boolean = true;
+    public destinationquizz : number = -99;
+
+
     constructor(
         public quizzservice : QuizzService,
         private connectservice : ConnectService,
@@ -21,10 +26,21 @@ export class QuizzselectionComponent implements OnInit {
         this.quizzservice.createquizzselection();
     }
 
-    public gotoquizz(quizzid:string):void{
-        this.quizzservice.chargequizzbyid(Number(quizzid));
+    public gotodestinationquizz():void{        
+        this.descriptionpanelhidden=true;
+        this.quizzservice.chargequizzbyid(this.destinationquizz);
         this.quizzservice.chargecardbyposition(0);
         this.router.navigate(['/quizz']);
     }
-    
+
+    public chosequizz(quizzid:string):void{
+        this.setdestinationquizz(quizzid);
+        this.descriptionpanelhidden=false;
+    }
+
+    public setdestinationquizz(quizzid:string):void{
+        this.destinationquizz = Number(quizzid);
+        this.quizzdescription = this.quizzservice.quizzes['quizz'+quizzid].description;
+    }
+
 }

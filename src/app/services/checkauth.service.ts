@@ -27,23 +27,9 @@ export class CheckauthService implements OnInit{
     //There can be only one value per path (because of the lack of IndexOf on IE...)
     public paths:any = { 
         notconnected : ["","signinup","decouvrirlunchtime","lesactus","quisommesnous","introuvable"
-        ,"jetrouvemontemoin","jetrouvemontemoin/:userid","temoinsearchbox","temoinsearchresults"
     ],
         beneficiaire : [
-            "beneficiaire","monplanning",
-            "jefaislepoint",
-            "jeconstruismonprojet","jeconstruismonprojet/:step",
-            "jetrouvedesideesdemetier","jetrouvedesideesdemetier/:step",
-            "jechoisismonnouveaumetier","jechoisismonnouveaumetier/:step",
-            "jemerenseignesurmonmetier","jemerenseignesurmonmetier/:step",
-            "japprendsapresentermonprojet","japprendsapresentermonprojet/:step",
-            "jedeveloppeetactivemonreseau","jedeveloppeetactivemonreseau/:step",
-            "jidentifiemessoutiens","jidentifiemessoutiens/:step",
-            "jemeprepareetmelance","jemeprepareetmelance/:step",
-            "jeconsultemonbilan","jeconsultemonbilan/:etape",
-            "jeprendsrendezvous","jeconsultemesinvitations","jenvoieuneinvitation","invitationsdashboard",
-            "jetrouvemontemoin","jetrouvemontemoin/:userid","temoinsearchbox","temoinsearchresults",
-            "jepreparemarencontre","jefaislesuivi","jedeviensunpro"]
+            "beneficiaire","monplanning","quizzselection","quizz"]
     };
     
     loggedIn : boolean= true;
@@ -69,6 +55,7 @@ export class CheckauthService implements OnInit{
                 this.updatecurrentauthstate ();
                 //console.log("route");
                 //console.log(route);
+/*                resolve(true);//temporary shortcut !*/
 
                 for (let i = 0; i < this.paths[this.currentauthstate].length;i++) {
                     if (this.paths[this.currentauthstate][i]===route) {
@@ -82,6 +69,7 @@ export class CheckauthService implements OnInit{
                     console.log("not allowed reroute !");
                     setTimeout(()=>{this.router.navigate(['/'+this.paths[this.currentauthstate]]);},1000);                        
                 }
+
             }
         )
         return promise;
