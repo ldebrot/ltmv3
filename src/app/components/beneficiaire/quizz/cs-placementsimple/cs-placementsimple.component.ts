@@ -1,6 +1,6 @@
 import { ReadwritebufferService } from './../../../../services/readwritebuffer.service';
 import { QuizzService } from './../../../../services/quizz.service';
-import { Component, OnInit, ViewChild, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, SimpleChanges, AfterViewInit } from '@angular/core';
 import { SliderModule } from 'primeng/primeng'
 import { checkbuttontooltipmodel } from '../../../../services/checkbuttontooltipmodel.model';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
@@ -13,19 +13,20 @@ import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 export class CsPlacementsimpleComponent implements OnInit {
     
     //sliderconfigs
-    public slidervalue : Number = 0 ;
-    public sliderstyle : String = ""
-    public sliderstep : Number = 1;
-    public slidermin : Number = 0;
-    public slidermax : Number = 100;
-    public sliderbasicclass : String = "csplacementsimpleslide";
-    public cursorcaption : String = "";
+    public slidervalue : number = 0 ;
+    public oldslidervalue : number = -99;//stores old value in order to reduce readwritebuffer updates
+    public sliderstyle : string = ""
+    public sliderstep : number = 1;
+    public slidermin : number = 0;
+    public slidermax : number = 100;
+    public sliderbasicclass : string = "csplacementsimpleslide";
+    public cursorcaption : string = "";
 
     //options
-    public numberofoptions : Number = 0;
+    public numberofoptions : number = 0;
     public options : any = [];
-    public elementbasicclass : String = "csplacementsimpleelement";
-    public elementheightclasssuffix : String = "csplacementsimpleelementheight";
+    public basicclass_bullet = "csplacementsimplesliderbullet";
+    public basicclass_caption = "csplacementsimpleslidercaption";    
 
     @ViewChild('indicatortooltip') public indicatortooltip: NgbTooltip;
 
@@ -38,7 +39,9 @@ export class CsPlacementsimpleComponent implements OnInit {
     ngOnInit() {
         this.setupconfiguration();
         this.setupelements();
-        this.initialtooltipsetup();
+        setTimeout(()=>{
+            this.initialtooltipsetup();
+        },100);
     }
 
     public initialtooltipsetup():void{
@@ -76,16 +79,25 @@ export class CsPlacementsimpleComponent implements OnInit {
             let temp_option : any = {};
             let temp_optionid = this.quizzservice.currentcardobject.parameters.options[i];
             temp_option = this.quizzservice.currentcardobject.options["option"+String(temp_optionid)]
-            temp_option.class += (" "+this.elementbasicclass+" "+this.elementheightclasssuffix+String(this.numberofoptions));
+            temp_option.bulletclass += " " + this.basicclass_bullet;
+            temp_option.captionclass += " " + this.basicclass_caption;
             this.options.push(temp_option);
         }
     }
 
     public updaterwbuffer():void{
-        let temp_button_id = 1;//value is stored without taking into account steps/options
-        let temp_button_value = this.slidervalue;
-        let temp_option_id = String(this.quizzservice.currentquizzid) + "-" + String(this.quizzservice.currentcardid) +"-" + String(temp_button_id);
-        this.readwritebufferservice.updatebuffer(temp_option_id,temp_button_value,"update");            
+        if (this.oldslidervalue !== this.slidervalue){
+            this.oldslidervalue = this.slidervalue;
+            let temp_button_id = 1;//value is stored without taking into account steps/options
+            let temp_button_value = this.slidervalue;
+            let temp_option_id = String(this.quizzservice.currentquizzid) + "-" + String(this.quizzservice.currentcardid) +"-" + String(temp_button_id);    
+            this.readwritebufferservice.updatebuffer(temp_option_id,temp_button_value,"update");            
+        }
+    }
+
+    public setslidervalue(stepposition:number):void{
+        this.slidervalue = stepposition;
+        this.updaterwbuffer();
     }
 
     

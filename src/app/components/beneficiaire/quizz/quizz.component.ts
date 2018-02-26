@@ -1,8 +1,7 @@
-import { ConnectService } from './../../../services/connect.service';
 import { QuizzService } from './../../../services/quizz.service';
 import { CardsetItem } from './cardset/cardset-item';
 import { Component, OnInit } from '@angular/core';
-import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Location } from '@angular/common';
 
 //Quizzcomponent shows the cardsets according to the cardset service
 
@@ -11,21 +10,21 @@ import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
     templateUrl: './quizz.component.html',
     styleUrls: ['./quizz.component.css']
 })
-export class QuizzComponent implements OnInit, AfterViewInit {
+export class QuizzComponent implements OnInit{
     CardsetcontainerComponent: any;
     QuizzComponent: any;
     cardsets: CardsetItem[];
     
     constructor(
         private quizzservice : QuizzService,
-        private connectservice : ConnectService
+        private location : Location
     ) {}
     
-    ngOnInit() {
-        //temporary starter
-    }
-
-    ngAfterViewInit () {
+    ngOnInit (){
+        if (!this.quizzservice.checkifquizzloaded()) {
+            console.log("quizz not loaded, return to previous");
+            this.location.back();
+        }
     }
 
 }

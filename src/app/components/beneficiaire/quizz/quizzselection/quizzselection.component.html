@@ -1,5 +1,4 @@
 <div class="quizzselection_title">
-    Quizz Selection:
 </div>
 <div class="quizzselection_container">
     <div *ngFor="let quizzitem of this.quizzservice.currentquizzselection" class="quizzselection_item" (click)="chosequizz(quizzitem.quizzid)">
@@ -12,13 +11,13 @@
 </div>
 
 <div #descriptionpanel [hidden]="descriptionpanelhidden" class="descriptionpanel">
-    <div>
+    <div class="quizzselection_description">
         {{ quizzdescription }}
     </div>
     <div class="ldb_elementsinglebutton">
-        <button class="btn ldb_btn_small btn-success" (click)="gotodestinationquizz()">On y va !</button>
+        <button class="btn ldb_btn ldb_btn_lightgreen" (click)="gotodestinationquizz()">On y va !</button>
     </div>
     <div class="ldb_elementsinglebutton">
-        <button class="btn ldb_btn_small btn-danger" (click)="descriptionpanelhidden=!descriptionpanelhidden">Non, merci.</button>
+        <button class="btn ldb_btn ldb_btn_lightred" (click)="descriptionpanelhidden=!descriptionpanelhidden">Non, merci.</button>
     </div>
 </div>

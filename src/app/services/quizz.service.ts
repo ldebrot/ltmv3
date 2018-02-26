@@ -74,6 +74,16 @@ export class QuizzService implements OnInit{
         }
     }
 
+    public checkifquizzloaded():boolean{
+        let temp_result : boolean = false;
+        if (this.currentquizzid!== 0 
+            && this.currentquizzobject.cardids.length !== 0 
+            && this.currentcardobject.parameters !== null){
+                temp_result = true
+            }
+        return temp_result;
+    }
+
     //set card position to the beginning
     public setcurrentcardpositiontofirst(){
         this.currentcardposition = 0;

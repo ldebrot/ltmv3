@@ -9,12 +9,12 @@
         <p-slider [(ngModel)]="this.slidervalue" [min]="this.slidermin" [max]="this.slidermax" [step]="this.sliderstep" (onChange)="updaterwbuffer()"></p-slider>        
     </div>
     <div class="csplacementsimplebulletholder">
-        <div *ngFor="let option of this.options" [ngStyle]="{left:option.left, 'position':'absolute'}" class="csplacementsimplesliderbullet">
+        <div *ngFor="let option of this.options" [ngStyle]="{left:option.left, 'position':'absolute'}" [class]="option.bulletclass" (click)="setslidervalue(option.stepposition)">
             {{option.bulletcaption}}
         </div>
     </div>
     <div class="csplacementsimplecaptionholder">
-        <div *ngFor="let option of this.options" [ngStyle]="{left:option.left, 'position':'absolute'}" class="csplacementsimpleslidercaption">
+        <div *ngFor="let option of this.options" [ngStyle]="{left:option.left, 'position':'absolute'}" [class]="option.captionclass" (click)="setslidervalue(option.stepposition)">
             {{option.caption}}
         </div>
     </div>

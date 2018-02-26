@@ -231,16 +231,20 @@ export class QuizzcardsService {
                 option1 : {
                     id:1,
                     left:"0%",
+                    stepposition : 0,
                     bulletcaption:"1",
+                    bulletclass:"csplacementsimple_bullet_green",
                     caption:"Absolument !",
-                    class:"csplacementsimple_red"
+                    captionclass:"csplacementsimple_caption_green"
                 },
                 option2 : {
                     id:2,
                     left:"100%",
+                    stepposition : 100,
                     bulletcaption:"2",
+                    bulletclass:"csplacementsimple_bullet_red",
                     caption:"Pas du tout !",
-                    class:"csplacementsimple_blue"
+                    captionclass:"csplacementsimple_caption_red"
                 }
             }
         },
@@ -364,7 +368,173 @@ export class QuizzcardsService {
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsdown gradient4 swipecardicon"},
             option5: {id:5, caption:"...je me sens incompris(e).",backgroundclass:"swipecard_1 background_5", 
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-comment-remove-outline gradient5 swipecardicon"}
-        }  
+        },
+        card40 : {
+            parameters:{
+                cardtype:"info",
+                instruction:"Ceci est une carte d'information. Lis-la attentivement et appuie sur le bouton vert quand tu as terminé.",
+                questioncaption: "A quoi sert ce quizz ?",
+                cardcomponentname: "CsInfoComponent"
+            },
+            optional : {
+                imageurl:"",
+                videourl:"",
+                text:"A travers ce quizz, évalue ta capacité à faire appel à tes connaissances pour avancer sur ton projet de reconversion !",
+                timer:true,
+                autotime:true,
+                time:0//in milliseconds
+            }
+        },
+        card41 : {
+            parameters:{
+                cardtype:"multiplechoice_multiple", 
+                instruction:"Choix multiple: sélectionne toutes les réponses qui te correspondent", 
+                questioncaption: "A qui as-tu déjà présenté ton projet de reconversion?",
+                titlecaption: "J'en ai parlé à...",
+                cardcomponentname: "CsMultipleChoiceComponent",
+                options:[1,2,3,4],
+                minselected:0,
+                maxselected:4
+            },
+            optional : {
+            },
+            option1: {id:1, caption:"...ma famille", unselectedclass:"unselectednew2", selectedclass:"selectednew2"},
+            option2: {id:2, caption:"...mes amis", unselectedclass:"unselectednew5", selectedclass:"selectednew5"},
+            option3: {id:3, caption:"...mes collègues", unselectedclass:"unselectednew3", selectedclass:"selectednew3"},
+            option4: {id:4, caption:"...mes supérieurs et RH", unselectedclass:"unselectednew4", selectedclass:"selectednew4"}
+        },  
+        card42 : {
+            parameters:{
+                cardtype:"Placement simple",
+                instruction:"Pour répondre à la question, déplacez le curseur selon votre situation.",
+                questioncaption: "Est-ce que tu te sens bien soutenu(e) dans ton projet de reconversion ?",
+                cardcomponentname: "CsPlacementsimpleComponent",
+                step :50,//min = 1
+                min: 0,
+                max: 100,
+                options: [1,2,3]
+            },
+            optional : {
+            },
+            options : {
+                option1 : {
+                    id:1,
+                    left:"0%",
+                    stepposition : 0,
+                    bulletcaption:"1",
+                    bulletclass:"csplacementsimple_bullet_green",
+                    caption:"Totalement soutenu(e) par mon entourage",
+                    captionclass:"csplacementsimple_caption_green"
+                },
+                option2 : {
+                    id:2,
+                    left:"50%",
+                    stepposition : 50,
+                    bulletcaption:"2",
+                    bulletclass:"csplacementsimple_bullet_yellow",
+                    caption:"Partiellement soutenu(e), par quelques personnes.",
+                    captionclass:"csplacementsimple_caption_yellow"
+                },
+                option3 : {
+                    id:3,
+                    left:"100%",
+                    stepposition : 100,
+                    bulletcaption:"3",
+                    bulletclass:"csplacementsimple_bullet_red",
+                    caption:"Pas du tout soutenu(e).",
+                    captionclass:"csplacementsimple_caption_red"
+                }
+            }
+        },  
+        card43 : {
+            parameters:{
+                cardtype:"multiplechoice_multiple", 
+                instruction:"Choix multiple: sélectionne toutes les réponses qui te correspondent", 
+                questioncaption: "Qui te soutient dans ton projet ?",
+                titlecaption: "Parmi celles et ceux qui me soutiennent, il y a...",
+                cardcomponentname: "CsMultipleChoiceComponent",
+                options:[1,2,3,4],
+                minselected:0,
+                maxselected:4
+            },
+            optional : {
+            },
+            option1: {id:1, caption:"...ma famille", unselectedclass:"unselected1", selectedclass:"selectednew1"},
+            option2: {id:2, caption:"...des amis", unselectedclass:"unselected2", selectedclass:"selectednew2"},
+            option3: {id:3, caption:"...des collègues", unselectedclass:"unselected3", selectedclass:"selectednew3"},
+            option4: {id:4, caption:"...des supérieurs et RH", unselectedclass:"unselected4", selectedclass:"selectednew4"}
+        },
+        card44 : {
+            parameters:{
+                cardtype:"info",
+                instruction:"Ceci est une carte d'information. A vous de lire ou de regarder attentivement. ",
+                questioncaption: "Nouvelle série de cartes à swiper !",
+                cardcomponentname: "CsInfoComponent"
+            },
+            optional : {
+                imageurl:"",
+                videourl:"",
+                text:"Les prochaines cartes te demanderont si tu connais déjà des personnes qui pourraient t'aider à avancer sur différents points de ton projet. Lis bien les cartes avant de swiper à gauche pour dire OUI, ou à droite pour dire NON.",
+                timer:true,
+                autotime:true,
+                time:0//in milliseconds
+            }
+        },
+        card45 : {
+            parameters:{
+                cardtype:"Swipecards",
+                instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par oui ou à droite pour répondre par non",
+                questioncaption: "Je connais quelqu'un qui...",
+                cardcomponentname: "CsSwipecardComponent",
+                options:[1,2,3,4],
+                maxselected:4
+            },
+            optional : {
+            },
+            option1: {id:1, caption:"...trvaille dans le secteur qui m'intéresse.", backgroundclass:"swipecard_1 background_5", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-arrow-collapse-all gradient5 swipecardicon"},
+            option2: {id:2, caption:"...exerce le métier qui m'intéresse.", backgroundclass:"swipecard_1 background_6", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-android-studio gradient6 swipecardicon"},
+            option3: {id:3, caption:"...semble épanoui dans son travail.", backgroundclass:"swipecard_1 background_7", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-flower gradient7 swipecardicon"},
+            option4: {id:4, caption:"...a déjà changé de métier et pourrait m'en parler.", backgroundclass:"swipecard_1 background_8", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-autorenew gradient8 swipecardicon"},
+        },
+        card46 : {
+            parameters:{
+                cardtype:"info",
+                instruction:"Ceci est une carte d'information. A vous de lire ou de regarder attentivement. ",
+                questioncaption: "Encore une petite série !",
+                cardcomponentname: "CsInfoComponent"
+            },
+            optional : {
+                imageurl:"",
+                videourl:"",
+                text:"Les prochaines cartes te demanderont ce que tu as fait jusque-là pour élargir ton réseau professionnel.",
+                timer:true,
+                autotime:true,
+                time:0//in milliseconds
+            }
+        },
+        card47 : {
+            parameters:{
+                cardtype:"Swipecards",
+                instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par oui ou à droite pour répondre par non",
+                questioncaption: "Je connais quelqu'un qui...",
+                cardcomponentname: "CsSwipecardComponent",
+                options:[1,2,3,4],
+                maxselected:4
+            },
+            optional : {
+            },
+            option1: {id:1, caption:"...trvaille dans le secteur qui m'intéresse.", backgroundclass:"swipecard_1 background_5", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient5 swipecardicon"},
+            option2: {id:2, caption:"...exerce le métier qui m'intéresse.", backgroundclass:"swipecard_1 background_6", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient6 swipecardicon"},
+            option3: {id:3, caption:"...semble épanoui dans son travail.", backgroundclass:"swipecard_1 background_7", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient7 swipecardicon"},
+            option4: {id:4, caption:"...a déjà changé de métier et pourrait m'en parler.", backgroundclass:"swipecard_1 background_8", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient8 swipecardicon"},
+        }
     }
-    
 }
