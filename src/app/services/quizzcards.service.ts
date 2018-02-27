@@ -705,18 +705,37 @@ export class QuizzcardsService {
             parameters:{
                 cardtype:"info",
                 instruction:"Ceci est une carte d'information. Lis-la attentivement et appuie sur le bouton vert quand tu as terminé.",
-                questioncaption: "A quoi sert un test de personnalité ?",
+                questioncaption: "A quoi sert ce quizz ?",
                 cardcomponentname: "CsInfoComponent"
             },
             optional : {
                 imageurl:"",
                 videourl:"",
-                text:"Les tests de personnalité sont un outil intéressant pour mieux se connaître, savoir quels sont ses talents, ses points forts et aussi ses points de vigilance. <nl> <nl> C'est aussi particulièrement utile pour trouver le bon poste ou le bon métier.",
+                text:"Ce quizz te guide à travers les questions portant sur ton nouveau métier ! <nl>",
                 timer:true,
                 autotime:true,
                 textanimation:true,
                 time:0//in milliseconds
             }
         },
+        card81 : {
+            parameters:{
+                cardtype:"multiplechoice_multiple", 
+                instruction:"Choix multiple: sélectionne toutes les réponses qui te correspondent", 
+                questioncaption: "A quelle étape correspond ma situation ?",
+                cardcomponentname: "CsMultipleChoiceComponent",
+                options:[1,2,3,4,5,6],
+                minselected:1,
+                maxselected:1
+            },
+            optional : {
+            },
+            option1: {id:1, caption:"Réflexion : pas encore sûr de vouloir changer de métier.", unselectedclass:"unselectednew1", selectedclass:"selectednew1"},
+            option2: {id:2, caption:"Préparation : je cherche activement mon nouveau métier.", unselectedclass:"unselectednew2", selectedclass:"selectednew2"},
+            option3: {id:3, caption:"Formation : j'ai trouvé mon métier et cherche une formation.", unselectedclass:"unselectednew3", selectedclass:"selectednew3"},
+            option4: {id:4, caption:"Insertion : je cherche un emploi dans mon nouveau métier.", unselectedclass:"unselectednew4", selectedclass:"selectednew4"},
+            option5: {id:5, caption:"Nouvelle vie : je m'installe dans mon nouveau métier.", unselectedclass:"unselectednew5", selectedclass:"selectednew5"},
+            option6: {id:6, caption:"Je ne sais pas vraiment.", unselectedclass:"unselectednew6", selectedclass:"selectednew6"}
+        }
     }
 }
