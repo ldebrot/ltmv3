@@ -27,24 +27,25 @@ export class QuizzesService {
         quizz4 : {
             caption:"Est-ce que je me connais bien ?",
             description:"Connais-tu bien ta propre personnalité, tes forces et faiblesses, tes envies et motivations ? Découvre les différentes démarches à entreprendre dans ce quizz.",
-            cardids : [60,61,62,63,64],
+            cardids : [60,61,62,63,64,65,66,67,68],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-dice-3 quizzseletion_icons gradientnew3",
             followupaction: {command : "navigate", route: "quizzselection", delay:0}
         },
-        quizz99 : {
-            caption:"Test quizz",
-            description:"Ceci est un quizz de test. Il te permettra de mieux tester l'application.",
-            cardids : [1,2,3,4,5,6],
-            conditionvisible: [{experience:"1-1-1",value:true, compulsory:false}],
-            conditionenabled: [{experience:"1-1-1",value:true, compulsory:true}],
-            iconclass: "mdi mdi-dice-multiple quizzseletion_icons gradientnew1"
+        quizz5 : {
+            caption:"Je trouve mon nouveau métier !",
+            description:"Ce quizz te guide à travers les questions portant sur ton nouveau métier.",
+            cardids : [80,81],
+            conditionvisible: false,
+            conditionenabled: false,
+            iconclass: "mdi mdi-dice-4 quizzseletion_icons gradientnew4",
+            followupaction: {command : "navigate", route: "quizzselection", delay:0}
         },
         quizz98 : {
             caption:"Direct Test",
             description:"C'est juste pour tester des cartes",
-            cardids : [61],
+            cardids : [80],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-dice-multiple quizzseletion_icons gradientnew3",

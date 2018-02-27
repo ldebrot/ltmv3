@@ -58,8 +58,9 @@ export class QuizzService implements OnInit{
     //go to next card
     public gotonextcard(){
         this.readwritebufferservice.transmitbuffer();//has to be first here to make condition check possible
-        this.setcurrentcardpositiontonext();
-        this.chargecardbyposition(this.currentcardposition, false);
+        if(this.setcurrentcardpositiontonext()){//makes position changed, if position changed, returns true and actually loads card
+            this.chargecardbyposition(this.currentcardposition, false);
+        }
     }
 
     //initiates quizz
@@ -89,8 +90,9 @@ export class QuizzService implements OnInit{
         console.log("current card position set to"+this.currentcardposition);
     }
 
-    //set card position to next
-    public setcurrentcardpositiontonext(){
+    //set card position to next, returns true if currentcardpositionchanged
+    public setcurrentcardpositiontonext():boolean{
+        let temp_cardpositionchanged : boolean = false;
         let temp_maxposition : number = this.currentquizzobject.cardids.length - 1;
         if (this.currentcardposition < temp_maxposition) {
             this.currentcardposition++;
@@ -121,6 +123,7 @@ export class QuizzService implements OnInit{
                 });
 
                 if (temp_conditionsmet) {
+                    temp_cardpositionchanged = true;//conditions met, so cardpositionchanged
                     console.log("conditions for card are met");
                 } else {
                     console.log("conditions for card are NOT met. Jump to next.");
@@ -128,7 +131,10 @@ export class QuizzService implements OnInit{
                         this.gotonextcard();
                     }, 100);
                 }
+            } else {
+                temp_cardpositionchanged = true;//no conditions to be met, so cardpositionchanged
             }
+
         } else {
             console.log("you reached the end of the quizz at card position "+this.currentcardposition+".");
             if (this.currentquizzobject.followupaction!=null){
@@ -137,6 +143,7 @@ export class QuizzService implements OnInit{
                 console.log("no follow-up action indicated");
             }
         }
+        return temp_cardpositionchanged;
     }
 
     //follow-up action designates what happens after a quizz has reached the end

@@ -45,6 +45,12 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
     public checkbuttontooltipintervalstart : number = 500;
     public checkbuttontooltipintervalend : number = 3000;
 
+    //subscriptions
+    public currentcardsubscription : any;
+    public checkbuttonsubscription : any;
+    public checkbuttonttsubscription : any;    
+    public didsubscribe : boolean = false;
+
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
         private quizzservice: QuizzService
@@ -52,12 +58,17 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
     
     ngAfterViewInit() {
     }
-    
-    ngOnDestroy() {
-    }
-    
+        
     public gotonextcard() {
         this.quizzservice.gotonextcard();
+    }
+
+    //checks whether there is a current card and quizz
+    public isthereanythingcurrent():boolean {
+        let temp_result : boolean = true;
+        temp_result = this.quizzservice.currentcardobject.parameters == null ? false : true;
+        temp_result = this.quizzservice.currentquizzobject.cardids == null ? false : true;
+        return temp_result;
     }
 
     public loadComponent() {
@@ -114,7 +125,7 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
     }
 
     public showcheckbuttontooltip(instructions:checkbuttontooltipmodel) {
-        console.log("showing tooltip now");
+        //console.log("showing tooltip now");
         this.checkbuttontooltiptext = instructions.message;
         this.checkbuttontooltip.open();
         this.checkbuttontooltip.close();
@@ -127,24 +138,36 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
     }
 
     ngOnInit() {
-        this.checkbuttontooltip.close();
-        this.loadComponent();
-        this.quizzservice.currentcardsubject.subscribe((cardid:number)=>{//checks if new card is loaded
-            console.log("cardsetcontainer subscribe");
+        if(this.isthereanythingcurrent()){
+            this.checkbuttontooltip.close();
             this.loadComponent();
-        });
-        this.quizzservice.checkbuttonsubject.subscribe((value:boolean)=>{//check if checkbutton should be available
-            console.log("checkbutton set to"+value+" // checkbuttonhidden set to"+!value);
-            this.checkbuttonhidden = !value;
-            if (this.checkbuttonhidden) {
-                this.checkbuttontooltip.close();
-            }
-        });
-        this.quizzservice.checkbuttonttsubject.subscribe((instructions: checkbuttontooltipmodel)=>{//shows checkbutton tooltip
-            this.showcheckbuttontooltip(instructions);
-        });
+            this.currentcardsubscription = this.quizzservice.currentcardsubject.subscribe((cardid:number)=>{//checks if new card is loaded
+                //console.log("cardsetcontainer subscribed");
+                this.loadComponent();
+            });
+            this.checkbuttonsubscription = this.quizzservice.checkbuttonsubject.subscribe((value:boolean)=>{//check if checkbutton should be available
+                //console.log("checkbutton subscribed");
+                //console.log("checkbutton set to"+value+" // checkbuttonhidden set to"+!value);
+                this.checkbuttonhidden = !value;
+                if (this.checkbuttonhidden) {
+                    this.checkbuttontooltip.close();
+                }
+            });
+            this.checkbuttonttsubscription = this.quizzservice.checkbuttonttsubject.subscribe((instructions: checkbuttontooltipmodel)=>{//shows checkbutton tooltip
+                //console.log("showcheckbuttontooltip subscribed");
+                this.showcheckbuttontooltip(instructions);
+            });
+            this.didsubscribe = true;
+        }
+    }
 
-
+    ngOnDestroy() {
+        if (this.didsubscribe) {
+            this.currentcardsubscription.unsubscribe();
+            this.checkbuttonsubscription.unsubscribe();
+            this.checkbuttonttsubscription.unsubscribe();    
+            //console.log("unsubscribed currentcard, checkbutton and checkbuttontt");
+        }
     }
     
 }
