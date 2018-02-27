@@ -944,15 +944,16 @@ input.ng-invalid.ng-touched {
 
 .instructionpanel, .descriptionpanel {
     position: absolute;
+    top:30%;
     border-radius: 5px;
     background: rgba(255,255,255,0.9);
     box-shadow: 3px 3px 12px #000;
     width: 90%;
-    margin: 2%;
+    margin: 5%;
     padding: 5%;
     z-index: 99;
-    -webkit-transition: all 1s; /* Safari */
-    transition: all 1s;    
+    -webkit-transition: all 1s ease-in-out; /* Safari */
+    transition: all 1s ease-in-out;    
 }
 
 .cardsetinstructioncaption {

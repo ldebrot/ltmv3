@@ -491,7 +491,7 @@ export class QuizzcardsService {
             },
             optional : {
             },
-            option1: {id:1, caption:"...trvaille dans le secteur qui m'intéresse.", backgroundclass:"swipecard_1 background_5", 
+            option1: {id:1, caption:"...travaille dans le secteur qui m'intéresse.", backgroundclass:"swipecard_1 background_5", 
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-arrow-collapse-all gradient5 swipecardicon"},
             option2: {id:2, caption:"...exerce le métier qui m'intéresse.", backgroundclass:"swipecard_1 background_6", 
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-android-studio gradient6 swipecardicon"},
@@ -520,21 +520,29 @@ export class QuizzcardsService {
             parameters:{
                 cardtype:"Swipecards",
                 instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par oui ou à droite pour répondre par non",
-                questioncaption: "Je connais quelqu'un qui...",
+                questioncaption: "Pour élargir mon réseau professionnel, j'ai...",
                 cardcomponentname: "CsSwipecardComponent",
-                options:[1,2,3,4],
-                maxselected:4
+                options:[1,2,3,4,5,6,7,8],
+                maxselected:8
             },
             optional : {
             },
-            option1: {id:1, caption:"...trvaille dans le secteur qui m'intéresse.", backgroundclass:"swipecard_1 background_5", 
-            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient5 swipecardicon"},
-            option2: {id:2, caption:"...exerce le métier qui m'intéresse.", backgroundclass:"swipecard_1 background_6", 
-            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient6 swipecardicon"},
-            option3: {id:3, caption:"...semble épanoui dans son travail.", backgroundclass:"swipecard_1 background_7", 
-            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient7 swipecardicon"},
-            option4: {id:4, caption:"...a déjà changé de métier et pourrait m'en parler.", backgroundclass:"swipecard_1 background_8", 
-            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-human-handsup gradient8 swipecardicon"},
+            option1: {id:1, caption:"...contacté des gens sur des réseaux sociaux professionnels.", backgroundclass:"swipecard_1 background_1", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-linkedin-box gradient1 swipecardicon"},
+            option2: {id:2, caption:"...participé à des événements permettant de réseauter.", backgroundclass:"swipecard_1 background_2", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-martini gradient2 swipecardicon"},
+            option3: {id:3, caption:"...pris contact avec une association d'anciens élèves.", backgroundclass:"swipecard_1 background_3", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-school gradient3 swipecardicon"},
+            option4: {id:4, caption:"...participé à des journées portes ouvertes.", backgroundclass:"swipecard_1 background_4", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-door-open gradient4 swipecardicon"},
+            option5: {id:1, caption:"...fait un tour dans un salon professionnel.", backgroundclass:"swipecard_1 background_5", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-calendar-text gradient5 swipecardicon"},
+            option6: {id:2, caption:"...utilisé une application de mise en relation (hors lunchtime).", backgroundclass:"swipecard_1 background_6", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-cellphone gradient6 swipecardicon"},
+            option7: {id:3, caption:"...pris contact avec des fédérations professionnelles.", backgroundclass:"swipecard_1 background_7", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-domain gradient7 swipecardicon"},
+            option8: {id:4, caption:"...contacté des organismes publics pour m'accompagner.", backgroundclass:"swipecard_1 background_8", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-bank gradient8 swipecardicon"},
         }
     }
 }

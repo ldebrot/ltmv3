@@ -18,7 +18,7 @@ export class QuizzesService {
         quizz3 : {
             caption:"Comment activer mon réseau pro ?",
             description:"A travers ce quizz, évalue ta capacité à faire appel à tes connaissances pour avancer sur ton projet de reconversion !",
-            cardids : [40,41,42,43],
+            cardids : [40,41,42,43,44,45,46,47],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-dice-2 quizzseletion_icons gradientnew4",
@@ -35,7 +35,7 @@ export class QuizzesService {
         quizz98 : {
             caption:"Direct Test",
             description:"C'est juste pour tester des cartes",
-            cardids : [43,44,45,46],
+            cardids : [47],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-dice-multiple quizzseletion_icons gradientnew3",
