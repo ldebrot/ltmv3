@@ -27,7 +27,7 @@ export class QuizzesService {
         quizz4 : {
             caption:"Est-ce que je me connais bien ?",
             description:"Connais-tu bien ta propre personnalité, tes forces et faiblesses, tes envies et motivations ? Découvre les différentes démarches à entreprendre dans ce quizz.",
-            cardids : [60],
+            cardids : [60,61],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-dice-3 quizzseletion_icons gradientnew3",
@@ -44,7 +44,7 @@ export class QuizzesService {
         quizz98 : {
             caption:"Direct Test",
             description:"C'est juste pour tester des cartes",
-            cardids : [48],
+            cardids : [61],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-dice-multiple quizzseletion_icons gradientnew3",

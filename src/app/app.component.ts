@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
     public constructor(
         private titleService: Title
     ) {
-        this.titleService.setTitle('Lunchtime Version 1');//Sets title
+        this.titleService.setTitle('Lunchtime !');//Sets title
      }
 
 

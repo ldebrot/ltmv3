@@ -3,7 +3,9 @@
 </div>
 <div class="csmultiplechoice_buttoncontainer">
     <div *ngFor="let buttonitem of buttonitems" [class]="button_class[buttonitem.id]" (click)="togglebutton(buttonitem.id)">
-        {{buttonitem.caption}}
+        <div class="csmultiplechoice_centereddiv">
+            {{buttonitem.caption}}
+        </div>
     </div>
     <div class="csmultiplechoice_afterbuttoncontainer">
     </div>

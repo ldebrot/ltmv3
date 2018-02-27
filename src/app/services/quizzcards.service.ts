@@ -95,6 +95,7 @@ export class QuizzcardsService {
                 text:"This is an important information text you have to read. This is an important information text you have to read. This is an important information text you have to read. ",
                 timer:true,
                 autotime:true,
+                textanimation: true,
                 time:0//in milliseconds
             }
         },
@@ -141,6 +142,7 @@ export class QuizzcardsService {
                 text:"Ce quizz initial te permettra de te situer par rapport à la reconversion professionnelle. Essaie de répondre le mieux possible à chaque question.",
                 timer:true,
                 autotime:true,
+                textanimation:true,
                 time:0//in milliseconds
             }
         },
@@ -157,6 +159,7 @@ export class QuizzcardsService {
                 text:"Les premières cartes sont des questions à choix multiple. Sélectionne toutes les réponses qui te correspondent.",
                 timer:true,
                 autotime:true,
+                textanimation:true,
                 time:0//in milliseconds
             }
         },
@@ -210,6 +213,7 @@ export class QuizzcardsService {
                 text:"Les prochaines cartes te demanderont de déplacer le curseur horizontal selon ta situation, en le tirant avec la souris ou ton doigt vers la gauche ou la droite.",
                 timer:true,
                 autotime:true,
+                textanimation:true,
                 time:0//in milliseconds
             }
         },
@@ -292,6 +296,7 @@ export class QuizzcardsService {
                 text:"Sur la prochaine carte, il va falloir mettre de l'ordre ! Range les éléments dans le bon ordre. Tu peux les déplacer vers le haut ou le bas avec la souris ou ton doigt.",
                 timer:true,
                 autotime:true,
+                textanimation:true,
                 time:0//in milliseconds
             }
         },
@@ -344,6 +349,7 @@ export class QuizzcardsService {
                 text:"Pour la partie finale de ce quizz, tu peux 'swiper' à GAUCHE les cartes qui te correspondent et à DROITE celles qui ne te correspondent pas. Lis bien la question et le texte avant de faire ton choix.",
                 timer:true,
                 autotime:true,
+                textanimation:true,
                 time:0//in milliseconds
             }
         },
@@ -382,6 +388,7 @@ export class QuizzcardsService {
                 text:"A travers ce quizz, évalue ta capacité à faire appel à tes connaissances pour avancer sur ton projet de reconversion !",
                 timer:true,
                 autotime:true,
+                textanimation:true,
                 time:0//in milliseconds
             }
         },
@@ -478,6 +485,7 @@ export class QuizzcardsService {
                 text:"Les prochaines cartes te demanderont si tu connais déjà des personnes qui pourraient t'aider à avancer sur différents points de ton projet. Lis bien les cartes avant de swiper à gauche pour dire OUI, ou à droite pour dire NON.",
                 timer:true,
                 autotime:true,
+                textanimation:true,
                 time:0//in milliseconds
             }
         },
@@ -514,6 +522,7 @@ export class QuizzcardsService {
                 text:"Les prochaines cartes te demanderont ce que tu as fait jusque-là pour élargir ton réseau professionnel.",
                 timer:true,
                 autotime:true,
+                textanimation:true,
                 time:0//in milliseconds
             }
         },
@@ -590,11 +599,27 @@ export class QuizzcardsService {
             optional : {
                 imageurl:"",
                 videourl:"",
-                text:"Changer de métier, c'est d'abord une démache intérieure consistant à mieux se connaître. Connais-tu bien ta propre personnalité, tes forces et faiblesses, tes envies et motivations ? Découvre les différentes démarches à entreprendre dans ce quizz.",
+                text:"Changer de métier, c'est d'abord une démache intérieure consistant à mieux se connaître. <nl> Connais-tu bien ta propre personnalité, tes forces et faiblesses, tes envies et motivations ? Découvre les différentes démarches à entreprendre dans ce quizz.",
                 timer:true,
                 autotime:true,
+                textanimation:true,
                 time:0//in milliseconds
             }
         },
+        card61 : {
+            parameters:{
+                cardtype:"multiplechoice_multiple", 
+                instruction:"Choix multiple: sélectionne la réponse qui te correspond", 
+                questioncaption: "As-tu déjà fait un test de personnalité ?",
+                cardcomponentname: "CsMultipleChoiceComponent",
+                options:[1,2],
+                minselected:1,
+                maxselected:1
+            },
+            optional : {
+            },
+            option1: {id:1, caption:'OUI', unselectedclass:"unselected5", selectedclass:"selected5"},
+            option2: {id:2, caption:'NON', unselectedclass:"unselected4", selectedclass:"selected4"}
+        }
     }
 }
