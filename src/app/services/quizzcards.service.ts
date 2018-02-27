@@ -720,22 +720,20 @@ export class QuizzcardsService {
         },
         card81 : {
             parameters:{
-                cardtype:"multiplechoice_multiple", 
-                instruction:"Choix multiple: sélectionne toutes les réponses qui te correspondent", 
-                questioncaption: "A quelle étape correspond ma situation ?",
-                cardcomponentname: "CsMultipleChoiceComponent",
-                options:[1,2,3,4,5,6],
-                minselected:1,
-                maxselected:1
+                cardtype:"orderrelative",
+                instruction:"Distribution de points : distribue les 10 points selon ce qui correspond le plus à ta situation en cliquant sur les différents champs.",
+                questioncaption: "Pourquoi je pense changer de métier ?",
+                cardcomponentname: "CsOrderrelativeComponent",
+                maxpoints: 10,
+                options:[1,2,3,4,5]
             },
             optional : {
             },
-            option1: {id:1, caption:"Réflexion : pas encore sûr de vouloir changer de métier.", unselectedclass:"unselectednew1", selectedclass:"selectednew1"},
-            option2: {id:2, caption:"Préparation : je cherche activement mon nouveau métier.", unselectedclass:"unselectednew2", selectedclass:"selectednew2"},
-            option3: {id:3, caption:"Formation : j'ai trouvé mon métier et cherche une formation.", unselectedclass:"unselectednew3", selectedclass:"selectednew3"},
-            option4: {id:4, caption:"Insertion : je cherche un emploi dans mon nouveau métier.", unselectedclass:"unselectednew4", selectedclass:"selectednew4"},
-            option5: {id:5, caption:"Nouvelle vie : je m'installe dans mon nouveau métier.", unselectedclass:"unselectednew5", selectedclass:"selectednew5"},
-            option6: {id:6, caption:"Je ne sais pas vraiment.", unselectedclass:"unselectednew6", selectedclass:"selectednew6"}
+            option1: {id:1, caption:"Je dois quitter mon poste.", optionvalue:0, basicclass:"unselected1", actionclass:"action1"},
+            option2: {id:2, caption:"Je ne m'épanouis plus.", optionvalue:0, basicclass:"unselected2", actionclass:"action2"},
+            option3: {id:3, caption:"Les conditions de travail ne me conviennent plus.", optionvalue:0, basicclass:"unselected3", actionclass:"action3"},
+            option4: {id:4, caption:"Le salaire ne me suffit pas.", optionvalue:0, basicclass:"unselected4", actionclass:"action4"},
+            option5: {id:5, caption:"je suis à un point mort dans ma carrière.", optionvalue:0, basicclass:"unselected5", actionclass:"action5"},
         }
     }
 }
