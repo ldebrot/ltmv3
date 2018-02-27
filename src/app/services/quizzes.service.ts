@@ -12,16 +12,25 @@ export class QuizzesService {
             cardids : [20,21,22,23,24,25,26,27,28,29,30,31],
             conditionvisible: false,
             conditionenabled: false,
-            iconclass: "mdi mdi-dice-1 quizzseletion_icons gradientnew2",
+            iconclass: "mdi mdi-dice-1 quizzseletion_icons gradientnew1",
             followupaction: {command : "navigate", route: "quizzselection", delay:0}
         },
         quizz3 : {
             caption:"Comment activer mon réseau pro ?",
             description:"A travers ce quizz, évalue ta capacité à faire appel à tes connaissances pour avancer sur ton projet de reconversion !",
-            cardids : [40,41,42,43,44,45,46,47],
+            cardids : [40,41,42,43,44,45,46,47,48],
             conditionvisible: false,
             conditionenabled: false,
-            iconclass: "mdi mdi-dice-2 quizzseletion_icons gradientnew4",
+            iconclass: "mdi mdi-dice-2 quizzseletion_icons gradientnew2",
+            followupaction: {command : "navigate", route: "quizzselection", delay:0}
+        },
+        quizz4 : {
+            caption:"Est-ce que je me connais bien ?",
+            description:"Connais-tu bien ta propre personnalité, tes forces et faiblesses, tes envies et motivations ? Découvre les différentes démarches à entreprendre dans ce quizz.",
+            cardids : [60],
+            conditionvisible: false,
+            conditionenabled: false,
+            iconclass: "mdi mdi-dice-3 quizzseletion_icons gradientnew3",
             followupaction: {command : "navigate", route: "quizzselection", delay:0}
         },
         quizz99 : {
@@ -35,7 +44,7 @@ export class QuizzesService {
         quizz98 : {
             caption:"Direct Test",
             description:"C'est juste pour tester des cartes",
-            cardids : [47],
+            cardids : [48],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-dice-multiple quizzseletion_icons gradientnew3",

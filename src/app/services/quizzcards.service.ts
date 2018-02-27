@@ -216,14 +216,14 @@ export class QuizzcardsService {
         card25 : {
             parameters:{
                 cardtype:"Placement simple",
-                instruction:"Pour répondre à la question, déplacez le curseur selon votre situation.",
-                questioncaption: "Je suis sûr(e) de vouloir changer de métier",
+                instruction:"Pour répondre à la question, déplace le curseur selon ta situation.",
+                questioncaption: "Tu es sûr(e) de vouloir changer de métier",
                 cardcomponentname: "CsPlacementsimpleComponent",
                 step :1,//min = 1
                 min: 0,
                 max: 100,
                 options: [1,2],
-                cursorcaption:"vous"
+                cursorcaption:"toi"
             },
             optional : {
             },
@@ -252,13 +252,13 @@ export class QuizzcardsService {
             parameters:{
                 cardtype:"Placement simple",
                 instruction:"Pour répondre à la question, déplacez le curseur selon votre situation.",
-                questioncaption: "Je suis sûr(e) que je vais réussir à changer de métier",
+                questioncaption: "Tu es sûr(e) que tu vas réussir à changer de métier",
                 cardcomponentname: "CsPlacementsimpleComponent",
                 step :1,//min = 1
                 min: 0,
                 max: 100,
                 options: [1,2],
-                cursorcaption:"vous"
+                cursorcaption:"toi"
             },
             optional : {
             },
@@ -412,7 +412,8 @@ export class QuizzcardsService {
                 step :50,//min = 1
                 min: 0,
                 max: 100,
-                options: [1,2,3]
+                options: [1,2,3],
+                cursorcaption:"toi"
             },
             optional : {
             },
@@ -451,7 +452,7 @@ export class QuizzcardsService {
                 cardtype:"multiplechoice_multiple", 
                 instruction:"Choix multiple: sélectionne toutes les réponses qui te correspondent", 
                 questioncaption: "Qui te soutient dans ton projet ?",
-                titlecaption: "Parmi celles et ceux qui me soutiennent, il y a...",
+                titlecaption: "Parmi celles et ceux qui te soutiennent, il y a...",
                 cardcomponentname: "CsMultipleChoiceComponent",
                 options:[1,2,3,4],
                 minselected:0,
@@ -484,7 +485,7 @@ export class QuizzcardsService {
             parameters:{
                 cardtype:"Swipecards",
                 instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par oui ou à droite pour répondre par non",
-                questioncaption: "Je connais quelqu'un qui...",
+                questioncaption: "Tu connais quelqu'un qui...",
                 cardcomponentname: "CsSwipecardComponent",
                 options:[1,2,3,4],
                 maxselected:4
@@ -520,7 +521,7 @@ export class QuizzcardsService {
             parameters:{
                 cardtype:"Swipecards",
                 instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par oui ou à droite pour répondre par non",
-                questioncaption: "Pour élargir mon réseau professionnel, j'ai...",
+                questioncaption: "Pour élargir mon réseau professionnel, tu as...",
                 cardcomponentname: "CsSwipecardComponent",
                 options:[1,2,3,4,5,6,7,8],
                 maxselected:8
@@ -543,6 +544,57 @@ export class QuizzcardsService {
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-domain gradient7 swipecardicon"},
             option8: {id:4, caption:"...contacté des organismes publics pour m'accompagner.", backgroundclass:"swipecard_1 background_8", 
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-bank gradient8 swipecardicon"},
-        }
+        },
+        card48 : {
+            parameters:{
+                cardtype:"Placement simple",
+                instruction:"Pour répondre à la question, déplacez le curseur selon votre situation.",
+                questioncaption: "Pour toi, partir à la rencontre de nouvelles personnes, c'est plutôt...",
+                cardcomponentname: "CsPlacementsimpleComponent",
+                step :10,//min = 1
+                min: 0,
+                max: 100,
+                options: [1,2],
+                cursorcaption:"toi"
+            },
+            optional : {
+            },
+            options : {
+                option1 : {
+                    id:1,
+                    left:"0%",
+                    stepposition : 0,
+                    bulletcaption:"1",
+                    bulletclass:"csplacementsimple_bullet_green",
+                    caption:"...simple !",
+                    captionclass:"csplacementsimple_caption_green"
+                },
+                option2 : {
+                    id:2,
+                    left:"100%",
+                    stepposition : 100,
+                    bulletcaption:"2",
+                    bulletclass:"csplacementsimple_bullet_red",
+                    caption:"...difficile !",
+                    captionclass:"csplacementsimple_caption_red"
+                }
+            }
+        },
+        card60 : {
+            parameters:{
+                cardtype:"info",
+                instruction:"Ceci est une carte d'information. Lis-la attentivement et appuie sur le bouton vert quand tu as terminé.",
+                questioncaption: "A quoi sert ce quizz ?",
+                cardcomponentname: "CsInfoComponent"
+            },
+            optional : {
+                imageurl:"",
+                videourl:"",
+                text:"Changer de métier, c'est d'abord une démache intérieure consistant à mieux se connaître. Connais-tu bien ta propre personnalité, tes forces et faiblesses, tes envies et motivations ? Découvre les différentes démarches à entreprendre dans ce quizz.",
+                timer:true,
+                autotime:true,
+                time:0//in milliseconds
+            }
+        },
     }
 }
