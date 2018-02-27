@@ -72,22 +72,22 @@ export class CsSwipecardComponent implements OnInit {
                 iconcontainerclass: this.quizzservice.currentcardobject["option"+String(temp_optionid)].iconcontainerclass,
                 iconclass:this.quizzservice.currentcardobject["option"+String(temp_optionid)].iconclass
             });
-            console.log("i"+String(i));
+            //console.log("i"+String(i));
         }
         for (var i = 0; i < 5; i++) {
-            console.log(i+" : "+this.swipecards[i])
+            //console.log(i+" : "+this.swipecards[i])
         }
     }
 
     public registeraction(like) {
         if (this.countselected < this.maxselected) {
             let temp_optionid = this.quizzservice.currentcardobject.parameters.options[this.cardCursor];
-            console.log("currentswipecardposition");
-            console.log(this.cardCursor);
-            console.log("temp_optionid");
-            console.log(temp_optionid);
-            console.log("like");
-            console.log(like);
+            //console.log("currentswipecardposition");
+            //console.log(this.cardCursor);
+            //console.log("temp_optionid");
+            //console.log(temp_optionid);
+            //console.log("like");
+            //console.log(like);
             if (like == true) {
                 this.countselected++;
             }

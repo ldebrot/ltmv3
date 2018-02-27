@@ -36,7 +36,7 @@ export class QuizzesService {
         quizz5 : {
             caption:"Je trouve mon nouveau métier !",
             description:"Ce quizz te guide à travers les questions portant sur ton nouveau métier.",
-            cardids : [80,81],
+            cardids : [80,81,82,83,84,85],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-dice-4 quizzseletion_icons gradientnew4",

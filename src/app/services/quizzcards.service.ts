@@ -711,7 +711,7 @@ export class QuizzcardsService {
             optional : {
                 imageurl:"",
                 videourl:"",
-                text:"Ce quizz te guide à travers les questions portant sur ton nouveau métier ! <nl>",
+                text:"Ce quizz te guide à travers les questions portant sur ta future profession ! <nl>",
                 timer:true,
                 autotime:true,
                 textanimation:true,
@@ -720,20 +720,115 @@ export class QuizzcardsService {
         },
         card81 : {
             parameters:{
-                cardtype:"orderrelative",
-                instruction:"Distribution de points : distribue les 10 points selon ce qui correspond le plus à ta situation en cliquant sur les différents champs.",
-                questioncaption: "Pourquoi je pense changer de métier ?",
-                cardcomponentname: "CsOrderrelativeComponent",
-                maxpoints: 10,
-                options:[1,2,3,4,5]
+                cardtype:"Placement simple",
+                instruction:"Pour répondre à la question, déplace le curseur selon ta situation.",
+                questioncaption: "As-tu besoin d'aide pour choisir ton nouveau métier ?",
+                cardcomponentname: "CsPlacementsimpleComponent",
+                step :10,//min = 1
+                min: 0,
+                max: 100,
+                options: [1,2],
+                cursorcaption:"toi"
             },
             optional : {
             },
-            option1: {id:1, caption:"Je dois quitter mon poste.", optionvalue:0, basicclass:"unselected1", actionclass:"action1"},
-            option2: {id:2, caption:"Je ne m'épanouis plus.", optionvalue:0, basicclass:"unselected2", actionclass:"action2"},
-            option3: {id:3, caption:"Les conditions de travail ne me conviennent plus.", optionvalue:0, basicclass:"unselected3", actionclass:"action3"},
-            option4: {id:4, caption:"Le salaire ne me suffit pas.", optionvalue:0, basicclass:"unselected4", actionclass:"action4"},
-            option5: {id:5, caption:"je suis à un point mort dans ma carrière.", optionvalue:0, basicclass:"unselected5", actionclass:"action5"},
-        }
+            options : {
+                option1 : {
+                    id:1,
+                    left:"0%",
+                    stepposition : 0,
+                    bulletcaption:"+",
+                    bulletclass:"csplacementsimple_bullet_green",
+                    caption:"Oui, j'ai besoin d'aide !",
+                    captionclass:"csplacementsimple_caption_green"
+                },
+                option2 : {
+                    id:2,
+                    left:"100%",
+                    stepposition : 100,
+                    bulletcaption:"-",
+                    bulletclass:"csplacementsimple_bullet_red",
+                    caption:"Non merci. J'ai ce qu'il faut !",
+                    captionclass:"csplacementsimple_caption_red"
+                }
+            }
+        },
+        card82 : {
+            parameters:{
+                cardtype:"multiplechoice_multiple", 
+                instruction:"Choix multiple: sélectionne la réponse qui te correspond", 
+                questioncaption: "As-tu trouvé ton métier de rêve ?",
+                cardcomponentname: "CsMultipleChoiceComponent",
+                options:[1,2],
+                minselected:1,
+                maxselected:1
+            },
+            optional : {
+            },
+            option1: {id:1, caption:"NON", unselectedclass:"unselectednew8", selectedclass:"selectednew8"},
+            option2: {id:2, caption:"OUI", unselectedclass:"unselectednew9", selectedclass:"selectednew9"},
+        },
+        card83 : {
+            parameters:{
+                cardtype:"orderrelative",
+                instruction:"Distribution de points : distribue les 10 points selon ce qui correspond le plus à ta situation en cliquant sur les différents champs.",
+                questioncaption: "Quelles situations me correspondent le plus ?",
+                cardcomponentname: "CsOrderrelativeComponent",
+                maxpoints: 10,
+                options:[1,2,3,4]
+            },
+            optional : {
+                condition: [{experience:"5-82-1",value:true, compulsory:true}],//this means that this card is not necessarily shown
+            },
+            option1: {id:1, caption:"Je n'arrive pas à trouver de nouveau métier.", optionvalue:0, basicclass:"unselectednew9", actionclass:"action1"},
+            option2: {id:2, caption:"Je ne trouve pas de métier qui m'intéresse vraiment.", optionvalue:0, basicclass:"unselectednew8", actionclass:"action2"},
+            option3: {id:3, caption:"J'ai trouvé un ou plusieurs métiers dont je ne suis pas sûr.", optionvalue:0, basicclass:"unselectednew7", actionclass:"action3"},
+            option4: {id:4, caption:"Il y a trop de métiers qui m'intéressent.", optionvalue:0, basicclass:"unselectednew6", actionclass:"action4"},
+        },
+        card84 : {
+            parameters:{
+                cardtype:"info",
+                instruction:"Ceci est une carte d'information. Lis-la attentivement et appuie sur le bouton vert quand tu as terminé.",
+                questioncaption: "Cartes à swiper !",
+                cardcomponentname: "CsInfoComponent"
+            },
+            optional : {
+                condition: [{experience:"5-82-2",value:true, compulsory:true}],//this means that this card is not necessarily shown
+                imageurl:"",
+                videourl:"",
+                text:"Et maintenant une série de questions fermées oui/non sur ton métier de rêve ! <nl> Lis bien la question avant de 'swiper' à gauche pour dire OUI et à droite pour dire NON.",
+                timer:true,
+                autotime:true,
+                textanimation:true,
+                time:0//in milliseconds
+            }
+        },
+        card85 : {
+            parameters:{
+                cardtype:"Swipecards",
+                instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par oui ou à droite pour répondre par non",
+                questioncaption: "A propos de ton métier de rêve",
+                cardcomponentname: "CsSwipecardComponent",
+                options:[1,2,3,4,5,6,7],
+                maxselected:8
+            },
+            optional : {
+                condition: [{experience:"5-82-2",value:true, compulsory:true}],//this means that this card is not necessarily shown
+            },
+            option1: {id:1, caption:"Je pense que j'ai trouvé un métier réaliste.", backgroundclass:"swipecard_1 background_1", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-thumb-up gradientnew1 swipecardicon"},
+            option2: {id:2, caption:"Je sais quelles compétences sont nécessaires pour pratiquer ce métier.", backgroundclass:"swipecard_1 background_2", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-auto-fix gradientnew2 swipecardicon"},
+            option3: {id:3, caption:"Je sais dans quelles organisations je peux exercer ce métier.", backgroundclass:"swipecard_1 background_3", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-factory gradientnew3 swipecardicon"},
+            option4: {id:4, caption:"Je sais s'il y a des offres d'emploi dans ce métier.", backgroundclass:"swipecard_1 background_4", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-star-circle gradientnew4 swipecardicon"},
+            option5: {id:1, caption:"Je connais les formations qui me seront utiles.", backgroundclass:"swipecard_1 background_5", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-school gradientnew5 swipecardicon"},
+            option6: {id:2, caption:"Je connais quelqu'un qui exerce ce métier.", backgroundclass:"swipecard_1 background_6", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-wechat gradientnew6 swipecardicon"},
+            option7: {id:3, caption:"Je suis fait pour ce métier !", backgroundclass:"swipecard_1 background_7", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-emoticon-cool gradientnew7 swipecardicon"}
+        },
     }
 }
