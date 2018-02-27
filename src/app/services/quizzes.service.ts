@@ -36,10 +36,28 @@ export class QuizzesService {
         quizz5 : {
             caption:"Je trouve mon nouveau métier !",
             description:"Ce quizz te guide à travers les questions portant sur ton nouveau métier.",
-            cardids : [80,81,82,83,84,85],
+            cardids : [80,81,82,83,84,85,86],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-dice-4 quizzseletion_icons gradientnew4",
+            followupaction: {command : "navigate", route: "quizzselection", delay:0}
+        },
+        quizz6 : {//XXXXXXXXX
+            caption:"Je trouve mon secteur !",
+            description:"Ce quizz te guide à travers les questions portant sur ton nouveau métier.",
+            cardids : [],
+            conditionvisible: false,
+            conditionenabled: false,
+            iconclass: "mdi mdi-dice-5 quizzseletion_icons gradientnew5",
+            followupaction: {command : "navigate", route: "quizzselection", delay:0}
+        },
+        quizz7 : {//XXXXXXXXX
+            caption:"Je trouve mon job !",
+            description:"Ce quizz te guide à travers les questions portant sur ton nouveau métier.",
+            cardids : [],
+            conditionvisible: false,
+            conditionenabled: false,
+            iconclass: "mdi mdi-dice-6 quizzseletion_icons gradientnew6",
             followupaction: {command : "navigate", route: "quizzselection", delay:0}
         },
         quizz98 : {

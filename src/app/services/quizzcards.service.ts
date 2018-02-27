@@ -6,26 +6,6 @@ export class QuizzcardsService {
     constructor() { }
     
     public cards : any = {
-        card1 : {
-            parameters:{
-                cardtype:"multiplechoice_multiple", 
-                instruction:"Choix multiple: sélectionne toutes les réponses qui te correspondent", 
-                questioncaption: "Quelles citations te correspondent ?",
-                titlecaption: "Je veux changer de situation pour...",
-                cardcomponentname: "CsMultipleChoiceComponent",
-                options:[1,2,3,4,5,6,7],
-                minselected:1
-            },
-            optional : {
-            },
-            option1: {id:1, caption:'...travailler dans une entreprise', unselectedclass:"unselected1", selectedclass:"selected1"},
-            option2: {id:2, caption:'...travailler dans une institution publique', unselectedclass:"unselected2", selectedclass:"selected2"},
-            option3: {id:3, caption:'...travailler dans une association / ONG', unselectedclass:"unselected3", selectedclass:"selected3"},
-            option4: {id:4, caption:'...devenir indépendant (sans employés)', unselectedclass:"unselected4", selectedclass:"selected4"},
-            option5: {id:5, caption:'...devenir entrepreneur (avec employés)', unselectedclass:"unselected5", selectedclass:"selected5"},
-            option6: {id:6, caption:'...reprendre une société avec des employés', unselectedclass:"unselected6", selectedclass:"selected6"},
-            option7: {id:7, caption:'...je ne suis pas encore sûr de mon choix', unselectedclass:"unselected7", selectedclass:"selected7"}
-        },
         card20 : {
             parameters:{
                 cardtype:"info",
@@ -64,7 +44,7 @@ export class QuizzcardsService {
             parameters:{
                 cardtype:"multiplechoice_multiple", 
                 instruction:"Choix multiple: sélectionne toutes les réponses qui te correspondent.", 
-                questioncaption: "Qu'est-ce qui m'amène à changer de métier ?",
+                questioncaption: "Qu'est-ce qui t'amène à changer de métier ?",
                 cardcomponentname: "CsMultipleChoiceComponent",
                 options:[1,2,3,4,5],
                 minselected:1,
@@ -82,7 +62,7 @@ export class QuizzcardsService {
             parameters:{
                 cardtype:"multiplechoice_multiple", 
                 instruction:"Choix multiple: sélectionne toutes les réponses qui te correspondent", 
-                questioncaption: "Qu'est-ce que j'attends de Lunchtime ?",
+                questioncaption: "Qu'est-ce que tu attends de Lunchtime ?",
                 cardcomponentname: "CsMultipleChoiceComponent",
                 options:[1,2,3,4,5,6],
                 minselected:1,
@@ -152,7 +132,7 @@ export class QuizzcardsService {
         card26 : {
             parameters:{
                 cardtype:"Placement simple",
-                instruction:"Pour répondre à la question, déplacez le curseur selon votre situation.",
+                instruction:"Pour répondre à la question, déplace le curseur selon ta situation.",
                 questioncaption: "Tu es sûr(e) que tu vas réussir à changer de métier",
                 cardcomponentname: "CsPlacementsimpleComponent",
                 step :1,//min = 1
@@ -200,8 +180,8 @@ export class QuizzcardsService {
         card28 : {
             parameters:{
                 cardtype:"orderregular",
-                instruction:"Mettez les étapes dans l'ordre qui vous semble ",
-                questioncaption: "Mettez les étapes de la reconversion dans le bon ordre",
+                instruction:"Mets les étapes dans l'ordre qui te semble correct.",
+                questioncaption: "Mets les étapes de la reconversion dans le bon ordre",
                 cardcomponentname: "CsOrderregularComponent",
                 csorderregularshuffle: true,
                 options:[1,2,3,4,5]
@@ -243,7 +223,7 @@ export class QuizzcardsService {
             optional : {
                 imageurl:"",
                 videourl:"",
-                text:"Pour la partie finale de ce quizz, tu peux 'swiper' à GAUCHE les cartes qui te correspondent et à DROITE celles qui ne te correspondent pas. Lis bien la question et le texte avant de faire ton choix.",
+                text:"Pour la partie finale de ce quizz, tu peux 'swiper' à GAUCHE les cartes qui ne te correspondent pas et à DROITE celles qui te correspondent. <nl> Lis bien la question et le texte avant de faire ton choix.",
                 timer:true,
                 autotime:true,
                 textanimation:true,
@@ -253,7 +233,7 @@ export class QuizzcardsService {
         card31 : {
             parameters:{
                 cardtype:"Swipecards",
-                instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par oui ou à droite pour répondre par non",
+                instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par non ou à droite pour répondre par non",
                 questioncaption: "Quand je pense à mon projet de reconversion...",
                 cardcomponentname: "CsSwipecardComponent",
                 options:[1,2,3,4,5],
@@ -379,7 +359,7 @@ export class QuizzcardsService {
             optional : {
                 imageurl:"",
                 videourl:"",
-                text:"Les prochaines cartes te demanderont si tu connais déjà des personnes qui pourraient t'aider à avancer sur différents points de ton projet. Lis bien les cartes avant de swiper à gauche pour dire OUI, ou à droite pour dire NON.",
+                text:"Les prochaines cartes te demanderont si tu connais déjà des personnes qui pourraient t'aider à avancer sur différents points de ton projet. Lis bien les cartes avant de swiper à gauche pour dire NON, ou à droite pour dire OUI.",
                 timer:true,
                 autotime:true,
                 textanimation:true,
@@ -389,7 +369,7 @@ export class QuizzcardsService {
         card45 : {
             parameters:{
                 cardtype:"Swipecards",
-                instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par oui ou à droite pour répondre par non",
+                instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par non ou à droite pour répondre par oui",
                 questioncaption: "Tu connais quelqu'un qui...",
                 cardcomponentname: "CsSwipecardComponent",
                 options:[1,2,3,4],
@@ -426,7 +406,7 @@ export class QuizzcardsService {
         card47 : {
             parameters:{
                 cardtype:"Swipecards",
-                instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par oui ou à droite pour répondre par non",
+                instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par non ou à droite pour répondre par oui",
                 questioncaption: "Pour élargir mon réseau professionnel, tu as...",
                 cardcomponentname: "CsSwipecardComponent",
                 options:[1,2,3,4,5,6,7,8],
@@ -442,13 +422,13 @@ export class QuizzcardsService {
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-school gradient3 swipecardicon"},
             option4: {id:4, caption:"...participé à des journées portes ouvertes.", backgroundclass:"swipecard_1 background_4", 
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-door-open gradient4 swipecardicon"},
-            option5: {id:1, caption:"...fait un tour dans un salon professionnel.", backgroundclass:"swipecard_1 background_5", 
+            option5: {id:5, caption:"...fait un tour dans un salon professionnel.", backgroundclass:"swipecard_1 background_5", 
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-calendar-text gradient5 swipecardicon"},
-            option6: {id:2, caption:"...utilisé une application de mise en relation (hors lunchtime).", backgroundclass:"swipecard_1 background_6", 
+            option6: {id:6, caption:"...utilisé une application de mise en relation (hors lunchtime).", backgroundclass:"swipecard_1 background_6", 
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-cellphone gradient6 swipecardicon"},
-            option7: {id:3, caption:"...pris contact avec des fédérations professionnelles.", backgroundclass:"swipecard_1 background_7", 
+            option7: {id:7, caption:"...pris contact avec des fédérations professionnelles.", backgroundclass:"swipecard_1 background_7", 
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-domain gradient7 swipecardicon"},
-            option8: {id:4, caption:"...contacté des organismes publics pour m'accompagner.", backgroundclass:"swipecard_1 background_8", 
+            option8: {id:8, caption:"...contacté des organismes publics pour m'accompagner.", backgroundclass:"swipecard_1 background_8", 
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-bank gradient8 swipecardicon"},
         },
         card48 : {
@@ -772,7 +752,7 @@ export class QuizzcardsService {
             parameters:{
                 cardtype:"orderrelative",
                 instruction:"Distribution de points : distribue les 10 points selon ce qui correspond le plus à ta situation en cliquant sur les différents champs.",
-                questioncaption: "Quelles situations me correspondent le plus ?",
+                questioncaption: "Quelles situations te correspondent le plus ?",
                 cardcomponentname: "CsOrderrelativeComponent",
                 maxpoints: 10,
                 options:[1,2,3,4]
@@ -796,7 +776,7 @@ export class QuizzcardsService {
                 condition: [{experience:"5-82-2",value:true, compulsory:true}],//this means that this card is not necessarily shown
                 imageurl:"",
                 videourl:"",
-                text:"Et maintenant une série de questions fermées oui/non sur ton métier de rêve ! <nl> Lis bien la question avant de 'swiper' à gauche pour dire OUI et à droite pour dire NON.",
+                text:"Et maintenant une série de questions fermées oui/non sur ton métier de rêve ! <nl> Lis bien la question avant de 'swiper' à gauche pour dire NON et à droite pour dire OUI.",
                 timer:true,
                 autotime:true,
                 textanimation:true,
@@ -806,7 +786,7 @@ export class QuizzcardsService {
         card85 : {
             parameters:{
                 cardtype:"Swipecards",
-                instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par oui ou à droite pour répondre par non",
+                instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par non ou à droite pour répondre par oui.",
                 questioncaption: "A propos de ton métier de rêve",
                 cardcomponentname: "CsSwipecardComponent",
                 options:[1,2,3,4,5,6,7],
@@ -823,12 +803,36 @@ export class QuizzcardsService {
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-factory gradientnew3 swipecardicon"},
             option4: {id:4, caption:"Je sais s'il y a des offres d'emploi dans ce métier.", backgroundclass:"swipecard_1 background_4", 
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-star-circle gradientnew4 swipecardicon"},
-            option5: {id:1, caption:"Je connais les formations qui me seront utiles.", backgroundclass:"swipecard_1 background_5", 
+            option5: {id:5, caption:"Je connais les formations qui me seront utiles.", backgroundclass:"swipecard_1 background_5", 
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-school gradientnew5 swipecardicon"},
-            option6: {id:2, caption:"Je connais quelqu'un qui exerce ce métier.", backgroundclass:"swipecard_1 background_6", 
+            option6: {id:6, caption:"Je connais quelqu'un qui exerce ce métier.", backgroundclass:"swipecard_1 background_6", 
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-wechat gradientnew6 swipecardicon"},
-            option7: {id:3, caption:"Je suis fait pour ce métier !", backgroundclass:"swipecard_1 background_7", 
-            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-emoticon-cool gradientnew7 swipecardicon"}
+            option7: {id:7, caption:"Je suis fait pour ce métier !", backgroundclass:"swipecard_1 background_7", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-emoticon-cool gradientnew7 swipecardicon"},
+            option8: {id:8, caption:"Je sais s'il y a des opportunités dans ma région.", backgroundclass:"swipecard_1 background_8", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-earth gradientnew8 swipecardicon"},
+            option9: {id:9, caption:"J'ai déjà pris contact avec des employeurs potentiels.", backgroundclass:"swipecard_1 background_9", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-contact-mail gradientnew9 swipecardicon"}
+        },
+        card86 : {
+            parameters:{
+                cardtype:"multiplechoice_multiple", 
+                instruction:"Choix multiple: sélectionne toutes les réponses qui te correspondent", 
+                questioncaption: "Quelles citations te correspondent ?",
+                titlecaption: "Mon métier, je veux l'exercer...",
+                cardcomponentname: "CsMultipleChoiceComponent",
+                options:[1,2,3,4,5,6,7],
+                minselected:1
+            },
+            optional : {
+            },
+            option1: {id:1, caption:"...dans une entreprise privée.", unselectedclass:"unselected1", selectedclass:"selected1"},
+            option2: {id:2, caption:"...dans une institution publique.", unselectedclass:"unselected2", selectedclass:"selected2"},
+            option3: {id:3, caption:"...dans une association / ONG.", unselectedclass:"unselected3", selectedclass:"selected3"},
+            option4: {id:4, caption:"...en tant qu'entrepreneur(e)", unselectedclass:"unselected4", selectedclass:"selected4"},
+            option5: {id:5, caption:"...en tant que professionnel(le) indépendant(e)", unselectedclass:"unselected5", selectedclass:"selected5"},
+            option6: {id:6, caption:"...en reprenant une société avec des employés", unselectedclass:"unselected6", selectedclass:"selected6"},
+            option7: {id:7, caption:"...n'importe où. Aucune idée.", unselectedclass:"unselected7", selectedclass:"selected7"}
         },
     }
 }
