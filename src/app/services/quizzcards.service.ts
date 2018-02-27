@@ -467,10 +467,10 @@ export class QuizzcardsService {
             },
             optional : {
             },
-            option1: {id:1, caption:"...ma famille", unselectedclass:"unselected1", selectedclass:"selectednew1"},
-            option2: {id:2, caption:"...des amis", unselectedclass:"unselected2", selectedclass:"selectednew2"},
-            option3: {id:3, caption:"...des collègues", unselectedclass:"unselected3", selectedclass:"selectednew3"},
-            option4: {id:4, caption:"...des supérieurs et RH", unselectedclass:"unselected4", selectedclass:"selectednew4"}
+            option1: {id:1, caption:"...ma famille", unselectedclass:"unselectednew1", selectedclass:"selectednew1"},
+            option2: {id:2, caption:"...des amis", unselectedclass:"unselectednew2", selectedclass:"selectednew2"},
+            option3: {id:3, caption:"...des collègues", unselectedclass:"unselectednew3", selectedclass:"selectednew3"},
+            option4: {id:4, caption:"...des supérieurs et RH", unselectedclass:"unselectednew4", selectedclass:"selectednew4"}
         },
         card44 : {
             parameters:{
@@ -599,7 +599,7 @@ export class QuizzcardsService {
             optional : {
                 imageurl:"",
                 videourl:"",
-                text:"Changer de métier, c'est d'abord une démache intérieure consistant à mieux se connaître. <nl> Connais-tu bien ta propre personnalité, tes forces et faiblesses, tes envies et motivations ? Découvre les différentes démarches à entreprendre dans ce quizz.",
+                text:"Changer de métier, c'est d'abord une démache intérieure consistant à mieux se connaître. <nl> Connais-tu bien ta propre personnalité, tes forces et faiblesses, tes envies et motivations ? <nl> <nl> Découvre les différentes démarches à entreprendre dans ce quizz.",
                 timer:true,
                 autotime:true,
                 textanimation:true,
@@ -610,7 +610,7 @@ export class QuizzcardsService {
             parameters:{
                 cardtype:"multiplechoice_multiple", 
                 instruction:"Choix multiple: sélectionne la réponse qui te correspond", 
-                questioncaption: "As-tu déjà fait un test de personnalité ?",
+                questioncaption: "Sais-tu ce que c'est qu'un test de personnalité ?",
                 cardcomponentname: "CsMultipleChoiceComponent",
                 options:[1,2],
                 minselected:1,
@@ -620,6 +620,58 @@ export class QuizzcardsService {
             },
             option1: {id:1, caption:'OUI', unselectedclass:"unselected5", selectedclass:"selected5"},
             option2: {id:2, caption:'NON', unselectedclass:"unselected4", selectedclass:"selected4"}
-        }
+        },
+        card62 : {
+            parameters:{
+                cardtype:"multiplechoice_multiple", 
+                instruction:"Choix multiple: sélectionne la réponse qui te correspond", 
+                questioncaption: "As-tu déjà fait un test de personnalité ?",
+                cardcomponentname: "CsMultipleChoiceComponent",
+                options:[1,2],
+                minselected:1,
+                maxselected:1
+            },
+            optional : {
+                condition: [{experience:"4-61-1",value:true, compulsory:true}],//this means that this card is not necessarily shown
+            },
+            option1: {id:1, caption:'OUI', unselectedclass:"unselected5", selectedclass:"selected5"},
+            option2: {id:2, caption:'NON', unselectedclass:"unselected4", selectedclass:"selected4"}
+        },
+        card63 : {
+            parameters:{
+                cardtype:"info",
+                instruction:"Ceci est une carte d'information. Lis-la attentivement et appuie sur le bouton vert quand tu as terminé.",
+                questioncaption: "A quoi sert un test de personnalité ?",
+                cardcomponentname: "CsInfoComponent"
+            },
+            optional : {
+                condition: [{experience:"4-61-2",value:true, compulsory:true}],//this means that this card is not necessarily shown
+                imageurl:"",
+                videourl:"",
+                text:"Les tests de personnalité sont un outil intéressant pour mieux se connaître, savoir quels sont ses talents, ses points forts et aussi ses points de vigilance. <nl> <nl> C'est aussi particulièrement utile pour trouver le bon poste ou le bon métier.",
+                timer:true,
+                autotime:true,
+                textanimation:true,
+                time:0//in milliseconds
+            }
+        },
+        card64 : {
+            parameters:{
+                cardtype:"multiplechoice_multiple", 
+                instruction:"Choix multiple: sélectionne la réponse qui te correspond", 
+                questioncaption: "Que penses-tu des tests de personnalité ?",
+                cardcomponentname: "CsMultipleChoiceComponent",
+                options:[1,2,3,4],
+                minselected:1,
+                maxselected:4
+            },
+            optional : {
+                condition: [{experience:"4-62-1",value:true, compulsory:true}],//this means that this card is not necessarily shown
+            },
+            option1: {id:1, caption:"Ils m'ont aidé à mieux me connaître.", unselectedclass:"unselectednew1", selectedclass:"selectednew1"},
+            option2: {id:2, caption:"Je ne sais pas trop que faire avec mon profil.", unselectedclass:"unselectednew2", selectedclass:"selectednew2"},
+            option3: {id:3, caption:"Je ne me reconnaît pas dans les résultats.", unselectedclass:"unselectednew3", selectedclass:"selectednew3"},
+            option4: {id:4, caption:"Je ne vois pas vraiment à quoi ça sert.", unselectedclass:"unselectednew4", selectedclass:"selectednew4"}
+        }        
     }
 }

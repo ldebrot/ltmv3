@@ -557,7 +557,8 @@ input.ng-invalid.ng-touched {
 }
 
 .csmultiplechoice_buttoncontainer {
-    width:95%;
+    width: 100%;
+    padding: 2.5%;
 }
 
 .csmultiplechoice_afterbuttoncontainer {
@@ -589,7 +590,8 @@ input.ng-invalid.ng-touched {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);    
+    transform: translate(-50%,-50%);
+    width: 100%;
 }
 
 /* gradient collection */

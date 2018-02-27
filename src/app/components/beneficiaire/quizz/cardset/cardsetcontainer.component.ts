@@ -136,6 +136,9 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
         this.quizzservice.checkbuttonsubject.subscribe((value:boolean)=>{//check if checkbutton should be available
             console.log("checkbutton set to"+value+" // checkbuttonhidden set to"+!value);
             this.checkbuttonhidden = !value;
+            if (this.checkbuttonhidden) {
+                this.checkbuttontooltip.close();
+            }
         });
         this.quizzservice.checkbuttonttsubject.subscribe((instructions: checkbuttontooltipmodel)=>{//shows checkbutton tooltip
             this.showcheckbuttontooltip(instructions);

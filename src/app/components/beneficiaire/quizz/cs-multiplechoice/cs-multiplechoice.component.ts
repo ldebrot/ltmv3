@@ -36,6 +36,7 @@ export class CsMultiplechoiceComponent implements OnInit {
     }
     
     ngOnInit() {
+        this.quizzservice.setcheckbutton(false);
         this.populatebuttonitems();
         this.setupbuttonservice();
         this.setuptitle();
@@ -154,7 +155,7 @@ export class CsMultiplechoiceComponent implements OnInit {
     }
 
     public setuptitle():void {
-        if (this.quizzservice.currentcardobject.parameters.titlecaption !== null) {
+        if (this.quizzservice.currentcardobject.parameters.titlecaption != null) {
             this.titlecaption = this.quizzservice.currentcardobject.parameters.titlecaption;
         }
     }

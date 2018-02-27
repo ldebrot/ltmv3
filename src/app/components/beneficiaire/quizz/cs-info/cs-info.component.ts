@@ -46,7 +46,7 @@ export class CsInfoComponent implements OnInit {
     //check whether there is word animation
     public istherewordanimation():boolean{
         let temp_result : boolean = false;
-        if(this.quizzservice.currentcardobject.optional.textanimation !== null){
+        if(this.quizzservice.currentcardobject.optional.textanimation != null){
             if (this.quizzservice.currentcardobject.optional.textanimation) {
                 temp_result = true
             }

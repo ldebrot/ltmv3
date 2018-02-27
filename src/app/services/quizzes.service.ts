@@ -27,7 +27,7 @@ export class QuizzesService {
         quizz4 : {
             caption:"Est-ce que je me connais bien ?",
             description:"Connais-tu bien ta propre personnalité, tes forces et faiblesses, tes envies et motivations ? Découvre les différentes démarches à entreprendre dans ce quizz.",
-            cardids : [60,61],
+            cardids : [60,61,62,63,64],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-dice-3 quizzseletion_icons gradientnew3",

@@ -57,10 +57,9 @@ export class QuizzService implements OnInit{
 
     //go to next card
     public gotonextcard(){
-        if(this.setcurrentcardpositiontonext()){
-            this.chargecardbyposition(this.currentcardposition, false);
-            this.readwritebufferservice.transmitbuffer();
-        }
+        this.readwritebufferservice.transmitbuffer();//has to be first here to make condition check possible
+        this.setcurrentcardpositiontonext();
+        this.chargecardbyposition(this.currentcardposition, false);
     }
 
     //initiates quizz
@@ -78,7 +77,7 @@ export class QuizzService implements OnInit{
         let temp_result : boolean = false;
         if (this.currentquizzid!== 0 
             && this.currentquizzobject.cardids.length !== 0 
-            && this.currentcardobject.parameters !== null){
+            && this.currentcardobject.parameters != null){
                 temp_result = true
             }
         return temp_result;
@@ -91,12 +90,45 @@ export class QuizzService implements OnInit{
     }
 
     //set card position to next
-    public setcurrentcardpositiontonext():boolean{
+    public setcurrentcardpositiontonext(){
         let temp_maxposition : number = this.currentquizzobject.cardids.length - 1;
         if (this.currentcardposition < temp_maxposition) {
             this.currentcardposition++;
             console.log("current card position set to"+this.currentcardposition);
-            return true;
+
+            //let's check whether there is a condition to be met            
+            let temp_idofnextcard : number = this.currentquizzobject.cardids[(this.currentcardposition)];
+            let temp_nextcarditem : any = this.cards["card"+temp_idofnextcard];
+            let temp_nbconditions : number = 0;
+            if (temp_nextcarditem.optional.condition != null){
+                    temp_nbconditions = temp_nextcarditem.optional.condition.length;
+            }
+            console.log("We have "+temp_nbconditions+" condition(s) to be met for this card");
+
+            //let's check any conditions
+            if (temp_nbconditions>0){
+                let temp_conditionsmet : boolean = false;
+                temp_nextcarditem.optional.condition.forEach(element => {
+                    if (element.compulsory) {
+                        //if condition is compulsory, visible is set to false it if condition unmet
+                        temp_conditionsmet = this.checkifconditionmet(element.experience, element.value);
+                    } else {
+                        //if condition is not compulsory, visible is set to true only if condition met
+                        if (this.checkifconditionmet(element.experience, element.value)) {
+                            temp_conditionsmet = true;
+                        }
+                    };
+                });
+
+                if (temp_conditionsmet) {
+                    console.log("conditions for card are met");
+                } else {
+                    console.log("conditions for card are NOT met. Jump to next.");
+                    setTimeout(() => {
+                        this.gotonextcard();
+                    }, 100);
+                }
+            }
         } else {
             console.log("you reached the end of the quizz at card position "+this.currentcardposition+".");
             if (this.currentquizzobject.followupaction!=null){
@@ -104,10 +136,10 @@ export class QuizzService implements OnInit{
             } else {
                 console.log("no follow-up action indicated");
             }
-            return false;
         }
     }
 
+    //follow-up action designates what happens after a quizz has reached the end
     public processfollowupaction(followupaction:any){
         let temp_command :string = (followupaction.command == null) ? "empty" : followupaction.command; 
         switch(temp_command) {
