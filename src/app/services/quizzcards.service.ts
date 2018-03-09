@@ -223,7 +223,7 @@ export class QuizzcardsService {
             optional : {
                 imageurl:"",
                 videourl:"",
-                text:"Pour la partie finale de ce quizz, tu peux 'swiper' à GAUCHE les cartes qui ne te correspondent pas et à DROITE celles qui te correspondent. <nl> Lis bien la question et le texte avant de faire ton choix.",
+                text:"Pour la partie finale de ce quizz, tu peux 'swiper' à DROITE les cartes qui te correspondent et à GAUCHE celles qui ne te correspondent pas. <nl> Lis bien la question et le texte avant de faire ton choix.",
                 timer:true,
                 autotime:true,
                 textanimation:true,
@@ -233,7 +233,7 @@ export class QuizzcardsService {
         card31 : {
             parameters:{
                 cardtype:"Swipecards",
-                instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par non ou à droite pour répondre par non",
+                instruction:"Jeu de cartes: fais glisser les cartes à droite pour répondre par oui et à gauche pour répondre par non",
                 questioncaption: "Quand je pense à mon projet de reconversion...",
                 cardcomponentname: "CsSwipecardComponent",
                 options:[1,2,3,4,5],
@@ -406,7 +406,7 @@ export class QuizzcardsService {
         card47 : {
             parameters:{
                 cardtype:"Swipecards",
-                instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par non ou à droite pour répondre par oui",
+                instruction:"Jeu de cartes: fais glisser les cartes à droite pour répondre par oui et à gauche pour répondre par non",
                 questioncaption: "Pour élargir mon réseau professionnel, tu as...",
                 cardcomponentname: "CsSwipecardComponent",
                 options:[1,2,3,4,5,6,7,8],
@@ -786,7 +786,7 @@ export class QuizzcardsService {
         card85 : {
             parameters:{
                 cardtype:"Swipecards",
-                instruction:"Jeu de cartes: fais glisser les cartes à gauche pour répondre par non ou à droite pour répondre par oui.",
+                instruction:"Jeu de cartes: fais glisser les cartes à droite pour répondre par oui et à gauche pour répondre par non",
                 questioncaption: "A propos de ton métier de rêve",
                 cardcomponentname: "CsSwipecardComponent",
                 options:[1,2,3,4,5,6,7],
@@ -834,5 +834,303 @@ export class QuizzcardsService {
             option6: {id:6, caption:"...en reprenant une société avec des employés", unselectedclass:"unselected6", selectedclass:"selected6"},
             option7: {id:7, caption:"...n'importe où. Aucune idée.", unselectedclass:"unselected7", selectedclass:"selected7"}
         },
+        card100 : {
+            parameters:{
+                cardtype:"info",
+                instruction:"Ceci est une carte d'information. Lis-la attentivement et appuie sur le bouton vert quand tu as terminé.",
+                questioncaption: "Quels secteurs t'intéressent ?",
+                cardcomponentname: "CsInfoComponent"
+            },
+            optional : {
+                condition: false,
+                imageurl:"",
+                videourl:"",
+                text:"Dans ce quizz, fais le point sur ton choix de secteur avant de parcourir différentes suggestions.",
+                timer:true,
+                autotime:true,
+                textanimation:true,
+                time:0//in milliseconds
+            }
+        },
+        card101 : {
+            parameters:{
+                cardtype:"Placement simple",
+                instruction:"Pour répondre à la question, déplace le curseur selon ta situation.",
+                questioncaption: "Sais-tu dans quel(s) secteur(s) tu souhaites travailler ?",
+                cardcomponentname: "CsPlacementsimpleComponent",
+                step :10,//min = 1
+                min: 0,
+                max: 100,
+                options: [1,2],
+                cursorcaption:"toi"
+            },
+            optional : {
+            },
+            options : {
+                option1 : {
+                    id:1,
+                    left:"0%",
+                    stepposition : 0,
+                    bulletcaption:"+",
+                    bulletclass:"csplacementsimple_bullet_green",
+                    caption:"Oui, absolument !",
+                    captionclass:"csplacementsimple_caption_green"
+                },
+                option2 : {
+                    id:2,
+                    left:"100%",
+                    stepposition : 100,
+                    bulletcaption:"-",
+                    bulletclass:"csplacementsimple_bullet_red",
+                    caption:"Non, pas du tout !",
+                    captionclass:"csplacementsimple_caption_red"
+                }
+            }
+        },        
+        card102 : {
+            parameters:{
+                cardtype:"multiplechoice_multiple", 
+                instruction:"Choix multiple: sélectionne toutes les réponses qui te correspondent", 
+                questioncaption: "Quelles citations correspondent à ta situation ?",
+                titlecaption: "",
+                cardcomponentname: "CsMultipleChoiceComponent",
+                options:[1,2,3,4],
+                minselected:0
+            },
+            optional : {
+            },
+            option1: {id:1, caption:"Je voudrais découvrir de nouveaux secteurs.", unselectedclass:"unselected2", selectedclass:"selected2"},
+            option2: {id:2, caption:"J'ai du mal à choisir un secteur en particulier.", unselectedclass:"unselected3", selectedclass:"selected3"},
+            option3: {id:3, caption:"Je sais quelles causes m'intéressent.", unselectedclass:"unselected4", selectedclass:"selected4"},
+            option4: {id:4, caption:"Je veux rencontrer un professionnel d'un secteur.", unselectedclass:"unselected5", selectedclass:"selected5"}
+        },
+        card103 : {
+            parameters:{
+                cardtype:"Placement simple",
+                instruction:"Pour répondre à la question, déplace le curseur selon ta situation.",
+                questioncaption: "As-tu besoin d'aide pour découvrir des secteurs d'activité ?",
+                cardcomponentname: "CsPlacementsimpleComponent",
+                step :10,//min = 1
+                min: 0,
+                max: 100,
+                options: [1,2],
+                cursorcaption:"toi"
+            },
+            optional : {
+                condition: [{experience:"6-102-1",value:true, compulsory:true}],//this means that this card is not necessarily shown
+            },
+            options : {
+                option1 : {
+                    id:1,
+                    left:"0%",
+                    stepposition : 0,
+                    bulletcaption:"+",
+                    bulletclass:"csplacementsimple_bullet_green",
+                    caption:"Oui, j'ai besoin d'aide !",
+                    captionclass:"csplacementsimple_caption_green"
+                },
+                option2 : {
+                    id:2,
+                    left:"100%",
+                    stepposition : 100,
+                    bulletcaption:"-",
+                    bulletclass:"csplacementsimple_bullet_red",
+                    caption:"Non merci. J'ai ce qu'il faut !",
+                    captionclass:"csplacementsimple_caption_red"
+                }
+            }
+        },
+        card104 : {
+            parameters:{
+                cardtype:"Placement simple",
+                instruction:"Pour répondre à la question, déplace le curseur selon ta situation.",
+                questioncaption: "Est-ce important pour toi de travailler dans le bon secteur ?",
+                cardcomponentname: "CsPlacementsimpleComponent",
+                step :10,//min = 1
+                min: 0,
+                max: 100,
+                options: [1,2],
+                cursorcaption:"toi"
+            },
+            optional : {
+            },
+            options : {
+                option1 : {
+                    id:1,
+                    left:"0%",
+                    stepposition : 0,
+                    bulletcaption:"+",
+                    bulletclass:"csplacementsimple_bullet_green",
+                    caption:"Oui, le secteur est très important !",
+                    captionclass:"csplacementsimple_caption_green"
+                },
+                option2 : {
+                    id:2,
+                    left:"100%",
+                    stepposition : 100,
+                    bulletcaption:"-",
+                    bulletclass:"csplacementsimple_bullet_red",
+                    caption:"Non, le secteur est secondaire.",
+                    captionclass:"csplacementsimple_caption_red"
+                }
+            }
+        },
+        card105 : {
+            parameters:{
+                cardtype:"info",
+                instruction:"Ceci est une carte d'information. Lis-la attentivement et appuie sur le bouton vert quand tu as terminé.",
+                questioncaption: "Cartes à swiper !",
+                cardcomponentname: "CsInfoComponent"
+            },
+            optional : {
+                condition: false,
+                imageurl:"",
+                videourl:"",
+                text:"Pour terminer, une série de cartes à swiper. <nl> Sur chaque carte, un secteur. <nl> Si le secteur t'intéresse, swipe la carte à droite. <nl> Sinon, swipe-la à gauche.",
+                timer:true,
+                autotime:true,
+                textanimation:true,
+                time:0//in milliseconds
+            }
+        },          
+        card106 : {
+            parameters:{
+                cardtype:"Swipecards",
+                instruction:"Jeu de cartes: fais glisser les cartes à droite pour répondre par oui et à gauche pour répondre par non",
+                questioncaption: "A propos de ton métier de rêve",
+                cardcomponentname: "CsSwipecardComponent",
+                options:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19]
+            },
+            optional : {
+            },
+            option1: {id:1, caption:"Agroalimentaire", backgroundclass:"swipecard_1 backgroundnew_1", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-corn gradientnew1 swipecardicon"},
+            option2: {id:2, caption:"Banque & assurance", backgroundclass:"swipecard_1 backgroundnew_2", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-cash-multiple gradientnew2 swipecardicon"},
+            option3: {id:3, caption:"Bois / Papier / Carton / Imprimerie", backgroundclass:"swipecard_1 backgroundnew_3", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-paper-cut-vertical gradientnew3 swipecardicon"},
+            option4: {id:4, caption:"BTP / Matériaux de construction", backgroundclass:"swipecard_1 backgroundnew_4", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-worker gradientnew4 swipecardicon"},
+            option5: {id:5, caption:"Chimie / Parachimie", backgroundclass:"swipecard_1 backgroundnew_5", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-test-tube gradientnew5 swipecardicon"},
+            option6: {id:6, caption:"Commerce / Négoce / Distribution", backgroundclass:"swipecard_1 backgroundnew_6", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-store gradientnew6 swipecardicon"},
+            option7: {id:7, caption:"Edition / Communication / Multimédia", backgroundclass:"swipecard_1 backgroundnew_7", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-television-classic gradientnew7 swipecardicon"},
+            option8: {id:8, caption:"Electronique / Electricité", backgroundclass:"swipecard_1 backgroundnew_8", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-flash gradientnew8 swipecardicon"},
+            option9: {id:9, caption:"Etudes & conseils", backgroundclass:"swipecard_1 backgroundnew_9", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-book-open gradientnew9 swipecardicon"},
+            option10: {id:10, caption:"Industrie pharmaceutique", backgroundclass:"swipecard_1 backgroundnew_1", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-pharmacy gradientnew1 swipecardicon"},
+            option11: {id:11, caption:"Informatique / Télécoms", backgroundclass:"swipecard_1 backgroundnew_2", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-desktop-classic gradientnew2 swipecardicon"},
+            option12: {id:12, caption:"Machines et équipements / Automobile", backgroundclass:"swipecard_1 backgroundnew_3", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-settings gradientnew3 swipecardicon"},
+            option13: {id:13, caption:"Métallurgie / Travail du métal", backgroundclass:"swipecard_1 backgroundnew_4", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-factory gradientnew4 swipecardicon"},
+            option14: {id:14, caption:"Plastique / Caoutchouc", backgroundclass:"swipecard_1 backgroundnew_5", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-eraser gradientnew5 swipecardicon"},
+            option15: {id:15, caption:"Services aux entreprises", backgroundclass:"swipecard_1 backgroundnew_6", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-blur gradientnew6 swipecardicon"},
+            option16: {id:16, caption:"Textile / Habillement / Chaussure", backgroundclass:"swipecard_1 backgroundnew_7", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-tshirt-crew gradientnew7 swipecardicon"},
+            option17: {id:17, caption:"Transports / Logistique", backgroundclass:"swipecard_1 backgroundnew_8", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-truck-fast gradientnew8 swipecardicon"},
+            option18: {id:18, caption:"Education / Recherche", backgroundclass:"swipecard_1 backgroundnew_9", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-school gradientnew9 swipecardicon"},
+            option19: {id:19, caption:"Santé / Médecine", backgroundclass:"swipecard_1 backgroundnew_1", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-medical-bag gradientnew1 swipecardicon"}
+        },
+        card120 : {
+            parameters:{
+                cardtype:"info",
+                instruction:"Ceci est une carte d'information. Lis-la attentivement et appuie sur le bouton vert quand tu as terminé.",
+                questioncaption: "Top départ pour l'insertion !",
+                cardcomponentname: "CsInfoComponent"
+            },
+            optional : {
+                condition: false,
+                imageurl:"",
+                videourl:"",
+                text:"De quoi as-tu besoin pour ton insertion ? <nl> Commençons par une série de cartes à swiper pour faire le point ! <nl> droite = oui <nl> gauche = non",
+                timer:true,
+                autotime:true,
+                textanimation:true,
+                time:0//in milliseconds
+            }
+        },
+        card121 : {
+            parameters:{
+                cardtype:"Swipecards",
+                instruction:"Jeu de cartes: fais glisser les cartes à droite pour répondre par oui et à gauche pour répondre par non",
+                questioncaption: "As-tu besoin d'aide pour...",
+                cardcomponentname: "CsSwipecardComponent",
+                options:[1,2,3,4,5,6,7,8,9,10,11,12,13]
+            },
+            optional : {
+            },
+            option1: {id:1, caption:"...trouver des entreprises à contacter ?", backgroundclass:"swipecard_1 backgroundnew_1", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-account-search gradientnew1 swipecardicon"},
+            option2: {id:2, caption:"...trouver des annonces d'emploi ?", backgroundclass:"swipecard_1 backgroundnew_2", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-search-web gradientnew2 swipecardicon"},
+            option3: {id:3, caption:"...t'inscrire dans une agence intérim ?", backgroundclass:"swipecard_1 backgroundnew_3", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-lead-pencil gradientnew3 swipecardicon"},
+            option4: {id:4, caption:"...te renseigner sur des opportunités dans ton réseau ?", backgroundclass:"swipecard_1 backgroundnew_4", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-account-network gradientnew4 swipecardicon"},
+            option5: {id:5, caption:"...appeler spontanément des employeurs potentiels ?", backgroundclass:"swipecard_1 backgroundnew_5", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-phone-classic gradientnew5 swipecardicon"},
+            option6: {id:6, caption:"...créer ton profil LinkedIn ou Viadeo ?", backgroundclass:"swipecard_1 backgroundnew_6", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-linkedin-box gradientnew6 swipecardicon"},
+            option7: {id:7, caption:"...actualiser ton cv ?", backgroundclass:"swipecard_1 backgroundnew_7", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-account-card-details gradientnew7 swipecardicon"},
+            option8: {id:8, caption:"...rédiger ta lettre de motivation pour une annonce ?", backgroundclass:"swipecard_1 backgroundnew_8", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-pen gradientnew8 swipecardicon"},
+            option9: {id:9, caption:"...rédiger des e-mails professionnels ?", backgroundclass:"swipecard_1 backgroundnew_9", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-email gradientnew9 swipecardicon"},
+            option10: {id:10, caption:"...te préparer aux entretiens d'embauche ?", backgroundclass:"swipecard_1 backgroundnew_1", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-bullseye gradientnew1 swipecardicon"},
+            option11: {id:11, caption:"...être plus à l'aise dans un entretien physique ?", backgroundclass:"swipecard_1 backgroundnew_2", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-message gradientnew2 swipecardicon"},
+            option12: {id:12, caption:"...être plus à l'aise dans un entretien par téléphone ?", backgroundclass:"swipecard_1 backgroundnew_3", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-phone-classic gradientnew3 swipecardicon"},
+            option13: {id:13, caption:"...mieux présenter ton parcours ?", backgroundclass:"swipecard_1 backgroundnew_4", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-map gradientnew4 swipecardicon"}
+        },
+        card122 : {
+            parameters:{
+                cardtype:"Placement simple",
+                instruction:"Pour répondre à la question, déplace le curseur selon ta situation.",
+                questioncaption: "Sais-tu évaluer tes chances d'obtenir un travail dans le métier que tu as choisi ?",
+                cardcomponentname: "CsPlacementsimpleComponent",
+                step :10,//min = 1
+                min: 0,
+                max: 100,
+                options: [1,2],
+                cursorcaption:"toi"
+            },
+            optional : {
+            },
+            options : {
+                option1 : {
+                    id:1,
+                    left:"0%",
+                    stepposition : 0,
+                    bulletcaption:"+",
+                    bulletclass:"csplacementsimple_bullet_green",
+                    caption:"Oui, absolument !",
+                    captionclass:"csplacementsimple_caption_green"
+                },
+                option2 : {
+                    id:2,
+                    left:"100%",
+                    stepposition : 100,
+                    bulletcaption:"-",
+                    bulletclass:"csplacementsimple_bullet_red",
+                    caption:"Pas du tout !",
+                    captionclass:"csplacementsimple_caption_red"
+                }
+            }
+        }
     }
 }

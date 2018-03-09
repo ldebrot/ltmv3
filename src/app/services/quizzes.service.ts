@@ -42,19 +42,19 @@ export class QuizzesService {
             iconclass: "mdi mdi-dice-4 quizzseletion_icons gradientnew4",
             followupaction: {command : "navigate", route: "quizzselection", delay:0}
         },
-        quizz6 : {//XXXXXXXXX
+        quizz6 : {
             caption:"Je trouve mon secteur !",
-            description:"Ce quizz te guide à travers les questions portant sur ton nouveau métier.",
-            cardids : [],
+            description:"Dans ce quizz, fais le point sur les secteurs qui t'intéressent.",
+            cardids : [100,101,102,103,104,105,106],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-dice-5 quizzseletion_icons gradientnew5",
             followupaction: {command : "navigate", route: "quizzselection", delay:0}
         },
-        quizz7 : {//XXXXXXXXX
+        quizz7 : {
             caption:"Je trouve mon job !",
-            description:"Ce quizz te guide à travers les questions portant sur ton nouveau métier.",
-            cardids : [],
+            description:"Ce quizz te permet d'évaluer si tu as besoin d'aide pour t'insérer dans ton nouveau métier.",
+            cardids : [120,121,122],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-dice-6 quizzseletion_icons gradientnew6",
@@ -63,7 +63,7 @@ export class QuizzesService {
         quizz98 : {
             caption:"Direct Test",
             description:"C'est juste pour tester des cartes",
-            cardids : [80],
+            cardids : [106],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-dice-multiple quizzseletion_icons gradientnew3",

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class TestComponent implements OnInit {
 
     public classarray : string[] = [];
-    public classprefixes : string[] = ["gradient", "gradientnew", "unselected", "selected", "unselectednew", "selectednew"]
+    public classprefixes : string[] = ["gradient", "gradientnew", "unselected", "selected", "unselectednew", "selectednew", "background_", "backgroundnew_"]
 
     constructor() {
     }
