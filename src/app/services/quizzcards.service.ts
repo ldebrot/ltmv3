@@ -1130,7 +1130,84 @@ export class QuizzcardsService {
                     caption:"Pas du tout !",
                     captionclass:"csplacementsimple_caption_red"
                 }
+                }
+            },
+        card141 : {//DO NOT MODIFY CARD NUMBER ANYMORE! (compute process!)
+            parameters:{
+                cardtype:"Swipecards",
+                instruction:"Jeu de cartes: fais glisser les cartes à droite pour répondre par oui et à gauche pour répondre par non",
+                questioncaption: "Dans quel(s) domaine(s) as-tu travaillé jusqu'à ta reconversion ?",
+                cardcomponentname: "CsSwipecardComponent",
+                options:[1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+            },
+            optional : {
+            },
+            option1: {id:1, caption:"Agriculture et pêche, nature et espaces verts, animaux", backgroundclass:"swipecard_1 backgroundnew_1", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-corn gradientnew1 swipecardicon"},
+            option2: {id:2, caption:"Arts et façonnage d'ouvrages d'art", backgroundclass:"swipecard_1 backgroundnew_2", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-tooltip-image gradientnew2 swipecardicon"},
+            option3: {id:3, caption:"Banque, assurance, immobilier", backgroundclass:"swipecard_1 backgroundnew_3", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-cash-multiple gradientnew3 swipecardicon"},
+            option4: {id:4, caption:"Commerce, vente et grande distribution", backgroundclass:"swipecard_1 backgroundnew_4", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-store gradientnew4 swipecardicon"},
+            option5: {id:5, caption:"Communication, media et multimedia", backgroundclass:"swipecard_1 backgroundnew_5", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-television-classic gradientnew5 swipecardicon"},
+            option6: {id:6, caption:"Construction, bâtiment et travaux publics", backgroundclass:"swipecard_1 backgroundnew_6", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-worker gradientnew6 swipecardicon"},
+            option7: {id:7, caption:"Transport et logistique", backgroundclass:"swipecard_1 backgroundnew_7", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-truck-fast gradientnew7 swipecardicon"},
+            option8: {id:8, caption:"Support à l'entreprise", backgroundclass:"swipecard_1 backgroundnew_8", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-blur gradientnew8 swipecardicon"},
+            option9: {id:9, caption:"Spectacle", backgroundclass:"swipecard_1 backgroundnew_9", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-theater gradientnew9 swipecardicon"},
+            option10: {id:10, caption:"Hôtellerie- restauration tourisme loisirs et animation", backgroundclass:"swipecard_1 backgroundnew_1", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-wallet-travel gradientnew1 swipecardicon"},
+            option11: {id:11, caption:"Services à la personne et à la collectivité", backgroundclass:"swipecard_1 backgroundnew_2", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-vector-circle gradientnew2 swipecardicon"},
+            option12: {id:12, caption:"Installation et maintenance", backgroundclass:"swipecard_1 backgroundnew_3", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-wrench gradientnew3 swipecardicon"},
+            option13: {id:13, caption:"Santé", backgroundclass:"swipecard_1 backgroundnew_4", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-medical-bag gradientnew4 swipecardicon"},
+            option14: {id:14, caption:"Industrie", backgroundclass:"swipecard_1 backgroundnew_5", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-factory gradientnew5 swipecardicon"}
+        },
+        card142 : {
+            parameters:{
+                cardtype:"Compute Component",
+                instruction:"",
+                questioncaption: "",
+                cardcomponentname: "CsComputeComponent",
+                process:"translate141into142"
+                },
+            optional : {
+            },
+            options : {
+            }
+        },
+        //INSERT MAYBE domaine professionnel for multi-filter on card 145
+        card143 : {
+        },
+        //INSERT MAYBE compute process for domaine professionnel for multi-filter on card 145
+        card144 : {
+        },
+        card145 : {
+            parameters:{
+                cardtype:"DropDown Component",
+                instruction:"Pour répondre à la question, sélectionne la valeur qui te correspond.",
+                questioncaption: "questioncaption",
+                titlecaption: "titlecaption here",
+                cardcomponentname: "CsDropdownComponent",
+                min: 0,//how many items have to be selected?
+                max: 5,//how many items can be selected?
+                suggestionbase:"metiers",//where are suggestions stored? this can be a placeholder name, an array or an object
+                valuekey:"libelle_appellation_court",//is there a key (used for objects)
+                filters:{code_grand_domaine:"2-142"}//keys of objects correspond to keys of values to be filtered, values correspond either to direct values (in an array) or to an experience (placeholder as string)
+                },
+            optional : {
+            },
+            options : {
             }
         }
     }
 }
+

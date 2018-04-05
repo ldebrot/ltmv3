@@ -81,9 +81,7 @@ export class CsSwipecardComponent implements OnInit {
 
     public registeraction(like) {
         if (this.countselected < this.maxselected) {
-            let temp_optionid = this.quizzservice.currentcardobject.parameters.options[this.cardCursor];
-            //console.log("currentswipecardposition");
-            //console.log(this.cardCursor);
+            let temp_optionid = this.quizzservice.currentcardobject.parameters.options[this.cardCursor - 1];//because cardCursor is always one ahead!!
             //console.log("temp_optionid");
             //console.log(temp_optionid);
             //console.log("like");

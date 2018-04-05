@@ -57,6 +57,7 @@ export class ReadwritebufferService implements OnDestroy {
                 this.dbuserinfoservice.userinfo.experience[Object.keys(this.buffer)[i]] = this.buffer[Object.keys(this.buffer)[i]].value;//update dbuserinfo automatically
             }
         }
+        console.log("saved buffer in dbuserinfo!");
 
         let temp_promises : any;
         temp_promises = new Promise((resolve,reject)=>{

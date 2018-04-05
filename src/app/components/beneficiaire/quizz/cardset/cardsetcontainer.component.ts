@@ -8,6 +8,7 @@ import { CsSwipecardComponent } from './../cs-swipecard/cs-swipecard.component';
 import { CsOrderrelativeComponent } from 'app/components/beneficiaire/quizz/cs-orderrelative/cs-orderrelative.component';
 import { CsMultiplechoiceComponent } from 'app/components/beneficiaire/quizz/cs-multiplechoice/cs-multiplechoice.component';
 import { CsInfoComponent } from 'app/components/beneficiaire/quizz/cs-info/cs-info.component';
+import { CsComputeComponent } from 'app/components/beneficiaire/quizz/cs-compute/cs-compute.component'
 
 //Hand-made services
 import { ReadwritebufferService } from './../../../../services/readwritebuffer.service';
@@ -106,6 +107,10 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
             case "CsPlacementsimpleComponent":
                 cardsetItem = new CardsetItem(CsPlacementsimpleComponent, {});
                 console.log("CsPlacementsimpleComponent");
+                break
+            case "CsComputeComponent":
+                cardsetItem = new CardsetItem(CsComputeComponent, {});
+                console.log("CsComputeComponent");
                 break
             default:
                 console.log("cardsetcontainer : cardcomponentname does not match any Component")

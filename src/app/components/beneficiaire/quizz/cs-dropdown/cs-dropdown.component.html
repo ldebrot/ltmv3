@@ -1,3 +1,4 @@
-<p>
-  cs-dropdown works!
-</p>
+<div *ngIf="titlecaption!=''" class="csmultiplechoice_title">
+  {{titlecaption}}
+</div>
+<p-autoComplete [(ngModel)]="autocompletevalue" [suggestions]="autocompletesuggestions" (completeMethod)="autocompletesearch($event)" ></p-autoComplete>

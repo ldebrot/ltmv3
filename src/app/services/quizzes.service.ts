@@ -6,13 +6,22 @@ export class QuizzesService {
     constructor() { }
     
     public quizzes : any = {
-        quizz2 : {
+        quizz1 : {
             caption:"Mon premier quizz",
             description:"Ce quizz initial te permettra de te situer par rapport à la reconversion professionnelle. Parfait pour démarrer !",
             cardids : [20,21,22,23,24,25,26,27,28,29,30,31],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-dice-1 quizzseletion_icons gradientnew1",
+            followupaction: {command : "navigate", route: "quizzselection", delay:0}
+        },
+        quizz2 : {
+            caption:"J'en suis où ?",
+            description:"Ce quizz te permettra de paramétrer ton profile pour que tu puisses rencontrer ou accueillir la bonne personne.",
+            cardids : [141,142,145],//[141,142,145]
+            conditionvisible: false,
+            conditionenabled: false,
+            iconclass: "mdi mdi-account-circle quizzseletion_icons gradientnew7",
             followupaction: {command : "navigate", route: "quizzselection", delay:0}
         },
         quizz3 : {

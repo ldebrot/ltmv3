@@ -10,28 +10,30 @@ import { SwipeCardsModule } from 'ng2-swipe-cards';
 import 'hammerjs';
 import 'hammer-timejs';
 import { //PrimeNG modules here
-    MenubarModule,
-    TabMenuModule,
-    MenuModule,
-    MenuItem,
-    ListboxModule,
-    DialogModule,
+    AutoCompleteModule,
     ButtonModule,
-    MessagesModule,
-    GrowlModule,
-    ConfirmDialogModule,
-    TooltipModule,
-    TabViewModule,
     CheckboxModule,
-    SelectButtonModule,
-    ToggleButtonModule,
-    SelectItem,
-    MegaMenuModule,
-    ProgressBarModule,
     ConfirmationService,
+    ConfirmDialogModule,
+    DialogModule,
+    GrowlModule,
+    MegaMenuModule,
+    MenubarModule,
+    MenuItem,
+    MenuModule,
+    MessagesModule,
+    ListboxModule,
     OverlayPanelModule, 
+    ProgressBarModule,
+    SelectButtonModule,
+    SelectItem,
     SidebarModule,
-    SliderModule} from 'primeng/primeng';
+    SliderModule,
+    TabMenuModule,
+    TabViewModule,
+    ToggleButtonModule,
+    TooltipModule,
+} from 'primeng/primeng';
 
 //Services
 import { DbuserinfoService } from './services/dbuserinfo.service';//handles down- and upload of userinformation from DB
@@ -51,6 +53,7 @@ import { CardsetDirective } from './components/beneficiaire/quizz/cardset/cardse
 import { ConnectService } from './services/connect.service';
 import { QuizzesService } from './services/quizzes.service';//stores quizzes
 import { QuizzcardsService } from './services/quizzcards.service';//stores cards
+import { LibrarymetiersService } from './services/library_metiers.service';//stores metier values
 
 
 //Components
@@ -89,6 +92,7 @@ import { CsDropdownComponent } from './components/beneficiaire/quizz/cs-dropdown
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { NotconnectedstartingpageComponent } from './components/notconnected/notconnectedstartingpage/notconnectedstartingpage.component';
 import { QuizzselectionComponent } from './components/beneficiaire/quizz/quizzselection/quizzselection.component';
+import { CsComputeComponent } from './components/beneficiaire/quizz/cs-compute/cs-compute.component';
 
 //console.log("initializedApp at app.mdoule.ts level!");
 
@@ -115,12 +119,14 @@ import { QuizzselectionComponent } from './components/beneficiaire/quizz/quizzse
         CsDropdownComponent,
         TopbarComponent,
         NotconnectedstartingpageComponent,
-        QuizzselectionComponent
+        QuizzselectionComponent,
+        CsComputeComponent
     ],
     imports: [
         FormsModule,
         HttpModule,
         ConfirmDialogModule,//PrimeNG here
+        AutoCompleteModule,//PrimeNG here
         BrowserModule,//PrimeNG here
         BrowserAnimationsModule,//PrimeNG here
         MessagesModule,//PrimeNG here
@@ -167,7 +173,8 @@ import { QuizzselectionComponent } from './components/beneficiaire/quizz/quizzse
         QuizzService,//handles quizzes
         ConnectService,//handles connection to firebase db
         QuizzcardsService,//stores quizz cards
-        QuizzesService//stores quizzes
+        QuizzesService,//stores quizzes
+        LibrarymetiersService//stores metiers values
     ],
     entryComponents: [
         CsSwipecardComponent,
@@ -178,7 +185,8 @@ import { QuizzselectionComponent } from './components/beneficiaire/quizz/quizzse
         CsOrderregularComponent,
         CsInfoComponent,
         CsPlacementsimpleComponent,
-        CsDropdownComponent
+        CsDropdownComponent,
+        CsComputeComponent
     ],
     bootstrap: [AppComponent]
 })
