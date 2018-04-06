@@ -212,10 +212,11 @@ export class QuizzService implements OnInit{
             let temp_iconclass = this.quizzes[key].iconclass;
             let temp_description = this.quizzes[key].description;
             let temp_caption = this.quizzes[key].caption;
-            let temp_visible = false;
+            let temp_visible = true;
             let temp_quizzid = key.slice(5,);//this takes off 'quizz' in the beginning of the key
             //check if to be visible
             if (this.quizzes[key].conditionvisible!==false){
+                temp_visible = false;
                 let temp_conditions = this.quizzes[key].conditionvisible.length;
                 console.log("We have "+temp_conditions+" condition(s) to be met for visibility");
                 this.quizzes[key].conditionvisible.forEach(element => {
@@ -231,10 +232,11 @@ export class QuizzService implements OnInit{
                 });
             } else {
                 console.log ("no visibility condition")
-                temp_visible = true;//as no condition to be met
             }
-            let temp_newentry = new quizzitemmodel(temp_iconclass,temp_description,temp_caption,temp_visible, temp_quizzid);
-            this.currentquizzselection.push(temp_newentry);
+            if (temp_visible) {
+                let temp_newentry = new quizzitemmodel(temp_iconclass,temp_description,temp_caption,temp_visible, temp_quizzid);
+                this.currentquizzselection.push(temp_newentry);
+            }
         });
         //console.log("created quizz selection");
         //console.log(this.currentquizzselection);
@@ -244,6 +246,10 @@ export class QuizzService implements OnInit{
         let temp_result : boolean = false;
         if (this.dbuserinfoservice.userinfo.experience[experience]!=null){
             temp_result = (this.dbuserinfoservice.userinfo.experience[experience] == value) ? true : false;
+        } else {
+            if (value == undefined) {
+                temp_result = true;
+            }
         }
         return temp_result;
     }

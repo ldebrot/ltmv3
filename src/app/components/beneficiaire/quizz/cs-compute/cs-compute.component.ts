@@ -14,7 +14,7 @@ import { LibrarymetiersService } from './../../../../services/library_metiers.se
 })
 export class CsComputeComponent implements OnInit {
     
-    public experience : string = "";
+    public outputexperienceid : string = "";
 
     constructor(
         private readwritebufferservice : ReadwritebufferService,
@@ -34,7 +34,7 @@ export class CsComputeComponent implements OnInit {
     }
 
     public executeprocess () : void {
-        this.experience = this.quizzservice.currentcardobject.parameters.outputexperienceid;//for compute components, experience id is stored in quizzcards service
+        this.outputexperienceid = this.quizzservice.currentcardobject.parameters.outputexperienceid;//for compute components, experience id is stored in quizzcards service
         let validprocess : boolean = true;
         switch(String(this.quizzservice.currentcardobject.parameters.process)) {
             case "translategrandsdomainesintocodegranddomain":
@@ -48,6 +48,10 @@ export class CsComputeComponent implements OnInit {
             case "translate145into146":
                 console.log("computecomponent: load process 'translate145into146'");
                 this.translate145into146();
+                break
+            case "setvalue":
+                console.log("computecomponent: load process 'setvalue'");
+                this.setvalue();
                 break
             default:
                 console.log("computecomponent : did not find computing process")
@@ -77,7 +81,7 @@ export class CsComputeComponent implements OnInit {
                 //console.log("translategrandsdomainesintocodegranddomain : experience not found");
             }
         }
-        this.updaterwbuffer_byexperience(this.experience,temp_array);
+        this.updaterwbuffer_byexperience(this.outputexperienceid,temp_array);
     }
 
     //this process sets "intitule" values from metiers library corresponding to "libelle_appellation_court" (also a metiers library value)
@@ -96,7 +100,7 @@ export class CsComputeComponent implements OnInit {
                     console.log("translatelibelle_appellation_courtintointitule: did not find equivalent");
                 }
             });
-            this.updaterwbuffer_byexperience(this.experience,temp_array);
+            this.updaterwbuffer_byexperience(this.outputexperienceid,temp_array);
         }else{
             console.log("translatelibelle_appellation_courtintointitule: inputexperienceid is either null or not an array!");
         }   
@@ -104,8 +108,11 @@ export class CsComputeComponent implements OnInit {
 
     public translate145into146():void {
         let temp_value = this.dbuserinfoservice.userinfo.experience["2-145-1"] == true ? "temoin" : "beneficiaire";
-        this.updaterwbuffer_byexperience(this.experience,temp_value);
+        this.updaterwbuffer_byexperience(this.outputexperienceid,temp_value);
     }
     
+    public setvalue():void{
+        this.updaterwbuffer_byexperience(this.outputexperienceid,this.quizzservice.currentcardobject.parameters.inputexperienceid);
+    }
 
 }

@@ -252,6 +252,21 @@ export class QuizzcardsService {
             option5: {id:5, caption:"...je me sens incompris(e).",backgroundclass:"swipecard_1 background_5", 
             image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-comment-remove-outline gradient5 swipecardicon"}
         },
+        card32 : {
+            parameters:{
+                cardtype:"Compute Component",
+                instruction:"",
+                questioncaption: "",
+                cardcomponentname: "CsComputeComponent",
+                process:"setvalue",
+                inputexperienceid:true,
+                outputexperienceid:"1-32-1"
+                },
+            optional : {
+            },
+            options : {
+            }
+        },
         card40 : {
             parameters:{
                 cardtype:"info",
@@ -1132,6 +1147,23 @@ export class QuizzcardsService {
                 }
                 }
             },
+        card140 : {
+                parameters:{
+                    cardtype:"info",
+                    instruction:"Ceci est une carte d'information. Lis-la attentivement et appuie sur le bouton vert quand tu as terminé.",
+                    questioncaption: "Choix multiples",
+                    cardcomponentname: "CsInfoComponent"
+                },
+                optional : {
+                    imageurl:"",
+                    videourl:"",
+                    text:"Pour commencer, une série de cartes à glisser à gauche ou à droite. <nl> Lis bien la question, <nl> <nl> puis 'swipe' la carte à DROITE pour dire OUI <nl> et à GAUCHE pour répondre par NON. <nl>",
+                    timer:true,
+                    autotime:true,
+                    textanimation:true,
+                    time:0//in milliseconds
+                }
+        },
         card141 : {//DO NOT MODIFY CARD NUMBER ANYMORE! (compute process!)
             parameters:{
                 cardtype:"Swipecards",
@@ -1186,6 +1218,23 @@ export class QuizzcardsService {
             options : {
             }
         },
+        card155 : {
+            parameters:{
+                cardtype:"info",
+                instruction:"Ceci est une carte d'information. Lis-la attentivement et appuie sur le bouton vert quand tu as terminé.",
+                questioncaption: "Choix multiples",
+                cardcomponentname: "CsInfoComponent"
+            },
+            optional : {
+                imageurl:"",
+                videourl:"",
+                text:"Parfait! <nl> <nl> Sur la prochaine carte, tape ta réponse et fais ton choix dans le menu déroulant. <nl>",
+                timer:true,
+                autotime:true,
+                textanimation:true,
+                time:0//in milliseconds
+            }
+        },
         card143 : {
             parameters:{
                 cardtype:"DropDown Component",
@@ -1219,6 +1268,23 @@ export class QuizzcardsService {
             options : {
             }
         },
+        card156 : {
+            parameters:{
+                cardtype:"info",
+                instruction:"Ceci est une carte d'information. Lis-la attentivement et appuie sur le bouton vert quand tu as terminé.",
+                questioncaption: "Choix multiples",
+                cardcomponentname: "CsInfoComponent"
+            },
+            optional : {
+                imageurl:"",
+                videourl:"",
+                text:"Excellent! <nl> <nl> Et maintenant, une question toute simple.",
+                timer:true,
+                autotime:true,
+                textanimation:true,
+                time:0//in milliseconds
+            }
+        },
         card145 : {
             parameters:{
                 cardtype:"multiplechoice_multiple", 
@@ -1247,6 +1313,24 @@ export class QuizzcardsService {
             optional : {
             },
             options : {
+            }
+        },
+        card157 : {
+            parameters:{
+                cardtype:"info",
+                instruction:"Ceci est une carte d'information. Lis-la attentivement et appuie sur le bouton vert quand tu as terminé.",
+                questioncaption: "Choix multiples",
+                cardcomponentname: "CsInfoComponent"
+            },
+            optional : {
+                condition: [{experience:"2-146-1",value:"temoin", compulsory:true}],//this means that this card is not necessarily shown
+                imageurl:"",
+                videourl:"",
+                text:"Pour mieux te connaître, dis-nous plus sur ta nouvelle vie. <nl> Dans quel domaine travailles-tu depuis ta reconversion ? <nl> Et quel est ton poste ? <nl> En répondant, tu permets à d'autres de te retrouver sur Lunchtime.",
+                timer:true,
+                autotime:true,
+                textanimation:true,
+                time:0//in milliseconds
             }
         },
         card147 : {//DO NOT MODIFY CARD NUMBER ANYMORE! (compute process!)
