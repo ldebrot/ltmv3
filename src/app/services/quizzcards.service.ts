@@ -1177,8 +1177,9 @@ export class QuizzcardsService {
                 instruction:"",
                 questioncaption: "",
                 cardcomponentname: "CsComputeComponent",
-                process:"translate141into142",
-                experience:"142-1"
+                process:"translategrandsdomainesintocodegranddomain",
+                inputexperienceid:"2-141-",
+                outputexperienceid:"2-142-1"
                 },
             optional : {
             },
@@ -1196,7 +1197,7 @@ export class QuizzcardsService {
                 maxselected: 5,//how many items can be selected?
                 suggestionbase:"metiers",//where are suggestions stored? this can be a placeholder name, an array or an object
                 valuekey:"libelle_appellation_court",//is there a key (used for objects)
-                filters:{code_grand_domaine:"2-142"}//keys of objects correspond to keys of values to be filtered, values correspond either to direct values (in an array) or to an experience (placeholder as string)
+                filters:{code_grand_domaine:"2-142-1"}//keys of objects correspond to keys of values to be filtered, values correspond either to direct values (in an array) or to an experience (placeholder as string)
             },
             optional : {
             },
@@ -1209,16 +1210,135 @@ export class QuizzcardsService {
                 instruction:"",
                 questioncaption: "",
                 cardcomponentname: "CsComputeComponent",
-                process:"translate143into144",
-                inputexperienceid:"2-143-1" 
+                process:"translatelibelle_appellation_courtintointitule",
+                inputexperienceid:"2-143-1",
+                outputexperienceid:"2-144-1"
                 },
             optional : {
             },
             options : {
             }
         },
-        //INSERT MAYBE compute process for domaine professionnel for multi-filter on card 145
         card145 : {
+            parameters:{
+                cardtype:"multiplechoice_multiple", 
+                instruction:"Choix multiple: sélectionne la réponse qui te correspond.", 
+                questioncaption: "Que souhaites-tu faire sur Lunchtime ?",
+                cardcomponentname: "CsMultipleChoiceComponent",
+                options:[1,2],
+                minselected:1,
+                maxselected:1
+            },
+            optional : {
+            },
+            option1: {id:1, caption:"Je voudrais aider quelqu'un dans sa reconversion professionnelle.", unselectedclass:"unselected1", selectedclass:"selected1"},
+            option2: {id:2, caption:"J'ai besoin d'aide pour changer de métier.", unselectedclass:"unselected2", selectedclass:"selected2"}
+        },
+        card146 : {
+            parameters:{
+                cardtype:"Compute Component",
+                instruction:"",
+                questioncaption: "",
+                cardcomponentname: "CsComputeComponent",
+                process:"translate145into146",
+                inputexperienceid:"",
+                outputexperienceid:"2-146-1"
+                },
+            optional : {
+            },
+            options : {
+            }
+        },
+        card147 : {//DO NOT MODIFY CARD NUMBER ANYMORE! (compute process!)
+            parameters:{
+                cardtype:"Swipecards",
+                instruction:"Jeu de cartes: fais glisser les cartes à droite pour répondre par oui et à gauche pour répondre par non",
+                questioncaption: "Dans quel domaine travailles-tu depuis ta reconversion ?",
+                cardcomponentname: "CsSwipecardComponent",
+                options:[1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+            },
+            optional : {
+                condition: [{experience:"2-146-1",value:"temoin", compulsory:true}],//this means that this card is not necessarily shown
+            },
+            option1: {id:1, caption:"Agriculture et pêche, nature et espaces verts, animaux", backgroundclass:"swipecard_1 backgroundnew_1", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-corn gradientnew1 swipecardicon"},
+            option2: {id:2, caption:"Arts et façonnage d'ouvrages d'art", backgroundclass:"swipecard_1 backgroundnew_2", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-tooltip-image gradientnew2 swipecardicon"},
+            option3: {id:3, caption:"Banque, assurance, immobilier", backgroundclass:"swipecard_1 backgroundnew_3", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-cash-multiple gradientnew3 swipecardicon"},
+            option4: {id:4, caption:"Commerce, vente et grande distribution", backgroundclass:"swipecard_1 backgroundnew_4", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-store gradientnew4 swipecardicon"},
+            option5: {id:5, caption:"Communication, media et multimedia", backgroundclass:"swipecard_1 backgroundnew_5", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-television-classic gradientnew5 swipecardicon"},
+            option6: {id:6, caption:"Construction, bâtiment et travaux publics", backgroundclass:"swipecard_1 backgroundnew_6", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-worker gradientnew6 swipecardicon"},
+            option7: {id:7, caption:"Transport et logistique", backgroundclass:"swipecard_1 backgroundnew_7", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-truck-fast gradientnew7 swipecardicon"},
+            option8: {id:8, caption:"Support à l'entreprise", backgroundclass:"swipecard_1 backgroundnew_8", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-blur gradientnew8 swipecardicon"},
+            option9: {id:9, caption:"Spectacle", backgroundclass:"swipecard_1 backgroundnew_9", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-theater gradientnew9 swipecardicon"},
+            option10: {id:10, caption:"Hôtellerie- restauration tourisme loisirs et animation", backgroundclass:"swipecard_1 backgroundnew_1", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-wallet-travel gradientnew1 swipecardicon"},
+            option11: {id:11, caption:"Services à la personne et à la collectivité", backgroundclass:"swipecard_1 backgroundnew_2", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-vector-circle gradientnew2 swipecardicon"},
+            option12: {id:12, caption:"Installation et maintenance", backgroundclass:"swipecard_1 backgroundnew_3", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-wrench gradientnew3 swipecardicon"},
+            option13: {id:13, caption:"Santé", backgroundclass:"swipecard_1 backgroundnew_4", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-medical-bag gradientnew4 swipecardicon"},
+            option14: {id:14, caption:"Industrie", backgroundclass:"swipecard_1 backgroundnew_5", 
+            image:"", iconcontainerclass:"iconcontainer", iconclass:"mdi mdi-factory gradientnew5 swipecardicon"}
+        },
+        card148 : {
+            parameters:{
+                cardtype:"Compute Component",
+                instruction:"",
+                questioncaption: "",
+                cardcomponentname: "CsComputeComponent",
+                process:"translategrandsdomainesintocodegranddomain",
+                inputexperienceid:"2-147-",
+                outputexperienceid:"2-148-1"
+                },
+            optional : {
+                condition: [{experience:"2-146-1",value:"temoin", compulsory:true}],//this means that this card is not necessarily shown
+            },
+            options : {
+            }
+        },
+        card149 : {
+            parameters:{
+                cardtype:"DropDown Component",
+                instruction:"Pour répondre à la question, sélectionne les postes que tu as eu avant ta reconversion.",
+                questioncaption: "Quels postes as-tu exercé depuis ta reconversion ?",
+                titlecaption: "Tape et sélectionne le nom de tes postes post-reconversion",
+                cardcomponentname: "CsDropdownComponent",
+                minselected: 1,//how many items have to be selected?
+                maxselected: 5,//how many items can be selected?
+                suggestionbase:"metiers",//where are suggestions stored? this can be a placeholder name, an array or an object
+                valuekey:"libelle_appellation_court",//is there a key (used for objects)
+                filters:{code_grand_domaine:"2-148-1"}//keys of objects correspond to keys of values to be filtered, values correspond either to direct values (in an array) or to an experience (placeholder as string)
+            },
+            optional : {
+                condition: [{experience:"2-146-1",value:"temoin", compulsory:true}],//this means that this card is not necessarily shown
+            },
+            options : {
+            }
+        },
+        card150 : {
+            parameters:{
+                cardtype:"Compute Component",
+                instruction:"",
+                questioncaption: "",
+                cardcomponentname: "CsComputeComponent",
+                process:"translatelibelle_appellation_courtintointitule",
+                inputexperienceid:"2-149-1",
+                outputexperienceid:"2-150-1"
+                },
+            optional : {
+                condition: [{experience:"2-146-1",value:"temoin", compulsory:true}],//this means that this card is not necessarily shown
+            },
+            options : {
+            }
         }
     }
 }

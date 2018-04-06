@@ -34,16 +34,20 @@ export class CsComputeComponent implements OnInit {
     }
 
     public executeprocess () : void {
-        this.experience = this.quizzservice.currentcardobject.parameters.experience;//for compute components, experience id is stored in quizzcards service
+        this.experience = this.quizzservice.currentcardobject.parameters.outputexperienceid;//for compute components, experience id is stored in quizzcards service
         let validprocess : boolean = true;
         switch(String(this.quizzservice.currentcardobject.parameters.process)) {
-            case "translate141into142":
-                console.log("computecomponent: load process 'translate141into142'");
-                this.translate141into142();
+            case "translategrandsdomainesintocodegranddomain":
+                console.log("computecomponent: load process 'translategrandsdomainesintocodegranddomain'");
+                this.translategrandsdomainesintocodegranddomain();
                 break
-            case "translate143into144":
-                console.log("computecomponent: load process 'translate143into144'");
-                this.translate143into144();
+            case "translatelibelle_appellation_courtintointitule":
+                console.log("computecomponent: load process 'translatelibelle_appellation_courtintointitule'");
+                this.translatelibelle_appellation_courtintointitule();
+                break
+            case "translate145into146":
+                console.log("computecomponent: load process 'translate145into146'");
+                this.translate145into146();
                 break
             default:
                 console.log("computecomponent : did not find computing process")
@@ -58,26 +62,26 @@ export class CsComputeComponent implements OnInit {
     //PROCESSES
 
     //this process checks which grands domaines were selected by user and then creates an experience containing an array of code_grand_domain, used for dropdown filtering later on, in card 143
-    public translate141into142():void{
+    public translategrandsdomainesintocodegranddomain():void{
         let temp_array : any[] = [];
         let temp_experienceid : string = "";
-        for (let i = 0; i < this.librarymetiersservice.domaines.experienceid.length ; i++) {
-            temp_experienceid = this.librarymetiersservice.domaines.experienceid[i];
+        for (let i = 0; i < this.librarymetiersservice.domaines.experienceoptionid.length ; i++) {
+            temp_experienceid = this.quizzservice.currentcardobject.parameters.inputexperienceid + this.librarymetiersservice.domaines.experienceoptionid[i];
             if (this.dbuserinfoservice.userinfo.experience[temp_experienceid] != null) {
-                //console.log("translate141into142 : experience found");
+                //console.log("translategrandsdomainesintocodegranddomain : experience found");
                 if (this.dbuserinfoservice.userinfo.experience[temp_experienceid] == true) {
-                    //console.log("translate141into142 : experience true");
+                    //console.log("translategrandsdomainesintocodegranddomain : experience true");
                     temp_array.push(this.librarymetiersservice.domaines.code_grand_domaine[i])
                 }
             } else {
-                //console.log("translate141into142 : experience not found");
+                //console.log("translategrandsdomainesintocodegranddomain : experience not found");
             }
         }
         this.updaterwbuffer_byexperience(this.experience,temp_array);
     }
 
     //this process sets "intitule" values from metiers library corresponding to "libelle_appellation_court" (also a metiers library value)
-    public translate143into144():void {
+    public translatelibelle_appellation_courtintointitule():void {
         let temp_array : any[] = [];
         let temp_input = this.dbuserinfoservice.userinfo.experience[this.quizzservice.currentcardobject.parameters.inputexperienceid];
         if (temp_input != null && Array.isArray(temp_input)){
@@ -89,14 +93,19 @@ export class CsComputeComponent implements OnInit {
                         temp_array.push(this.librarymetiersservice.metiers.intitule[temp_index]);
                     }
                 } else {
-                    console.log("translate143into144: did not find equivalent");
+                    console.log("translatelibelle_appellation_courtintointitule: did not find equivalent");
                 }
             });
             this.updaterwbuffer_byexperience(this.experience,temp_array);
         }else{
-            console.log("translate143into144: inputexperienceid is either null or not an array!");
-        }
-        
+            console.log("translatelibelle_appellation_courtintointitule: inputexperienceid is either null or not an array!");
+        }   
     }
+
+    public translate145into146():void {
+        let temp_value = this.dbuserinfoservice.userinfo.experience["2-145-1"] == true ? "temoin" : "beneficiaire";
+        this.updaterwbuffer_byexperience(this.experience,temp_value);
+    }
+    
 
 }
