@@ -207,8 +207,8 @@ export class QuizzService implements OnInit{
     public createquizzselection():void{
         this.currentquizzselection = [];
         Object.keys(this.quizzes).map((key)=>{
-            console.log(key);
-            console.log(this.quizzes[key]);
+            //console.log(key);
+            //console.log(this.quizzes[key]);
             let temp_iconclass = this.quizzes[key].iconclass;
             let temp_description = this.quizzes[key].description;
             let temp_caption = this.quizzes[key].caption;
@@ -236,8 +236,8 @@ export class QuizzService implements OnInit{
             let temp_newentry = new quizzitemmodel(temp_iconclass,temp_description,temp_caption,temp_visible, temp_quizzid);
             this.currentquizzselection.push(temp_newentry);
         });
-        console.log("created quizz selection");
-        console.log(this.currentquizzselection);
+        //console.log("created quizz selection");
+        //console.log(this.currentquizzselection);
     }
 
     public checkifconditionmet(experience:string, value:any):boolean{

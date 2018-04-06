@@ -81,6 +81,7 @@ export class CsSwipecardComponent implements OnInit {
 
     public registeraction(like) {
         if (this.countselected < this.maxselected) {
+            this.checkiflastcard();
             let temp_optionid = this.quizzservice.currentcardobject.parameters.options[this.cardCursor - 1];//because cardCursor is always one ahead!!
             //console.log("temp_optionid");
             //console.log(temp_optionid);
@@ -91,7 +92,6 @@ export class CsSwipecardComponent implements OnInit {
             }
             let button_id = String(this.quizzservice.currentquizzid) + "-" + String(this.quizzservice.currentcardid) +"-" + String(temp_optionid);
             this.readwritebufferservice.updatebuffer(button_id,like,"update");
-            this.checkiflastcard();
         }
 }
 

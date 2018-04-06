@@ -1177,36 +1177,48 @@ export class QuizzcardsService {
                 instruction:"",
                 questioncaption: "",
                 cardcomponentname: "CsComputeComponent",
-                process:"translate141into142"
+                process:"translate141into142",
+                experience:"142-1"
                 },
             optional : {
             },
             options : {
             }
         },
-        //INSERT MAYBE domaine professionnel for multi-filter on card 145
         card143 : {
-        },
-        //INSERT MAYBE compute process for domaine professionnel for multi-filter on card 145
-        card144 : {
-        },
-        card145 : {
             parameters:{
                 cardtype:"DropDown Component",
-                instruction:"Pour répondre à la question, sélectionne la valeur qui te correspond.",
-                questioncaption: "questioncaption",
-                titlecaption: "titlecaption here",
+                instruction:"Pour répondre à la question, sélectionne les postes que tu as eu avant ta reconversion.",
+                questioncaption: "Quels ont été tes postes de travail avant ta reconversion ?",
+                titlecaption: "Tape et sélectionne le nom de tes postes pré-reconversion",
                 cardcomponentname: "CsDropdownComponent",
-                min: 0,//how many items have to be selected?
-                max: 5,//how many items can be selected?
+                minselected: 1,//how many items have to be selected?
+                maxselected: 5,//how many items can be selected?
                 suggestionbase:"metiers",//where are suggestions stored? this can be a placeholder name, an array or an object
                 valuekey:"libelle_appellation_court",//is there a key (used for objects)
                 filters:{code_grand_domaine:"2-142"}//keys of objects correspond to keys of values to be filtered, values correspond either to direct values (in an array) or to an experience (placeholder as string)
+            },
+            optional : {
+            },
+            options : {
+            }
+        },
+        card144 : {
+            parameters:{
+                cardtype:"Compute Component",
+                instruction:"",
+                questioncaption: "",
+                cardcomponentname: "CsComputeComponent",
+                process:"translate143into144",
+                inputexperienceid:"2-143-1" 
                 },
             optional : {
             },
             options : {
             }
+        },
+        //INSERT MAYBE compute process for domaine professionnel for multi-filter on card 145
+        card145 : {
         }
     }
 }

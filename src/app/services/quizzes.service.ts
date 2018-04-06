@@ -18,7 +18,7 @@ export class QuizzesService {
         quizz2 : {
             caption:"J'en suis où ?",
             description:"Ce quizz te permettra de paramétrer ton profile pour que tu puisses rencontrer ou accueillir la bonne personne.",
-            cardids : [141,142,145],//[141,142,145]
+            cardids : [143,144],//141,142,143,144
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-account-circle quizzseletion_icons gradientnew7",

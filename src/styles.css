@@ -297,6 +297,22 @@ input.ng-invalid.ng-touched {
 
 /* PrimeFaces EXTENSION */
 
+.ldbway .ui-autocomplete {
+    max-width: 95%;
+    min-width: 95%;
+    margin: 0px 2.5%;
+}
+
+.ldbway .ui-autocomplete .ui-autocomplete-multiple-container {
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.ldbway .ui-autocomplete-token {
+    white-space: normal;
+    margin: 0.1rem;
+}
+
 /*
 .ui-widget{
     background: transparent;

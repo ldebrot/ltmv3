@@ -1,9 +1,10 @@
 import { DbuserinfoService } from './../../../../services/dbuserinfo.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 //My own stuff
 import { QuizzService } from './../../../../services/quizz.service';
 import { LibrarymetiersService } from './../../../../services/library_metiers.service';
+import { ReadwritebufferService } from './../../../../services/readwritebuffer.service';
 
 //PrimeNG here
 import {AutoCompleteModule} from 'primeng/autocomplete';
@@ -21,35 +22,63 @@ export class CsDropdownComponent implements OnInit {
     public titlecaption : string = "";
     public prefiltersuggestionbase : any;//this object holds the suggestion base object 
     public suggestionbase : any[] = [];//this array holds all available suggestions (before any filtering for autocomplete)
-    public autocompletevalue : string;//this array
+    public autocompletevalue : string[] = [];//this array
     public autocompletesuggestions : string[];
+    public autocompletemultiple : boolean = false;//this value defines whether multiple items can be selected
+    public minselected : number = 0;
+    public maxselected : number = 0;
 
     constructor(
         private librarymetiersservice : LibrarymetiersService,
         private quizzservice : QuizzService,
-        private dbuserinfoservice : DbuserinfoService
+        private dbuserinfoservice : DbuserinfoService,
+        private readwritebufferservice : ReadwritebufferService
     ) { }
     
     ngOnInit() {
         this.setuptitle();
+        this.setupautocompleteoptions();
         this.setupprefiltersuggestionbase();
         this.setupsuggestionbase();
     }
 
-    public autocompletesearch(event) {
+
+    public autocompletesearch(event):void {
         this.checkifinarray(event.query);
+    }
+
+    public updateautocompletevalue():void{
+        this.checknumberofvalues();
+    }
+
+    //generates experience id for read write buffer - uses option 1 by default
+    public returnexperience():string{
+        return String(this.quizzservice.currentquizzid) + "-" + String(this.quizzservice.currentcardid) +"-" + "1";
+    }
+
+    public checknumberofvalues():void{
+        let temp_checkbuttonenabled : boolean = false;
+        if (this.autocompletevalue.length>=this.minselected){
+            temp_checkbuttonenabled = true;
+            if (this.autocompletevalue.length>this.maxselected){
+                this.autocompletevalue = this.autocompletevalue.slice(1);
+            }
+            this.readwritebufferservice.updatebuffer(this.returnexperience(),this.autocompletevalue,"update");
+        }
+        this.quizzservice.setcheckbutton(temp_checkbuttonenabled);
     }
 
     public checkifinarray(expression:string):void {
         this.autocompletesuggestions = []
-        this.suggestionbase.forEach((item,index)=>{
-            let itemasastring : string = String(item);
-            if (itemasastring.indexOf(expression) != -1) {
-                this.autocompletesuggestions.push(itemasastring);
-            }
-        });
-        console.log(this.autocompletesuggestions);
-        console.log("this.autocompletevalue", this.autocompletevalue);
+        if (expression.length>2){
+            this.suggestionbase.forEach((item,index)=>{
+                if (String(" " + item).toLowerCase().indexOf(" " + expression.toLowerCase()) != -1 && !this.autocompletevalue.includes(String(item))) {
+                    this.autocompletesuggestions.push(String(item));
+                }
+            });
+        }
+        //console.log(this.autocompletesuggestions);
+        //console.log("this.autocompletevalue", this.autocompletevalue);
     }
     
     //set up prefilter suggestions
@@ -66,7 +95,7 @@ export class CsDropdownComponent implements OnInit {
         } else {
             temp_type = "placeholder";
         }
-        console.log("type of prefiltersuggestionbase :"+temp_type);
+        //console.log("type of prefiltersuggestionbase :"+temp_type);
 
         //if prefiltersuggestionbase is an object, use valuekey to extract array
         if (temp_type === "object") {
@@ -82,7 +111,7 @@ export class CsDropdownComponent implements OnInit {
             let validsuggestionbase : boolean = true;
             switch(String(this.prefiltersuggestionbase)) {
                 case "metiers":
-                    console.log("suggestionbase is 'metiers'");
+                    //console.log("suggestionbase is 'metiers'");
                     this.prefiltersuggestionbase = this.librarymetiersservice.metiers;
                     break
                 default:
@@ -107,10 +136,10 @@ export class CsDropdownComponent implements OnInit {
 
         //SAVE INTO SUGGESTIONBASE
         if (!Array.isArray(this.prefiltersuggestionbase)) {
-            console.log("placeholder is an object")
+            //console.log("placeholder is an object")
             this.suggestionbase = this.prefiltersuggestionbase[this.quizzservice.currentcardobject.parameters.valuekey]                
         } else {
-            console.log("placeholder is an array")
+            //console.log("placeholder is an array")
             this.suggestionbase = this.prefiltersuggestionbase
         }
         console.log("setupsuggestionbase: suggestion base before filtering is : ",this.suggestionbase);            
@@ -120,22 +149,22 @@ export class CsDropdownComponent implements OnInit {
             //there is at least one filter, so let's cycle through them
             for (let i = 0; i < filterkeyarray.length; i++) {
                 if (prefiltersuggestionbasekeyarray.indexOf(filterkeyarray[i]) != -1) {
-                    console.log("setupsuggestionbase: Filterkey is available");
+                    //console.log("setupsuggestionbase: Filterkey is available");
                     currentmatchingvalues = [];//reset list of current matching values (current = matching for this filter given that there can be several filters)
                     if (Array.isArray(this.prefiltersuggestionbase[filterkeyarray[i]])){
-                        console.log("setupsuggestionbase: Filterkey is an array");
+                        //console.log("setupsuggestionbase: Filterkey is an array");
                         if (Array.isArray(filtervaluearray[i])) {
-                            console.log("setupsuggestionbase: Filtervalue is an array");
+                            //console.log("setupsuggestionbase: Filtervalue is an array");
                             currentvaluearray = filtervaluearray[i];
                         }else{
-                            console.log("setupsuggestionbase: Filtervalue is a placeholder");
+                            //console.log("setupsuggestionbase: Filtervalue is a placeholder");
                             if (this.dbuserinfoservice.userinfo.experience[filtervaluearray[i]]!=null){
                                 console.log("filtervalue: ",filtervaluearray[i]," // experience: ",this.dbuserinfoservice.userinfo.experience[filtervaluearray[i]]);
                                 if (Array.isArray(this.dbuserinfoservice.userinfo.experience[filtervaluearray[i]])){
-                                    console.log("setupsuggestionbase: placeholder refers to actual array")
+                                    //console.log("setupsuggestionbase: placeholder refers to actual array")
                                     currentvaluearray = this.dbuserinfoservice.userinfo.experience[filtervaluearray[i]];
                                 }else{
-                                    console.log("setupsuggestionbase: placeholder refers to value which is not an array")
+                                    //console.log("setupsuggestionbase: placeholder refers to value which is not an array")
                                     currentvaluearray = [];
                                     currentvaluearray.push(this.dbuserinfoservice.userinfo.experience[filtervaluearray[i]]);
                                 }
@@ -156,7 +185,7 @@ export class CsDropdownComponent implements OnInit {
                         } else {
                             matchingvalues = _.intersection(matchingvalues,currentmatchingvalues);
                         }
-                        console.log("currentmatchingvalues:", currentmatchingvalues);
+                        //console.log("currentmatchingvalues:", currentmatchingvalues);
                     } else {
                         console.log("setupsuggestionbase: Filterkey is not an array");
                     }
@@ -186,6 +215,16 @@ export class CsDropdownComponent implements OnInit {
     public setuptitle():void {
         if (this.quizzservice.currentcardobject.parameters.titlecaption != null) {
             this.titlecaption = this.quizzservice.currentcardobject.parameters.titlecaption;
+        }
+    }
+
+    public setupautocompleteoptions():void{
+        if (this.quizzservice.currentcardobject.parameters.minselected != null) {
+            this.minselected = this.quizzservice.currentcardobject.parameters.minselected;
+        }
+        if (this.quizzservice.currentcardobject.parameters.maxselected != null) {
+            this.maxselected = this.quizzservice.currentcardobject.parameters.maxselected;
+            this.autocompletemultiple = (this.maxselected>1) ? true : false;
         }
     }
 

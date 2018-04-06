@@ -1,4 +1,12 @@
 <div *ngIf="titlecaption!=''" class="csmultiplechoice_title">
-  {{titlecaption}}
+    {{titlecaption}}
 </div>
-<p-autoComplete [(ngModel)]="autocompletevalue" [suggestions]="autocompletesuggestions" (completeMethod)="autocompletesearch($event)" ></p-autoComplete>
+<p-autoComplete 
+    class="ldbway"
+    [(ngModel)]="autocompletevalue" 
+    [suggestions]="autocompletesuggestions" 
+    (completeMethod)="autocompletesearch($event)"
+    (onSelect)="updateautocompletevalue()"
+    (onUnselect)="updateautocompletevalue()"
+    [multiple]="autocompletemultiple" 
+></p-autoComplete>
