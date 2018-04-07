@@ -6,41 +6,27 @@ export class ScoringevaluateService {
     
     constructor() { }
 
-    //This is how the guide REALLY works:
-    //Two-step process:
+    //VALUE CREATION CYCLE :
+    // User creates experience values --> stored in profile (correspond to cards)
+    // Pre-scoring cycles trough prescoring items to process experience values created by user --> stored in new experience ids (which do not correspond to cards)
+    // Guide cycles trough score items, using experience values created during pre-scoring process --> stored results in guideresult
+    //
+    //SCORING : A Two-step process:
     //  1) A pre-scoring process creates values for each profile, which are stored in the profile
+    //      The outcome of the pre-scoring process is a set of values which can be analyzed during the matching process by proximity_discrete, proximity_continuous, distance_discrete or distance_continuous 
+    //      Preprocessing sets valuetype, experienceids, options, span and weighing of each score item
     //  2) A matching process based on pre-scoring values sorts out different user profiles 
+    //
+    //Let's take a complicated example: metiers matching, which is a three-level discrete_distance evaluation process involving the following variables of the metiers library : "grand domaine", "intitulé" and "libelle_appelation_court"
+    //      During the pre-scoring process, the system calculates the user coefficient of the item (from 0 to 1)
+    //      During the matching process, the system evaluates the probability of matching X out of Y items for each level (domaine, intitule, appelation court). 
+    //      After going through this calculation, it sums up the matching score according to the indicated sumup mode
 
     //Pre-scoring process:
-    //1) It starts evaluating one item
-    //2) It takes out the list of values to be gathered
-    //3) It checks which values are available
-    //4) It cycles through values to evaluate the item
-    //5) It checks to what kind of card the value is attached
-    //6) If value interpretation is continuous:
-        //SimplePlacement -> value/max = value
-        //MultipleChoice -> dilution based on min, max, selected and value
-        //Orderrelative -> value/max
-        //Orderregular_match --> if value=value (=order correct) --> value, else --> value
-        //Orderregular_weighing --> ((ranks - rank)/ranks) - 1
-        //Swipecards -> value = value
-    //6) If value interpretation is discrete
-        //SimplePlacement -> ?????
-        //MultipleChoice -> ?????
-        //Orderrelative -> ?????
-        //Orderregular_match --> ?????
-        //Orderregular_weighing --> ?????
-        //Swipecards -> ?????
-    //7) It checks how to integrate calculated value into item value
-        //integration mode can be...
-        //...set maximum (value can no longer be above)
-        //...set minimum (value can no longer be below)
-        //...set to value
-        //...value (item value will be the )
-    //8) It sets the value weight
-        //0,1,2,3, etc.
-        //-99 means absolute priority
-    //9) It iteratively sums up calculated values to item value
+    //1) It takes the preprocessingids from scoreitem (which can be "x-xxx-x" for specific values or "-xxx-" for a set of values)
+    //2) it checks whether these are discrete (true/false, arrays) or continuous (number, float) values (mixing discrete and continuous is not allowed)
+    //3) discrete values : it sets up a lists of cards involved, it sums up the number of available options (MultipleChoice, Swipecards), then sets options
+    //   continuous values : it normalises each value and takes the average (Orderrelative, Orderregular), then sets span
 
     //This function calculates all scoring items and saves it into a publicly accessible matrix
     public prescoringactiveuser(userid:string):void {
@@ -85,7 +71,11 @@ export class ScoringevaluateService {
     //      proximity_discrete = probability of matching over one (For instance, 3 options out of 6 are matching. Probability of 3/6 matching = 0.83% * 20 = 16%) --> then reversed and logarithmic value
     //      distance_continuous = proximity_continuous reversed
     //      proximity_discrete = proximity_discrete reversed
-    //      Think about 
+    //
+    //sumupmodes : 
+    //      "none" : no sum up required
+    //      "average" : takes the average value of all scores as final score
+    //      "weighing" : uses an array in storeitems which holds values totalling 1 and calculates final score by weighing each individual score accordingly  
     public guides : any = {
         guideids : [1],
         guide1 : {
@@ -93,15 +83,27 @@ export class ScoringevaluateService {
             description:"Evaluates individual experiences",
             maxitems:5,//show the first 5 of items
             scoreitems: [
-                {id:1, evaluation:"proximity", coefficientmax:10, coefficientmin:0}
+                {id:1, evaluationmode:"proximity_continuous", coefficientmax:10, coefficientmin:0, usercoefficient:"xxx-xx-x", sumupmode:"none"},
+                {id:2, evaluationmode:"proximity_discrete", coefficientmax:10, coefficientmin:0, usercoefficient:"xxx-xx-x", sumupmode:"weighing"}
             ]  
         }
     }
 
+    //instructions for individual preprocessing
+    public prescoringitems : any[] = [
+        {id:0, name:"Dummy", description:"Dummy here", inputexperienceids: ["xxx-xx-x"], outputexperienceid: "xxx-xx-x"}
+        //empty score item
+    ]
+
+    //instructions for score items used by guide
     public scoreitems : any[] = [
         {id:0, name:"Dummy", description:"Dummy here", experienceids: ["xxx-xx-x"]},
         //empty score item
-        {id:1, name:"Séniorité", description:"Années d'expérience professionnelle", valuetype:"discrete", valueunique:true, coefficientmax:10, coefficientmin:0},
+        {id:1, name:"Séniorité", 
+        description:"Années d'expérience professionnelle", 
+        valuetype:"continuous", 
+        experienceids:["xxx-xx-x"],
+        options:[0], span:[0], weighing:[0]},
         //séniorité : une seule option possible, distance quantifiable
         //la valeur est une interprétation directe de la séniorité (0-3 ans -> 1, 4-6 ans -> 2, etc.)
         {id:2, name:"Métiers pré-reconversion", description:"Métiers exercés avant la reconversion", valuetype:"discrete", valueunique:false, coefficientmax:10, coefficientmin:0},
