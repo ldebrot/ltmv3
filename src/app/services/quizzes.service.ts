@@ -76,7 +76,7 @@ export class QuizzesService {
             caption:"Direct Test",
             description:"C'est juste pour tester des cartes",
             cardids : [106],
-            conditionvisible: [{experience:"1-32-1",value:true, compulsory:true}],
+            conditionvisible: [{experience:"nexistepas",value:true, compulsory:true}],
             conditionenabled: false,
             iconclass: "mdi mdi-dice-multiple quizzseletion_icons gradientnew3",
             followupaction: {command : "navigate", route: "quizzselection", delay:0}
