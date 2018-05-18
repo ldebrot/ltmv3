@@ -95,6 +95,17 @@ export class CsPlacementsimpleComponent implements OnInit {
         }
     }
 
+    public setslidervaluetoclosest(event:any):void{
+        let temp_distancearray = this.options.map((item,index) => {
+            return Math.round(Math.abs((item.stepposition / this.slidermax) - (event.layerX/event.target.offsetWidth))*100);
+        });
+        this.setslidervalue(this.options[temp_distancearray.indexOf(Math.min.apply(Math, temp_distancearray))].stepposition);
+        console.log("event.layerX)",event.layerX);
+        console.log("event.target.offsetWidth",event.target.offsetWidth);
+        console.log("this.options",this.options);
+        console.log("temp_distancearray",temp_distancearray);
+    }
+
     public setslidervalue(stepposition:number):void{
         this.slidervalue = stepposition;
         this.updaterwbuffer();

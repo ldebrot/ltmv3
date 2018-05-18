@@ -1,3 +1,4 @@
+import { ScoringevaluateService } from './../../../../services/scoringevaluate.service';
 import { DbuserinfoService } from './../../../../services/dbuserinfo.service';
 import { QuizzService } from './../../../../services/quizz.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
@@ -20,7 +21,8 @@ export class CsComputeComponent implements OnInit {
         private readwritebufferservice : ReadwritebufferService,
         private quizzservice : QuizzService,
         private librarymetiersservice : LibrarymetiersService,
-        private dbuserinfoservice : DbuserinfoService
+        private dbuserinfoservice : DbuserinfoService,
+        private scoringevaluateservice : ScoringevaluateService
     ) { }
     
     ngOnInit() {
@@ -52,6 +54,10 @@ export class CsComputeComponent implements OnInit {
             case "setvalue":
                 console.log("computecomponent: load process 'setvalue'");
                 this.setvalue();
+                break
+            case "launchprescoring":
+                console.log("computecomponent: load process 'launchprescoring'");
+                this.launchprescoring();
                 break
             default:
                 console.log("computecomponent : did not find computing process")
@@ -111,6 +117,11 @@ export class CsComputeComponent implements OnInit {
         this.updaterwbuffer_byexperience(this.outputexperienceid,temp_value);
     }
     
+
+    public launchprescoring():void{
+        this.scoringevaluateservice.prescoringactiveuser(this.dbuserinfoservice.currentuserid);
+    }
+
     public setvalue():void{
         this.updaterwbuffer_byexperience(this.outputexperienceid,this.quizzservice.currentcardobject.parameters.inputexperienceid);
     }

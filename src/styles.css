@@ -1587,6 +1587,12 @@ input.ng-invalid.ng-touched {
     text-align: center;
     transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .csplacementsimplecaptionholder {
@@ -1675,59 +1681,102 @@ input.ng-invalid.ng-touched {
     min-height: 5.5em;
     padding: 2rem 1rem;
     border-radius: 5px;
-    -webkit-transition: all .7s ease-in-out; /* Safari */
-    transition: all .7s ease-in-out;
 }
 
 .quizzselection_item:hover {
     z-index: 3;
-	-webkit-animation-name: comingforward;
+	-webkit-animation-name: comingforwardcaption;
 	-webkit-animation-duration: .7s;
 	-webkit-transform-origin:50% 50%;
 	-webkit-animation-iteration-count: 1;
 	-webkit-animation-timing-function: linear;
-	animation-name: comingforward;
+	animation-name: comingforwardcaption;
 	animation-duration: .7s;
 	transform-origin:50% 50%;
 	animation-iteration-count: 1;
     animation-timing-function: linear;
-    transform: scale(1.5);
-    -webkit-transform: scale(1.5); 
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1); 
+    -webkit-transition: all .7s ease-in-out; /* Safari */
+    transition: all .7s ease-in-out;
 }
 
 .quizzseletion_icons {
     font-size : 3rem;
 }
 
-@-webkit-keyframes comingforward {
-	0% { -webkit-transform:  rotate(1deg) scale(1.05);}
-	10% { -webkit-transform: rotate(1deg) scale(1.1); }
-	20% { -webkit-transform: rotate(-1deg) scale(1.15); }
-	30% { -webkit-transform: rotate(-1deg) scale(1.2); }
-	40% { -webkit-transform: rotate(1deg) scale(1.25); }
-	50% { -webkit-transform: rotate(1deg) scale(1.3); }
-	60% { -webkit-transform: rotate(-1deg) scale(1.35); }
-	70% { -webkit-transform: rotate(-1deg) scale(1.4); }
-	80% { -webkit-transform: rotate(1deg) scale(1.45); }
-	90% { -webkit-transform: rotate(1deg) scale(1.5); }
-	100% { -webkit-transform: rotate(0deg) scale(1.5); }
+.quizzselection_iconcontainer:hover {
+    z-index: 3;
+	-webkit-animation-name: comingforwardicon;
+	-webkit-animation-duration: .7s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-timing-function: linear;
+	animation-name: comingforwardicon;
+	animation-duration: .7s;
+	transform-origin:50% 50%;
+	animation-iteration-count: 1;
+    animation-timing-function: linear;
+    transform: scale(1.85);
+    -webkit-transform: scale(1.85); 
+    -webkit-transition: all .7s ease-in-out; /* Safari */
+    transition: all .7s ease-in-out;
+}
+@-webkit-keyframes comingforwardcaption {
+	0% { -webkit-transform:  rotate(1deg) scale(1.01);}
+	10% { -webkit-transform: rotate(1deg) scale(1.02); }
+	20% { -webkit-transform: rotate(-1deg) scale(1.03); }
+	30% { -webkit-transform: rotate(-1deg) scale(1.04); }
+	40% { -webkit-transform: rotate(1deg) scale(1.05); }
+	50% { -webkit-transform: rotate(1deg) scale(1.06); }
+	60% { -webkit-transform: rotate(-1deg) scale(1.07); }
+	70% { -webkit-transform: rotate(-1deg) scale(1.08); }
+	80% { -webkit-transform: rotate(1deg) scale(1.09); }
+	90% { -webkit-transform: rotate(1deg) scale(1.10); }
+	100% { -webkit-transform: rotate(0deg) scale(1.10); }
 }
 
-@keyframes comingforward {
-	0% { transform:  rotate(1deg) scale(1.05);}
-	10% { transform: rotate(1deg) scale(1.1); }
-	20% { transform: rotate(-1deg) scale(1.15); }
-	30% { transform: rotate(-1deg) scale(1.2); }
-	40% { transform: rotate(1deg) scale(1.25); }
-	50% { transform: rotate(1deg) scale(1.3); }
-	60% { transform: rotate(-1deg) scale(1.35); }
-	70% { transform: rotate(-1deg) scale(1.4); }
-	80% { transform: rotate(1deg) scale(1.45); }
-	90% { transform: rotate(1deg) scale(1.5); }
-	100% { transform: rotate(0deg) scale(1.5); }
+@keyframes comingforwardcaption {
+	0% { transform:  rotate(1deg) scale(1.01);}
+	10% { transform: rotate(1deg) scale(1.02); }
+	20% { transform: rotate(-1deg) scale(1.03); }
+	30% { transform: rotate(-1deg) scale(1.04); }
+	40% { transform: rotate(1deg) scale(1.05); }
+	50% { transform: rotate(1deg) scale(1.06); }
+	60% { transform: rotate(-1deg) scale(1.07); }
+	70% { transform: rotate(-1deg) scale(1.08); }
+	80% { transform: rotate(1deg) scale(1.09); }
+	90% { transform: rotate(1deg) scale(1.10); }
+	100% { transform: rotate(0deg) scale(1.10); }
 }
 
+@-webkit-keyframes comingforwardicon {
+	0% { -webkit-transform:  rotate(1deg) scale(1.10);}
+	10% { -webkit-transform: rotate(1deg) scale(1.20); }
+	20% { -webkit-transform: rotate(-1deg) scale(1.30); }
+	30% { -webkit-transform: rotate(-1deg) scale(1.40); }
+	40% { -webkit-transform: rotate(1deg) scale(1.50); }
+	50% { -webkit-transform: rotate(1deg) scale(1.60); }
+	60% { -webkit-transform: rotate(-1deg) scale(1.70); }
+	70% { -webkit-transform: rotate(-1deg) scale(1.75); }
+	80% { -webkit-transform: rotate(1deg) scale(1.80); }
+	90% { -webkit-transform: rotate(1deg) scale(1.83); }
+	100% { -webkit-transform: rotate(0deg) scale(1.85); }
+}
 
+@keyframes comingforwardicon {
+	0% { transform:  rotate(1deg) scale(1.10);}
+	10% { transform: rotate(1deg) scale(1.20); }
+	20% { transform: rotate(-1deg) scale(1.30); }
+	30% { transform: rotate(-1deg) scale(1.40); }
+	40% { transform: rotate(1deg) scale(1.50); }
+	50% { transform: rotate(1deg) scale(1.60); }
+	60% { transform: rotate(-1deg) scale(1.70); }
+	70% { transform: rotate(-1deg) scale(1.75); }
+	80% { transform: rotate(1deg) scale(1.80); }
+	90% { transform: rotate(1deg) scale(1.83); }
+	100% { transform: rotate(0deg) scale(1.85); }
+}
 .savethisforlater {
 	-webkit-animation-name: shaking;
 	-webkit-animation-duration: 1s;

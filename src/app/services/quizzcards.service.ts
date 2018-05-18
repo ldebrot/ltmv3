@@ -1423,7 +1423,96 @@ export class QuizzcardsService {
             },
             options : {
             }
-        }
+        },
+        card151 : {
+            parameters:{
+                cardtype:"Placement simple",
+                instruction:"Pour répondre à la question, déplace le curseur selon ta situation.",
+                questioncaption: "Depuis combien de temps travailles-tu ?",
+                cardcomponentname: "CsPlacementsimpleComponent",
+                step :25,//min = 1
+                min: 0,
+                max: 100,
+                options: [1,2,3,4,5],
+                cursorcaption:"toi"
+            },
+            optional : {
+            },
+            options : {
+                option1 : {
+                    id:1,
+                    left:"0%",
+                    stepposition : 0,
+                    bulletcaption:"1",
+                    bulletclass:"csplacementsimple_bullet_red",
+                    caption:"0 - 2 ans",
+                    captionclass:"csplacementsimple_caption_red"
+                },
+                option2 : {
+                    id:2,
+                    left:"25%",
+                    stepposition : 25,
+                    bulletcaption:"2",
+                    bulletclass:"csplacementsimple_bullet_orange",
+                    caption:"3 - 6 ans",
+                    captionclass:"csplacementsimple_caption_orange"
+                },
+                option3 : {
+                    id:3,
+                    left:"50%",
+                    stepposition : 50,
+                    bulletcaption:"3",
+                    bulletclass:"csplacementsimple_bullet_yellow",
+                    caption:"6 - 10 ans",
+                    captionclass:"csplacementsimple_caption_yellow"
+                },
+                option4 : {
+                    id:4,
+                    left:"75%",
+                    stepposition : 75,
+                    bulletcaption:"4",
+                    bulletclass:"csplacementsimple_bullet_green",
+                    caption:"10 - 20 ans",
+                    captionclass:"csplacementsimple_caption_green"
+                },
+                option5 : {
+                    id:5,
+                    left:"100%",
+                    stepposition : 100,
+                    bulletcaption:"5",
+                    bulletclass:"csplacementsimple_bullet_blue",
+                    caption:"Plus de 20 ans",
+                    captionclass:"csplacementsimple_caption_blue"
+                }
+            }
+        },
+        card700 : {
+            parameters:{
+                cardtype:"Compute Component",
+                instruction:"",
+                questioncaption: "",
+                cardcomponentname: "CsComputeComponent",
+                process:"launchprescoring",
+                inputexperienceid:"",
+                outputexperienceid:""
+                },
+            optional : {
+            },
+            options : {
+            }
+        },       
+        card600 : {
+            parameters:{
+                cardtype:"Profile Component",
+                instruction:"",
+                questioncaption: "",
+                cardcomponentname: "CsProfileComponent",
+                },
+            optional : {
+            },
+            options : {
+            }
+        }        
     }
 }
 

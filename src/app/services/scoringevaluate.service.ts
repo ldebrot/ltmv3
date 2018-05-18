@@ -1,11 +1,19 @@
+import { ReadwriteprescoreService } from './readwriteprescore.service';
+import { QuizzcardsService } from './quizzcards.service';
+import { DbuserinfoService } from './dbuserinfo.service';
 import { Injectable } from '@angular/core';
 
 //This service evaluates the experience saved in dbuserinfo Service
 @Injectable()
 export class ScoringevaluateService {
     
-    constructor() { }
+    constructor(
+        private quizzcardservice : QuizzcardsService,
+        private dbuserinfoservice : DbuserinfoService,
+        private readwriteprescoreservice : ReadwriteprescoreService
+    ) { }
 
+    /*
     //VALUE CREATION CYCLE :
     // User creates experience values --> stored in profile (correspond to cards)
     // Pre-scoring cycles trough prescoring items to process experience values created by user --> stored in new experience ids (which do not correspond to cards)
@@ -29,8 +37,114 @@ export class ScoringevaluateService {
     //   continuous values : it normalises each value and takes the average (Orderrelative, Orderregular), then sets span
 
     //This function calculates all scoring items and saves it into a publicly accessible matrix
-    public prescoringactiveuser(userid:string):void {
+    //experience is taken from active user, but for dev purposes, output can be saved for other users
+    */
 
+    public prescoringactiveuser(outputuserid:string):void {
+        //prepares read-write service for prescoring
+        this.readwriteprescoreservice.emptyprescorebuffer();
+
+        //goes through prescoreitems
+        console.log("prescoringactiveuser: there are "+this.prescoringitems.length+" items set up for prescoring");
+        let temp_prescoreitem : any = [];
+        let temp_prescorename = "";
+        let temp_value : any
+        this.prescoringitems.forEach((value, index)=>{
+            temp_prescorename = value.name;
+            temp_prescoreitem = [];
+            if (value.inputexperienceids.length > 0) {
+                value.inputexperienceids.forEach((temp_inputexperienceid,experienceidindex) => {
+                    //there are experience ids to be processed
+                    console.log("prescoringactiveuser: am now processing experience ids");
+                    temp_value = "";
+                    //check if card and card type are valid and available
+                    let temp_cardandoptionids = this.getcardandoptionids(temp_inputexperienceid);
+                    if (temp_cardandoptionids != false) {
+                        let temp_cardtype = this.getcardtype(temp_cardandoptionids.cardid);
+                        console.log("prescoringactiveuser : cardcomponentname is "+temp_cardtype);
+
+                        //now get saved experience 
+                        console.log(this.dbuserinfoservice.userinfo.experience);
+                        let temp_experiencevalue = this.getexperiencevalue(temp_cardandoptionids.cardid, temp_cardandoptionids.optionid);
+
+                        //process according to card type
+                        switch(temp_cardtype) {
+                            case "CsPlacementsimpleComponent":
+                                //register normalized value
+                                temp_value = (temp_experiencevalue / this.quizzcardservice.cards["card"+temp_cardandoptionids.cardid].parameters.max)
+                                break;
+                            default:
+                                console.log("prescoringactiveuser : cardcomponentname does not match any Component");
+                                break;
+                        }
+                    }
+                    temp_prescoreitem.push(temp_value);
+                });
+            } else if (value.inputexperienceids.length == 0) {
+                //there is no experience id to be processed
+                console.log("prescoringactiveuser: error, there is no input experience id");
+                return;
+            } 
+
+            this.readwriteprescoreservice.addtoprescorebuffer(temp_prescorename,outputuserid,temp_prescoreitem);
+            console.log("temp_prescoreitem");
+            console.log(temp_prescoreitem);
+
+        });
+        this.readwriteprescoreservice.transmitprescorebuffer();
+    }
+
+
+//    /prescores/mumu
+
+    public getexperiencevalue(cardid,optionid):any{
+        console.log("I'm here!");
+        let temp_value : any = null;
+        let experiencecardid : any;
+        let experienceoptionid : any;
+        Object.keys(this.dbuserinfoservice.userinfo.experience).forEach((value, index)=>{
+            experiencecardid = value.split("-")[1];
+            experienceoptionid = value.split("-")[2];
+            if (experiencecardid==String(cardid) && experienceoptionid==String(optionid)){
+                temp_value = this.dbuserinfoservice.userinfo.experience[value]
+            }
+        });
+
+        if (temp_value!=null) {
+            console.log("getexperiencevalue: value is:");
+            console.log(temp_value);
+        }else {
+            temp_value = false
+            console.log("getexperiencevalue: did not get experiencevalue");
+            console.log("cardid" + cardid);
+            console.log("optionid" + optionid);
+        }
+        return temp_value
+    }
+
+    public getcardandoptionids(inputexperienceid):any {
+        let temp_value : any = false;
+        if (inputexperienceid.split("-").length == 3){
+            let temp_cardid = inputexperienceid.split("-")[1];
+            let temp_optionid = inputexperienceid.split("-")[2];
+            //checks if card exists
+            if (Object.keys(this.quizzcardservice.cards).includes("card"+temp_cardid)){
+                temp_value = {};
+                temp_value["cardid"] = temp_cardid;
+                temp_value["optionid"] = temp_optionid;
+            }
+        }
+        if (temp_value) {
+            console.log("isinputexperienceidvalid : valid");
+            console.log(temp_value);
+        } else{
+            console.log("isinputexperienceidvalid : INVALID");
+        }
+        return temp_value;
+    }
+
+    public getcardtype(cardid:any):any{
+        return this.quizzcardservice.cards["card"+cardid].parameters.cardcomponentname;
     }
 
     //This function compares the values of the active user to 
@@ -75,14 +189,23 @@ export class ScoringevaluateService {
     //sumupmodes : 
     //      "none" : no sum up required
     //      "average" : takes the average value of all scores as final score
-    //      "weighing" : uses an array in storeitems which holds values totalling 1 and calculates final score by weighing each individual score accordingly  
+    //      "weighing" : uses an array in scoreitems which holds values totalling 1 and calculates final score by weighing each individual score accordingly  
     public guides : any = {
         guideids : [1],
         guide1 : {
             name:"Guide 1",
             description:"Evaluates individual experiences",
             maxitems:5,//show the first 5 of items
-            scoreitems: [
+            scoreitems: [//
+                {id:1, evaluationmode:"proximity_continuous", coefficientmax:10, coefficientmin:0, usercoefficient:"xxx-xx-x", sumupmode:"none"},
+                {id:2, evaluationmode:"proximity_discrete", coefficientmax:10, coefficientmin:0, usercoefficient:"xxx-xx-x", sumupmode:"weighing"}
+            ]  
+        },
+        guide2 : {
+            name:"Guide 2",
+            description:"Evaluates individual experiences",
+            maxitems:5,//show the first 5 of items
+            scoreitems: [//
                 {id:1, evaluationmode:"proximity_continuous", coefficientmax:10, coefficientmin:0, usercoefficient:"xxx-xx-x", sumupmode:"none"},
                 {id:2, evaluationmode:"proximity_discrete", coefficientmax:10, coefficientmin:0, usercoefficient:"xxx-xx-x", sumupmode:"weighing"}
             ]  
@@ -91,21 +214,19 @@ export class ScoringevaluateService {
 
     //instructions for individual preprocessing
     public prescoringitems : any[] = [
-        {id:0, name:"Dummy", description:"Dummy here", inputexperienceids: ["xxx-xx-x"], outputexperienceid: "xxx-xx-x"}
-        //empty score item
+        {id:0, name:"yearsofexperience", description:"Années d'expérience professionnelle", inputexperienceids: ["x-151-1"], weighing:[1], sumupmode:"none"}
     ]
 
     //instructions for score items used by guide
     public scoreitems : any[] = [
-        {id:0, name:"Dummy", description:"Dummy here", experienceids: ["xxx-xx-x"]},
-        //empty score item
-        {id:1, name:"Séniorité", 
+        {id:0, name:"Séniorité", 
         description:"Années d'expérience professionnelle", 
         valuetype:"continuous", 
-        experienceids:["xxx-xx-x"],
+        experienceids:["yearsofexperience"],
         options:[0], span:[0], weighing:[0]},
         //séniorité : une seule option possible, distance quantifiable
         //la valeur est une interprétation directe de la séniorité (0-3 ans -> 1, 4-6 ans -> 2, etc.)
+        /*
         {id:2, name:"Métiers pré-reconversion", description:"Métiers exercés avant la reconversion", valuetype:"discrete", valueunique:false, coefficientmax:10, coefficientmin:0},
         //métiers passés : privilégier la proximité, plusieurs options possibles, distance quantifiable
         //La distance est qualifiée à partir de deux niveaux (valeurs interprétées) : grand domaine d'activité et intitulé (base Pôle emploi) 
@@ -158,6 +279,7 @@ export class ScoringevaluateService {
         {id:31, name:"Se motiver", description:"Retrouver confiance et du soutien dans son projet de reconversion.", valuetype:"continuous", valueunique:true, coefficientmax:10, coefficientmin:0}
         //Réseautage : privilégier l'écart, une seule option possible, distance quantifiable
         //Interprétation indirecte : combinaison d'une multitude de valeurs
+        */
     ]
 
     public cards : any = {

@@ -1,3 +1,5 @@
+import { Subject } from 'rxjs';
+
 //This service handles the local copy of the user information (copied from firebase)
 import { OnInit, Injectable } from '@angular/core';
 
@@ -22,6 +24,7 @@ export class DbuserinfoService {
     private linkedin_followme:boolean;
     private linkedin_url:string;
     private status:string;
+    public userinfoloadedobservable : Subject<boolean> = new Subject();
 
     constructor(
     ) {
@@ -29,6 +32,7 @@ export class DbuserinfoService {
 
     //This gives a general structure, 
     public userinfo : any = {
+        loaded : false,
         privateinfo : {
             email: "",
             mobile : "",
@@ -95,8 +99,15 @@ export class DbuserinfoService {
                 }
             }
         }
+        this.announceendofloading();
         console.log("this.userinfo is now :");
         console.log(this.userinfo);
     }
+
+    public announceendofloading():void{
+        this.userinfoloadedobservable.next(true);
+        this.userinfo.loaded = true;
+    }
+
 
 }

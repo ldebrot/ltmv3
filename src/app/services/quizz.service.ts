@@ -212,7 +212,10 @@ export class QuizzService implements OnInit{
             let temp_iconclass = this.quizzes[key].iconclass;
             let temp_description = this.quizzes[key].description;
             let temp_caption = this.quizzes[key].caption;
-            let temp_visible = true;
+            let temp_visible : boolean = true;
+            let temp_firstcriteria : boolean = true;
+            let temp_before : number;
+            let temp_new : number;
             let temp_quizzid = key.slice(5,);//this takes off 'quizz' in the beginning of the key
             //check if to be visible
             if (this.quizzes[key].conditionvisible!==false){
@@ -222,7 +225,14 @@ export class QuizzService implements OnInit{
                 this.quizzes[key].conditionvisible.forEach(element => {
                     if (element.compulsory) {
                         //if condition is compulsory, visible is set to false it if condition unmet
-                        temp_visible = this.checkifconditionmet(element.experience, element.value);
+                        if (temp_firstcriteria) {
+                            temp_firstcriteria = false;
+                            temp_before = 1;
+                        } else {
+                            temp_before = Number(temp_visible);
+                        }
+                        temp_new = Number(this.checkifconditionmet(element.experience, element.value));
+                        temp_visible = Boolean(temp_before * temp_new);
                     } else {
                         //if condition is not compulsory, visible is set to true only if condition met
                         if (this.checkifconditionmet(element.experience, element.value)) {
@@ -243,14 +253,24 @@ export class QuizzService implements OnInit{
     }
 
     public checkifconditionmet(experience:string, value:any):boolean{
+        console.log("#######","value");
+        console.log(value);
+        console.log("value == null");
+        console.log(value == null);
+        console.log("this.dbuserinfoservice.userinfo.experience[experience]==null");
+        console.log(this.dbuserinfoservice.userinfo.experience[experience]==null);
+        console.log("experience");
+        console.log(experience);
+        console.log("this.dbuserinfoservice.userinfo.experience[experience]");
+        console.log(this.dbuserinfoservice.userinfo.experience[experience]);
         let temp_result : boolean = false;
-        if (this.dbuserinfoservice.userinfo.experience[experience]!=null){
+        if (value == null) {
+            temp_result = (this.dbuserinfoservice.userinfo.experience[experience] == null) ? true : false;
+        }else{
             temp_result = (this.dbuserinfoservice.userinfo.experience[experience] == value) ? true : false;
-        } else {
-            if (value == undefined) {
-                temp_result = true;
-            }
         }
+        console.log("temp_result");
+        console.log(temp_result);
         return temp_result;
     }
 

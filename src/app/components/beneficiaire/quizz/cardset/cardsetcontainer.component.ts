@@ -1,4 +1,3 @@
-import { checkbuttontooltipmodel } from './../../../../services/checkbuttontooltipmodel.model';
 import { EventEmitter, ElementRef } from '@angular/core';
 //COMPONENTS
 import { CsPlacementsimpleComponent } from './../cs-placementsimple/cs-placementsimple.component';
@@ -9,10 +8,12 @@ import { CsOrderrelativeComponent } from 'app/components/beneficiaire/quizz/cs-o
 import { CsMultiplechoiceComponent } from 'app/components/beneficiaire/quizz/cs-multiplechoice/cs-multiplechoice.component';
 import { CsInfoComponent } from 'app/components/beneficiaire/quizz/cs-info/cs-info.component';
 import { CsComputeComponent } from 'app/components/beneficiaire/quizz/cs-compute/cs-compute.component'
+import { CsProfileComponent } from '../cs-profile/cs-profile.component';
 
 //Hand-made services
 import { ReadwritebufferService } from './../../../../services/readwritebuffer.service';
 import { QuizzService } from './../../../../services/quizz.service';
+import { checkbuttontooltipmodel } from './../../../../services/checkbuttontooltipmodel.model';
 
 //Built-in and third-party
 import { Subscription } from 'rxjs/Rx';
@@ -111,6 +112,10 @@ export class CardsetcontainerComponent implements AfterViewInit, OnDestroy, OnIn
             case "CsComputeComponent":
                 cardsetItem = new CardsetItem(CsComputeComponent, {});
                 console.log("CsComputeComponent");
+                break
+            case "CsProfileComponent":
+                cardsetItem = new CardsetItem(CsProfileComponent, {});
+                console.log("CsProfileComponent");
                 break
             default:
                 console.log("cardsetcontainer : cardcomponentname does not match any Component")

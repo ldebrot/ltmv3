@@ -1,0 +1,31 @@
+<div class="maxwidthmobile">
+  <div class="maxwidthmobile" >
+      <sc-card
+      *ngFor="let swipecard of swipecards;let i = index;"
+      [callDestroy]="swipecard.destroyEvent"
+      [orientation]="orientation"
+      (onRelease)="onRelease($event)"
+      (onSwipe)="onSwipe($event)"
+      (onAbort)="onAbort($event)"
+      [tinder-card]="overlay"
+      [callLike]="swipecard.likeEvent"
+      (onLike)="onCardLike($event)"
+      class="swipecardcontainer"
+      >
+      <div [class]="swipecard.backgroundclass">
+          <div class="swipecardoverlay">
+              {{swipecard.caption}}
+          </div>
+          <div [class]="swipecard.iconcontainerclass">
+              <i [class]="swipecard.iconclass"></i>
+          </div>
+      </div>
+      </sc-card>
+
+  </div>
+</div>
+<div class="swipecardbuttoncontainer" [hidden]="swipecardbuttoncontainerhidden">
+  <div class="swipecardbuttonleft swipecardbutton" (click)="like(false)"> &#10094; NON </div>
+  <div class="swipecardbuttonright swipecardbutton" (click)="like(true)"> OUI &#10095;</div>
+</div>
+  

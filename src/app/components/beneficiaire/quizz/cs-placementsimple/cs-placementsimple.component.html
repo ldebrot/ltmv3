@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="csplacementsimpleslider">
-        <p-slider [(ngModel)]="this.slidervalue" [min]="this.slidermin" [max]="this.slidermax" [step]="this.sliderstep" (onChange)="updaterwbuffer()"></p-slider>        
+        <p-slider [(ngModel)]="this.slidervalue" [min]="this.slidermin" [max]="this.slidermax" [step]="this.sliderstep" (onChange)="updaterwbuffer()" (click)="setslidervaluetoclosest($event)"></p-slider>        
     </div>
     <div class="csplacementsimplebulletholder">
         <div *ngFor="let option of this.options" [ngStyle]="{left:option.left, 'position':'absolute'}" [class]="option.bulletclass" (click)="setslidervalue(option.stepposition)">

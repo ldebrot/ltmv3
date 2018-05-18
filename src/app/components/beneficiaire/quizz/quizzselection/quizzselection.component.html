@@ -2,7 +2,9 @@
 </div>
 <div class="quizzselection_container">
     <div *ngFor="let quizzitem of this.quizzservice.currentquizzselection" class="quizzselection_item" (click)="chosequizz(quizzitem.quizzid)">
-        <i class="{{quizzitem.iconclass}}"></i>
+        <div class="quizzselection_iconcontainer">
+            <i class="{{quizzitem.iconclass}}"></i>
+        </div>
         <div>{{quizzitem.caption}}</div>
         <div>{{quizzitem.conditionvisible}}</div>
     </div>

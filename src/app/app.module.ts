@@ -54,6 +54,8 @@ import { ConnectService } from './services/connect.service';
 import { QuizzesService } from './services/quizzes.service';//stores quizzes
 import { QuizzcardsService } from './services/quizzcards.service';//stores cards
 import { LibrarymetiersService } from './services/library_metiers.service';//stores metier values
+import { ScoringevaluateService } from './services/scoringevaluate.service';//handles scoring services
+import { ReadwriteprescoreService } from './services/readwriteprescore.service';//handles read-write process of prescores
 
 
 //Components
@@ -93,6 +95,7 @@ import { TopbarComponent } from './components/topbar/topbar.component';
 import { NotconnectedstartingpageComponent } from './components/notconnected/notconnectedstartingpage/notconnectedstartingpage.component';
 import { QuizzselectionComponent } from './components/beneficiaire/quizz/quizzselection/quizzselection.component';
 import { CsComputeComponent } from './components/beneficiaire/quizz/cs-compute/cs-compute.component';
+import { CsProfileComponent } from './components/beneficiaire/quizz/cs-profile/cs-profile.component';
 
 //console.log("initializedApp at app.mdoule.ts level!");
 
@@ -120,7 +123,8 @@ import { CsComputeComponent } from './components/beneficiaire/quizz/cs-compute/c
         TopbarComponent,
         NotconnectedstartingpageComponent,
         QuizzselectionComponent,
-        CsComputeComponent
+        CsComputeComponent,
+        CsProfileComponent
     ],
     imports: [
         FormsModule,
@@ -174,7 +178,9 @@ import { CsComputeComponent } from './components/beneficiaire/quizz/cs-compute/c
         ConnectService,//handles connection to firebase db
         QuizzcardsService,//stores quizz cards
         QuizzesService,//stores quizzes
-        LibrarymetiersService//stores metiers values
+        LibrarymetiersService,//stores metiers values
+        ScoringevaluateService,//handles scoring services
+        ReadwriteprescoreService//handles read-write process of prescores
     ],
     entryComponents: [
         CsSwipecardComponent,
@@ -186,7 +192,8 @@ import { CsComputeComponent } from './components/beneficiaire/quizz/cs-compute/c
         CsInfoComponent,
         CsPlacementsimpleComponent,
         CsDropdownComponent,
-        CsComputeComponent
+        CsComputeComponent,
+        CsProfileComponent
     ],
     bootstrap: [AppComponent]
 })
