@@ -65,22 +65,37 @@ export class ScoringevaluateService {
                         let temp_cardtype = this.getcardtype(temp_cardandoptionids.cardid);
                         console.log("prescoringactiveuser : cardcomponentname is "+temp_cardtype);
 
-                        //now get saved experience 
+                        //what kind of user info experience do we have?
+                        console.log("prescoringactiveuser : current user info experience :");
                         console.log(this.dbuserinfoservice.userinfo.experience);
-                        let temp_experiencevalue = this.getexperiencevalue(temp_cardandoptionids.cardid, temp_cardandoptionids.optionid);
+                        let temp_experiencevalue : any;
 
                         //process according to card type
                         switch(temp_cardtype) {
                             case "CsPlacementsimpleComponent":
                                 //register normalized value
+                                temp_experiencevalue = this.getexperiencevalue(temp_cardandoptionids.cardid, temp_cardandoptionids.optionid);
                                 temp_value = (temp_experiencevalue / this.quizzcardservice.cards["card"+temp_cardandoptionids.cardid].parameters.max)
+                                break;
+                            case "CsSwipecardComponent":
+                                console.log("it's a swipecard!");
+                                temp_value = [];
+                                let temp_optionids = [];
+                                if (temp_cardandoptionids.optionid == "x"){
+                                    temp_optionids = this.quizzcardservice.cards["card"+temp_cardandoptionids.cardid].parameters.options;
+                                } else {
+                                    temp_optionids.push(Number(temp_cardandoptionids.optionid));
+                                }
+                                temp_optionids.forEach((temp_optionid) => {
+                                    temp_value.push(this.getexperiencevalue(temp_cardandoptionids.cardid, temp_optionid)) 
+                                });
                                 break;
                             default:
                                 console.log("prescoringactiveuser : cardcomponentname does not match any Component");
                                 break;
                         }
                     }
-                    temp_prescoreitem.push(temp_value);
+                    temp_prescoreitem = temp_prescoreitem.concat(temp_value);
                 });
 
                 //check if there is a sumup/weighing mode
@@ -108,7 +123,7 @@ export class ScoringevaluateService {
 //    /prescores/mumu
 
     public getexperiencevalue(cardid,optionid):any{
-        console.log("I'm here!");
+        //console.log("I'm here!");
         let temp_value : any = null;
         let experiencecardid : any;
         let experienceoptionid : any;
@@ -121,8 +136,8 @@ export class ScoringevaluateService {
         });
 
         if (temp_value!=null) {
-            console.log("getexperiencevalue: value is:");
-            console.log(temp_value);
+            //console.log("getexperiencevalue: value is:");
+            //console.log(temp_value);
         }else {
             temp_value = false
             console.log("getexperiencevalue: did not get experiencevalue");
@@ -159,7 +174,8 @@ export class ScoringevaluateService {
 
     //This function compares the values of the active user to 
     public useguide(guidename:string):any{
-        let temp_promise_useguide = new Promise(
+        let temp_promises_useguide = []
+        temp_promises_useguide.push(new Promise(
             (resolveuseguidetotal, reject) => {
 
                 //Checks if guide exist
@@ -191,9 +207,17 @@ export class ScoringevaluateService {
                 }
 
             }
-        ); 
+        )); 
 
-        return Promise.all([temp_promise_useguide])
+        temp_promises_useguide.push(new Promise(
+            (resolveuseguidecompleteprofile, reject) => {
+                this.guideresult_completeuserprofiles();
+                //implement as then structure --> resolve after guideresult_completeuserprofiles, which is async. XXX
+                resolveuseguidecompleteprofile();
+            }
+        ));
+
+        return Promise.all(temp_promises_useguide)
         .then(()=>{
             console.log("resolve promise:useguide");
             console.log("this.guideresults");
@@ -230,7 +254,7 @@ export class ScoringevaluateService {
                     }
                 } else {
                     temp_prescoresallavailable = false;
-                    console.log("processscoreitem: cannot process score item as not all prescores are available")
+                    console.log("processscoreitem: cannot process score item as not all prescores are available. Scorename : "+scoreitemfromguide.scorename);
                 }
             });
             console.log("loaded prescorenames of current score item:")
@@ -239,7 +263,7 @@ export class ScoringevaluateService {
             console.log(temp_arrayofuseridswithallprescores)
 
             if (temp_prescoresallavailable) {
-                //add userids of those who have all necessary prescores
+                //add userids of those who have all necessary prescores for the current score item
                 this.dbotherusersservice.getpublicinfovalue_fromfirebase(temp_arrayofuseridswithallprescores)
                 .then(()=>{
                     this.guideresult_adduserids(temp_arrayofuseridswithallprescores, guidename);
@@ -247,13 +271,17 @@ export class ScoringevaluateService {
                     let temp_prescoreresults = [];//stores results of prescoring
                     let temp_scoreresultobject = {};//holds results of scoring
         
-                    //
+                    //Process each prescore of the score item
                     temp_scoreitem.prescoreitems.forEach ((prescoreitemvalue, prescoreitemindex)=>{
                         switch(prescoreitemvalue.evaluationmode){
                             case "proximity_continuous":
+                                //proximity_continuous = distance between values (3 - 2 = 1) over value span (5) : 1/5 = 20% -->  then reversed (1 - 20% = 80%)
                                 temp_prescoreresults.push(this.getprescore_proximity_continuous(temp_arrayofuseridswithallprescores, prescoreitemvalue.prescorename));
                                 break;
                             case "proximity_discrete":
+                                //proximity_discrete = basic matching ratio 3 out of 6 are matching --> 50%
+                                //proximity_discrete = other possibility, not implemented: probability of matching over one (For instance, 3 options out of 6 are matching. Probability of 3/6 matching = 0.83% * 20 = 16%) --> then reversed and logarithmic value
+                                temp_prescoreresults.push(this.getprescore_proximity_discrete(temp_arrayofuseridswithallprescores, prescoreitemvalue.prescorename));
                                 break;
                             case "distance_continuous":
                                 break;
@@ -265,10 +293,11 @@ export class ScoringevaluateService {
                         }
                     });
         
-                    console.log("temp_prescoreresults");
+                    console.log("temp_prescoreresults on score name : " + scoreitemfromguide.scorename);
                     console.log(temp_prescoreresults);
         
                     //calculates score here based on prescores (+weighing)
+                    //This is where multiple prescores are merged into a single score for a given score item
                     let temp_scoreavailable : boolean = true;
                     if(temp_prescoreresults.length < 1) {
                         //there is no prescoreresult!
@@ -282,6 +311,7 @@ export class ScoringevaluateService {
                         // XXX finish calculation, including weighing process
                         temp_prescoreresults.forEach(()=>{
                         });
+                        temp_scoreresultobject = temp_prescoreresults[0];
                     }
         
                     console.log("temp_scoreresultobject");
@@ -290,10 +320,15 @@ export class ScoringevaluateService {
                     //saves score results to guideresult object
                     if(temp_scoreavailable){
                         this.guideresult_addresults(temp_scoreresultobject, guidename, scoreitemfromguide.scorename);
+                    } else {
+                        console.log("processcoreitem: no score available on scorename : "+scoreitemfromguide.scorename);
                     }
-                    console.log("resolve promise: processscoreitem")
+                    console.log("resolve promise: processscoreitem on scorename : "+scoreitemfromguide.scorename)
                     resolveprocessscoreitem();
                 });
+            } else {
+                console.log("resolve promise: processscoreitem on scorename : "+scoreitemfromguide.scorename)
+                resolveprocessscoreitem();
             }
         });
     }
@@ -309,6 +344,29 @@ export class ScoringevaluateService {
         return temp_responseobject;
     }
 
+    public getprescore_proximity_discrete(userids:string[], prescorename):any{
+        let temp_responseobject : any = {}
+        let temp_matches : number = 0;
+        let temp_maxvalues : number;
+        userids.forEach((temp_userid)=>{
+        if (temp_userid != this.dbuserinfoservice.currentuserid){
+                temp_matches = 0;
+                console.log("check this");
+                console.log(this.prescores[prescorename][temp_userid]);
+                temp_maxvalues = this.prescores[prescorename][temp_userid].length;
+                for (let i = 0; i < temp_maxvalues; i++){
+                    if (this.prescores[prescorename][this.dbuserinfoservice.currentuserid][i] == this.prescores[prescorename][temp_userid][i]) {
+                        temp_matches++;
+                    }
+                }
+                console.log("temp_maxvalues : " + temp_maxvalues);
+                console.log("temp_matches : " + temp_matches);
+                temp_responseobject[temp_userid] = Math.round((temp_matches * 100) / temp_maxvalues) / 100; 
+            }
+        });
+        return temp_responseobject;
+    }
+
     //adds guidename and result structure to guideresult object
     public guideresult_addguidename(guidename:string):void{
         if (!this.guideresults.guidenames.includes(guidename)) {
@@ -317,6 +375,8 @@ export class ScoringevaluateService {
         }
         this.guideresults[guidename]={};
         this.guideresults[guidename].userids=[];
+        this.guideresults[guidename].scorenames={};
+        this.guideresults[guidename].users={};
         let temp_date = new Date();
         let temp_lastevaluationdate = (temp_date.getDate() + "-" + temp_date.getMonth() + "-" + temp_date.getFullYear())
         this.guideresults[guidename].lastevaluationdate=temp_lastevaluationdate;
@@ -328,12 +388,8 @@ export class ScoringevaluateService {
             //add user and structure if userid not in guideresult object yet
             userids.forEach((value_userid)=>{
                 if (!Object.keys(this.guideresults[guidename]).includes(value_userid) && value_userid !=this.dbuserinfoservice.currentuserid){
-                    this.guideresults[guidename][value_userid] = {};
-                    this.guideresults[guidename][value_userid].scores = {};
-                    
-                    //this.guideresults[guidename][value_userid].firstname = this.readwriteotherusersservice.getpublicinfovalue(value_userid,"firstname");
-                    this.guideresults[guidename][value_userid].pictureurl = "pictureurldummy";
-                    // XXX here, user information (name, picture, must be added)
+                    this.guideresults[guidename].users[value_userid] = {};
+                    this.guideresults[guidename].users[value_userid].scores = {};                    
                     if (!this.guideresults[guidename].userids.includes(value_userid)){
                         this.guideresults[guidename].userids.push(value_userid);
                     }
@@ -346,18 +402,29 @@ export class ScoringevaluateService {
 
     public guideresult_addresults(resultobject:any, guidename:string, scorename:string):void{
         let temp_score : any;
+        if (!Object.keys(this.guideresults[guidename].scorenames).includes(scorename)){
+            this.guideresults[guidename].scorenames[scorename]=[];
+        } 
+
         Object.keys(resultobject).forEach((value_userid) => {
-            this.guideresults[guidename][value_userid].scores[scorename] = resultobject[value_userid];
+            this.guideresults[guidename].users[value_userid].scores[scorename] = resultobject[value_userid];
+            if (!this.guideresults[guidename].scorenames[scorename].includes(value_userid)){
+                this.guideresults[guidename].scorenames[scorename][value_userid] = resultobject[value_userid];        
+            }
         });
 
     }
 
+    // XXX here, user information (name and picture must be added, from Firebase)
+    public guideresult_completeuserprofiles(){
+        console.log("Now completing user profiles");
+    }
 
     //sends back ids of users which have a certain prescore, as an array 
     public getuseridsforprescores(prescorename):any{
         let temp_array : any;
         if (Object.keys(this.prescores).includes(prescorename)) {
-            temp_array = Object.keys(this.prescores[prescorename]); 
+            temp_array = Object.keys(this.prescores[prescorename]);
         } else {
             console.log("getuseridsforprescores : error, following prescorename is not in loaded prescores:");
             console.log(prescorename);
@@ -389,41 +456,6 @@ export class ScoringevaluateService {
         return temp_value;
     }
 
-    //This guideresult stores the result of past guide evaluations
-    public guideresultssample : any = {
-        guidenames : ["guide1"],
-        guide1 : {
-            userids : [123,456,789,321,654],
-            lastevaluationdate : "07/04/2018-12h00",
-            user123 : {
-                username : "Marie",
-                pictureurl : "Marie",
-                scores : {
-                    seniority : 0.7,
-                    domainandsector_before : 0.6,
-                    domainandsector_after : 0.3
-                }
-            },
-            user456 : {
-                username : "Jean-Pierre",
-                pictureurl : "Marie",
-                scores : {
-                    seniority : 0.5,
-                    domainandsector_before : 0.4,
-                    domainandsector_after : 0.1
-                }
-            },
-            user789 : {
-                username : "Lucien",
-                pictureurl : "Marie",
-                scores : {
-                    seniority : 0.9,
-                    domainandsector_before : 0.1,
-                    domainandsector_after : 0.1
-                }
-            }
-        }
-    }
 
     //This guideresult stores the result of past guide evaluations
     public guideresults : any = {
@@ -447,11 +479,8 @@ export class ScoringevaluateService {
             description:"Evaluates individual experiences",
             maxitems:5,//show the first 5 of items
             scoreitems: [//
-                {scorename:"seniority",  usercoefficient:"xxx-xx-x", prescoreweighing:[], prescoresumupmode:"none"}
-                /*
-                ,
-                {scorename:"domainandsector", usercoefficient:"xxx-xx-x", prescoreweighing:[], prescoresumupmode:"none"}
-                */
+                {scorename:"seniority",  usercoefficient:"xxx-xx-x", prescoreweighing:[], prescoresumupmode:"none"},
+                {scorename:"domainandsector", usercoefficient:"xxx-xx-x", prescoreweighing:[1,2], prescoresumupmode:"weighing"}
 //                {name:"SPECIFY", evaluationmode:"SPECIFY", usercoefficient:"xxx-xx-x", sumupmode:"none"}
             ]  
         }
@@ -460,8 +489,8 @@ export class ScoringevaluateService {
     //instructions for individual preprocessing
     public prescoringitems : any[] = [
         {prescorename:"yearsofexperience", description:"Années d'expérience professionnelle", inputexperienceids: ["x-151-1"], experienceweighing:[], experiencesumupmode:"none"}, //weighing and sumup mode is not indicated as there is only one value
-        {prescorename:"domainandsector_before", description:"Profil métiers et secteurs pré-reconversion", inputexperienceids: ["x-151-1"], experienceweighing:[], experiencesumupmode:"none"}, //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
-        {prescorename:"domainandsector_after", description:"Profil métiers et secteurs post-reconversion", inputexperienceids: ["x-151-1"], experienceweighing:[], experiencesumupmode:"none"} //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
+        {prescorename:"domainandsector_before", description:"Profil métiers et secteurs pré-reconversion", inputexperienceids: ["x-141-x"], experienceweighing:[], experiencesumupmode:"none"}, //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
+        {prescorename:"domainandsector_after", description:"Profil métiers et secteurs post-reconversion", inputexperienceids: ["x-106-x"], experienceweighing:[], experiencesumupmode:"none"} //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
     ]
 
     //this contains prescores saved on Firebase
@@ -541,4 +570,41 @@ export class ScoringevaluateService {
 
     public cards : any = {
     }
+
+    //This guideresult stores the result of past guide evaluations
+    public guideresultssample : any = {
+        guidenames : ["guide1"],
+        guide1 : {
+            userids : [123,456,789,321,654],
+            lastevaluationdate : "07/04/2018-12h00",
+            user123 : {
+                username : "Marie",
+                pictureurl : "Marie",
+                scores : {
+                    seniority : 0.7,
+                    domainandsector_before : 0.6,
+                    domainandsector_after : 0.3
+                }
+            },
+            user456 : {
+                username : "Jean-Pierre",
+                pictureurl : "Marie",
+                scores : {
+                    seniority : 0.5,
+                    domainandsector_before : 0.4,
+                    domainandsector_after : 0.1
+                }
+            },
+            user789 : {
+                username : "Lucien",
+                pictureurl : "Marie",
+                scores : {
+                    seniority : 0.9,
+                    domainandsector_before : 0.1,
+                    domainandsector_after : 0.1
+                }
+            }
+        }
+    }
+
 }

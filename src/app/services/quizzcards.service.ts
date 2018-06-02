@@ -1012,7 +1012,7 @@ export class QuizzcardsService {
             parameters:{
                 cardtype:"Swipecards",
                 instruction:"Jeu de cartes: fais glisser les cartes à droite pour répondre par oui et à gauche pour répondre par non",
-                questioncaption: "A propos de ton métier de rêve",
+                questioncaption: "Dans quels domaines voudrais-tu travailler ?",
                 cardcomponentname: "CsSwipecardComponent",
                 options:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19]
             },
