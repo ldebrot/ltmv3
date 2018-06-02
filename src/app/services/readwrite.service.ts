@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs/Rx';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { DbuserinfoService } from './dbuserinfo.service';
 
 //Firebase service
@@ -9,18 +9,22 @@ import { AngularFireObject } from 'angularfire2/database';
 
 
 @Injectable()
-export class ReadwriteService {
+export class ReadwriteService implements OnDestroy{
 
 
 //    public firebaseitem : FirebaseObjectObservable<any>;
     public firebaseitem : AngularFireObject<any>;
     public firebaseitemsubscription : Subscription;
+    public simplygetsubscription : Subscription;
 
     constructor(
         public dbuserinfoservice: DbuserinfoService,
         public firebaseauthservice : FirebaseauthService
     ) {}
 
+    ngOnDestroy () {
+        this.simplygetsubscription.unsubscribe();
+    }
 
     public getcurrentuserinfo():any{
         let ref:string = "/users/"+ this.firebaseauthservice.angularfireauth.auth.currentUser.uid+"/";
@@ -106,8 +110,11 @@ export class ReadwriteService {
         });
     }
 
-    public simplyget(ref:string):any{
-        return this.firebaseauthservice.angularfiredatabase.object(ref)
+    public simplygetsnapshot(ref:string, callback:any):any{
+        this.firebaseitem = this.firebaseauthservice.angularfiredatabase.object(ref);
+        return this.simplygetsubscription = this.firebaseitem.snapshotChanges().subscribe(snapshot=>{
+            callback(snapshot.payload.val());
+        });
     }
 
 }

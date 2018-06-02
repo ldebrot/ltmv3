@@ -128,10 +128,10 @@ export class SigninupComponent implements OnInit, OnDestroy {
     //FUnction triggered when user clicks on sign up
     onSignup(form: NgForm) {
         this.dbuserinfoservice.empty();
-        this.dbuserinfoservice.setstartvalues();
         this.dbuserinfoservice.userinfo.publicinfo.firstname = form.value.signupfirstname;
         this.dbuserinfoservice.userinfo.publicinfo.surname = form.value.signupsurname;
         this.dbuserinfoservice.userinfo.privateinfo.email = form.value.signupemail;
+        this.dbuserinfoservice.userinfo.publicinfo.pictureurl = this.dbuserinfoservice.takerandompictureurl();
         const email = form.value.signupemail;
         const password = form.value.signuppassword;
         this.firebaseauthservice.signupUser(email, password)

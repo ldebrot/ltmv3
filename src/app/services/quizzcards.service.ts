@@ -1501,6 +1501,21 @@ export class QuizzcardsService {
             options : {
             }
         },       
+        card701 : {
+            parameters:{
+                cardtype:"Compute Component",
+                instruction:"guide1",
+                questioncaption: "",
+                cardcomponentname: "CsComputeComponent",
+                process:"useguide",
+                inputexperienceid:"",
+                outputexperienceid:""
+                },
+            optional : {
+            },
+            options : {
+            }
+        },       
         card600 : {
             parameters:{
                 cardtype:"Profile Component",

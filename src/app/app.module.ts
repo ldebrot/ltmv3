@@ -56,7 +56,7 @@ import { QuizzcardsService } from './services/quizzcards.service';//stores cards
 import { LibrarymetiersService } from './services/library_metiers.service';//stores metier values
 import { ScoringevaluateService } from './services/scoringevaluate.service';//handles scoring services
 import { ReadwriteprescoreService } from './services/readwriteprescore.service';//handles read-write process of prescores
-
+import { DbotherusersService } from './services/dbotherusersservice.service';//handles rw requests concerning other users than active user (public domain)
 
 //Components
 import { AppComponent } from './app.component';
@@ -180,7 +180,8 @@ import { CsProfileComponent } from './components/beneficiaire/quizz/cs-profile/c
         QuizzesService,//stores quizzes
         LibrarymetiersService,//stores metiers values
         ScoringevaluateService,//handles scoring services
-        ReadwriteprescoreService//handles read-write process of prescores
+        ReadwriteprescoreService,//handles read-write process of prescores
+        DbotherusersService//handles rw requests concerning other users (public domain)
     ],
     entryComponents: [
         CsSwipecardComponent,

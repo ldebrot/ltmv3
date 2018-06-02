@@ -55,6 +55,10 @@ export class CsComputeComponent implements OnInit {
                 console.log("computecomponent: load process 'setvalue'");
                 this.setvalue();
                 break
+            case "useguide":
+                console.log("computecomponent: load process 'useguide'");
+                this.useguide();
+                break
             case "launchprescoring":
                 console.log("computecomponent: load process 'launchprescoring'");
                 this.launchprescoring();
@@ -120,6 +124,13 @@ export class CsComputeComponent implements OnInit {
 
     public launchprescoring():void{
         this.scoringevaluateservice.prescoringactiveuser(this.dbuserinfoservice.currentuserid);
+    }
+
+    public useguide():void{
+        this.scoringevaluateservice.useguide(this.quizzservice.currentcardobject.parameters.instruction)
+        .then(()=>{
+            console.log("ALL DONE NOW!");
+        });    
     }
 
     public setvalue():void{

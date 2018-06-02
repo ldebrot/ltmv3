@@ -45,7 +45,8 @@ export class DbuserinfoService {
             twitter_id: "",
             linkedin_followme : "",
             linkedin_url : "",
-            status: ""
+            status: "",
+            pictureurl: ""
         },
         experience : {
         },
@@ -62,10 +63,6 @@ export class DbuserinfoService {
                 //console.log("key: "+key+" / subkey: "+ subkey+" cleaned!");
             }
         }
-    }
-
-    //This function sets the default (starting) values for newly registered users
-    public setstartvalues():void {
     }
 
     //This function integrates the values passed in the inputobject into the userinfo object, which is available as a service. The inputobject usually comes from firebase.
@@ -109,5 +106,10 @@ export class DbuserinfoService {
         this.userinfo.loaded = true;
     }
 
+    public takerandompictureurl():string{
+        let temp_pictureurl : string = "";
+        let temp_pictureurl_available : ["girl1.png","girl2.png","girl3.png","girl4.png","man1.png","man2.png"];
+        return temp_pictureurl_available[Math.floor(Math.random() * Math.floor(temp_pictureurl_available.length))]
+    }
 
 }

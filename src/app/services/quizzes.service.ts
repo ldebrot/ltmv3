@@ -100,9 +100,9 @@ export class QuizzesService {
             followupaction: {command : "navigate", route: "quizzselection", delay:0}
         },
         quizz99 : {
-            caption:"Profiles",
-            description:"Accès test aux profiles",
-            cardids : [151],//700,600
+            caption:"Test 701",
+            description:"Accès test card 701",
+            cardids : [701,600],
             conditionvisible: false,
             conditionenabled: false,
             iconclass: "mdi mdi-account-circle quizzseletion_icons gradientnew8",
