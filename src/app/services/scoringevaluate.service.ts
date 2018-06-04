@@ -44,62 +44,119 @@ export class ScoringevaluateService {
 
     public prescoringactiveuser(outputuserid:string):any {
         //prepares read-write service for prescoring
+        //it goes through each prescore item
+        //within the prescore item, it goes through each experience
+        //within the experience, it goes through each option
+        //each option is processed according to the card type
+        //processed option values are saved in temp_processedexperiencevalue
+        //for each experience is added a weighing item from the weighing array
+        //if an experience is not available, the weighing item is not added and will not be taken into account.
         this.readwriteprescoreservice.emptyprescorebuffer();
 
         //goes through prescoreitems
         console.log("prescoringactiveuser: there are "+this.prescoringitems.length+" items set up for prescoring");
         let temp_prescoreitem : any = [];
         let temp_prescorename = "";
-        let temp_value : any
+        let temp_processedexperiencevalue : any;
+        let temp_optionids = [];
+        let temp_weighingarray = [];
+        let temp_nbunavailableoptions : number = 0;
         this.prescoringitems.forEach((value, index)=>{
             temp_prescorename = value.prescorename;
             temp_prescoreitem = [];
+
+            //what kind of user info experience do we have? (training purpose only)
+            console.log("prescoringactiveuser : current user info experience :");
+            console.log(this.dbuserinfoservice.userinfo.experience);
+
             if (value.inputexperienceids.length > 0) {
                 value.inputexperienceids.forEach((temp_inputexperienceid,experienceidindex) => {
                     //there are experience ids to be processed
                     console.log("prescoringactiveuser: am now processing experience ids");
-                    temp_value = "";
+                    temp_processedexperiencevalue = [];
+                    temp_nbunavailableoptions = 0;//sets number of unavailable values to 0
+                    temp_optionids = [];
+
                     //check if card and card type are valid and available
                     let temp_cardandoptionids = this.getcardandoptionids(temp_inputexperienceid);
                     if (temp_cardandoptionids != false) {
                         let temp_cardtype = this.getcardtype(temp_cardandoptionids.cardid);
                         console.log("prescoringactiveuser : cardcomponentname is "+temp_cardtype);
 
-                        //what kind of user info experience do we have?
-                        console.log("prescoringactiveuser : current user info experience :");
-                        console.log(this.dbuserinfoservice.userinfo.experience);
-                        let temp_experiencevalue : any;
-
-                        //process according to card type
-                        switch(temp_cardtype) {
-                            case "CsPlacementsimpleComponent":
-                                //register normalized value
-                                temp_experiencevalue = this.getexperiencevalue(temp_cardandoptionids.cardid, temp_cardandoptionids.optionid);
-                                temp_value = (temp_experiencevalue / this.quizzcardservice.cards["card"+temp_cardandoptionids.cardid].parameters.max)
-                                break;
-                            case "CsSwipecardComponent":
-                                console.log("it's a swipecard!");
-                                temp_value = [];
-                                let temp_optionids = [];
-                                if (temp_cardandoptionids.optionid == "x"){
-                                    temp_optionids = this.quizzcardservice.cards["card"+temp_cardandoptionids.cardid].parameters.options;
-                                } else {
-                                    temp_optionids.push(Number(temp_cardandoptionids.optionid));
-                                }
-                                temp_optionids.forEach((temp_optionid) => {
-                                    temp_value.push(this.getexperiencevalue(temp_cardandoptionids.cardid, temp_optionid)) 
-                                });
-                                break;
-                            default:
-                                console.log("prescoringactiveuser : cardcomponentname does not match any Component");
-                                break;
+                        //check if options are x or specified, prepare optionid array
+                        if (temp_cardandoptionids.optionid == "x"){
+                            temp_optionids = this.quizzcardservice.cards["card"+temp_cardandoptionids.cardid].parameters.options;
+                        } else {
+                            temp_optionids.push(Number(temp_cardandoptionids.optionid));
                         }
+
+                        //Go through each option and process it according to the card type
+                        temp_optionids.forEach((temp_optionid) => {
+                            let temp_optionvalue = this.getexperiencevalue(temp_cardandoptionids.cardid, temp_optionid);
+                            if (temp_optionvalue != null){
+
+                                //process according to card type
+                                switch(temp_cardtype) {
+                                    case "CsPlacementsimpleComponent":
+                                        //console.log("prescoringactiveuser: it's a Placement Simple Card!");
+                                        //register normalized value
+                                        temp_processedexperiencevalue = (temp_optionvalue / this.quizzcardservice.cards["card"+temp_cardandoptionids.cardid].parameters.max);
+                                        break;
+                                    case "CsSwipecardComponent":
+                                        //console.log("prescoringactiveuser: it's a swipecard!");
+                                        temp_processedexperiencevalue.push(temp_optionvalue);
+                                        break;
+                                    case "CsOrderrelativeComponent":
+                                        //console.log("prescoringactiveuser: it's a Order Relartive Card!");
+                                        temp_processedexperiencevalue = (temp_optionvalue / this.quizzcardservice.cards["card"+temp_cardandoptionids.cardid].parameters.maxpoints)
+                                        break;
+                                    case "CsMultipleChoiceComponent":
+                                        //console.log("prescoringactiveuser: it's a Multiple Choice Card!");
+                                        temp_processedexperiencevalue = Number(temp_optionvalue);
+                                    default:
+                                        console.log("prescoringactiveuser : cardcomponentname does not match any Component");
+                                        break;
+                                }
+                            } else {
+                                //experience is not available
+                                temp_nbunavailableoptions++;
+                            }
+                        });
+
                     }
-                    temp_prescoreitem = temp_prescoreitem.concat(temp_value);
+
+                    if (temp_nbunavailableoptions == 0) {
+                        //all options are available: save value to prescoreitem and add weighing
+                        //Otherwise, if not all options are available, do not save value of this experience and do not add it to weighing array.
+                        temp_prescoreitem = temp_prescoreitem.concat(temp_processedexperiencevalue);
+                        temp_weighingarray.push(value.experienceweighing[experienceidindex]);
+                    }
+                    
+                    
                 });
 
-                //check if there is a sumup/weighing mode
+                //make sure unique values are not registered as arrays
+                if (Array.isArray(temp_prescoreitem) && temp_prescoreitem.length == 1) {
+                    temp_prescoreitem = temp_prescoreitem[0];
+                }
 
+                //check if there is a sumup/weighing mode
+                switch(value.experiencesumupmode) {
+                    case "none":
+                        //will not do anything, output will be array of calculated values
+                        break;
+                    case "weighing":
+                        //will return weighed values
+                        temp_prescoreitem = this.getweighedvalue(temp_prescoreitem, temp_weighingarray);
+                        break;
+                    case "average":
+                        //just take average of all values in array
+                        temp_prescoreitem = this.getaveragevalue(temp_prescoreitem);
+                        break;
+                    default:
+                        console.log("prescoringactiveuser : cardcomponentname does not match any Component");
+                        break;
+                }
 
                 //Save prescores
                 this.readwriteprescoreservice.addtoprescorebuffer(temp_prescorename,outputuserid,temp_prescoreitem);
@@ -117,6 +174,93 @@ export class ScoringevaluateService {
         .then(()=>{
             console.log("Done with prescoring");
         });
+    }
+
+
+    public getaveragevalue(valuearray):any{
+        let temp_response : any = false;
+        let temp_sum : number = 0;
+        if (valuearray.length > 0) {
+            valuearray.forEach((temp_valuearray) => {
+                if (isNaN(parseFloat(temp_valuearray)) || !isFinite(temp_valuearray)) {
+                    console.log("getaveragevalue: ERROR, could not take average because all values are not numeric. Example : " + temp_valuearray);
+                } else {
+                    temp_sum = temp_sum + parseFloat(temp_valuearray);
+                }
+            });
+            temp_response = Math.round(temp_sum * 100 / valuearray.length) / 100;
+
+        } else {
+            console.log("getaveragevalue: ERROR, there are no values in array");            
+        }
+        return temp_response;
+    }
+
+    public getweighedvalue(valuearray, weighingarray):any{
+        let temp_response : any = false;
+        let temp_sum : number = 0;
+        let temp_weighingsum : number = 0;
+        //check if there is a weigh for each value:
+        if (valuearray.length == weighingarray.length && valuearray.length > 0) {
+
+            //get sum of weighing points
+            weighingarray.forEach((temp_temp_weighingarray) => {
+                if (isNaN(parseFloat(temp_temp_weighingarray)) || !isFinite(temp_temp_weighingarray)) {
+                    console.log("getweighedvalue: ERROR, could not calculate sum of weighing points as all values are not numeric. Example : " + temp_temp_weighingarray);
+                } else {
+                    temp_weighingsum += Math.abs(parseFloat(temp_temp_weighingarray));
+                }
+            });
+
+            //Let's normalize weighing
+            if (temp_weighingsum == 0) {
+                console.log("getweighedvalue: ERROR, weighing sum equals 0");
+                return false;
+            } else {
+                weighingarray = this.getnormalizedarray(weighingarray, temp_weighingsum);
+            }
+
+            //get weighed value
+            for (let valuepos = 0; valuepos < valuearray.length; valuepos++) {
+                if (isNaN(parseFloat(valuearray[valuepos])) || !isFinite(valuearray[valuepos]) ||
+                    isNaN(parseFloat(weighingarray[valuepos])) || !isFinite(weighingarray[valuepos])
+                ) {
+                    console.log("getweighedvalue: ERROR, valuearray or weighing array contains not numeric values.");
+                } else {
+                    if (parseFloat(weighingarray[valuepos]) >= 0){
+                        temp_sum = temp_sum + ( parseFloat(weighingarray[valuepos]) * parseFloat(valuearray[valuepos]));
+                    } else {
+                        let temp_value = (parseFloat(valuearray[valuepos]) === 0) ? 1 : parseFloat(valuearray[valuepos]);
+                        temp_sum = temp_sum + ( Math.abs(parseFloat(weighingarray[valuepos])) * temp_value);
+                    }
+                }
+            }
+
+            temp_response = Math.round(temp_sum * 100) / 100;
+
+        } else {
+            console.log("getaveragevalue: ERROR, list of value and weighing arrays are not equal OR lists do not contain values ");            
+        }
+
+        //console.log("temp_weighingsum");
+        //console.log(temp_weighingsum);
+        //console.log("valuearray");
+        //console.log(valuearray);
+        //console.log("weighingarray");
+        //console.log(weighingarray);
+        //console.log("temp_response");
+        //console.log(temp_response);
+
+        return temp_response;
+    }
+
+    //brings back an array of normalized values (e.g. [5,10,4,1] --> [0.25, 0.5, 0.2, 0.05] )
+    public getnormalizedarray(input_array, input_sum):any{
+        let response = [];
+        input_array.forEach((item) => {
+            response.push(Math.round(item * 100 / input_sum) / 100);
+        });
+        return response;
     }
 
 
@@ -139,7 +283,6 @@ export class ScoringevaluateService {
             //console.log("getexperiencevalue: value is:");
             //console.log(temp_value);
         }else {
-            temp_value = false
             console.log("getexperiencevalue: did not get experiencevalue");
             console.log("cardid" + cardid);
             console.log("optionid" + optionid);
@@ -219,6 +362,7 @@ export class ScoringevaluateService {
 
         return Promise.all(temp_promises_useguide)
         .then(()=>{
+
             console.log("resolve promise:useguide");
             console.log("this.guideresults");
             console.log(this.guideresults);
@@ -479,18 +623,42 @@ export class ScoringevaluateService {
             description:"Evaluates individual experiences",
             maxitems:5,//show the first 5 of items
             scoreitems: [//
-                {scorename:"seniority",  usercoefficient:"xxx-xx-x", prescoreweighing:[], prescoresumupmode:"none"},
-                {scorename:"domainandsector", usercoefficient:"xxx-xx-x", prescoreweighing:[1,2], prescoresumupmode:"weighing"}
-//                {name:"SPECIFY", evaluationmode:"SPECIFY", usercoefficient:"xxx-xx-x", sumupmode:"none"}
+                {scorename:"seniority",  usercoefficient:"none", prescoreweighing:[], prescoresumupmode:"none"},
+                {scorename:"domainandsector", usercoefficient:"coefficient_domainandsector", prescoreweighing:[1,2], prescoresumupmode:"weighing"}
+//                {name:"SPECIFY", evaluationmode:"SPECIFY", usercoefficient:"xxx-xx-x" experience id or prescore, sumupmode:"none"}
             ]  
         }
     ]
 
     //instructions for individual preprocessing
     public prescoringitems : any[] = [
-        {prescorename:"yearsofexperience", description:"Années d'expérience professionnelle", inputexperienceids: ["x-151-1"], experienceweighing:[], experiencesumupmode:"none"}, //weighing and sumup mode is not indicated as there is only one value
-        {prescorename:"domainandsector_before", description:"Profil métiers et secteurs pré-reconversion", inputexperienceids: ["x-141-x"], experienceweighing:[], experiencesumupmode:"none"}, //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
-        {prescorename:"domainandsector_after", description:"Profil métiers et secteurs post-reconversion", inputexperienceids: ["x-106-x"], experienceweighing:[], experiencesumupmode:"none"} //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
+        {
+            prescorename:"coefficient_domainandsector", 
+            description:"Coefficient du critère domaine et secteur", 
+            inputexperienceids: ["x-23-5", "x-23-6", "x-25-1", "x-29-2", "x-29-3", "x-29-4", "x-29-5", "x-45-1", "x-81-1", "x-82-1", "x-83-1", "x-83-2", "x-83-3", "x-83-4", "x-122-1"], 
+            experienceweighing:[1, 1, -1, 0.15, 0.15, 0.15, 0.15, -1, -4, 1, 1, -1, -1, 1, -1], 
+            experiencesumupmode:"weighing"
+        },
+        //weighing and sumup mode is not indicated as there is only one value
+        {
+            prescorename:"yearsofexperience", 
+            description:"Années d'expérience professionnelle", 
+            inputexperienceids: ["x-151-1"], 
+            experienceweighing:[], 
+            experiencesumupmode:"none"
+        },//weighing and sumup mode is not indicated as there is only one value
+        {
+            prescorename:"domainandsector_before", 
+            description:"Profil métiers et secteurs pré-reconversion", 
+            inputexperienceids: ["x-141-x"], 
+            experienceweighing:[], 
+            experiencesumupmode:"none"}, //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
+        {
+            prescorename:"domainandsector_after", 
+            description:"Profil métiers et secteurs post-reconversion", 
+            inputexperienceids: ["x-106-x"], 
+            experienceweighing:[], 
+            experiencesumupmode:"none"} //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
     ]
 
     //this contains prescores saved on Firebase
