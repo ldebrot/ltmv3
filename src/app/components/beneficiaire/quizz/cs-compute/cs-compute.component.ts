@@ -38,39 +38,57 @@ export class CsComputeComponent implements OnInit {
     public executeprocess () : void {
         this.outputexperienceid = this.quizzservice.currentcardobject.parameters.outputexperienceid;//for compute components, experience id is stored in quizzcards service
         let validprocess : boolean = true;
-        switch(String(this.quizzservice.currentcardobject.parameters.process)) {
-            case "translategrandsdomainesintocodegranddomain":
-                console.log("computecomponent: load process 'translategrandsdomainesintocodegranddomain'");
-                this.translategrandsdomainesintocodegranddomain();
-                break
-            case "translatelibelle_appellation_courtintointitule":
-                console.log("computecomponent: load process 'translatelibelle_appellation_courtintointitule'");
-                this.translatelibelle_appellation_courtintointitule();
-                break
-            case "translate145into146":
-                console.log("computecomponent: load process 'translate145into146'");
-                this.translate145into146();
-                break
-            case "setvalue":
-                console.log("computecomponent: load process 'setvalue'");
-                this.setvalue();
-                break
-            case "useguide":
-                console.log("computecomponent: load process 'useguide'");
-                this.useguide();
-                break
-            case "launchprescoring":
-                console.log("computecomponent: load process 'launchprescoring'");
-                this.launchprescoring();
-                break
-            default:
-                console.log("computecomponent : did not find computing process")
-                validprocess = false;
-                break
-        }
-        if (validprocess) {
+        let temp_promises_executeprocess = []
+        temp_promises_executeprocess.push(new Promise(
+            (resolve_executeprocess, reject_executeprocess) => {
+
+            switch(String(this.quizzservice.currentcardobject.parameters.process)) {
+                case "translategrandsdomainesintocodegranddomain":
+                    console.log("computecomponent: load process 'translategrandsdomainesintocodegranddomain'");
+                    this.translategrandsdomainesintocodegranddomain();
+                    resolve_executeprocess();
+                    break
+                case "translatelibelle_appellation_courtintointitule":
+                    console.log("computecomponent: load process 'translatelibelle_appellation_courtintointitule'");
+                    this.translatelibelle_appellation_courtintointitule();
+                    resolve_executeprocess();
+                    break
+                case "translate145into146":
+                    console.log("computecomponent: load process 'translate145into146'");
+                    this.translate145into146();
+                    resolve_executeprocess();
+                    break
+                case "setvalue":
+                    console.log("computecomponent: load process 'setvalue'");
+                    this.setvalue();
+                    resolve_executeprocess();
+                    break
+                case "useguide":
+                    console.log("computecomponent: load process 'useguide'");
+                            this.scoringevaluateservice.useguide(this.quizzservice.currentcardobject.parameters.instruction)
+                            .then(()=>{
+                                resolve_executeprocess();
+                                console.log("ALL DONE NOW!");
+                            });    
+                    break
+                case "launchprescoring":
+                    console.log("computecomponent: load process 'launchprescoring'");
+                    this.launchprescoring();
+                    resolve_executeprocess();
+                    break
+                default:
+                    console.log("computecomponent : ERROR, did not find computing process")
+                    reject_executeprocess();
+                    break
+                }
+            }
+        ));
+
+        Promise.all(temp_promises_executeprocess)
+        .then(()=>{
             this.quizzservice.gotonextcard();//you're done processing, so let's move on to the next card!
-        }
+        });
+            
     }
 
     //PROCESSES
@@ -124,13 +142,6 @@ export class CsComputeComponent implements OnInit {
 
     public launchprescoring():void{
         this.scoringevaluateservice.prescoringactiveuser(this.dbuserinfoservice.currentuserid);
-    }
-
-    public useguide():void{
-        this.scoringevaluateservice.useguide(this.quizzservice.currentcardobject.parameters.instruction)
-        .then(()=>{
-            console.log("ALL DONE NOW!");
-        });    
     }
 
     public setvalue():void{
