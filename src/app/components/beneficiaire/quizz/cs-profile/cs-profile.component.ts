@@ -45,10 +45,13 @@ export class CsProfileComponent implements OnInit {
     public maxselected : number = 0;
     public minselected : number = 0;
     public countselected : number = 0;
+    public automaticheight : number = 0;
+    public automaticwidth : number = 0;
 
     ngOnInit() {
+        this.definewidth_and_height()
     }
-    
+
     constructor(
         private quizzservice : QuizzService,
         private readwritebufferservice : ReadwritebufferService
@@ -56,13 +59,32 @@ export class CsProfileComponent implements OnInit {
         this.quizzservice.setcheckbutton(false);//set start value of check button to false
         this.populatecards();
     }
+
+    public definewidth_and_height(){
+        this.automaticwidth = (window.innerWidth * 0.6);
+        this.automaticheight = this.automaticwidth;
+    }
     
     public populatecards() {
         this.swipecards.push({
             id: 1,
             likeEvent: new EventEmitter(),
             destroyEvent: new EventEmitter(),
-            caption:"Marie"
+            caption:"Marie",
+            image:"assets/images/mariemugler.jpg",
+            backgroundclass: "swipecard_1 unselected5",
+            iconcontainerclass: "iconcontainer",
+            iconclass:"mdi mdi-factory gradientnew5 swipecardicon"
+    });
+        this.swipecards.push({
+            id: 1,
+            likeEvent: new EventEmitter(),
+            destroyEvent: new EventEmitter(),
+            caption:"Lucien",
+            image:"assets/images/man1.png",
+            backgroundclass: "swipecard_1 unselected5",
+            iconcontainerclass: "iconcontainer",
+            iconclass:"mdi mdi-factory gradientnew5 swipecardicon"
         });
     }
 
