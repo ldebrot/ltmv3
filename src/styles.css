@@ -1299,9 +1299,11 @@ input.ng-invalid.ng-touched {
 }
 
 
+/*
 .swipecardbackground{
 
 }
+*/
 
 .swipecardoverlay{
     font-size: x-large;
@@ -1374,13 +1376,18 @@ input.ng-invalid.ng-touched {
 
 .csorderrelative_buttonitem:hover {
     transform: scale(1.05);
-}     
+}
+
+/*
 .csorderrelative_buttoncontainer {
 
 }
+*/
 
+/*
 .csorderrelative_afterbuttoncontainer {
 }
+*/
 
 .csorderrelative_treasurebar{
     height: 3.5rem;    
@@ -1495,15 +1502,22 @@ input.ng-invalid.ng-touched {
     transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
 }
+
 .csorderregular_buttonitem:hover {
     transform: scale(1.05);
-}     
+}
+
+/*
 .csorderregular_buttoncontainer {
 
 }
+*/
 
+/*
 .csorderregular_afterbuttoncontainer {
 }
+*/
+
 
 /* CsInfo */
 
@@ -1656,26 +1670,69 @@ input.ng-invalid.ng-touched {
 
 .profile_image{
     pointer-events: none;
-    user-drag: none;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    margin:10% 0;
 }
 
 .profile_swipecardoverlay{
-    font-size: x-large;
     text-align: center;
-    position: absolute;
-    margin: 10% 0;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    text-shadow:0px 0px 20px white,0px 0px 20px white,0px 0px 20px white,0px 0px 20px white,0px 0px 20px white,0px 0px 20px white;
-    left: 50%;
-    width: 90%;
 }
 
+.profile_cardbackground {
+    background: #aaaaaa; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #eeeeee 28%, #dddddd 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #eeeeee 28%,#dddddd 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #eeeeee 28%,#dddddd 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
+    color:#292b2c;
+}
+
+.profile_cardbackground:hover {
+    box-shadow: 1px 1px 12px #555;
+}
+
+.profile_swipecard {
+    border-radius: 15px;
+    width: 95%;
+    margin: 2% 2% 2% 7%;
+    box-shadow: 3px 3px 12px #000;
+    -webkit-transition: all 0.5s; /* Safari */
+    transition: all 0.5s;
+}
+
+.profile_swipecard:hover{
+    transform: scale(1.05);
+}
+
+.profile_button{
+    margin:1rem 0;
+}
+
+.profile_namecaption{
+    font-size: x-large;
+    text-shadow:0px 0px 20px white,0px 0px 20px white,0px 0px 20px white,0px 0px 20px white,0px 0px 20px white,0px 0px 20px white;
+}
+
+div.profile_ldbway .ui-progressbar {
+    min-height: 1.5em !important;
+}
+
+.profile_growlstyle .ui-growl-item-container{
+    background-color: #AAF !important;
+    color:black !important;
+}
+
+.profile_growlstyle .ui-growl-icon-close {
+    color:white !important;
+}
+
+.profile_growlstyle .ui-growl-image {
+    color:white !important;
+}
 
 /* Quizz selection */
 .quizzselection_title{

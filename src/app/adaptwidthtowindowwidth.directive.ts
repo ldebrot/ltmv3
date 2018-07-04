@@ -5,30 +5,30 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[adapwidthtowindowwidth]'
+  selector: '[adaptwidthtowindowwidth]'
 })
-export class AdapwidthtowindowwidthDirective {
+export class AdaptwidthtowindowwidthDirective {
 
     // this is the input variable. in the html code, the proportion is assigned to this variable, which weirdly must have the same name as the selector
     @Input()
-    adapwidthtowindowwidth: any;
+    adaptwidthtowindowwidth: any;
     
     constructor(private el: ElementRef) {
     }
     
     //after viewcheck, the object is resized
     ngAfterViewChecked() {
-        this.adaptheight(this.el.nativeElement, this.adapwidthtowindowwidth);
+        this.adaptwidth(this.el.nativeElement, this.adaptwidthtowindowwidth);
     }
     
     //each time the window is resized, the object is resized too
     @HostListener('window:resize') 
     onResize() {
-        this.adaptheight(this.el.nativeElement, this.adapwidthtowindowwidth);
+        this.adaptwidth(this.el.nativeElement, this.adaptwidthtowindowwidth);
     }
     
     //this is a simple function which redefines the size of the element, which uses the selector in the HTML code:
-    adaptheight(element: HTMLElement, proportion : any) {
+    public adaptwidth(element: HTMLElement, proportion : any) {
         let newwidth = Number(window.innerWidth) * Number(proportion)
         element.style.width = String(Math.round(newwidth))+"px";
     }

@@ -97,13 +97,14 @@ import { QuizzselectionComponent } from './components/beneficiaire/quizz/quizzse
 import { CsComputeComponent } from './components/beneficiaire/quizz/cs-compute/cs-compute.component';
 import { CsProfileComponent } from './components/beneficiaire/quizz/cs-profile/cs-profile.component';
 import { AdaptheighttowindowwidthDirective } from './adaptheighttowindowwidth.directive';
-import { AdapwidthtowindowwidthDirective } from './adapwidthtowindowwidth.directive';
+import { AdaptwidthtowindowwidthDirective } from './adaptwidthtowindowwidth.directive';
 
 //console.log("initializedApp at app.mdoule.ts level!");
 
 @NgModule({
     declarations: [
         AppComponent,
+        AdaptwidthtowindowwidthDirective,
         AdaptheighttowindowwidthDirective,
         TestComponent,
         StartNotconnectedComponent,//starting point for not-connected user
@@ -127,8 +128,7 @@ import { AdapwidthtowindowwidthDirective } from './adapwidthtowindowwidth.direct
         NotconnectedstartingpageComponent,
         QuizzselectionComponent,
         CsComputeComponent,
-        CsProfileComponent,
-        AdapwidthtowindowwidthDirective        
+        CsProfileComponent
     ],
     imports: [
         FormsModule,

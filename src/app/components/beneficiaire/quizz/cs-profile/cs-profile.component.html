@@ -12,17 +12,42 @@
         (onLike)="onCardLike($event)"
         class="swipecardcontainer"
         >
-        <div [class]="swipecard.backgroundclass" adapwidthtowindowwidth="0.9" adaptheighttowindowwidth="1.2">
-            <div class="profile_swipecardoverlay">
-                <img class="profile_image" [src]="swipecard.image" alt="mounghous" [height]="automaticheight" [width]="automaticwidth">
-                <div class="profile_namecaption">{{swipecard.caption}}</div>
+            <div [class]="swipecard.backgroundclass" adaptwidthtowindowwidth="0.85" adaptheighttowindowwidth="1.3">
+                <div class="profile_swipecardoverlay">
+                    <img class="profile_image" [src]="swipecard.image" alt="profil" width="80%">
+                    <div class="profile_namecaption">{{swipecard.caption}}</div>
+                    <div class="profile_buttonlayer btn btn-secondary" (click)="showprofiledialog(swipecard)">
+                        Voir son profil                    
+                    </div>
+                </div>
             </div>
-        </div>
-    </sc-card>
-    
-</div>
+        </sc-card>    
+    </div>
 </div>
 <div class="swipecardbuttoncontainer" [hidden]="swipecardbuttoncontainerhidden">
     <div class="swipecardbuttonleft swipecardbutton" (click)="like(false)"> &#10094; NON </div>
     <div class="swipecardbuttonright swipecardbutton" (click)="like(true)"> OUI &#10095;</div>
 </div>
+
+
+<p-dialog [header]="currentcaption" [(visible)]="profiledialogvisible" minWidth=300 [modal]="true" [responsive]="false" [showHeader]="true" [closable]="false">
+    <div adaptwidthtowindowwidth="0.75">
+    </div>
+    <div *ngFor="let dialog_value of dialog_values">
+        <div class="profile_dialog_valuecaption">{{dialog_value.valuename}}:</div>
+        <div class="profile_ldbway">
+            <p-progressBar  [value]="dialog_value.valuevalue"
+                [pTooltip]="dialog_value.valuedescription"
+                tooltipPosition="top"
+                (click)="showvalueinformationgrowl(dialog_value.valuedescription)"
+            ></p-progressBar>
+        </div>
+    </div>
+    <br/>
+    <div class="ldb_elementsinglebutton">
+        <button class="btn ldb_btn_small ldb_btn_ltm" (click)="switchprofiledialogvisibility()">OK</button>
+    </div>
+</p-dialog>
+
+
+<p-growl [(value)]="valueinformation" class="profile_growlstyle" life=10000></p-growl>

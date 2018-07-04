@@ -11,6 +11,11 @@ import { FormsModule } from '@angular/forms';
 import { SwipeCardsModule } from 'ng2-swipe-cards';
 
 //PrimeNG
+import {DialogModule} from 'primeng/dialog';
+import {ProgressBarModule} from 'primeng/progressbar';
+import {TooltipModule} from 'primeng/tooltip';
+import {GrowlModule} from 'primeng/growl';
+import {Message} from 'primeng/api';
 
 @Component({
     selector: 'app-cs-profile',
@@ -48,6 +53,15 @@ export class CsProfileComponent implements OnInit {
     public automaticheight : number = 0;
     public automaticwidth : number = 0;
 
+    //profile dialog
+    public profiledialogvisible: boolean = false;
+    public currentswipecard : any = {};
+    public currentcaption : string = "";
+    public dialog_values : any = [];
+
+    //valueinformation growl
+    public valueinformation: Message[] = [];
+
     ngOnInit() {
         this.definewidth_and_height()
     }
@@ -61,7 +75,7 @@ export class CsProfileComponent implements OnInit {
     }
 
     public definewidth_and_height(){
-        this.automaticwidth = (window.innerWidth * 0.6);
+        this.automaticwidth = (window.innerWidth * 0.9);
         this.automaticheight = this.automaticwidth;
     }
     
@@ -72,19 +86,42 @@ export class CsProfileComponent implements OnInit {
             destroyEvent: new EventEmitter(),
             caption:"Marie",
             image:"assets/images/mariemugler.jpg",
-            backgroundclass: "swipecard_1 unselected5",
+            backgroundclass: "profile_swipecard profile_cardbackground",
             iconcontainerclass: "iconcontainer",
-            iconclass:"mdi mdi-factory gradientnew5 swipecardicon"
+            iconclass:"mdi mdi-factory gradientnew5 swipecardicon",
+            dialog_values : [
+                {
+                    valuename : "First value",
+                    valuedescription : "This is the first value. It means this and that but also whatever.",
+                    valuevalue : 50,
+                },
+                {
+                    valuename : "Second value",
+                    valuedescription : "This is the first value. It means this and that but also whatever.",
+                    valuevalue : 20,
+                }
+            ]
+
     });
         this.swipecards.push({
-            id: 1,
+            id: 2,
             likeEvent: new EventEmitter(),
             destroyEvent: new EventEmitter(),
             caption:"Lucien",
             image:"assets/images/man1.png",
-            backgroundclass: "swipecard_1 unselected5",
+            backgroundclass: "profile_swipecard profile_cardbackground",
             iconcontainerclass: "iconcontainer",
-            iconclass:"mdi mdi-factory gradientnew5 swipecardicon"
+            iconclass:"mdi mdi-factory gradientnew5 swipecardicon",
+            dialog_values : [
+                {
+                    valuename : "First value",
+                    valuevalue : 80,
+                },
+                {
+                    valuename : "Second value",
+                    valuevalue : 33,
+                }
+            ]
         });
     }
 
@@ -122,6 +159,24 @@ export class CsProfileComponent implements OnInit {
     }
     
     public scrollToBottom(el) {
+    }
+
+
+    public showprofiledialog(tempswipecard:any) {
+        this.currentswipecard = tempswipecard;
+        this.currentcaption = "Profil de " + this.currentswipecard.caption;
+        this.dialog_values = tempswipecard.dialog_values;
+        this.profiledialogvisible = true;
+    }
+
+    public switchprofiledialogvisibility(){
+        this.profiledialogvisible = !this.profiledialogvisible;
+    }
+
+    public showvalueinformationgrowl(inputtext:string){
+        console.log("show growl now: "+inputtext);
+        this.valueinformation = [];
+        this.valueinformation.push({severity:"info", summary:"", detail:inputtext})
     }
     
 }
