@@ -1,6 +1,8 @@
 //hand-made services
+import { DbotherusersService } from './../../../../services/dbotherusersservice.service';
 import { ReadwritebufferService } from './../../../../services/readwritebuffer.service';
 import { QuizzService } from 'app/services/quizz.service';
+import { ScoringevaluateService } from './../../../../services/scoringevaluate.service';
 
 //built-in stuff
 import { Component, ViewEncapsulation, ViewChild, TemplateRef, EventEmitter, NgModule, OnInit } from '@angular/core';
@@ -62,13 +64,21 @@ export class CsProfileComponent implements OnInit {
     //valueinformation growl
     public valueinformation: Message[] = [];
 
+    //Guide information
+    public usedguide : string = "guide1";
+
+    //picture retrieval path
+    public pictureretrievalpath : string = "assets/images/"
+
     ngOnInit() {
         this.definewidth_and_height()
     }
 
     constructor(
         private quizzservice : QuizzService,
-        private readwritebufferservice : ReadwritebufferService
+        private readwritebufferservice : ReadwritebufferService,
+        private dbotherusersservice : DbotherusersService,
+        private scoringevaluateservice : ScoringevaluateService
     ) {
         this.quizzservice.setcheckbutton(false);//set start value of check button to false
         this.populatecards();
@@ -80,49 +90,31 @@ export class CsProfileComponent implements OnInit {
     }
     
     public populatecards() {
-        this.swipecards.push({
-            id: 1,
-            likeEvent: new EventEmitter(),
-            destroyEvent: new EventEmitter(),
-            caption:"Marie",
-            image:"assets/images/mariemugler.jpg",
-            backgroundclass: "profile_swipecard profile_cardbackground",
-            iconcontainerclass: "iconcontainer",
-            iconclass:"mdi mdi-factory gradientnew5 swipecardicon",
-            dialog_values : [
-                {
-                    valuename : "First value",
-                    valuedescription : "This is the first value. It means this and that but also whatever.",
-                    valuevalue : 50,
-                },
-                {
-                    valuename : "Second value",
-                    valuedescription : "This is the first value. It means this and that but also whatever.",
-                    valuevalue : 20,
-                }
-            ]
-
-    });
-        this.swipecards.push({
-            id: 2,
-            likeEvent: new EventEmitter(),
-            destroyEvent: new EventEmitter(),
-            caption:"Lucien",
-            image:"assets/images/man1.png",
-            backgroundclass: "profile_swipecard profile_cardbackground",
-            iconcontainerclass: "iconcontainer",
-            iconclass:"mdi mdi-factory gradientnew5 swipecardicon",
-            dialog_values : [
-                {
-                    valuename : "First value",
-                    valuevalue : 80,
-                },
-                {
-                    valuename : "Second value",
-                    valuevalue : 33,
-                }
-            ]
+        let temp_usercount : number = 0;
+        let temp_useritem : any = {};
+        this.swipecards = [];
+        let temp_scoreitem :any = {};
+        console.log("this.scoringevaluateservice.guideresults[this.usedguide].userids",this.scoringevaluateservice.guideresults[this.usedguide].userids);
+        this.scoringevaluateservice.guideresults[this.usedguide].userids.forEach((value_userid, index) => {
+            temp_useritem = {}//reset user item
+            temp_usercount++;//increment user count
+            temp_useritem["id"] = temp_usercount//assign id
+            temp_useritem["likeEvent"] = new EventEmitter();
+            temp_useritem["destroyEvent"] = new EventEmitter();
+            temp_useritem["caption"] = this.dbotherusersservice.getpublicinfovalue_fromlocaldb(value_userid, "firstname");
+            temp_useritem["image"] = this.pictureretrievalpath + this.dbotherusersservice.getpublicinfovalue_fromlocaldb(value_userid, "pictureurl");
+            temp_useritem['dialog_values'] = [];
+            Object.keys(this.scoringevaluateservice.guideresults[this.usedguide].users[value_userid].scores).forEach((value_scorename) => {
+                temp_scoreitem = {};
+                temp_scoreitem["valuename"] = this.scoringevaluateservice.getothervalueofscoreitemsbyscorename(value_scorename, "description");
+                temp_scoreitem["valuevalue"] = this.scoringevaluateservice.guideresults[this.usedguide].users[value_userid].scores[value_scorename] * 100;//value must be multiplied by 100 as progressbar has max value at 100
+                temp_scoreitem["valuedescription"] = this.scoringevaluateservice.getothervalueofscoreitemsbyscorename(value_scorename, "description_long");
+                temp_useritem['dialog_values'].push(temp_scoreitem);
+            });
+            this.swipecards.push(temp_useritem);
         });
+        console.log("populatecards: there are " + String(temp_usercount) + "user(s).")
+        console.log("populatecards: swipecards:",this.swipecards);
     }
 
     public registeraction(like) {

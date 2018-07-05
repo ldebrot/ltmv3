@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 //Home-grown
 import { ReadwriteService } from './readwrite.service';
+import { AnonymousSubscription } from 'rxjs/Subscription';
 
 @Injectable()
 export class DbotherusersService {
@@ -12,7 +13,45 @@ export class DbotherusersService {
         public readwriteservice : ReadwriteService
     ) {}
 
-    public getpublicinfovalue_fromdb(userid:string, variablename:string):any {
+    public getpublicinfovalue_fromlocaldb(userid:string, variablename?:string):any {
+        let temp_response_object : any = {};
+        let temp_response_value : any;
+        if (typeof userid !== "undefined" && userid != "" && userid != null) {
+            if (Object.keys(this.dbotherusers).includes(userid)){
+                temp_response_object = {};
+                Object.keys(this.dbotherusers[userid].publicinfo).forEach((currentkey)=>{
+                    if (typeof variablename != "undefined" && variablename != "" && variablename != null){
+/*
+                        console.log("String(currentkey.trim()) == variablename.trim()");
+                        console.log(String(currentkey.trim()) == variablename.trim());
+                        console.log("currentkey");
+                        console.log(currentkey);
+                        console.log("variablename");
+                        console.log(variablename);
+                        console.log("typeof currentkey");
+                        console.log(typeof currentkey);
+                        console.log("typeof variablename");
+                        console.log(typeof variablename);
+*/
+                        if (String(currentkey) == variablename){
+                            temp_response_value = this.dbotherusers[userid].publicinfo[currentkey];
+                        }
+                    }
+                    temp_response_object[currentkey] = this.dbotherusers[userid].publicinfo[currentkey];
+                });
+            } else{
+                console.log("getpublicinfouser_fromlocaldb: ERROR, userid is not present in local user db!");
+                temp_response_object = false;
+            }
+        } else {
+            console.log("getpublicinfouser_fromlocaldb: ERROR, userid is empty!");
+            temp_response_object = false;
+        }
+        if (typeof variablename != "undefined" && variablename != "" && variablename != null){
+            return temp_response_value;            
+        } else {
+            return temp_response_object;            
+        }
     }
 
     public getpublicinfovalue_fromfirebase(userids:string[]):any {
@@ -25,7 +64,7 @@ export class DbotherusersService {
                     temp_ref = "users/" + value_userid + "/publicinfo"
                     this.readwriteservice.simplygetsnapshot(temp_ref, (publicinfoofuser)=>{
                         this.integratepublicinfo(value_userid,publicinfoofuser);
-                        console.log("resolve promise:getpublicinfovalue_fromfirebase"+index)
+                        //console.log("resolve promise:getpublicinfovalue_fromfirebase"+index)
                         resolvegpivffb("getpublicinfovalue_fromfirebase");
                     });
                 });    
@@ -33,7 +72,7 @@ export class DbotherusersService {
 
         return Promise.all(temp_promises_gpivffb)
         .then(()=>{
-            console.log("resolve promise:getpublicinfovalue_fromfirebase END")
+            console.log("resolve promise:getpublicinfovalue_fromfirebase END", userids)
         });
     }
 
@@ -41,7 +80,14 @@ export class DbotherusersService {
         //updates other users only if not already in local DB
         if (!Object.keys(this.dbotherusers).includes(userid)){
             this.dbotherusers[userid] = {};
-            this.dbotherusers[userid].publicinfo = publicinfo;
+            this.dbotherusers[userid].publicinfo = {};
+            Object.keys(publicinfo).forEach((currentkey)=>{
+                console.log("currentkey");
+                console.log(currentkey);
+                console.log("publicinfo[currentkey]");
+                console.log(publicinfo[currentkey]);
+                this.dbotherusers[userid].publicinfo[currentkey] = publicinfo[currentkey];
+            });
         }
     }
 

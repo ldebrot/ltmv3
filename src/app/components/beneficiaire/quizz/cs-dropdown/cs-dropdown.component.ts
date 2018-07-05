@@ -72,7 +72,7 @@ export class CsDropdownComponent implements OnInit {
         this.autocompletesuggestions = []
         if (expression.length>2){
             this.suggestionbase.forEach((item,index)=>{
-                if (String(" " + item).toLowerCase().indexOf(" " + expression.toLowerCase()) != -1 && !this.autocompletevalue.includes(String(item))) {
+                if (String(" " + item).toLowerCase().includes(" " + expression.toLowerCase()) && !this.autocompletevalue.includes(String(item))) {
                     this.autocompletesuggestions.push(String(item));
                 }
             });
@@ -148,7 +148,7 @@ export class CsDropdownComponent implements OnInit {
         if (filterkeyarray.length > 0 && prefiltersuggestionbasekeyarray.length > 0) {
             //there is at least one filter, so let's cycle through them
             for (let i = 0; i < filterkeyarray.length; i++) {
-                if (prefiltersuggestionbasekeyarray.indexOf(filterkeyarray[i]) != -1) {
+                if (prefiltersuggestionbasekeyarray.includes(filterkeyarray[i])) {
                     //console.log("setupsuggestionbase: Filterkey is available");
                     currentmatchingvalues = [];//reset list of current matching values (current = matching for this filter given that there can be several filters)
                     if (Array.isArray(this.prefiltersuggestionbase[filterkeyarray[i]])){
@@ -174,7 +174,7 @@ export class CsDropdownComponent implements OnInit {
                         }
                         //Let's loop through values in the pre-filter suggestion base and check whether they match with one of the matching values
                         this.prefiltersuggestionbase[filterkeyarray[i]].map((item, index)=>{
-                            if (currentvaluearray.indexOf(item)!=-1){
+                            if (currentvaluearray.includes(item)){
                                 currentmatchingvalues.push(index);
                             }
                         });
@@ -197,8 +197,8 @@ export class CsDropdownComponent implements OnInit {
             //Filter out matching values in suggestionbase
             let temp_suggestionbase = [];
             this.suggestionbase.map((value,index)=>{
-                if (matchingvalues.indexOf(index)!=-1) {
-                    if (temp_suggestionbase.indexOf(value)==-1) {
+                if (matchingvalues.includes(index)) {
+                    if (!temp_suggestionbase.includes(value)) {
                         temp_suggestionbase.push(value);
                     }
                 }

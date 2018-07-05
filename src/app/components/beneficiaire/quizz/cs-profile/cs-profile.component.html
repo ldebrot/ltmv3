@@ -12,10 +12,11 @@
         (onLike)="onCardLike($event)"
         class="swipecardcontainer"
         >
-            <div [class]="swipecard.backgroundclass" adaptwidthtowindowwidth="0.85" adaptheighttowindowwidth="1.3">
+            <div class="profile_swipecard profile_cardbackground" adaptwidthtowindowwidth="0.85" adaptheighttowindowwidth="1.3">
                 <div class="profile_swipecardoverlay">
                     <img class="profile_image" [src]="swipecard.image" alt="profil" width="80%">
                     <div class="profile_namecaption">{{swipecard.caption}}</div>
+                    <br/>
                     <div class="profile_buttonlayer btn btn-secondary" (click)="showprofiledialog(swipecard)">
                         Voir son profil                    
                     </div>

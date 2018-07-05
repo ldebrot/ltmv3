@@ -71,6 +71,11 @@ export class CsComputeComponent implements OnInit {
                                 console.log("ALL DONE NOW!");
                             });    
                     break
+                case "generatecommonoutput":
+                    console.log("computecomponent: load process 'generatecommonoutput'");
+                    this.generatecommonoutput();
+                    resolve_executeprocess();
+                    break
                 case "launchprescoring":
                     console.log("computecomponent: load process 'launchprescoring'");
                     this.launchprescoring();
@@ -125,12 +130,12 @@ export class CsComputeComponent implements OnInit {
                         temp_array.push(this.librarymetiersservice.metiers.intitule[temp_index]);
                     }
                 } else {
-                    console.log("translatelibelle_appellation_courtintointitule: did not find equivalent");
+                    console.log("translatelibelle_appellation_courtintointitule: ERROR, did not find equivalent");
                 }
             });
             this.updaterwbuffer_byexperience(this.outputexperienceid,temp_array);
         }else{
-            console.log("translatelibelle_appellation_courtintointitule: inputexperienceid is either null or not an array!");
+            console.log("translatelibelle_appellation_courtintointitule: ERROR, inputexperienceid is either null or not an array!");
         }   
     }
 
@@ -142,6 +147,20 @@ export class CsComputeComponent implements OnInit {
 
     public launchprescoring():void{
         this.scoringevaluateservice.prescoringactiveuser(this.dbuserinfoservice.currentuserid);
+    }
+
+    //this one copies existing experience values from input to another output id, thus creating a common reference for further comparison during scoring process (e.g. compare métiers of témoins and users)
+    public generatecommonoutput():void{
+        let temp_inputexperienceid = this.quizzservice.currentcardobject.parameters.inputexperienceid;
+        let temp_outputexperienceid = this.quizzservice.currentcardobject.parameters.outputexperienceid;
+        
+        if (typeof this.dbuserinfoservice.userinfo.experience[temp_inputexperienceid] != "undefined"){
+            let temp_experiencevalue = this.dbuserinfoservice.userinfo.experience[temp_inputexperienceid];
+            this.updaterwbuffer_byexperience(temp_outputexperienceid,temp_experiencevalue);
+        } else {
+            console.log("generatecommonoutput: ERROR, input experience of card " + this.quizzservice.currentcardid + " is not available for current user.")
+        }
+
     }
 
     public setvalue():void{

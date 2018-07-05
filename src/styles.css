@@ -1004,6 +1004,15 @@ input.ng-invalid.ng-touched {
     text-align: center;
 }
 
+.cardset_ldbway .ui-tooltip-text{
+    pointer-events: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;        
+}
+
 /* CsSwipecard */
 
 .swipecardcontainer {
@@ -1684,10 +1693,10 @@ input.ng-invalid.ng-touched {
 
 .profile_cardbackground {
     background: #aaaaaa; /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #eeeeee 28%, #dddddd 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #eeeeee 28%,#dddddd 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, #eeeeee 28%,#dddddd 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
+    background: -moz-linear-gradient(-45deg, #EEEEFF 28%, #eeeeee 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #EEEEFF 28%,#eeeeee 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #EEEEFF 28%,#eeeeee 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#EEEEFF',GradientType=0 ); /* IE6-9 */
     color:#292b2c;
 }
 

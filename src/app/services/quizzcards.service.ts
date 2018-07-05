@@ -849,6 +849,42 @@ export class QuizzcardsService {
             option6: {id:6, caption:"...en reprenant une société avec des employés", unselectedclass:"unselected6", selectedclass:"selected6"},
             option7: {id:7, caption:"...n'importe où. Aucune idée.", unselectedclass:"unselected7", selectedclass:"selected7"}
         },
+        card87 : {
+            parameters:{
+                cardtype:"info",
+                instruction:"Ceci est une carte d'information. Lis-la attentivement et appuie sur le bouton vert quand tu as terminé.",
+                questioncaption: "Quels métiers souhaites-tu exercer ?",
+                cardcomponentname: "CsInfoComponent"
+            },
+            optional : {
+                condition: false,
+                imageurl:"",
+                videourl:"",
+                text:"La prochaine carte te proposera de choisir jusqu'à 10 métiers que tu souhaites exercer. <nl> <nl> N'oublie pas qu'il s'agit bien de métiers (chef de projet, boulanger, etc.) et non pas de domaines ou de secteurs.",
+                timer:true,
+                autotime:true,
+                textanimation:true,
+                time:0//in milliseconds
+            }
+        },
+        card88 : {
+            parameters:{
+                cardtype:"DropDown Component",
+                instruction:"Pour répondre à la question, sélectionne les postes que tu voudrais exercer après ta reconversion.",
+                questioncaption: "Quels postes souhaites-tu exercer à l'isue de ta reconversion ?",
+                titlecaption: "Tape et sélectionne le nom de tes postes de rêve",
+                cardcomponentname: "CsDropdownComponent",
+                minselected: 1,//how many items have to be selected?
+                maxselected: 10,//how many items can be selected?
+                suggestionbase:"metiers",//where are suggestions stored? this can be a placeholder name, an array or an object
+                valuekey:"libelle_appellation_court",//is there a key (used for objects)
+                filters:{code_grand_domaine:"2-142-1"}//keys of objects correspond to keys of values to be filtered, values correspond either to direct values (in an array) or to an experience (placeholder as string)
+            },
+            optional : {
+            },
+            options : {
+            }
+        },
         card100 : {
             parameters:{
                 cardtype:"info",
@@ -1007,7 +1043,7 @@ export class QuizzcardsService {
                 textanimation:true,
                 time:0//in milliseconds
             }
-        },          
+        },
         card106 : {
             parameters:{
                 cardtype:"Swipecards",
@@ -1238,7 +1274,7 @@ export class QuizzcardsService {
         card143 : {
             parameters:{
                 cardtype:"DropDown Component",
-                instruction:"Pour répondre à la question, sélectionne les postes que tu as eu avant ta reconversion.",
+                instruction:"Pour répondre à la question, sélectionne les postes que tu as eus avant ta reconversion.",
                 questioncaption: "Quels ont été tes postes de travail avant ta reconversion ?",
                 titlecaption: "Tape et sélectionne le nom de tes postes pré-reconversion",
                 cardcomponentname: "CsDropdownComponent",
@@ -1262,6 +1298,38 @@ export class QuizzcardsService {
                 process:"translatelibelle_appellation_courtintointitule",
                 inputexperienceid:"2-143-1",
                 outputexperienceid:"2-144-1"
+                },
+            optional : {
+            },
+            options : {
+            }
+        },
+        card152 : {
+            parameters:{
+                cardtype:"Compute Component",
+                instruction:"",
+                questioncaption: "",
+                cardcomponentname: "CsComputeComponent",
+                process:"generatecommonoutput",
+                inputexperienceid:"2-143-1",
+                outputexperienceid:"common-1-1",
+                commondescription:"Métiers exercés avant la reconversion (appellation)"
+                },
+            optional : {
+            },
+            options : {
+            }
+        },
+        card153 : {
+            parameters:{
+                cardtype:"Compute Component",
+                instruction:"",
+                questioncaption: "",
+                cardcomponentname: "CsComputeComponent",
+                process:"generatecommonoutput",
+                inputexperienceid:"2-144-1",
+                outputexperienceid:"common-2-1",
+                commondescription:"Métiers exercés avant la reconversion (intitulé, niveau plus grossier)"
                 },
             optional : {
             },
@@ -1411,12 +1479,49 @@ export class QuizzcardsService {
         card150 : {
             parameters:{
                 cardtype:"Compute Component",
+                description:"Card for témoin which recategorizes the precise name of a post to a more general post name",
                 instruction:"",
                 questioncaption: "",
                 cardcomponentname: "CsComputeComponent",
                 process:"translatelibelle_appellation_courtintointitule",
                 inputexperienceid:"2-149-1",
                 outputexperienceid:"2-150-1"
+                },
+            optional : {
+                condition: [{experience:"2-146-1",value:"temoin", compulsory:true}],//this means that this card is not necessarily shown
+            },
+            options : {
+            }
+        },
+        card154 : {
+            parameters:{
+                cardtype:"Compute Component",
+                description:"Card for témoin which copies values of an experience to a 'common' field also used by (not-temoin) users",
+                instruction:"",
+                questioncaption: "",
+                cardcomponentname: "CsComputeComponent",
+                process:"generatecommonoutput",
+                inputexperienceid:"2-149-1",
+                outputexperienceid:"common-1-1",
+                commondescription:"Métiers exercés avant la reconversion (appellation)"
+                },
+            optional : {
+                condition: [{experience:"2-146-1",value:"temoin", compulsory:true}],//this means that this card is not necessarily shown
+            },
+            options : {
+            }
+        },
+        card158 : {
+            parameters:{
+                cardtype:"Compute Component",
+                description:"Card for témoin which copies values of an experience to a 'common' field also used by (not-temoin) users",
+                instruction:"",
+                questioncaption: "",
+                cardcomponentname: "CsComputeComponent",
+                process:"generatecommonoutput",
+                inputexperienceid:"2-150-1",
+                outputexperienceid:"common-2-1",
+                commondescription:"Métiers exercés avant la reconversion (intitulé, niveau plus grossier)"
                 },
             optional : {
                 condition: [{experience:"2-146-1",value:"temoin", compulsory:true}],//this means that this card is not necessarily shown

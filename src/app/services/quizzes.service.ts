@@ -20,8 +20,8 @@ export class QuizzesService {
         },
         quizz2 : {
             caption:"Mon 1er quizz !",
-            description:"Ce premmier quizz te permettra de paramétrer ton profile pour que tu puisses rencontrer ou accueillir la bonne personne. Parfait pour démarrer !",
-            cardids : [140,141,142,155,143,144,156,145,146,157,147,148,149,150],
+            description:"Ce premier quizz te permettra de paramétrer ton profile pour que tu puisses rencontrer ou accueillir la bonne personne. Parfait pour démarrer !",
+            cardids : [140,141,142,155,143,144,152,153,156,145,146,157,147,148,149,150,154,158],
             conditionvisible: [{experience:"2-146-1", compulsory:true}],//this experience must be undefined
             conditionenabled: false,
             iconclass: "mdi mdi-flag-checkered quizzseletion_icons gradientnew7",
@@ -54,7 +54,7 @@ export class QuizzesService {
         quizz5 : {
             caption:"Je trouve mon nouveau métier !",
             description:"Ce quizz te guide à travers les questions portant sur ton nouveau métier.",
-            cardids : [80,81,82,83,84,85,86],
+            cardids : [80,81,82,83,84,85,86,87,88],
             conditionvisible: [
                 {experience:"2-146-1",value:"beneficiaire", compulsory:true},
                 {experience:"1-32-1",value:true, compulsory:true}

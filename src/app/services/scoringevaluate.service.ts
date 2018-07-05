@@ -296,7 +296,7 @@ export class ScoringevaluateService {
             let temp_cardid = inputexperienceid.split("-")[1];
             let temp_optionid = inputexperienceid.split("-")[2];
             //checks if card exists
-            if (Object.keys(this.quizzcardservice.cards).includes("card"+temp_cardid)){
+            if (Object.keys(this.quizzcardservice.cards).indexOf("card"+temp_cardid) != -1){//was includes() before (replaced all "includes" statements by indexOf because of shitty EcmaScript)
                 temp_value = {};
                 temp_value["cardid"] = temp_cardid;
                 temp_value["optionid"] = temp_optionid;
@@ -352,6 +352,7 @@ export class ScoringevaluateService {
             }
         )); 
 
+/* no longer required
         temp_promises_useguide.push(new Promise(
             (resolveuseguidecompleteprofile, reject) => {
                 this.guideresult_completeuserprofiles();
@@ -359,6 +360,7 @@ export class ScoringevaluateService {
                 resolveuseguidecompleteprofile();
             }
         ));
+*/
 
         return Promise.all(temp_promises_useguide)
         .then(()=>{
@@ -386,7 +388,7 @@ export class ScoringevaluateService {
                 temp_arrayofprescorenames.push(prescoreitemvalue.prescorename)
                 //check if prescore is saved at all
                 let temp_useridswithprescore = this.getuseridsforprescores(prescoreitemvalue.prescorename);
-                if (temp_useridswithprescore && temp_useridswithprescore.includes(this.dbuserinfoservice.currentuserid)) {
+                if (temp_useridswithprescore && temp_useridswithprescore.indexOf(this.dbuserinfoservice.currentuserid)!=-1) {
                     if (prescoreitemindex < 1) {
                         //add userids of those who have the first prescore
                         temp_arrayofuseridswithallprescores = temp_useridswithprescore;
@@ -513,7 +515,7 @@ export class ScoringevaluateService {
 
     //adds guidename and result structure to guideresult object
     public guideresult_addguidename(guidename:string):void{
-        if (!this.guideresults.guidenames.includes(guidename)) {
+        if (this.guideresults.guidenames.indexOf(guidename)==-1) {//was includes before
             console.log("adding guide "+guidename+" to guide results and");
             this.guideresults.guidenames.push(guidename);
         }
@@ -528,13 +530,13 @@ export class ScoringevaluateService {
 
     //adds guidename and result structure to guideresult object
     public guideresult_adduserids(userids:string[], guidename:string):void{
-        if (Object.keys(this.guideresults).includes(guidename)){
+        if (Object.keys(this.guideresults).indexOf(guidename)!=-1){
             //add user and structure if userid not in guideresult object yet
             userids.forEach((value_userid)=>{
-                if (!Object.keys(this.guideresults[guidename]).includes(value_userid) && value_userid !=this.dbuserinfoservice.currentuserid){
+                if (Object.keys(this.guideresults[guidename]).indexOf(value_userid)==-1 && value_userid !=this.dbuserinfoservice.currentuserid){
                     this.guideresults[guidename].users[value_userid] = {};
                     this.guideresults[guidename].users[value_userid].scores = {};                    
-                    if (!this.guideresults[guidename].userids.includes(value_userid)){
+                    if (this.guideresults[guidename].userids.indexOf(value_userid)==-1){
                         this.guideresults[guidename].userids.push(value_userid);
                     }
                 }            
@@ -546,28 +548,30 @@ export class ScoringevaluateService {
 
     public guideresult_addresults(resultobject:any, guidename:string, scorename:string):void{
         let temp_score : any;
-        if (!Object.keys(this.guideresults[guidename].scorenames).includes(scorename)){
+        if (Object.keys(this.guideresults[guidename].scorenames).indexOf(scorename)==-1){
             this.guideresults[guidename].scorenames[scorename]=[];
         } 
 
         Object.keys(resultobject).forEach((value_userid) => {
             this.guideresults[guidename].users[value_userid].scores[scorename] = resultobject[value_userid];
-            if (!this.guideresults[guidename].scorenames[scorename].includes(value_userid)){
+            if (this.guideresults[guidename].scorenames[scorename].indexOf(value_userid)==-1){
                 this.guideresults[guidename].scorenames[scorename][value_userid] = resultobject[value_userid];        
             }
         });
 
     }
 
-    // XXX here, user information (name and picture must be added, from Firebase)
+    /* no longer required
+    // yyy here, user information (name and picture must be added, from Firebase)
     public guideresult_completeuserprofiles(){
         console.log("Now completing user profiles");
     }
+    */
 
     //sends back ids of users which have a certain prescore, as an array 
     public getuseridsforprescores(prescorename):any{
         let temp_array : any;
-        if (Object.keys(this.prescores).includes(prescorename)) {
+        if (Object.keys(this.prescores).indexOf(prescorename)!=-1) {
             temp_array = Object.keys(this.prescores[prescorename]);
         } else {
             console.log("getuseridsforprescores : error, following prescorename is not in loaded prescores:");
@@ -582,7 +586,7 @@ export class ScoringevaluateService {
     public getitemfromarray_byvaluefromvariable (inputarray:any, inputvariable:string, inputvalue:any):any {
         let temp_value : any = false;
         inputarray.forEach((value,index) => {
-            if (Object.keys(value).includes(inputvariable)) {
+            if (Object.keys(value).indexOf(inputvariable)!=-1) {
                 if (value[inputvariable] == inputvalue){
                     temp_value = value;
                 }
@@ -649,34 +653,89 @@ export class ScoringevaluateService {
         },//weighing and sumup mode is not indicated as there is only one value
         {
             prescorename:"domainandsector_before", 
-            description:"Profil métiers et secteurs pré-reconversion", 
+            description:"Profil secteurs pré-reconversion", 
             inputexperienceids: ["x-141-x"], 
             experienceweighing:[], 
-            experiencesumupmode:"none"}, //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
+            experiencesumupmode:"none"
+        }, //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
         {
             prescorename:"domainandsector_after", 
-            description:"Profil métiers et secteurs post-reconversion", 
+            description:"Profil secteurs post-reconversion", 
             inputexperienceids: ["x-106-x"], 
             experienceweighing:[], 
-            experiencesumupmode:"none"} //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
+            experiencesumupmode:"none"
+        }, //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+/*
+
+Todo XXX :
+- probably not necessary to make a prescore item out of metier_before, already stored in common
+- configure directly the score item and the guide for pre-reorientation and post-reorientation matching around métier appellation and métier general
+- create more user accounts to show matches.
+
+*/
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+        {//this one compares metiers of temoins and users BEFORE their reorientation, previously, there choices where saved in the same experience id
+            prescorename:"metiers_appellation_before",
+            description:"Profil métiers pré-reconversion", 
+            inputexperienceids: ["common-1-1"], //artificial common experience of both temoins and users 
+            experienceweighing:[], 
+            experiencesumupmode:"none"
+        }, //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
+        {//this one compares metiers of temoins and users AFTER their reorientation, previously, there choices where saved in the same experience id
+            prescorename:"metiers_appellation_after",
+            description:"Profil métiers et secteurs post-reconversion", 
+            inputexperienceids: ["common-2-1"],  //artificial common experience of both temoins and users
+            experienceweighing:[], 
+            experiencesumupmode:"none"
+        } //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
     ]
 
     //this contains prescores saved on Firebase
     public prescores : any = {};
 
+    public getothervalueofscoreitemsbyscorename(inputscorename:string, inputothervalue:string):any{
+        let temp_response = "";
+        this.scoreitems.forEach((value)=>{
+            if (value.scorename = inputscorename){
+                temp_response = value[inputothervalue];
+            }
+        });
+        if (temp_response == ""){
+            console.log("getscoredescriptionlongbyscorename: ERROR, did not get long description of scorename: "+inputscorename);
+        }
+        return temp_response;
+    }
+
     //instructions for score items used by guide
     public scoreitems : any[] = [
-        {scorename:"seniority", 
-        description:"Séniorité: Années d'expérience professionnelle", 
-        prescoreitems : [
-            {prescorename: "yearsofexperience", evaluationmode:"proximity_continuous"}
-        ]},
-        {scorename:"domainandsector", 
-        description:"Domaine et secteurs", 
-        prescoreitems : [
-            {prescorename:"domainandsector_before", evaluationmode:"proximity_discrete"},
-            {prescorename:"domainandsector_after", evaluationmode:"proximity_discrete"} //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
-        ]}
+        {
+            scorename:"seniority",
+            description:"Séniorité en année d'expérience:",
+            description_long:"Séniorité en année d'expérience: si la jauge est pleine, vous avez la même séniorité que la personne dont vous consultez le profil.",
+            prescoreitems : [
+                {prescorename: "yearsofexperience", evaluationmode:"proximity_continuous"}
+            ]
+        },
+        {
+            scorename:"domainandsector", 
+            description:"Domaine et secteurs",
+            description_long:"Domaine et secteurs: si la jauge est pleine, vous avez travaillé ou souhaitez travailler dans le même secteur et le même domaine respectivement avant et après votre reconversion.",
+            prescoreitems : [
+                {prescorename:"domainandsector_before", evaluationmode:"proximity_discrete"},
+                {prescorename:"domainandsector_after", evaluationmode:"proximity_discrete"} //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
+            ]
+        },
+        {//XXX
+            scorename:"metiers",
+            description:"Métiers",
+            description_long:"Métiers: si la jauge est pleine, vous avez exercé ou souhaitez exercer les mêmes métiers que la personne dont le profil s'affiche.",
+            prescoreitems : [
+                {prescorename:"domainandsector_before", evaluationmode:"proximity_discrete"},
+                {prescorename:"domainandsector_after", evaluationmode:"proximity_discrete"} //weighing and sumup mode is not indicated as it is about a profile (true/false/true, etc.) , not a value
+            ]
+        }
 
         //séniorité : une seule option possible, distance quantifiable
         //la valeur est une interprétation directe de la séniorité (0-3 ans -> 1, 4-6 ans -> 2, etc.)
