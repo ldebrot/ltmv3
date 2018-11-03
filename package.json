@@ -1,7 +1,11 @@
 {
   "name": "ltmv1",
-  "version": "0.0.0",
+  "version": "3.0.0",
   "license": "MIT",
+  "description": "Lunchtime! V3",
+  "engines": {
+    "node": "6.9.1"
+  }
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
